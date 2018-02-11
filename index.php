@@ -14,4 +14,4 @@ class ClassName // extends AnotherClass
 
 $newClass = new ClassName();
 
-echo "hello";
+echo "macbook test";
