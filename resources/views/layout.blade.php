@@ -19,12 +19,13 @@
 
   <body>
 
-    @include('layouts.nav')
-
-    <div class="container">
-      @yield('content')
-    </div>
-
-    @include('layouts.footer')
+    <main role="main" class="container">
+      @include('layouts.nav')
+        <div class="row">
+          @yield('content')
+          @include('layouts.sidebar')
+        </div>
+      @include('layouts.footer')
+    </main>
   </body>
 </html>
