@@ -2,36 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Post;
 
 class PostsController extends Controller
 {
-    public function index()
-    {
-      $posts = Post::latest()->get();
-      return view('posts.index', compact('posts'));
-    }
+  public function __construct()
+  {
+    $this->middleware('auth')->except(['index', 'show']);
+  }
 
-    public function show(Post $post)
-    {
-      return view('posts.show', compact('post'));
-    }
+  public function index()
+  {
+    $posts = Post::latest()->get();
+    return view('posts.index', compact('posts'));
+  }
 
-    public function create()
-    {
-      return view('posts.create');
-    }
+  public function show(Post $post)
+  {
+    return view('posts.show', compact('post'));
+  }
 
-    public function store()
-    {
-      $this->validate(request(), [
-        'title' => 'required|max:10',
-        'body' => 'required|max:20',
-      ]);
+  public function create()
+  {
+    return view('posts.create');
+  }
 
-      Post::create(request(['title', 'body']));
+  public function store()
+  {
+    $this->validate(request(), [
+      'title' => 'required|max:100',
+      'body' => 'required|max:200',
+    ]);
 
-      return redirect('posts');
-    }
+    auth()->user()->publish(new Post(request(['title', 'body'])));
+
+    return redirect('posts');
+  }
 }
