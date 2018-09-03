@@ -1,5 +1,13 @@
 <?php
 
+App::bind('\App\Billing\Stripe', function() {
+  return new \App\Billing\Stripe(config('services.stripe.secret'));
+});
+
+$stripe = resolve('App\Billing\Stripe');
+
+dd($stripe);
+
 Route::get('/tasks', 'TasksController@index');
 Route::get('/tasks/{task}', 'TasksController@show');
 
