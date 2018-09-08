@@ -25,20 +25,18 @@
     {{-- Add a comment --}}
     <hr />
 
-    <div class="card">
-      <div class="card-block">
-        <form method="post" action="/post/{{ $post->id }}/comments">
-          {{ csrf_field() }}
-          <div class="form-group">
-            <textarea name="body" placeholder="Tvůj komentář" class="form-control" required></textarea>
-          </div>
+    <div class="card-block">
+      <form method="post" action="/post/{{ $post->id }}/comments">
+        {{ csrf_field() }}
+        <div class="form-group">
+          <textarea name="body" placeholder="Tvůj komentář" class="form-control" required></textarea>
+        </div>
 
-          <div class="form-group">
-              <button type="submit" class="btn btn-primary">Add comment</button>
-          </div>
-        </form>
-        @include('layouts.errors')
-      </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Add comment</button>
+        </div>
+      </form>
+      @include('layouts.errors')
     </div>
 
   </div>
