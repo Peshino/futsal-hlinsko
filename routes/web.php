@@ -11,11 +11,11 @@ Route::post('/post/{post}/comments', 'CommentsController@store');
 
 // Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 
 Route::get('/register', 'RegistrationController@create');
 Route::post('/register', 'RegistrationController@store');
 
 Route::get('/login', 'SessionsController@create');
-Route::post('/login', 'SessionsController@store');
+Route::post('/login', 'SessionsController@store')->name('login');
 Route::get('/logout', 'SessionsController@destroy');

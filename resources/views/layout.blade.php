@@ -15,12 +15,20 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/album.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
   </head>
 
   <body>
 
     <main role="main" class="container">
       @include('layouts.nav')
+
+      @if ($flash = session('message'))
+        <div id="flash-message" class="alert alert-success" role="alert">
+          {{ $flash }}
+        </div>
+      @endif
+
         <div class="row">
           @yield('content')
           @include('layouts.sidebar')

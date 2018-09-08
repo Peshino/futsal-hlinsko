@@ -41,6 +41,8 @@ class PostsController extends Controller
 
     auth()->user()->publish(new Post(request(['title', 'body'])));
 
+    session()->flash('message', 'Článek byl vytvořen.');
+
     return redirect('posts');
   }
 }
