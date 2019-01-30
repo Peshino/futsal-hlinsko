@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
   <div class="col-md-8 blog-main">
@@ -25,19 +25,24 @@
     {{-- Add a comment --}}
     <hr />
 
-    <div class="card-block">
-      <form method="post" action="/post/{{ $post->id }}/comments">
-        {{ csrf_field() }}
-        <div class="form-group">
-          <textarea name="body" placeholder="Tvůj komentář" class="form-control" required></textarea>
-        </div>
+    @if (Auth::check())
+      <p>
+        Comment as {{ Auth::user()->name }}
+      </p>
+      <div class="card-block">
+        <form method="post" action="/post/{{ $post->id }}/comments">
+          {{ csrf_field() }}
+          <div class="form-group">
+            <textarea name="body" placeholder="Tvůj komentář" class="form-control" required></textarea>
+          </div>
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Add comment</button>
-        </div>
-      </form>
-      @include('layouts.errors')
-    </div>
+          <div class="form-group">
+              <button type="submit" class="btn btn-primary">Add comment</button>
+          </div>
+        </form>
+        @include('layouts.errors')
+      </div>
+    @endif
 
   </div>
 @endsection

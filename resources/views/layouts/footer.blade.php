@@ -1,6 +1,15 @@
-<footer class="blog-footer">
-  <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-  <p>
-    <a href="#">Back to top</a>
-  </p>
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">
+        <p>
+            © 2013-2018 | všechna práva vyhrazena -
+            <a href="http://futsal.hlinsko.cz/">futsal Hlinsko</a>
+            | web vytvořil <a href="mailto:pesek.jirka@centrum.cz">Jiří Pešek</a>
+        </p>
+    </div>
+    <!-- Copyright -->
+
 </footer>
+<!-- Footer -->
