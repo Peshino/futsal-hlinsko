@@ -1,2 +1,0 @@
-# futsal-hlinsko
-Futsal Hlinsko
