@@ -1,0 +1,33 @@
+#cookie-bar {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    padding: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+#cookie-bar-content {
+    margin: auto;
+    padding: 10px;
+}
+
+#cookie-bar-content p {
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#cookie-bar-content .cookie-btn {
+    color: #ffffff;
+    background: transparent;
+    border: 2px solid #ffffff;
+    width: 90px;
+}
+
+#cookie-bar-content .cookie-btn:hover {
+    color: #000000;
+    background: #ffffff;
+}

@@ -1,0 +1,135 @@
+.navbar {
+    background-color: #1b1e21;
+}
+
+.navbar {
+    sup {
+        top: -0.5em;
+    }
+
+    sub,
+    sup {
+        position: relative;
+        font-size: 85%;
+        line-height: 0;
+        vertical-align: baseline;
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 0.2em 0.4em;
+        font-size: 85%;
+        font-weight: bolder;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: 0.2rem;
+        -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .badge-color {
+        color: #000000;
+    }
+}
+
+.nav-link {
+    padding: 0.75rem 1rem;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #cccccc;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #fefefe;
+    background-color: #2a2e33;
+    border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus {
+    color: #fefefe;
+}
+
+.navbar-dark .navbar-nav .show>.nav-link,
+.navbar-dark .navbar-nav .active>.nav-link,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #ffffff;
+}
+
+.navbar-nav .dropdown-menu {
+    color: #cccccc;
+    background-color: #1b1e21;
+    border: 0px solid rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 0;
+    margin: 0 0 0;
+    border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.navbar-nav .dropdown-item {
+    color: #cccccc;
+    padding: 0.5rem 1.5rem;
+}
+
+.navbar-nav .dropdown-item:hover,
+.navbar-nav .dropdown-item:focus {
+    color: #fefefe;
+    background-color: #2a2e33;
+    border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.navbar-nav .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.1em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
+
+.icon-bar {
+    width: 22px;
+    height: 2px;
+    background-color: #B6B6B6;
+    display: block;
+    transition: all 0.2s;
+    margin-top: 4px
+}
+
+.navbar-toggler {
+    border: none;
+    background: transparent !important;
+    padding: 0.50rem 0.75rem;
+}
+
+.navbar-toggler .top-bar {
+    transform: rotate(45deg);
+    transform-origin: 10% 10%;
+}
+
+.navbar-toggler .middle-bar {
+    opacity: 0;
+}
+
+.navbar-toggler .bottom-bar {
+    transform: rotate(-45deg);
+    transform-origin: 10% 90%;
+}
+
+.navbar-toggler.collapsed .top-bar {
+    transform: rotate(0);
+}
+
+.navbar-toggler.collapsed .middle-bar {
+    opacity: 1;
+}
+
+.navbar-toggler.collapsed .bottom-bar {
+    transform: rotate(0);
+}
