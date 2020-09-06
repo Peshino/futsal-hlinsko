@@ -10973,6 +10973,162 @@ html {
   background: #ffffff;
 }
 
+#introduction {
+  color: #ffffff;
+  position: relative;
+  min-height: 100vh;
+  background-image: url("/img/bg_logo.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#introduction .introduction-header {
+  text-align: center;
+  padding: 24px 0;
+}
+
+#introduction .introduction-header h1,
+#introduction .introduction-header h2 {
+  color: #ffffff;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+}
+
+#introduction .introduction-middle {
+  width: auto;
+  height: 4rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#introduction .introduction-bottom {
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  margin: auto;
+}
+
+#introduction .introduction-bottom a {
+  font-size: 1.5rem;
+}
+
+#introduction footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2rem;
+}
+
+#introduction input {
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid #ffffff;
+}
+
+#introduction ::-moz-placeholder {
+  color: #cccccc;
+  opacity: 1;
+}
+
+#introduction :-ms-input-placeholder {
+  color: #cccccc;
+  opacity: 1;
+}
+
+#introduction ::-ms-input-placeholder {
+  color: #cccccc;
+  opacity: 1;
+}
+
+#introduction ::placeholder {
+  color: #cccccc;
+  opacity: 1;
+}
+
+#introduction :-ms-input-placeholder,
+#introduction ::-ms-input-placeholder {
+  color: #cccccc;
+}
+
+#introduction input:focus {
+  outline: 0 0 0 0 !important;
+  box-shadow: 0 0 0 0 !important;
+}
+
+#introduction a {
+  color: #5cc3ff;
+  text-decoration: none;
+}
+
+#introduction a:hover {
+  color: #ffffff;
+}
+
+#introduction .btn {
+  color: #5cc3ff;
+  background: transparent;
+  border: 1px solid #5cc3ff;
+  width: 16rem;
+}
+
+#introduction .btn:hover {
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+#introduction .dropdown-menu {
+  color: #cccccc;
+  background-color: rgba(0, 0, 0, 0.25);
+  border: 0px solid rgba(0, 0, 0, 0.15);
+  padding: 0;
+  margin: 0;
+  border-radius: 0 0 0.25rem 0.25rem;
+  text-align: center;
+  width: 16rem;
+  font-size: 1.1rem;
+}
+
+#introduction .dropdown-item {
+  color: #cccccc;
+  padding: 0.5rem 1.5rem;
+}
+
+#introduction .dropdown-item:hover,
+#introduction .dropdown-item:focus {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#introduction .dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.1em;
+  content: "";
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+}
+
+#introduction .dropdown-menu-center {
+  right: auto;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+#introduction .hover {
+  color: #000000;
+  background: #ffffff;
+}
+
 .navbar {
   background-color: #1b1e21;
 }
