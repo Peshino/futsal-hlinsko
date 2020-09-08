@@ -12,7 +12,7 @@
 
     <title>@yield('title')</title>
 
-    <link href="{{ asset('img/favicon_' . config('variants.name') . '.png') }}" rel="shortcut icon">
+    <link href="{{ asset('img/favicon.png') }}" rel="shortcut icon">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/ekko-lightbox.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('css/daterangepicker.css') }}" rel="stylesheet"> --}}
