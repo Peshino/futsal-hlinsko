@@ -69,12 +69,12 @@
         border-radius: 0.25rem;
     }
 
-    .krasojizda-bg {
-        background: #ed2f65;
-        background: -moz-linear-gradient(-45deg, #ed2f65 0%, #2bbcff 100%);
-        background: -webkit-linear-gradient(-45deg, #ed2f65 0%, #2bbcff 100%);
-        background: linear-gradient(135deg, #ed2f65 0%, #2bbcff 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed2f65', endColorstr='#2bbcff', GradientType=1);
+    .app-bg {
+        background: #00a1ff;
+        background: -moz-linear-gradient(left, #00a1ff 0%, #5cc3ff 100%);
+        background: -webkit-linear-gradient(left, #00a1ff 0%, #5cc3ff 100%);
+        background: linear-gradient(to right, #00a1ff 0%, #5cc3ff 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00a1ff', endColorstr='#5cc3ff', GradientType=1);
     }
 
     .card {
@@ -108,8 +108,12 @@
             white-space: nowrap;
             vertical-align: baseline;
             border-radius: 0.2rem;
-            -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            -webkit-transition: color 0.15s ease-in-out,
+                background-color 0.15s ease-in-out,
+                border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            transition: color 0.15s ease-in-out,
+                background-color 0.15s ease-in-out,
+                border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
 
         .badge-color {
@@ -250,42 +254,90 @@
     .alert {
         border: 0px solid transparent;
         margin-bottom: 0rem;
-        padding: 0.20rem 0rem;
+        padding: 0.2rem 0rem;
         border-radius: 0rem;
     }
 
     .alert-danger {
         color: #ff4447;
-        background: -moz-linear-gradient(top, rgba(155, 31, 33, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
-        background: -webkit-linear-gradient(top, rgba(155, 31, 33, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
-        background: linear-gradient(to bottom, rgba(155, 31, 33, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
+        background: -moz-linear-gradient(
+            top,
+            rgba(155, 31, 33, 0.55) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
+        background: -webkit-linear-gradient(
+            top,
+            rgba(155, 31, 33, 0.55) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
+        background: linear-gradient(
+            to bottom,
+            rgba(155, 31, 33, 0.55) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a69b1f21', endColorstr='#00000000', GradientType=0);
     }
 
     .alert-warning {
         color: #ffc746;
         border-color: transparent;
-        background: -moz-linear-gradient(top, rgba(114, 90, 22, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
-        background: -webkit-linear-gradient(top, rgba(114, 90, 22, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
-        background: linear-gradient(to bottom, rgba(114, 90, 22, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
+        background: -moz-linear-gradient(
+            top,
+            rgba(114, 90, 22, 0.55) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
+        background: -webkit-linear-gradient(
+            top,
+            rgba(114, 90, 22, 0.55) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
+        background: linear-gradient(
+            to bottom,
+            rgba(114, 90, 22, 0.55) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8c725a16', endColorstr='#00000000', GradientType=0);
     }
 
     .alert-success {
         color: #3dff74;
         border-color: transparent;
-        background: -moz-linear-gradient(top, rgba(0, 137, 39, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
-        background: -webkit-linear-gradient(top, rgba(0, 137, 39, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
-        background: linear-gradient(to bottom, rgba(0, 137, 39, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
+        background: -moz-linear-gradient(
+            top,
+            rgba(0, 137, 39, 0.55) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
+        background: -webkit-linear-gradient(
+            top,
+            rgba(0, 137, 39, 0.55) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 137, 39, 0.55) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a6008927', endColorstr='#00000000', GradientType=0);
     }
 
     .alert-info {
         color: #6bb0ff;
         border-color: transparent;
-        background: -moz-linear-gradient(top, rgba(30, 87, 153, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
-        background: -webkit-linear-gradient(top, rgba(30, 87, 153, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
-        background: linear-gradient(to bottom, rgba(30, 87, 153, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
+        background: -moz-linear-gradient(
+            top,
+            rgba(30, 87, 153, 0.55) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
+        background: -webkit-linear-gradient(
+            top,
+            rgba(30, 87, 153, 0.55) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
+        background: linear-gradient(
+            to bottom,
+            rgba(30, 87, 153, 0.55) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8c1e5799', endColorstr='#00000000', GradientType=0);
     }
 
@@ -446,7 +498,6 @@
 
     .color-radio-buttons {
         @keyframes fade {
-
             0%,
             50% {
                 opacity: 0;
@@ -460,13 +511,13 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            transition: all .2s ease-in-out;
+            transition: all 0.2s ease-in-out;
             animation-timing-function: ease-in-out;
             animation-iteration-count: infinite;
             animation-duration: 1.6s;
         }
 
-        .color-radio:checked+label {
+        .color-radio:checked + label {
             animation-play-state: paused;
         }
 
@@ -478,12 +529,14 @@
             margin: 10px;
             background: white;
             border-radius: 50%;
-            box-shadow: rgba(0, 0, 0, 0.117647) 0 0 16px 0, rgba(0, 0, 0, 0.239216) 0 16px 16px 0;
-            transition: all .2s;
+            box-shadow: rgba(0, 0, 0, 0.117647) 0 0 16px 0,
+                rgba(0, 0, 0, 0.239216) 0 16px 16px 0;
+            transition: all 0.2s;
         }
 
         label:hover:before {
-            box-shadow: rgba(0, 0, 0, 0.0784314) 0 0 20px 0, rgba(0, 0, 0, 0.239216) 0 20px 20px 0;
+            box-shadow: rgba(0, 0, 0, 0.0784314) 0 0 20px 0,
+                rgba(0, 0, 0, 0.239216) 0 20px 20px 0;
         }
 
         label:after {
@@ -491,29 +544,29 @@
             position: absolute;
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, .5);
+            background: rgba(255, 255, 255, 0.5);
             border-radius: 50%;
             transform: scale(0);
         }
 
-        .color-radio:checked+label:after {
+        .color-radio:checked + label:after {
             background: transparent;
-            transition: all .5s;
+            transition: all 0.5s;
             transform: scale(1);
         }
 
-        .color-radio+label {
+        .color-radio + label {
             left: -1200px;
             animation-delay: 0s;
         }
 
-        .color-radio+label:before {
+        .color-radio + label:before {
             transform: scale(0);
         }
 
-        .color-radio:checked+label:before {
+        .color-radio:checked + label:before {
             transform: scale(1);
-            transition: all .4s;
+            transition: all 0.4s;
         }
 
         [type="radio"] {

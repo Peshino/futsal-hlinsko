@@ -16,7 +16,7 @@ class CompetitionController extends Controller
      */
     public function index()
     {
-        //
+        return view('competitions.index', compact(''));
     }
 
     /**
@@ -48,7 +48,8 @@ class CompetitionController extends Controller
      */
     public function show(Competition $competition)
     {
-        //
+        // dd($competition);
+        return view('competitions.show', compact('competition'));
     }
 
     /**

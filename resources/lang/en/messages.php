@@ -32,6 +32,8 @@ return [
     'posts' => 'Posts',
     'photo_gallery' => 'Photogallery',
     'contacts' => 'Contacts',
+    'competition' => 'Competition',
+    'competitions' => 'Competitions',
 
     'title' => 'Title',
     'text' => 'Text',

@@ -32,6 +32,8 @@ return [
     'posts' => 'Články',
     'photo_gallery' => 'Fotogalerie',
     'contacts' => 'Kontakty',
+    'competition' => 'Soutěž',
+    'competitions' => 'Soutěže',
 
     'title' => 'Titulek',
     'text' => 'Text',

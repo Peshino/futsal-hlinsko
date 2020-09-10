@@ -49914,7 +49914,7 @@ $('#introduction #seasons a.season').click(function (e) {
 
       if (competitions) {
         competitions.forEach(function (competition) {
-          html += '<a href="souteze/' + competition.id + '" class="btn btn-lg">' + competition.name + '</a>';
+          html += '<a href="competitions/' + competition.id + '" class="btn btn-lg">' + competition.name + '</a>';
         });
         $('#competitions').html(html);
         $('#current-season').html(seasonName);

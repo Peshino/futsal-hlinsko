@@ -1,9 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-icon-top navbar-dark shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {{-- <img src="{{ asset('img/logo_small_navbar.png') }}" class="align-middle" alt="logo"> --}}
-            <span class="align-middle">@lang('messages.app_name')</span>
-        </a>
+        @yield('competition-url')
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="@lang('messages.toggle_navigation')">

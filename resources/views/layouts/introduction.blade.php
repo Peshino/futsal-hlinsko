@@ -53,7 +53,7 @@
                     <div id="competitions" class="btn-group flex-wrap show">
                         @if (count($lastSeason->competitions) > 0)
                         @foreach ($lastSeason->competitions as $competition)
-                        <a href="{{ route('souteze.show', $competition->id) }}" class="btn btn-lg">
+                        <a href="{{ route('competitions.show', $competition->id) }}" class="btn btn-lg">
                             {{ $competition->name ?? '' }}
                         </a>
                         @endforeach

@@ -11376,10 +11376,10 @@ html {
   border-radius: 0.25rem;
 }
 
-#main .krasojizda-bg {
-  background: #ed2f65;
-  background: linear-gradient(135deg, #ed2f65 0%, #2bbcff 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ed2f65", endColorstr="#2bbcff", GradientType=1);
+#main .app-bg {
+  background: #00a1ff;
+  background: linear-gradient(to right, #00a1ff 0%, #5cc3ff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00a1ff", endColorstr="#5cc3ff", GradientType=1);
 }
 
 #main .card {

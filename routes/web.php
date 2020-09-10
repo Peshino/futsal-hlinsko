@@ -9,13 +9,13 @@ Route::get('/', 'IntroductionController@index');
 
 Route::get('home', 'HomeController@index')->name('home');
 
-Route::resource('uzivatele', 'UserController');
+Route::resource('users', 'UserController');
 
-Route::resource('sezony', 'SeasonController');
+Route::resource('seasons', 'SeasonController');
 
-Route::resource('souteze', 'CompetitionController');
-Route::get('souteze/sezona/{sezona}', 'CompetitionController@getCompetitionsBySeason')->name('competitions-by-season');
+Route::resource('competitions', 'CompetitionController');
+Route::get('competitions/season/{season}', 'CompetitionController@getCompetitionsBySeason')->name('competitions-by-season');
 
-Route::resource('souteze-typy', 'CompetitionTypeController');
+Route::resource('competition-types', 'CompetitionTypeController');
 
-Route::resource('souteze-styly', 'CompetitionStyleController');
+Route::resource('competition-styles', 'CompetitionStyleController');
