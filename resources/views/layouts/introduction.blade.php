@@ -68,9 +68,22 @@
             </div>
 
             <div class="introduction-bottom text-center">
+                @auth
+                <a class="" href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fas fa-power-off"></i>&nbsp; @lang('messages.user_logout')
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                @endauth
+
+                @guest
                 <a class="" href="{{ route('login') }}">
                     <i class="far fa-user"></i>
                 </a>
+                @endguest
             </div>
 
             @include('partials/footer')

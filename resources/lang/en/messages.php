@@ -8,7 +8,7 @@ return [
     'footer_rights' => 'all rights reserved',
     'created_by' => 'created by',
 
-    'sign_in_tab' => 'Login',
+    'sign_in' => 'Login',
     'sign_in_header' => 'Login',
     'sign_in_placeholder_username' => 'E-mail',
     'sign_in_placeholder_password' => 'Password',
@@ -16,7 +16,7 @@ return [
     'sign_in_forgot_password' => 'Forgot your password?',
     'sign_in_button' => 'Login',
 
-    'sign_up_tab' => 'Register',
+    'sign_up' => 'Register',
     'sign_up_header' => 'Registration',
     'sign_up_placeholder_firstname' => 'Firstname',
     'sign_up_placeholder_lastname' => 'Lastname',

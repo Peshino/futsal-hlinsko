@@ -8,7 +8,7 @@ return [
     'footer_rights' => 'všechna práva vyhrazena',
     'created_by' => 'web vytvořil',
 
-    'sign_in_tab' => 'Přihlásit se',
+    'sign_in' => 'Přihlásit se',
     'sign_in_header' => 'Přihlášení',
     'sign_in_placeholder_username' => 'E-mail',
     'sign_in_placeholder_password' => 'Heslo',
@@ -16,7 +16,7 @@ return [
     'sign_in_forgot_password' => 'Zapomněli jste své heslo?',
     'sign_in_button' => 'Přihlásit se',
 
-    'sign_up_tab' => 'Zaregistrovat se',
+    'sign_up' => 'Zaregistrovat se',
     'sign_up_header' => 'Registrace',
     'sign_up_placeholder_firstname' => 'Jméno',
     'sign_up_placeholder_lastname' => 'Příjmení',
