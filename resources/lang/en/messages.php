@@ -34,6 +34,11 @@ return [
     'contacts' => 'Contacts',
     'competition' => 'Competition',
     'competitions' => 'Competitions',
+    'teams' => 'Teams',
+    'table' => 'Table',
+    'shooters' => 'Shooters',
+    'cards' => 'Cards',
+    'matches' => 'Matches',
 
     'title' => 'Title',
     'text' => 'Text',

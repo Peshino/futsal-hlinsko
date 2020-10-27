@@ -34,6 +34,11 @@ return [
     'contacts' => 'Kontakty',
     'competition' => 'Soutěž',
     'competitions' => 'Soutěže',
+    'teams' => 'Týmy',
+    'table' => 'Tabulka',
+    'shooters' => 'Střelci',
+    'cards' => 'Karty',
+    'matches' => 'Zápasy',
 
     'title' => 'Titulek',
     'text' => 'Text',

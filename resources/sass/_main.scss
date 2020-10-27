@@ -70,11 +70,11 @@
     }
 
     .app-bg {
-        background: #00a1ff;
-        background: -moz-linear-gradient(left, #00a1ff 0%, #5cc3ff 100%);
-        background: -webkit-linear-gradient(left, #00a1ff 0%, #5cc3ff 100%);
-        background: linear-gradient(to right, #00a1ff 0%, #5cc3ff 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00a1ff', endColorstr='#5cc3ff', GradientType=1);
+        background: #0071b2;
+        background: -moz-linear-gradient(left,  #0071b2 0%, #0099f2 100%);
+        background: -webkit-linear-gradient(left,  #0071b2 0%,#0099f2 100%);
+        background: linear-gradient(to right,  #0071b2 0%,#0099f2 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0071b2', endColorstr='#0099f2',GradientType=1 );
     }
 
     .card {

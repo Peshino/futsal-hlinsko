@@ -22,16 +22,16 @@
 <body>
     <div id="app">
         <div id="introduction">
-            <div class="introduction-header">
-                <a href="{{ url('/') }}">
-                    <h1>@lang('messages.app_name')</h1>
-                </a>
-
-                {{-- <h2>@lang('messages.app_description')</h2> --}}
-            </div>
             <div class="text-center">
                 @if (count($seasons) > 0)
                 <div class="introduction-top text-center">
+                    <div class="introduction-header">
+                        <a href="{{ url('/') }}">
+                            <h1>@lang('messages.app_name')</h1>
+                        </a>
+
+                        {{-- <h2>@lang('messages.app_description')</h2> --}}
+                    </div>
                     <div class="dropdown p-1 mb-2">
                         <button class="btn btn-lg dropdown-toggle" type="button" id="current-season"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

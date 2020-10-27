@@ -19,3 +19,7 @@ Route::get('competitions/season/{season}', 'CompetitionController@getCompetition
 Route::resource('competition-types', 'CompetitionTypeController');
 
 Route::resource('competition-styles', 'CompetitionStyleController');
+
+Route::prefix('competitions/{competition}')->group(function () {
+    Route::resource('teams', 'TeamController');
+});

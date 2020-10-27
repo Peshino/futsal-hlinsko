@@ -1,11 +1,5 @@
 @extends('layouts.master')
 
-@section('competition-url')
-<a href="{{ route('competitions.show', $competition->id) }}" class="navbar-brand">
-    {{ $competition->name ?? '' }}
-</a>
-@endsection
-
 @section('title')
 {{ $competition->name ?? '' }} | @lang('messages.app_name')
 @endsection
@@ -15,7 +9,7 @@
     <div class="card-header app-bg">
         <div class="row">
             <div class="col col-left">
-                @lang('messages.competition') {{ $competition->name ?? '' }} {{ $competition->season->name ?? '' }}
+                @lang('messages.homepage')
             </div>
             <div class="col">
                 <ul class="list-inline justify-content-end">
