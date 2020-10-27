@@ -14,7 +14,7 @@
             <div class="col">
                 <ul class="list-inline justify-content-end">
                     <li class="list-inline-item">
-                        <a class="crud-button" href="{{ route('teams.create', $currentCompetition->id) }}">
+                        <a class="crud-button" href="{{ route('teams.create', $competition->id) }}">
                             <div class="plus"></div>
                         </a>
                     </li>

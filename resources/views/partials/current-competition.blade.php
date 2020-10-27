@@ -1,5 +1,5 @@
 <div class="text-center">
-    <a href="{{ route('competitions.show', $currentCompetition->id) }}" class="navbar-brand">
-        {{ $currentCompetition->name ?? '' }} {{ $currentCompetition->season->name ?? '' }}
+    <a href="{{ route('competitions.show', $competition->id) }}" class="navbar-brand">
+        {{ $competition->name ?? '' }} {{ $competition->season->name ?? '' }}
     </a>
 </div>

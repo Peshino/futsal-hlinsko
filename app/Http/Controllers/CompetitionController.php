@@ -16,7 +16,7 @@ class CompetitionController extends Controller
      */
     public function index()
     {
-        return view('competitions.index', compact(''));
+        return view('competitions.index');
     }
 
     /**

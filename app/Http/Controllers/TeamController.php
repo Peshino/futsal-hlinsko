@@ -3,18 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Team;
+use App\Competition;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
+    public function __construct()
+    {
+    }
+
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Competition  $competition
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Competition $competition)
     {
-        return view('teams.index');
+        return view('teams.index', compact('competition'));
     }
 
     /**

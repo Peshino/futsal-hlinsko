@@ -27,12 +27,14 @@ return [
 
     'user_logout' => 'Odhlásit se',
 
+    'home' => 'Domů',
     'homepage' => 'Domovská stránka',
     'blog' => 'Blog',
     'posts' => 'Články',
     'photo_gallery' => 'Fotogalerie',
     'contacts' => 'Kontakty',
     'competition' => 'Soutěž',
+    'competition_url' => 'soutez',
     'competitions' => 'Soutěže',
     'teams' => 'Týmy',
     'table' => 'Tabulka',

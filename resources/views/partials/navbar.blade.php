@@ -17,7 +17,13 @@
 
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('teams.index', $currentCompetition->id) }}">
+                    <a class="nav-link" href="{{ route('competitions.show', $competition->id) }}">
+                        <i class="fas fa-home align-middle"></i>&nbsp;
+                        <span class="align-middle">@lang('messages.home')</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('teams.index', $competition->id) }}">
                         <i class="fas fa-users align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.teams')</span>
                     </a>

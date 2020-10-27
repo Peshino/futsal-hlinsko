@@ -27,12 +27,14 @@ return [
 
     'user_logout' => 'Logout',
 
+    'home' => 'Home',
     'homepage' => 'Homepage',
     'blog' => 'Blog',
     'posts' => 'Posts',
     'photo_gallery' => 'Photogallery',
     'contacts' => 'Contacts',
     'competition' => 'Competition',
+    'competition_url' => 'competition',
     'competitions' => 'Competitions',
     'teams' => 'Teams',
     'table' => 'Table',
