@@ -11,8 +11,6 @@ $('#introduction #seasons a.season').click(function (e) {
         seasonName = $(this).text(),
         url = this.href;
 
-    console.log(seasonId);
-
     $.ajax({
         type: 'GET',
         url: url,
@@ -24,6 +22,7 @@ $('#introduction #seasons a.season').click(function (e) {
             if (competitions) {
                 competitions.forEach(competition => {
                     html += '<a href="competitions/' + competition.id + '" class="btn btn-lg">' + competition.name + '</a>';
+                    html += '<a href="seasons/' + seasonId + '/competitions/create" class="crud-button btn-plus btn btn-lg"><div class="plus"></div></a>';
                 });
                 $('#competitions').html(html);
                 $('#current-season').html(seasonName);

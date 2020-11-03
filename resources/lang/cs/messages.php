@@ -33,6 +33,8 @@ return [
     'posts' => 'Články',
     'photo_gallery' => 'Fotogalerie',
     'contacts' => 'Kontakty',
+    'season' => 'Sezóna',
+    'seasons' => 'Sezóny',
     'competition' => 'Soutěž',
     'competition_url' => 'soutez',
     'competitions' => 'Soutěže',
@@ -43,6 +45,7 @@ return [
     'matches' => 'Zápasy',
 
     'title' => 'Titulek',
+    'name' => 'Název',
     'text' => 'Text',
     'create' => 'Vytvořit',
     'edit' => 'Upravit',
@@ -61,6 +64,9 @@ return [
     'firstname' => 'jméno',
     'lastname' => 'příjmení',
     'telephone' => 'telefon',
+    'create_season' => 'Vytvořit sezónu',
+    'create_competition' => 'Vytvořit soutěž',
+    'create_competition_rules' => 'Vytvořit pravidla soutěže',
 
     'new' => 'nový',
 

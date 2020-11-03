@@ -46,7 +46,7 @@ class SeasonController extends Controller
      */
     public function show(Season $season)
     {
-        //
+        return view('seasons.admin-show', compact('season'));
     }
 
     /**

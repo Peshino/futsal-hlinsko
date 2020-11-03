@@ -33,6 +33,8 @@ return [
     'posts' => 'Posts',
     'photo_gallery' => 'Photogallery',
     'contacts' => 'Contacts',
+    'season' => 'Season',
+    'seasons' => 'Seasons',
     'competition' => 'Competition',
     'competition_url' => 'competition',
     'competitions' => 'Competitions',
@@ -43,6 +45,7 @@ return [
     'matches' => 'Matches',
 
     'title' => 'Title',
+    'name' => 'Name',
     'text' => 'Text',
     'create' => 'Create',
     'edit' => 'Edit',
@@ -61,6 +64,9 @@ return [
     'firstname' => 'firstname',
     'lastname' => 'lastname',
     'telephone' => 'telephone',
+    'create_season' => 'Create season',
+    'create_competition' => 'Create competition',
+    'create_competition_rules' => 'Create competition rules',
 
     'new' => 'new',
 

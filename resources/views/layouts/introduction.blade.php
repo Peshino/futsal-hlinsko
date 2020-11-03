@@ -15,7 +15,7 @@
     <link href="{{ asset('img/favicon.png') }}" rel="shortcut icon">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/ekko-lightbox.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('css/daterangepicker.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/daterangepicker.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
 
@@ -40,7 +40,7 @@
                         <div class="dropdown-menu dropdown-menu-center" id="seasons"
                             aria-labelledby="important-day-year">
                             @foreach ($seasons as $season)
-                            <a href="{{ route('competitions-by-season', $season->id) }}" id="season-{{ $season->id }}"
+                            <a href="{{ route('competitions-by-season', $season->id) }}" id="{{ $season->id }}"
                                 class="dropdown-item season">
                                 {{ $season->name ?? '' }}
                             </a>
@@ -60,6 +60,12 @@
                         @else
                         -----
                         @endif
+                        @auth
+                        <a href="{{ route('competitions.create', $lastSeason->id) }}"
+                            class="crud-button btn-plus btn btn-lg">
+                            <div class="plus"></div>
+                        </a>
+                        @endauth
                     </div>
                 </div>
                 @else
@@ -92,7 +98,10 @@
         @include('partials/cookie-bar')
     </div>
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ asset('js/ekko-lightbox.js') }}" defer></script>
+    <script src="{{ asset('js/moment.min.js') }}" defer></script>
+    <script src="{{ asset('js/daterangepicker.min.js') }}" defer></script>
     @yield('scripts')
 </body>
 

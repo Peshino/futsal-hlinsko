@@ -1,12 +1,12 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 
 @section('title')
-{{ $user->fullname }} | @lang('messages.krasojizda_name')
+{{ $user->firstname }} | @lang('messages.app_name')
 @endsection
 
 @section('content')
 <div class="card mb-4">
-    <div class="card-header krasojizda-bg">
+    <div class="card-header app-bg">
         <div class="row">
             <div class="col col-left">
                 @lang('messages.profile')
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-sm-9">
                     <div>
-                        <h2>{{ $user->name }}</h2>
+                        <h2>{{ $user->firstname }} {{ $user->lastname }}</h2>
                     </div>
                     <div>
                         <h4><i class="far fa-envelope pr-3 pt-3"></i>{{ $user->email }}</h4>

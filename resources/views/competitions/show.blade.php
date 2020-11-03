@@ -11,15 +11,6 @@
             <div class="col col-left">
                 @lang('messages.homepage')
             </div>
-            <div class="col">
-                <ul class="list-inline justify-content-end">
-                    <li class="list-inline-item">
-                        <a class="crud-button" href="{{ route('competitions.create') }}">
-                            <div class="plus"></div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </div>
 

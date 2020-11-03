@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\CompetitionType;
+use App\Rule;
 use Faker\Generator as Faker;
 
-$factory->define(CompetitionType::class, function (Faker $faker) {
+$factory->define(Rule::class, function (Faker $faker) {
     return [
         //
     ];

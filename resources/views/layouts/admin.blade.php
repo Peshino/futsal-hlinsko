@@ -15,13 +15,15 @@
     <link href="{{ asset('img/favicon.png') }}" rel="shortcut icon">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/ekko-lightbox.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('css/daterangepicker.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/daterangepicker.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
 
 <body>
     <div id="app">
         <div id="main" class="text-white bg-dark">
+            @include('partials/admin-navbar')
+
             @include('partials/flash-messages')
 
             <main class="py-4">
@@ -39,7 +41,7 @@
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="{{ asset('js/ekko-lightbox.js') }}" defer></script>
     <script src="{{ asset('js/moment.min.js') }}" defer></script>
-    {{-- <script src="{{ asset('js/daterangepicker.min.js') }}" defer></script> --}}
+    <script src="{{ asset('js/daterangepicker.min.js') }}" defer></script>
     @yield('scripts')
 </body>
 

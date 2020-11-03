@@ -1,12 +1,12 @@
-@extends('layouts.master')
+@extends('layouts.admin')
 
 @section('title')
-@lang('messages.edit') {{ $user->fullname }} | @lang('messages.krasojizda_name')
+@lang('messages.edit') {{ $user->firstname }} | @lang('messages.app_name')
 @endsection
 
 @section('content')
 <div class="card mb-4">
-    <div class="card-header krasojizda-bg">
+    <div class="card-header app-bg">
         <div class="row">
             <div class="col col-left">
                 @lang('messages.edit_profile')
@@ -40,7 +40,16 @@
                                     <div class="floating-label">
                                         <label for="user-firstname">@lang('messages.firstname')</label>
                                         <input class="form-control" id="user-firstname" name="firstname" type="text"
-                                            value="{{ $user->name }}" required />
+                                            value="{{ $user->firstname }}" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="form-group">
+                                    <div class="floating-label">
+                                        <label for="user-lastname">@lang('messages.lastname')</label>
+                                        <input class="form-control" id="user-lastname" name="lastname" type="text"
+                                            value="{{ $user->lastname }}" required />
                                     </div>
                                 </div>
                             </div>

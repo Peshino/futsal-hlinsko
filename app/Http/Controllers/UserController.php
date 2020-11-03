@@ -74,7 +74,8 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $attributes = $request->validate([
-            'name' => 'required|min:2|max:20',
+            'firstname' => 'required|min:2|max:20',
+            'lastname' => 'required|min:2|max:20',
         ]);
 
         if ($user->update($attributes)) {

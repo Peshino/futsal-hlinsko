@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstname', 'lastname', 'email', 'password',
     ];
 
     /**
@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function competitions()
+    {
+        return $this->hasMany(Competition::class);
+    }
+
+    public function addCompetition($competition)
+    {
+        return $this->competitions()->create($competition);
+    }
 }
