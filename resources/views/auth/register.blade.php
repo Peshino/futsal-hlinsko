@@ -22,10 +22,12 @@
 
                     <div class="row form-group">
                         <div class="sign-up-firstname col">
-                            <input id="firstname" type="text"
-                                class="form-control @error('firstname') is-invalid @enderror" name="firstname"
-                                value="{{ old('firstname') }}" required autocomplete="firstname" autofocus
-                                placeholder="@lang('messages.sign_up_placeholder_firstname')">
+                            <div class="floating-label">
+                                <label for="firstname">@lang('messages.sign_up_firstname')</label>
+                                <input id="firstname" type="text"
+                                    class="form-control @error('firstname') is-invalid @enderror" name="firstname"
+                                    value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                            </div>
 
                             @error('firstname')
                             <span class="invalid-feedback" role="alert">
@@ -34,10 +36,12 @@
                             @enderror
                         </div>
                         <div class="sign-up-lastname col">
-                            <input id="lastname" type="text"
-                                class="form-control @error('lastname') is-invalid @enderror" name="lastname"
-                                value="{{ old('lastname') }}" required autocomplete="lastname"
-                                placeholder="@lang('messages.sign_up_placeholder_lastname')">
+                            <div class="floating-label">
+                                <label for="lastname">@lang('messages.sign_up_lastname')</label>
+                                <input id="lastname" type="text"
+                                    class="form-control @error('lastname') is-invalid @enderror" name="lastname"
+                                    value="{{ old('lastname') }}" required autocomplete="lastname">
+                            </div>
 
                             @error('lastname')
                             <span class="invalid-feedback" role="alert">
@@ -46,32 +50,46 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="input-group form-group">
-                        <input id="email-sign-up" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" required autocomplete="email"
-                            placeholder="@lang('messages.sign_up_placeholder_username')">
+                    <div class="row form-group">
+                        <div class="email-sign-up col">
+                            <div class="floating-label">
+                                <label for="email-sign-up">@lang('messages.sign_up_username')</label>
+                                <input id="email-sign-up" type="email"
+                                    class="form-control @error('email') is-invalid @enderror" name="email"
+                                    value="{{ old('email') }}" required autocomplete="email">
+                            </div>
 
-                        @if ($errors->has('email') && Session::get('last_auth_attempt') === 'register')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                        @endif
+                            @if ($errors->has('email') && Session::get('last_auth_attempt') === 'register')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                            @endif
+                        </div>
                     </div>
-                    <div class="input-group form-group">
-                        <input id="password-sign-up" type="password"
-                            class="form-control @error('password') is-invalid @enderror" name="password" required
-                            autocomplete="new-password" placeholder="@lang('messages.sign_up_placeholder_password')">
+                    <div class="row form-group">
+                        <div class="password-sign-up col">
+                            <div class="floating-label">
+                                <label for="password-sign-up">@lang('messages.sign_up_password')</label>
+                                <input id="password-sign-up" type="password"
+                                    class="form-control @error('password') is-invalid @enderror" name="password"
+                                    required autocomplete="new-password">
+                            </div>
 
-                        @if ($errors->has('password') && Session::get('last_auth_attempt') === 'register')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                        @endif
+                            @if ($errors->has('password') && Session::get('last_auth_attempt') === 'register')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                            @endif
+                        </div>
                     </div>
-                    <div class="input-group form-group">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
-                            required autocomplete="new-password"
-                            placeholder="@lang('messages.sign_up_placeholder_password_confirm')">
+                    <div class="row form-group">
+                        <div class="password-confirm col">
+                            <div class="floating-label">
+                                <label for="password-confirm">@lang('messages.sign_up_password_confirm')</label>
+                                <input id="password-confirm" type="password" class="form-control"
+                                    name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <button type="submit"

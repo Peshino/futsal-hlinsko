@@ -19,28 +19,37 @@
             <div class="content-block">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-                    <div class="input-group form-group">
-                        <input id="email-sign-in" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
-                            placeholder="@lang('messages.sign_in_placeholder_username')">
+                    <div class="row form-group">
+                        <div class="email-sign-in col">
+                            <div class="floating-label">
+                                <label for="email-sign-in">@lang('messages.sign_in_username')</label>
+                                <input id="email-sign-in" type="email"
+                                    class="form-control @error('email') is-invalid @enderror" name="email"
+                                    value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            </div>
 
-                        @if ($errors->has('email') && Session::get('last_auth_attempt') === 'login')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                        @endif
+                            @if ($errors->has('email') && Session::get('last_auth_attempt') === 'login')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                            @endif
+                        </div>
                     </div>
-                    <div class="input-group form-group">
-                        <input id="password-sign-in" type="password"
-                            class="form-control @error('password') is-invalid @enderror" name="password" required
-                            autocomplete="current-password"
-                            placeholder="@lang('messages.sign_in_placeholder_password')">
+                    <div class="row form-group">
+                        <div class="password-sign-in col">
+                            <div class="floating-label">
+                                <label for="password-sign-in">@lang('messages.sign_in_password')</label>
+                                <input id="password-sign-in" type="password"
+                                    class="form-control @error('password') is-invalid @enderror" name="password"
+                                    required autocomplete="current-password">
+                            </div>
 
-                        @if ($errors->has('password') && Session::get('last_auth_attempt') === 'login')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                        @endif
+                            @if ($errors->has('password') && Session::get('last_auth_attempt') === 'login')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                            @endif
+                        </div>
                     </div>
                     <div class="form-group mt-2">
                         <button type="submit" class="btn text-center introduction-btn">

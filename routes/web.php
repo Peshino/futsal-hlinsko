@@ -25,3 +25,5 @@ Route::resource('competition-styles', 'CompetitionStyleController');
 Route::prefix('competitions/{competition}')->group(function () {
     Route::resource('teams', 'TeamController');
 });
+
+Route::resource('rules', 'RuleController');
