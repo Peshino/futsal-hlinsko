@@ -18,8 +18,23 @@
         <div class="content">
             <div class="content-block">
                 <h4>
-                    @lang('messages.create_competition_rules')
+                    @lang('messages.rules')
                 </h4>
+                @if (count($competition->rules) > 0)
+                @foreach ($competition->rules as $rule)
+                <div class="p-3">
+                    <a href="{{ route('rules.admin-show', $rule->id) }}" class="btn btn-lg">
+                        {{ $rule->name ?? '' }}
+                    </a>
+                </div>
+                @endforeach
+                @endif
+
+                <div class="p-3">
+                    <a href="{{ route('rules.create', $competition->id) }}" class="btn btn-primary">
+                        @lang('messages.create_competition_rules')
+                    </a>
+                </div>
             </div>
         </div>
     </div>

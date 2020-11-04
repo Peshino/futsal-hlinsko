@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Rule;
+use App\Competition;
 use Illuminate\Http\Request;
 
 class RuleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,11 +26,12 @@ class RuleController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \App\Competition  $competition
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Competition $competition)
     {
-        //
+        return view('rules.create', compact('competition'));
     }
 
     /**

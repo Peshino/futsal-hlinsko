@@ -38,6 +38,7 @@ return [
     'competition' => 'Competition',
     'competition_url' => 'competition',
     'competitions' => 'Competitions',
+    'rules' => 'Competition rules',
     'teams' => 'Teams',
     'table' => 'Table',
     'shooters' => 'Shooters',
@@ -67,6 +68,16 @@ return [
     'create_season' => 'Create season',
     'create_competition' => 'Create competition',
     'create_competition_rules' => 'Create competition rules',
+
+    'system' => 'System',
+    'main' => 'Main stage',
+    'qualification' => 'Qualification stage',
+    'descent' => 'Descent stage',
+    'playoff' => 'Playoff',
+    'one_rounded' => 'One-rounded',
+    'two_rounded' => 'Two-rounded',
+    'priority' => 'Priority',
+    'number_of_rounds' => 'Number of rounds',
 
     'new' => 'new',
 

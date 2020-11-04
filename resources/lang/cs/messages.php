@@ -38,6 +38,7 @@ return [
     'competition' => 'Soutěž',
     'competition_url' => 'soutez',
     'competitions' => 'Soutěže',
+    'rules' => 'Pravidla soutěže',
     'teams' => 'Týmy',
     'table' => 'Tabulka',
     'shooters' => 'Střelci',
@@ -67,6 +68,16 @@ return [
     'create_season' => 'Vytvořit sezónu',
     'create_competition' => 'Vytvořit soutěž',
     'create_competition_rules' => 'Vytvořit pravidla soutěže',
+
+    'system' => 'Systém',
+    'main' => 'Základní část',
+    'qualification' => 'Postupující část',
+    'descent' => 'Sestupující část',
+    'playoff' => 'Playoff',
+    'one_rounded' => 'Jednokolový',
+    'two_rounded' => 'Dvoukolový',
+    'priority' => 'Priorita',
+    'number_of_rounds' => 'Počet kol',
 
     'new' => 'nový',
 

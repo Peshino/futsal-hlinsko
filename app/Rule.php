@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rule extends Model
 {
-    protected $fillable = ['name', 'match_duration', 'number_of_qualifiers', 'number_of_descending', 'case_of_draw', 'priority'];
+    protected $fillable = [
+        'name', 'system', 'number_of_rounds', 'number_of_qualifiers', 'number_of_descending', 'priority',
+        'match_duration', 'matches_day_min', 'matches_day_max', 'team_matches_day_round_min', 'team_matches_day_round_max',
+        'match_days_times', 'case_of_draw', 'start_date', 'end_date', 'break_start_date', 'break_end_date', 'user_id', 'competition_id'
+    ];
 
     public function user()
     {
