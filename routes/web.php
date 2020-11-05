@@ -18,14 +18,18 @@ Route::resource('competitions', 'CompetitionController', ['except' => [
 ]]);
 Route::get('competitions/season/{season}', 'CompetitionController@getCompetitionsBySeason')->name('competitions-by-season');
 Route::get('competitions/create/{season}', 'CompetitionController@create')->name('competitions.create');
-Route::get('admin/competitions/{competition}', 'CompetitionController@adminShow')->name('competitions.admin-show');
 
 Route::resource('competition-styles', 'CompetitionStyleController');
 
 Route::prefix('competitions/{competition}')->group(function () {
     Route::resource('teams', 'TeamController');
     Route::resource('rules', 'RuleController');
-    // Route::get('admin/competitions/{competition}/rules/{rule}', 'RuleController@adminShow')->name('rules.admin-show');
 });
 
-// TODO: uspořádat guest routes a admin routes 
+Route::prefix('admin')->group(function () {
+    Route::get('competitions/{competition}', 'CompetitionController@adminShow')->name('competitions.admin-show');
+
+    Route::prefix('competitions/{competition}')->group(function () {
+        Route::get('rules/{rule}', 'RuleController@adminShow')->name('rules.admin-show');
+    });
+});

@@ -34,3 +34,4 @@ const app = new Vue({
 window.Cookies = require('js-cookie');
 require('./ajax');
 require('./scripts');
+require('./datepicker-settings');

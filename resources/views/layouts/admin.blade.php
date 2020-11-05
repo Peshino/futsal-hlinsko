@@ -16,6 +16,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/ekko-lightbox.css') }}" rel="stylesheet">
     <link href="{{ asset('css/daterangepicker.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/datepicker-bs4.min.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
 
@@ -42,6 +43,9 @@
     <script src="{{ asset('js/ekko-lightbox.js') }}" defer></script>
     <script src="{{ asset('js/moment.min.js') }}" defer></script>
     <script src="{{ asset('js/daterangepicker.min.js') }}" defer></script>
+    <script src="{{ asset('js/datepicker.min.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/datepicker-full.min.js') }}"></script> --}}
+    <script src="{{ asset('js/datepicker-locales/cs.js') }}" defer></script>
     @yield('scripts')
 </body>
 

@@ -66,16 +66,29 @@ class RuleController extends Controller
      */
     public function show(Rule $rule)
     {
-        //
+        return view('rules.show', compact('rule'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Competition  $competition
+     * @param  \App\Rule  $rule
+     * @return \Illuminate\Http\Response
+     */
+    public function adminShow(Competition $competition, Rule $rule)
+    {
+        return view('rules.admin-show', compact('competition', 'rule'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  \App\Competition  $competition
      * @param  \App\Rule  $rule
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rule $rule)
+    public function edit(Competition $competition, Rule $rule)
     {
         //
     }
@@ -95,11 +108,18 @@ class RuleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \App\Competition  $competition
      * @param  \App\Rule  $rule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rule $rule)
+    public function destroy(Competition $competition, Rule $rule)
     {
-        //
+        if ($rule->delete()) {
+            session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
+        } else {
+            session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
+        }
+
+        return redirect()->route('competitions.admin-show', ['competition' => $competition->id]);
     }
 }

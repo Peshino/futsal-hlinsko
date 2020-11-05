@@ -33,7 +33,7 @@ class CreateRulesTable extends Migration
             $table->date('break_start_date')->nullable();
             $table->date('break_end_date')->nullable();
             $table->foreignId('user_id');
-            $table->foreignId('competition_id')->nullable();
+            $table->foreignId('competition_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('competition_id')->references('id')->on('competitions')->onDelete('cascade');
             $table->timestamps();

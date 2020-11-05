@@ -80,7 +80,133 @@
                             </div>
                         </div>
 
-                        <div class="form-group text-center mt-2">
+                        <div class="row form-group">
+                            <div class="number-of-qualifiers col-md">
+                                <div class="floating-label">
+                                    <label for="number-of-qualifiers">@lang('messages.number_of_qualifiers')</label>
+                                    <input type="number" class="form-control" id="number-of-qualifiers"
+                                        name="number_of_qualifiers" min="0" value="{{ old('number_of_qualifiers') }}" />
+                                </div>
+                            </div>
+                            <div class="number-of-descending col-md">
+                                <div class="floating-label">
+                                    <label for="number-of-descending">@lang('messages.number_of_descending')</label>
+                                    <input type="number" class="form-control" id="number-of-descending"
+                                        name="number_of_descending" min="0" value="{{ old('number_of_descending') }}" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="match-duration col-md">
+                                <div class="floating-label">
+                                    <label for="match-duration">@lang('messages.match_duration')</label>
+                                    <input type="number" class="form-control" id="match-duration" name="match_duration"
+                                        min="0" value="{{ old('match_duration') }}" />
+                                </div>
+                            </div>
+                            <div class="matches-day-min col-md">
+                                <div class="floating-label">
+                                    <label for="matches-day-min">@lang('messages.matches_day_min')</label>
+                                    <input type="number" class="form-control" id="matches-day-min"
+                                        name="matches_day_min" min="0" value="{{ old('matches_day_min') }}" />
+                                </div>
+                            </div>
+                            <div class="matches-day-max col-md">
+                                <div class="floating-label">
+                                    <label for="matches-day-max">@lang('messages.matches_day_max')</label>
+                                    <input type="number" class="form-control" id="matches-day-max"
+                                        name="matches_day_max" min="0" value="{{ old('matches_day_max') }}" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="team-matches-day-round-min col-md">
+                                <div class="floating-label">
+                                    <label
+                                        for="team-matches-day-round-min">@lang('messages.team_matches_day_round_min')</label>
+                                    <input type="number" class="form-control" id="team-matches-day-round-min"
+                                        name="team_matches_day_round_min" min="0"
+                                        value="{{ old('team_matches_day_round_min') }}" />
+                                </div>
+                            </div>
+                            <div class="team-matches-day-round-max col-md">
+                                <div class="floating-label">
+                                    <label
+                                        for="team-matches-day-round-max">@lang('messages.team_matches_day_round_max')</label>
+                                    <input type="number" class="form-control" id="team-matches-day-round-max"
+                                        name="team_matches_day_round_max" min="0"
+                                        value="{{ old('team_matches_day_round_max') }}" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="match-days-times col-md">
+                                <div class="floating-label">
+                                    <label for="match-days-times">@lang('messages.match_days_times')</label>
+                                    <input type="text" class="form-control" id="match-days-times"
+                                        name="match_days_times" value="{{ old('match_days_times') }}" required />
+                                </div>
+                            </div>
+                            <div class="case_of_draw col-md">
+                                <div class="floating-label">
+                                    <label for="case-of-draw">
+                                        @lang('messages.case_of_draw')
+                                    </label>
+                                    <select class="form-control" id="case-of-draw" name="case_of_draw" required>
+                                        <option {{ old('case_of_draw') === 'draw' ? "selected" : "" }} value="draw">
+                                            @lang('messages.draw')
+                                        </option>
+                                        <option {{ old('case_of_draw') === 'additional_time' ? "selected" : "" }}
+                                            value="additional_time">
+                                            @lang('messages.additional_time')
+                                        </option>
+                                        <option {{ old('case_of_draw') === 'penalties' ? "selected" : "" }}
+                                            value="penalties">
+                                            @lang('messages.penalties')
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="start-date col-md">
+                                <div class="floating-label">
+                                    <label for="start-date">@lang('messages.start_date')</label>
+                                    <input type="text" class="form-control input-datepicker" id="start-date"
+                                        name="start_date" value="{{ old('start_date') }}" required />
+                                </div>
+                            </div>
+                            <div class="end-date col-md">
+                                <div class="floating-label">
+                                    <label for="end-date">@lang('messages.end_date')</label>
+                                    <input type="text" class="form-control input-datepicker" id="end-date"
+                                        name="end_date" value="{{ old('end_date') }}" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="break-start-date col-md">
+                                <div class="floating-label">
+                                    <label for="break-start-date">@lang('messages.break_start_date')</label>
+                                    <input type="text" class="form-control input-datepicker" id="break-start-date"
+                                        name="break_start_date" value="{{ old('break_start_date') }}" />
+                                </div>
+                            </div>
+                            <div class="break-end-date col-md">
+                                <div class="floating-label">
+                                    <label for="break-end-date">@lang('messages.break_end_date')</label>
+                                    <input type="text" class="form-control input-datepicker" id="break-end-date"
+                                        name="break_end_date" value="{{ old('break_end_date') }}" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center mt-4">
                             <button type="submit"
                                 class="btn introduction-btn">@lang('messages.create_competition_rules')</button>
                         </div>

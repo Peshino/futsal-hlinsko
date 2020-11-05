@@ -23,8 +23,8 @@
                 @if (count($competition->rules) > 0)
                 @foreach ($competition->rules as $rule)
                 <div class="p-3">
-                    <a href="{{ route('rules.admin-show', $rule->id) }}" class="btn btn-lg">
-                        {{ $rule->name ?? '' }}
+                    <a href="{{ route('rules.admin-show', [$competition->id, $rule->id]) }}" class="btn btn-lg">
+                        @lang('messages.' . $rule->name ?? '' . '')
                     </a>
                 </div>
                 @endforeach
