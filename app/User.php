@@ -42,8 +42,18 @@ class User extends Authenticatable
         return $this->hasMany(Competition::class);
     }
 
+    public function rules()
+    {
+        return $this->hasMany(Rule::class);
+    }
+
     public function addCompetition($competition)
     {
         return $this->competitions()->create($competition);
+    }
+
+    public function addRule($rule)
+    {
+        return $this->rules()->create($rule);
     }
 }

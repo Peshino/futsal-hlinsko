@@ -51,7 +51,7 @@ class CompetitionController extends Controller
 
         $competitionCreated = auth()->user()->addCompetition($attributes);
 
-        if ($competitionCreated  !== null) {
+        if ($competitionCreated !== null) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
         } else {
             session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');

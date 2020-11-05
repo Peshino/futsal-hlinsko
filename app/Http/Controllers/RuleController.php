@@ -37,12 +37,25 @@ class RuleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param  \App\Competition  $competition
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Competition $competition, Request $request)
     {
-        //
+        $attributes = $request->validate([
+            'name' => 'required|min:2|max:100',
+        ]);
+
+        $ruleCreated = auth()->user()->addRule($attributes);
+
+        if ($ruleCreated !== null) {
+            session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
+        } else {
+            session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
+        }
+
+        return redirect()->route('rules.admin-show', ['competition' => $competition->id, 'rule' => $ruleCreated->id]);
     }
 
     /**

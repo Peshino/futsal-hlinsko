@@ -25,4 +25,7 @@ Route::resource('competition-styles', 'CompetitionStyleController');
 Route::prefix('competitions/{competition}')->group(function () {
     Route::resource('teams', 'TeamController');
     Route::resource('rules', 'RuleController');
+    // Route::get('admin/competitions/{competition}/rules/{rule}', 'RuleController@adminShow')->name('rules.admin-show');
 });
+
+// TODO: uspořádat guest routes a admin routes 
