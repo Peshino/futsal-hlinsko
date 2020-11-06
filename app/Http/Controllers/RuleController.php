@@ -59,8 +59,8 @@ class RuleController extends Controller
             'case_of_draw' => 'required|min:2|max:100',
             'start_date' => 'required|date_format:Y-m-d',
             'end_date' => 'required|date_format:Y-m-d',
-            'break_start_date' => 'nullable|date_format:yyyy-mm-dd',
-            'break_end_date' => 'nullable|date_format:yyyy-mm-dd',
+            'break_start_date' => 'nullable|date_format:Y-m-d',
+            'break_end_date' => 'nullable|date_format:Y-m-d',
             'competition_id' => 'required|numeric|min:1',
         ]);
 
@@ -107,19 +107,47 @@ class RuleController extends Controller
      */
     public function edit(Competition $competition, Rule $rule)
     {
-        //
+        return view('rules.edit', compact('competition', 'rule'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Competition  $competition
      * @param  \App\Rule  $rule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rule $rule)
+    public function update(Request $request, Competition $competition, Rule $rule)
     {
-        //
+        $attributes = $request->validate([
+            'name' => 'required|min:2|max:100',
+            'system' => 'required|min:2|max:100',
+            'priority' => 'required|numeric|min:1',
+            'number_of_rounds' => 'nullable|numeric',
+            'number_of_qualifiers' => 'nullable|numeric',
+            'number_of_descending' => 'nullable|numeric',
+            'match_duration' => 'nullable|numeric',
+            'matches_day_min' => 'nullable|numeric',
+            'matches_day_max' => 'nullable|numeric',
+            'team_matches_day_round_min' => 'nullable|numeric',
+            'team_matches_day_round_max' => 'nullable|numeric',
+            'match_days_times' => 'required|json|min:1|max:100',
+            'case_of_draw' => 'required|min:2|max:100',
+            'start_date' => 'required|date_format:Y-m-d',
+            'end_date' => 'required|date_format:Y-m-d',
+            'break_start_date' => 'nullable|date_format:Y-m-d',
+            'break_end_date' => 'nullable|date_format:Y-m-d',
+            'competition_id' => 'required|numeric|min:1',
+        ]);
+
+        if ($rule->update($attributes)) {
+            session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
+        } else {
+            session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
+        }
+
+        return redirect()->route('rules.admin-show', ['competition' => $competition->id, 'rule' => $rule->id]);
     }
 
     /**

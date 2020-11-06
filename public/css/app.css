@@ -11667,6 +11667,7 @@ html {
 #main .floating-label .form-control,
 #main .floating-label .form-control-file {
   position: relative;
+  padding-left: 0.5rem;
 }
 
 #main .custom-select,
@@ -11683,6 +11684,14 @@ html {
   font-size: 1rem;
   line-height: 1.5;
   padding: 0.375rem 0 calc(0.375rem - 1px);
+}
+
+#main input:-webkit-autofill,
+#main input:-webkit-autofill:hover,
+#main input:-webkit-autofill:focus,
+#main input:-webkit-autofill:active {
+  -webkit-text-fill-color: #dddddd !important;
+  box-shadow: 0 0 0 30px #2a2f33 inset !important;
 }
 
 #main button,
