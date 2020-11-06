@@ -23,13 +23,31 @@
                             @lang('messages.rules')
                         </h4>
                         @if (count($competition->rules) > 0)
-                        @foreach ($competition->rules as $rule)
-                        <div class="container mt-3">
-                            <a href="{{ route('rules.admin-show', [$competition->id, $rule->id]) }}" class="btn btn-lg">
-                                @lang('messages.' . $rule->name ?? '' . '')
-                            </a>
-                        </div>
-                        @endforeach
+                        <table class="table table-striped table-dark table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">@lang('messages.name')</th>
+                                    <th scope="col">@lang('messages.system')</th>
+                                    <th scope="col" class="text-center">Počet kol</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($competition->rules as $rule)
+                                <div class="container mt-3">
+                                    <tr>
+                                        <td>
+                                            <a href="{{ route('rules.admin-show', [$competition->id, $rule->id]) }}">
+                                                @lang('messages.'
+                                                . $rule->name ?? '' . '')
+                                            </a>
+                                        </td>
+                                        <td>@lang('messages.' . $rule->system ?? '' . '')</td>
+                                        <td class="text-center">{{ $rule->number_of_rounds }}</td>
+                                    </tr>
+                                </div>
+                                @endforeach
+                            </tbody>
+                        </table>
                         @endif
 
                         <div class="mt-3 text-center">
@@ -43,25 +61,34 @@
                         <h4>
                             @lang('messages.teams')
                         </h4>
-                        @if (count($competition->rules) > 0)
-                        @foreach ($competition->rules as $rule)
-                        <div class="container mt-3">
-                            <a href="{{ route('rules.admin-show', [$competition->id, $rule->id]) }}" class="btn btn-lg">
-                                @lang('messages.' . $rule->name ?? '' . '')
-                            </a>
-                        </div>
-                        @endforeach
-                        @endif
+                        {{-- @if (count($competition->teams) > 0)
+                        <table class="table table-striped table-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col">@lang('messages.name')</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($competition->teams as $team)
+                                <div class="container mt-3">
+                                    <tr>
+                                        <td>{{ $team->id ?? '' }}</td>
+                        </tr>
+                    </div>
+                    @endforeach
+                    </tbody>
+                    </table>
+                    @endif --}}
 
-                        <div class="mt-3 text-center">
-                            <a href="{{ route('teams.create', $competition->id) }}" class="btn btn-primary">
-                                @lang('messages.create_teams')
-                            </a>
-                        </div>
+                    <div class="mt-3 text-center">
+                        <a href="{{ route('teams.create', $competition->id) }}" class="btn btn-primary">
+                            @lang('messages.create_teams')
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

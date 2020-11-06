@@ -63,7 +63,7 @@
                             <label for="name">
                                 @lang('messages.name')
                             </label>
-                            <select class="form-control" id="name" name="name" disabled>
+                            <select class="form-control border-dark" id="name" name="name" disabled>
                                 <option {{ $rule->name === 'main' ? "selected" : "" }} value="main">
                                     @lang('messages.main')
                                 </option>
@@ -84,7 +84,7 @@
                             <label for="system">
                                 @lang('messages.system')
                             </label>
-                            <select class="form-control" id="system" name="system" disabled>
+                            <select class="form-control border-dark" id="system" name="system" disabled>
                                 <option {{ $rule->system === 'one_rounded' ? "selected" : "" }} value="one_rounded">
                                     @lang('messages.one_rounded')
                                 </option>
@@ -100,15 +100,15 @@
                     <div class="priority col-md">
                         <div class="floating-label">
                             <label for="priority">@lang('messages.priority')</label>
-                            <input type="number" class="form-control" id="priority" name="priority" min="0"
+                            <input type="number" class="form-control border-dark" id="priority" name="priority" min="0"
                                 value="{{ $rule->priority }}" disabled />
                         </div>
                     </div>
                     <div class="number-of-rounds col-md">
                         <div class="floating-label">
                             <label for="number-of-rounds">@lang('messages.number_of_rounds')</label>
-                            <input type="number" class="form-control" id="number-of-rounds" name="number_of_rounds"
-                                min="0" value="{{ $rule->number_of_rounds }}" disabled />
+                            <input type="number" class="form-control border-dark" id="number-of-rounds"
+                                name="number_of_rounds" min="0" value="{{ $rule->number_of_rounds }}" disabled />
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                     <div class="number-of-qualifiers col-md">
                         <div class="floating-label">
                             <label for="number-of-qualifiers">@lang('messages.number_of_qualifiers')</label>
-                            <input type="number" class="form-control" id="number-of-qualifiers"
+                            <input type="number" class="form-control border-dark" id="number-of-qualifiers"
                                 name="number_of_qualifiers" min="0" value="{{ $rule->number_of_qualifiers }}"
                                 disabled />
                         </div>
@@ -125,7 +125,7 @@
                     <div class="number-of-descending col-md">
                         <div class="floating-label">
                             <label for="number-of-descending">@lang('messages.number_of_descending')</label>
-                            <input type="number" class="form-control" id="number-of-descending"
+                            <input type="number" class="form-control border-dark" id="number-of-descending"
                                 name="number_of_descending" min="0" value="{{ $rule->number_of_descending }}"
                                 disabled />
                         </div>
@@ -136,22 +136,22 @@
                     <div class="match-duration col-md">
                         <div class="floating-label">
                             <label for="match-duration">@lang('messages.match_duration')</label>
-                            <input type="number" class="form-control" id="match-duration" name="match_duration" min="0"
-                                value="{{ $rule->match_duration }}" disabled />
+                            <input type="number" class="form-control border-dark" id="match-duration"
+                                name="match_duration" min="0" value="{{ $rule->match_duration }}" disabled />
                         </div>
                     </div>
                     <div class="matches-day-min col-md">
                         <div class="floating-label">
                             <label for="matches-day-min">@lang('messages.matches_day_min')</label>
-                            <input type="number" class="form-control" id="matches-day-min" name="matches_day_min"
-                                min="0" value="{{ $rule->matches_day_min }}" disabled />
+                            <input type="number" class="form-control border-dark" id="matches-day-min"
+                                name="matches_day_min" min="0" value="{{ $rule->matches_day_min }}" disabled />
                         </div>
                     </div>
                     <div class="matches-day-max col-md">
                         <div class="floating-label">
                             <label for="matches-day-max">@lang('messages.matches_day_max')</label>
-                            <input type="number" class="form-control" id="matches-day-max" name="matches_day_max"
-                                min="0" value="{{ $rule->matches_day_max }}" disabled />
+                            <input type="number" class="form-control border-dark" id="matches-day-max"
+                                name="matches_day_max" min="0" value="{{ $rule->matches_day_max }}" disabled />
                         </div>
                     </div>
                 </div>
@@ -160,7 +160,7 @@
                     <div class="team-matches-day-round-min col-md">
                         <div class="floating-label">
                             <label for="team-matches-day-round-min">@lang('messages.team_matches_day_round_min')</label>
-                            <input type="number" class="form-control" id="team-matches-day-round-min"
+                            <input type="number" class="form-control border-dark" id="team-matches-day-round-min"
                                 name="team_matches_day_round_min" min="0"
                                 value="{{ $rule->team_matches_day_round_min }}" disabled />
                         </div>
@@ -168,7 +168,7 @@
                     <div class="team-matches-day-round-max col-md">
                         <div class="floating-label">
                             <label for="team-matches-day-round-max">@lang('messages.team_matches_day_round_max')</label>
-                            <input type="number" class="form-control" id="team-matches-day-round-max"
+                            <input type="number" class="form-control border-dark" id="team-matches-day-round-max"
                                 name="team_matches_day_round_max" min="0"
                                 value="{{ $rule->team_matches_day_round_max }}" disabled />
                         </div>
@@ -179,8 +179,8 @@
                     <div class="match-days-times col-md">
                         <div class="floating-label">
                             <label for="match-days-times">@lang('messages.match_days_times')</label>
-                            <input type="text" class="form-control" id="match-days-times" name="match_days_times"
-                                value="{{ $rule->match_days_times }}" disabled />
+                            <input type="text" class="form-control border-dark" id="match-days-times"
+                                name="match_days_times" value="{{ $rule->match_days_times }}" disabled />
                         </div>
                     </div>
                     <div class="case_of_draw col-md">
@@ -188,7 +188,7 @@
                             <label for="case-of-draw">
                                 @lang('messages.case_of_draw')
                             </label>
-                            <select class="form-control" id="case-of-draw" name="case_of_draw" disabled>
+                            <select class="form-control border-dark" id="case-of-draw" name="case_of_draw" disabled>
                                 <option {{ $rule->case_of_draw === 'draw' ? "selected" : "" }} value="draw">
                                     @lang('messages.draw')
                                 </option>
@@ -208,15 +208,15 @@
                     <div class="start-date col-md">
                         <div class="floating-label">
                             <label for="start-date">@lang('messages.start_date')</label>
-                            <input type="text" class="form-control input-datepicker" id="start-date" name="start_date"
-                                value="{{ $rule->start_date }}" disabled />
+                            <input type="text" class="form-control input-datepicker border-dark" id="start-date"
+                                name="start_date" value="{{ $rule->start_date }}" disabled />
                         </div>
                     </div>
                     <div class="end-date col-md">
                         <div class="floating-label">
                             <label for="end-date">@lang('messages.end_date')</label>
-                            <input type="text" class="form-control input-datepicker" id="end-date" name="end_date"
-                                value="{{ $rule->end_date }}" disabled />
+                            <input type="text" class="form-control input-datepicker border-dark" id="end-date"
+                                name="end_date" value="{{ $rule->end_date }}" disabled />
                         </div>
                     </div>
                 </div>
@@ -225,14 +225,14 @@
                     <div class="break-start-date col-md">
                         <div class="floating-label">
                             <label for="break-start-date">@lang('messages.break_start_date')</label>
-                            <input type="text" class="form-control input-datepicker" id="break-start-date"
+                            <input type="text" class="form-control input-datepicker border-dark" id="break-start-date"
                                 name="break_start_date" value="{{ $rule->break_start_date }}" disabled />
                         </div>
                     </div>
                     <div class="break-end-date col-md">
                         <div class="floating-label">
                             <label for="break-end-date">@lang('messages.break_end_date')</label>
-                            <input type="text" class="form-control input-datepicker" id="break-end-date"
+                            <input type="text" class="form-control input-datepicker border-dark" id="break-end-date"
                                 name="break_end_date" value="{{ $rule->break_end_date }}" disabled />
                         </div>
                     </div>
