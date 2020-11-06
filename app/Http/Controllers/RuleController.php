@@ -45,6 +45,23 @@ class RuleController extends Controller
     {
         $attributes = $request->validate([
             'name' => 'required|min:2|max:100',
+            'system' => 'required|min:2|max:100',
+            'priority' => 'required|numeric|min:1',
+            'number_of_rounds' => 'nullable|numeric',
+            'number_of_qualifiers' => 'nullable|numeric',
+            'number_of_descending' => 'nullable|numeric',
+            'match_duration' => 'nullable|numeric',
+            'matches_day_min' => 'nullable|numeric',
+            'matches_day_max' => 'nullable|numeric',
+            'team_matches_day_round_min' => 'nullable|numeric',
+            'team_matches_day_round_max' => 'nullable|numeric',
+            'match_days_times' => 'required|json|min:1|max:100',
+            'case_of_draw' => 'required|min:2|max:100',
+            'start_date' => 'required|date_format:Y-m-d',
+            'end_date' => 'required|date_format:Y-m-d',
+            'break_start_date' => 'nullable|date_format:yyyy-mm-dd',
+            'break_end_date' => 'nullable|date_format:yyyy-mm-dd',
+            'competition_id' => 'required|numeric|min:1',
         ]);
 
         $ruleCreated = auth()->user()->addRule($attributes);
