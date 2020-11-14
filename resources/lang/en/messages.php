@@ -44,6 +44,7 @@ return [
     'shooters' => 'Shooters',
     'cards' => 'Cards',
     'matches' => 'Matches',
+    'players' => 'Players',
 
     'title' => 'Title',
     'name' => 'Name',
@@ -70,6 +71,8 @@ return [
     'create_rules' => 'Create rules',
     'edit_rules' => 'Edit rules',
     'create_teams' => 'Create teams',
+    'edit_teams' => 'Edit teams',
+    'edit_team' => 'Edit team',
 
     'system' => 'System',
     'main' => 'Main stage',
@@ -96,6 +99,13 @@ return [
     'end_date' => 'Competition end date',
     'break_start_date' => 'Competition break start date',
     'break_end_date' => 'Competition break end date',
+
+    'status' => 'Status',
+    'not_started' => 'Not started',
+    'in_progress' => 'In progress',
+    'finished' => 'Finished',
+
+    'squad' => 'Squad',
 
     'new' => 'new',
 

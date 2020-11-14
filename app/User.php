@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\QueryException;
 
 class User extends Authenticatable
 {
@@ -47,6 +48,11 @@ class User extends Authenticatable
         return $this->hasMany(Rule::class);
     }
 
+    public function teams()
+    {
+        return $this->hasMany(Team::class);
+    }
+
     public function addCompetition($competition)
     {
         return $this->competitions()->create($competition);
@@ -55,5 +61,22 @@ class User extends Authenticatable
     public function addRule($rule)
     {
         return $this->rules()->create($rule);
+    }
+
+    public function addTeam($team)
+    {
+        $result = null;
+
+        try {
+            $result = $this->teams()->create($team);
+        } catch (QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+
+            if ($errorCode === 1062) {
+                $result = false;
+            }
+        }
+
+        return $result;
     }
 }

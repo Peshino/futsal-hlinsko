@@ -44,6 +44,7 @@ return [
     'shooters' => 'Střelci',
     'cards' => 'Karty',
     'matches' => 'Zápasy',
+    'players' => 'Hráči',
 
     'title' => 'Titulek',
     'name' => 'Název',
@@ -70,6 +71,8 @@ return [
     'create_rules' => 'Vytvořit pravidla',
     'edit_rules' => 'Upravit pravidla',
     'create_teams' => 'Vytvořit týmy',
+    'edit_teams' => 'Upravit týmy',
+    'edit_team' => 'Upravit tým',
 
     'system' => 'Systém',
     'main' => 'Základní část',
@@ -96,6 +99,13 @@ return [
     'end_date' => 'Datum konce soutěže',
     'break_start_date' => 'Datum začátku přerušení soutěže',
     'break_end_date' => 'Datum konce přerušení soutěže',
+
+    'status' => 'Status',
+    'not_started' => 'nezahájena',
+    'in_progress' => 'probíhá',
+    'finished' => 'ukončena',
+
+    'squad' => 'Mužstvo',
 
     'new' => 'nový',
 

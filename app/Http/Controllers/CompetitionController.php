@@ -13,7 +13,7 @@ class CompetitionController extends Controller
     {
         // $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -53,11 +53,11 @@ class CompetitionController extends Controller
 
         if ($competitionCreated !== null) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
+            return redirect()->route('competitions.admin-show', ['competition' => $competitionCreated->id]);
         } else {
             session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
+            return redirect()->back();
         }
-
-        return redirect()->route('competitions.admin-show', ['competition' => $competitionCreated->id]);
     }
 
     /**

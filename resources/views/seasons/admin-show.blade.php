@@ -21,13 +21,29 @@
                     @lang('messages.competitions')
                 </h4>
                 @if (count($season->competitions) > 0)
-                @foreach ($season->competitions as $competition)
-                <div class="p-3">
-                    <a href="{{ route('competitions.admin-show', $competition->id) }}" class="btn btn-lg">
-                        {{ $competition->name ?? '' }}
-                    </a>
-                </div>
-                @endforeach
+                <table class="table table-striped table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">@lang('messages.name')</th>
+                            <th scope="col">@lang('messages.status')</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($season->competitions as $competition)
+                        <div class="container mt-3">
+                            <tr class="clickable-row"
+                                data-url="{{ route('competitions.admin-show', $competition->id) }}">
+                                <td>
+                                    {{ $competition->name ?? '' }}
+                                </td>
+                                <td>
+                                    @lang('messages.' . $competition->status ?? '' . '')
+                                </td>
+                            </tr>
+                        </div>
+                        @endforeach
+                    </tbody>
+                </table>
                 @endif
 
                 <div class="p-3">
@@ -39,4 +55,16 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    $(document).ready(function () {
+        $('.clickable-row').click(function () {
+            var url = $(this).data('url');
+
+            window.location.href = url;
+        });
+    });
+</script>
 @endsection

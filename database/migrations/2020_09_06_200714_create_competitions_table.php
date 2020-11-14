@@ -16,6 +16,7 @@ class CreateCompetitionsTable extends Migration
         Schema::create('competitions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->enum('status', ['not_started', 'in_progress', 'finished']);
             $table->foreignId('user_id');
             $table->foreignId('season_id')->nullable();
             $table->foreignId('competition_style_id')->nullable();

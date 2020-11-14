@@ -31,5 +31,6 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('competitions/{competition}')->group(function () {
         Route::get('rules/{rule}', 'RuleController@adminShow')->name('rules.admin-show');
+        Route::get('teams/{team}', 'TeamController@adminShow')->name('teams.admin-show');
     });
 });

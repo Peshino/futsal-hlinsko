@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Competition extends Model
 {
-    protected $fillable = ['name', 'season_id', 'user_id'];
+    protected $fillable = ['name', 'status', 'season_id', 'user_id'];
 
     public function user()
     {
@@ -21,5 +21,10 @@ class Competition extends Model
     public function rules()
     {
         return $this->hasMany(Rule::class);
+    }
+
+    public function teams()
+    {
+        return $this->hasMany(Team::class);
     }
 }

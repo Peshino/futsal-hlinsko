@@ -208,14 +208,14 @@
                     <div class="start-date col-md">
                         <div class="floating-label">
                             <label for="start-date">@lang('messages.start_date')</label>
-                            <input type="text" class="form-control input-datepicker border-dark" id="start-date"
+                            <input type="text" class="form-control border-dark" id="start-date"
                                 name="start_date" value="{{ $rule->start_date }}" disabled />
                         </div>
                     </div>
                     <div class="end-date col-md">
                         <div class="floating-label">
                             <label for="end-date">@lang('messages.end_date')</label>
-                            <input type="text" class="form-control input-datepicker border-dark" id="end-date"
+                            <input type="text" class="form-control border-dark" id="end-date"
                                 name="end_date" value="{{ $rule->end_date }}" disabled />
                         </div>
                     </div>
@@ -225,14 +225,14 @@
                     <div class="break-start-date col-md">
                         <div class="floating-label">
                             <label for="break-start-date">@lang('messages.break_start_date')</label>
-                            <input type="text" class="form-control input-datepicker border-dark" id="break-start-date"
+                            <input type="text" class="form-control border-dark" id="break-start-date"
                                 name="break_start_date" value="{{ $rule->break_start_date }}" disabled />
                         </div>
                     </div>
                     <div class="break-end-date col-md">
                         <div class="floating-label">
                             <label for="break-end-date">@lang('messages.break_end_date')</label>
-                            <input type="text" class="form-control input-datepicker border-dark" id="break-end-date"
+                            <input type="text" class="form-control border-dark" id="break-end-date"
                                 name="break_end_date" value="{{ $rule->break_end_date }}" disabled />
                         </div>
                     </div>

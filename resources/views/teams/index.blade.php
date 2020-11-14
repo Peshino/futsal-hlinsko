@@ -11,6 +11,7 @@
             <div class="col col-left">
                 @lang('messages.teams')
             </div>
+            @auth
             <div class="col">
                 <ul class="list-inline justify-content-end">
                     <li class="list-inline-item">
@@ -20,6 +21,7 @@
                     </li>
                 </ul>
             </div>
+            @endauth
         </div>
     </div>
 

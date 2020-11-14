@@ -11802,6 +11802,10 @@ html {
   font-size: small;
 }
 
+#main tr.clickable-row {
+  cursor: pointer;
+}
+
 @-webkit-keyframes fade {
   0%, 50% {
     opacity: 0;

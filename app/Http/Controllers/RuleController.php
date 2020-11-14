@@ -68,11 +68,11 @@ class RuleController extends Controller
 
         if ($ruleCreated !== null) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
+            return redirect()->route('rules.admin-show', ['competition' => $competition->id, 'rule' => $ruleCreated->id]);
         } else {
             session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
+            return redirect()->back();
         }
-
-        return redirect()->route('rules.admin-show', ['competition' => $competition->id, 'rule' => $ruleCreated->id]);
     }
 
     /**
