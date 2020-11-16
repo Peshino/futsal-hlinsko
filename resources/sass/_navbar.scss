@@ -1,8 +1,6 @@
 .navbar {
     background-color: #1b1e21;
-}
 
-.navbar {
     sup {
         top: -0.5em;
     }
@@ -32,6 +30,14 @@
     .badge-color {
         color: #000000;
     }
+}
+
+.navbar-dark .navbar-brand {
+    color: #dddddd;
+}
+
+.navbar-dark .navbar-brand:hover {
+    color: #ffffff;
 }
 
 .nav-link {

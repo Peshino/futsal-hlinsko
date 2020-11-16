@@ -23,7 +23,9 @@ Route::resource('competition-styles', 'CompetitionStyleController');
 
 Route::prefix('competitions/{competition}')->group(function () {
     Route::resource('teams', 'TeamController');
+    Route::resource('matches', 'MatchController');
     Route::resource('rules', 'RuleController');
+    Route::get('schedule', 'MatchController@scheduleIndex')->name('matches.schedule-index');
 });
 
 Route::prefix('admin')->group(function () {

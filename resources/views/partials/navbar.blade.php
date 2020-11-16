@@ -29,6 +29,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('matches.index', $competition->id) }}">
+                        <i class="fas fa-align-center align-middle"></i>&nbsp;
+                        <span class="align-middle">@lang('messages.results')</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('matches.schedule-index', $competition->id) }}">
+                        <i class="far fa-calendar-alt align-middle"></i>&nbsp;
+                        <span class="align-middle">@lang('messages.schedule')</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="">
                         <i class="fas fa-sort-amount-down align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.table')</span>
@@ -44,12 +56,6 @@
                     <a class="nav-link" href="">
                         <i class="fas fa-clone align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.cards')</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">
-                        <i class="fas fa-align-justify align-middle"></i>&nbsp;
-                        <span class="align-middle">@lang('messages.matches')</span>
                     </a>
                 </li>
             </ul>

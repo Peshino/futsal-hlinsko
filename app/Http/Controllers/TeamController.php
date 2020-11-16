@@ -46,8 +46,7 @@ class TeamController extends Controller
         $attributes = $request->validate([
             'name' => 'required|min:2|max:100',
             'squad' => 'required|min:1|max:10',
-            'competition_id' => 'required|numeric|min:1',
-            'email' => 'unique:users,email_address,NULL,id,account_id,1'
+            'competition_id' => 'required|numeric|min:1'
         ]);
 
         $teamCreated = auth()->user()->addTeam($attributes);
@@ -56,7 +55,7 @@ class TeamController extends Controller
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
             return redirect()->route('teams.admin-show', ['competition' => $competition->id, 'team' => $teamCreated->id]);
         } else {
-            session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
+            session()->flash('flash_message_danger', '<i class="fas fa-times"></i> <p>Záznam již existuje!</p>');
             return redirect()->back();
         }
     }

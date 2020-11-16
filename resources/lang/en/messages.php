@@ -44,6 +44,8 @@ return [
     'shooters' => 'Shooters',
     'cards' => 'Cards',
     'matches' => 'Matches',
+    'results' => 'Results',
+    'schedule' => 'Schedule',
     'players' => 'Players',
 
     'title' => 'Title',

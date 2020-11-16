@@ -44,6 +44,8 @@ return [
     'shooters' => 'Střelci',
     'cards' => 'Karty',
     'matches' => 'Zápasy',
+    'results' => 'Výsledky',
+    'schedule' => 'Rozpis',
     'players' => 'Hráči',
 
     'title' => 'Titulek',

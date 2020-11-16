@@ -28,14 +28,31 @@
     <div class="card-body">
         <div class="content text-center">
             <div class="content-block">
-                tým 1
-                {{-- @if (count($conversations) > 0)
-                @foreach ($conversations as $conversation)
-                @include('conversations.conversation')
-                @endforeach
-                @else
-                -----
-                @endif --}}
+                @if (count($competition->teams) > 0)
+                <table class="table table-striped table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">@lang('messages.name')</th>
+                            <th scope="col">@lang('messages.squad')</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($competition->teams as $team)
+                        <div class="container mt-3">
+                            <tr class="clickable-row"
+                                data-url="{{ route('teams.admin-show', [$competition->id, $team->id]) }}">
+                                <td>
+                                    {{ $team->name ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $team->squad ?? '' }}
+                                </td>
+                            </tr>
+                        </div>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
             </div>
         </div>
     </div>
