@@ -15,28 +15,24 @@ class CreateMatchesTable extends Migration
     {
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
-            $table->enum('name', ['main', 'qualification', 'descent', 'playoff']);
-            $table->enum('system', ['one_rounded', 'two_rounded']);
-            $table->integer('priority');
-            $table->integer('number_of_rounds')->nullable();
-            $table->integer('number_of_qualifiers')->nullable();
-            $table->integer('number_of_descending')->nullable();
-            $table->integer('match_duration')->nullable();
-            $table->integer('matches_day_min')->nullable();
-            $table->integer('matches_day_max')->nullable();
-            $table->integer('team_matches_day_round_min')->nullable();
-            $table->integer('team_matches_day_round_max')->nullable();
-            $table->json('match_days_times');
-            $table->enum('case_of_draw', ['draw', 'additional_time', 'penalties']);
+            $table->integer('round');
             $table->date('start_date');
-            $table->date('end_date');
-            $table->date('break_start_date')->nullable();
-            $table->date('break_end_date')->nullable();
+            $table->time('start_time');
+            $table->integer('home_team_id');
+            $table->integer('away_team_id');
+            $table->integer('home_team_score')->nullable();
+            $table->integer('away_team_score')->nullable();
+            $table->integer('home_team_halftime_score')->nullable();
+            $table->integer('away_team_halftime_score')->nullable();
             $table->foreignId('user_id');
+            $table->foreignId('rule_id');
             $table->foreignId('competition_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('rule_id')->references('id')->on('rules')->onDelete('cascade');
             $table->foreign('competition_id')->references('id')->on('competitions')->onDelete('cascade');
             $table->timestamps();
+
+            $table->engine = 'InnoDB'; // if foreign keys are in use
         });
     }
 
