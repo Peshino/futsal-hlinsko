@@ -11209,11 +11209,12 @@ html {
 }
 
 .navbar-dark .navbar-brand {
-  color: #dddddd;
+  color: #6bc8ff;
+  text-transform: uppercase;
 }
 
 .navbar-dark .navbar-brand:hover {
-  color: #ffffff;
+  color: #99daff;
 }
 
 .nav-link {
@@ -11927,51 +11928,63 @@ html {
   color: #ffffff !important;
 }
 
-#main .match {
-  padding: 0.7rem 0;
+#main .match .row {
+  margin-right: 0;
+  margin-left: 0;
 }
 
 #main .match .match-team {
   font-size: 1.2rem;
-  color: #ffffff;
+  color: #dddddd;
+  padding: 0.7rem;
 }
 
-#main .match .match-score {
-  font-size: 1.3rem;
-  color: #eeeeee;
-  font-weight: bold;
-}
-
+#main .match .match-score,
 #main .match .match-schedule {
-  font-size: 1.3rem;
-  color: #eeeeee;
-  font-weight: bold;
+  font-size: 1.5rem;
+  color: #6bc8ff;
+  padding: 0.7rem;
+}
+
+#main .match .match-score .match-score-home,
+#main .match .match-schedule .match-score-home {
+  border-right: 1px solid #aaaaaa;
 }
 
 #main .match-even {
-  background: #58009c;
-  background: linear-gradient(135deg, #58009c 0%, #004e82 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#58009c", endColorstr="#004e82", GradientType=1);
+  background-color: #1b1e21;
 }
 
 #main .match-odd {
-  background: #004674;
-  background: linear-gradient(135deg, #004674 0%, #540094 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#004674", endColorstr="#540094", GradientType=1);
+  background-color: #1d2024;
 }
 
 #main .match-even:hover {
   cursor: pointer;
-  background: #6b00bc;
-  background: linear-gradient(to right, #6b00bc 0%, #005c9a 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#6b00bc", endColorstr="#005c9a", GradientType=1);
+  background-color: #22262a;
+}
+
+#main .match-even:hover .match-team {
+  color: #ffffff;
+}
+
+#main .match-even:hover .match-score,
+#main .match-even:hover .match-schedule {
+  color: #99daff;
 }
 
 #main .match-odd:hover {
   cursor: pointer;
-  background: #005c9a;
-  background: linear-gradient(to right, #005c9a 0%, #6b00bc 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#005c9a", endColorstr="#6b00bc", GradientType=1);
+  background-color: #22262a;
+}
+
+#main .match-odd:hover .match-team {
+  color: #ffffff;
+}
+
+#main .match-odd:hover .match-score,
+#main .match-odd:hover .match-schedule {
+  color: #99daff;
 }
 
 @media (max-width: 768px) {

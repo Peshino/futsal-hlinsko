@@ -28,16 +28,32 @@
     <div class="card-body no-padding">
         <div class="content text-center">
             <div class="content-block">
-
-                
-
-
-
-
-
-
-
-
+                @if (count($competition->matches) > 0)
+                @foreach ($competition->matches as $match)
+                <div class="match match-even mb-3">
+                    <div class="row">
+                        <div class="match-team col-5 text-right">
+                            <span class="align-middle">{{ $match->homeTeam->name }}</span>
+                        </div>
+                        <div class="match-score col-2 text-center">
+                            <span class="align-middle">
+                                <div class="row">
+                                    <div class="col-6 match-score-home text-right">
+                                        {{ $match->home_team_score }}
+                                    </div>
+                                    <div class="col-6 match-score-away text-left">
+                                        {{ $match->away_team_score }}
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="match-team col-5 text-left">
+                            <span class="align-middle">{{ $match->awayTeam->name }}</span>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
 
                 <div class="mt-4">
                     <h3>
@@ -51,7 +67,16 @@
                                 <span class="align-middle">Jamaica Slaves Hlinsko</span>
                             </div>
                             <div class="match-score col-2 text-center">
-                                <span class="align-middle">4 : 1</span>
+                                <span class="align-middle">
+                                    <div class="row">
+                                        <div class="col-6 match-score-home text-right">
+                                            4
+                                        </div>
+                                        <div class="col-6 match-score-away text-left">
+                                            1
+                                        </div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="match-team col-5 text-left">
                                 <span class="align-middle">Bison Steak Hlinsko</span>
@@ -64,7 +89,16 @@
                                 Sokol Holetín
                             </div>
                             <div class="match-score col-2 text-center">
-                                2 : 0
+                                <span class="align-middle">
+                                    <div class="row">
+                                        <div class="col-6 match-score-home text-right">
+                                            1
+                                        </div>
+                                        <div class="col-6 match-score-away text-left">
+                                            1
+                                        </div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="match-team col-5 text-left">
                                 Matuláci Včelákov
@@ -84,7 +118,16 @@
                                 <span class="align-middle">Jamaica Slaves Hlinsko</span>
                             </div>
                             <div class="match-score col-2 text-center">
-                                <span class="align-middle">8 : 5</span>
+                                <span class="align-middle">
+                                    <div class="row">
+                                        <div class="col-6 match-score-home text-right">
+                                            0
+                                        </div>
+                                        <div class="col-6 match-score-away text-left">
+                                            7
+                                        </div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="match-team col-5 text-left">
                                 <span class="align-middle">Bison Steak Hlinsko</span>
@@ -97,7 +140,16 @@
                                 Sokol Holetín
                             </div>
                             <div class="match-score col-2 text-center">
-                                2 : 0
+                                <span class="align-middle">
+                                    <div class="row">
+                                        <div class="col-6 match-score-home text-right">
+                                            2
+                                        </div>
+                                        <div class="col-6 match-score-away text-left">
+                                            1
+                                        </div>
+                                    </div>
+                                </span>
                             </div>
                             <div class="match-team col-5 text-left">
                                 Matuláci Včelákov

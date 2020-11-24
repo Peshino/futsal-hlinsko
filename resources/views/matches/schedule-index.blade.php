@@ -33,7 +33,7 @@
     <div class="card-body no-padding">
         <div class="content text-center">
             <div class="content-block">
-                <div class="mt-3 p-1">
+                <div class="mt-4">
                     <h3>
                         neděle 16. února
                     </h3>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-3 p-1">
+                <div class="mt-4">
                     <h3>
                         sobota 15. února
                     </h3>

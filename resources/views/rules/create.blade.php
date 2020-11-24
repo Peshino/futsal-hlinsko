@@ -174,14 +174,14 @@
                             <div class="floating-label">
                                 <label for="start-date">@lang('messages.start_date')</label>
                                 <input type="text" class="form-control input-datepicker" id="start-date"
-                                    name="start_date" value="{{ old('start_date') }}" required />
+                                    name="start_date" autocomplete="off" value="{{ old('start_date') }}" required />
                             </div>
                         </div>
                         <div class="end-date col-md">
                             <div class="floating-label">
                                 <label for="end-date">@lang('messages.end_date')</label>
                                 <input type="text" class="form-control input-datepicker" id="end-date" name="end_date"
-                                    value="{{ old('end_date') }}" required />
+                                    autocomplete="off" value="{{ old('end_date') }}" required />
                             </div>
                         </div>
                     </div>
@@ -191,14 +191,14 @@
                             <div class="floating-label">
                                 <label for="break-start-date">@lang('messages.break_start_date')</label>
                                 <input type="text" class="form-control input-datepicker" id="break-start-date"
-                                    name="break_start_date" value="{{ old('break_start_date') }}" />
+                                    name="break_start_date" autocomplete="off" value="{{ old('break_start_date') }}" />
                             </div>
                         </div>
                         <div class="break-end-date col-md">
                             <div class="floating-label">
                                 <label for="break-end-date">@lang('messages.break_end_date')</label>
                                 <input type="text" class="form-control input-datepicker" id="break-end-date"
-                                    name="break_end_date" value="{{ old('break_end_date') }}" />
+                                    name="break_end_date" autocomplete="off" value="{{ old('break_end_date') }}" />
                             </div>
                         </div>
                     </div>

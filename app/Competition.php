@@ -27,4 +27,9 @@ class Competition extends Model
     {
         return $this->hasMany(Team::class);
     }
+
+    public function matches()
+    {
+        return $this->hasMany(Match::class);
+    }
 }

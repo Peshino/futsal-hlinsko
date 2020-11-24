@@ -91,7 +91,7 @@
 
                         <div class="mt-3 text-center">
                             <a href="{{ route('teams.create', $competition->id) }}" class="btn btn-primary">
-                                @lang('messages.create_teams')
+                                @lang('messages.create_team')
                             </a>
                         </div>
                     </div>

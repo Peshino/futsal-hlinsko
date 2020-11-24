@@ -19,4 +19,9 @@ class Team extends Model
     {
         return $this->belongsTo(Competition::class);
     }
+
+    public function match()
+    {
+        return $this->belongsTo(Match::class);
+    }
 }

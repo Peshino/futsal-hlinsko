@@ -21,4 +21,9 @@ class Rule extends Model
     {
         return $this->belongsTo(Competition::class);
     }
+
+    public function matches()
+    {
+        return $this->hasMany(Match::class);
+    }
 }

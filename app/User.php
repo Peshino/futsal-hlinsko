@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->hasMany(Team::class);
     }
 
+    public function matches()
+    {
+        return $this->hasMany(Match::class);
+    }
+
     public function addCompetition($competition)
     {
         return $this->competitions()->create($competition);
@@ -78,5 +83,10 @@ class User extends Authenticatable
         }
 
         return $result;
+    }
+
+    public function addMatch($match)
+    {
+        return $this->matches()->create($match);
     }
 }
