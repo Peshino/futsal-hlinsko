@@ -26,4 +26,9 @@ class Rule extends Model
     {
         return $this->hasMany(Match::class);
     }
+
+    public function getLastMatchByRound()
+    {
+        return $this->matches()->latest('round')->first();
+    }
 }

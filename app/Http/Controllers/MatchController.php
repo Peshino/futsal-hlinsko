@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Match;
 use App\Repositories\Matches;
 use App\Competition;
+use App\Rule;
 use Illuminate\Http\Request;
 
 class MatchController extends Controller
@@ -13,14 +14,60 @@ class MatchController extends Controller
      * Display a listing of the resource.
      *
      * @param  \App\Competition  $competition
-     * @param  \App\Repositories\Matches  $matches
      * @return \Illuminate\Http\Response
      */
-    public function index(Competition $competition, Matches $matchesRepository)
+    public function index(Competition $competition)
     {
-        $matches = $matchesRepository->getMatches();
+        $lastRuleByPriority = $competition->getLastRuleByPriority();
 
-        return view('matches.index', compact('competition', 'matches'));
+        if ($lastRuleByPriority !== null) {
+            $lastMatchByRound = $lastRuleByPriority->getLastMatchByRound();
+
+            if ($lastMatchByRound !== null) {
+                return redirect()->route('matches.params-index', ['competition' => $competition->id, 'rule' => $lastRuleByPriority->id, 'round' => $lastMatchByRound->round]);
+            } else {
+                session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
+                return redirect()->back();
+            }
+        } else {
+            session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \App\Competition  $competition
+     * @param  \App\Rule  $rule
+     * @param  int $actualRound
+     * @param  \App\Repositories\Matches  $matchesRepository
+     * @return \Illuminate\Http\Response
+     */
+    public function paramsIndex(Competition $competition, Rule $rule, $actualRound = null, Matches $matchesRepository)
+    {
+        $matchesRounds = null;
+        $lastRound = null;
+        $rounds = [];
+
+        $matches = $matchesRepository->getMatchesByCompetitionRule($competition->id, $rule->id);
+
+        if ($matches !== null) {
+            $matchesRounds = collect($matches)->unique('round')->sortDesc()->values();
+
+            if ($matchesRounds !== null) {
+                foreach ($matchesRounds as $matchesRound) {
+                    $rounds[] = $matchesRound->round;
+                }
+            }
+
+            if ($actualRound !== null) {
+                $actualRound = (int) $actualRound;
+                $matches = $matchesRepository->getMatchesByCompetitionRuleRound($competition->id, $rule->id, $actualRound);
+            }
+        }
+
+        return view('matches.index', compact('competition', 'rule', 'actualRound', 'lastRound', 'matches', 'rounds'));
     }
 
     /**

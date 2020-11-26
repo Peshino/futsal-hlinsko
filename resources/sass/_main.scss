@@ -35,8 +35,8 @@
 
     .dropdown-item:hover,
     .dropdown-item:focus {
-        color: #fefefe;
-        background-color: #2a2e33;
+        color: #fefefe !important;
+        background-color: #2a2e33 !important;
         border-radius: 0 0 0.25rem 0.25rem;
     }
 
@@ -57,6 +57,13 @@
         -webkit-transform: translate(-50%, 0);
         -o-transform: translate(-50%, 0);
         transform: translate(-50%, 0);
+    }
+
+    .dropdown-item.active,
+    .dropdown-item:active {
+        color: #ffffff;
+        text-decoration: none;
+        background-color: transparent;
     }
 
     .proceed-link {
@@ -125,6 +132,10 @@
         }
     }
 
+    .active {
+        color: #ffffff;
+    }
+
     .card-header {
         padding: 0;
         margin-bottom: 0;
@@ -136,6 +147,11 @@
     .card-header .row {
         margin-right: 0;
         margin-left: 0;
+    }
+
+    .card-header .row .col-auto {
+        padding-right: 0;
+        padding-left: 0;
     }
 
     .card-header .col-left {
@@ -604,6 +620,15 @@
             padding: 0.7rem;
         }
 
+        .team-name-long {
+            display: block;
+        }
+
+        .team-name-short {
+            display: none;
+            text-transform: uppercase;
+        }
+
         .match-score,
         .match-schedule {
             font-size: 1.5rem;
@@ -679,6 +704,11 @@
             font-size: 1.1rem;
         }
 
+        h5,
+        .h5 {
+            font-size: 0.8rem;
+        }
+
         .match {
             padding: 0.5rem 0;
 
@@ -696,21 +726,21 @@
         }
     }
 
+    @media (max-width: 576px) {
+        .match {
+            .team-name-long {
+                display: none;
+            }
+
+            .team-name-short {
+                display: block;
+            }
+        }
+    }
+
     @media (max-width: 460px) {
         .match {
-            padding: 0.5rem 0;
-
-            .match-team {
-                font-size: 0.7rem;
-            }
-
-            .match-score {
-                font-size: 0.8rem;
-            }
-
-            .match-schedule {
-                font-size: 0.8rem;
-            }
+            padding: 0.2rem 0;
         }
     }
 }

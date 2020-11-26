@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('matches.index', $competition->id) }}">
+                    <a class="nav-link" href="{{ route('matches.index', [$competition->id]) }}">
                         <i class="fas fa-align-center align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.results')</span>
                     </a>
