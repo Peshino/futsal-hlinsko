@@ -11,7 +11,6 @@
             <div class="col-4 col-left">
                 @lang('messages.results')
             </div>
-            @auth
             <div class="col-8 col-right d-flex flex-row-reverse">
                 <div class="row">
                     @if (count($competition->rules) > 0)
@@ -58,6 +57,7 @@
                     </div>
                     @endif
 
+                    @auth
                     <div class="col-auto">
                         <ul class="list-inline">
                             <li class="list-inline-item">
@@ -67,9 +67,9 @@
                             </li>
                         </ul>
                     </div>
+                    @endauth
                 </div>
             </div>
-            @endauth
         </div>
     </div>
 
@@ -78,7 +78,7 @@
             <div class="content-block">
                 <div class="mt-4">
                     <h3>
-                        @lang('messages.' . $rule->name ?? '' . '') - {{ $actualRound ?? '' }}. kolo
+                        @lang('messages.' . $rule->name ?? '' . '') - {{ $actualRound ?? '' }}. @lang('messages.round')
                     </h3>
                 </div>
                 @if (count($matches) > 0)
@@ -99,10 +99,11 @@
                 $matchStartDates[] = $match->start_date;
                 @endphp
                 @endif
-                <div class="match match-even mb-3">
+                <div class="match mb-3 clickable-row"
+                    data-url="{{ route('matches.show', [$competition->id, $match->id]) }}">
                     <div class="row">
                         <div class="match-team col-4 d-flex flex-row-reverse">
-                            <span class="align-middle">
+                            <span class="justify-content-center align-self-center">
                                 <div class="team-name-long">
                                     {{ $match->homeTeam->name }}
                                 </div>
@@ -112,7 +113,7 @@
                             </span>
                         </div>
                         <div class="match-score col-4 text-center">
-                            <span class="align-middle">
+                            <span class="justify-content-center align-self-center">
                                 <div class="row">
                                     <div class="col-6 match-score-home d-flex flex-row-reverse">
                                         {{ $match->home_team_score }}
@@ -124,7 +125,7 @@
                             </span>
                         </div>
                         <div class="match-team col-4 d-flex">
-                            <span class="align-middle">
+                            <span class="justify-content-center align-self-center">
                                 <div class="team-name-long">
                                     {{ $match->awayTeam->name }}
                                 </div>
@@ -141,4 +142,16 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    $(document).ready(function () {
+        $('.clickable-row').click(function () {
+            var url = $(this).data('url');
+
+            window.location.href = url;
+        });
+    });
+</script>
 @endsection

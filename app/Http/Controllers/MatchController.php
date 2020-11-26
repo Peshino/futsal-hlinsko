@@ -129,12 +129,13 @@ class MatchController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  \App\Competition  $competition
      * @param  \App\Match  $match
      * @return \Illuminate\Http\Response
      */
-    public function show(Match $match)
+    public function show(Competition $competition, Match $match)
     {
-        //
+        return view('matches.show', compact('competition', 'match'));
     }
 
     /**

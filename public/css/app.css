@@ -11944,6 +11944,10 @@ html {
   color: #ffffff !important;
 }
 
+#main .match {
+  background-color: #1b1e21;
+}
+
 #main .match .row {
   margin-right: 0;
   margin-left: 0;
@@ -11953,6 +11957,7 @@ html {
   font-size: 1.2rem;
   color: #dddddd;
   padding: 0.7rem;
+  text-transform: uppercase;
 }
 
 #main .match .team-name-long {
@@ -11961,55 +11966,65 @@ html {
 
 #main .match .team-name-short {
   display: none;
-  text-transform: uppercase;
 }
 
 #main .match .match-score,
 #main .match .match-schedule {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   color: #6bc8ff;
   padding: 0.7rem;
 }
 
 #main .match .match-score .match-score-home,
-#main .match .match-schedule .match-score-home {
+#main .match .match-score .match-halftime-score-home,
+#main .match .match-schedule .match-score-home,
+#main .match .match-schedule .match-halftime-score-home {
   border-right: 1px solid #aaaaaa;
 }
 
-#main .match-even {
-  background-color: #1b1e21;
+#main .match .match-score .match-halftime-score-home,
+#main .match .match-score .match-halftime-score-away,
+#main .match .match-schedule .match-halftime-score-home,
+#main .match .match-schedule .match-halftime-score-away {
+  font-size: 1rem;
+  color: #cccccc;
 }
 
-#main .match-odd {
-  background-color: #1d2024;
-}
-
-#main .match-even:hover {
+#main .clickable-row.match:hover {
   cursor: pointer;
   background-color: #22262a;
 }
 
-#main .match-even:hover .match-team {
+#main .clickable-row.match:hover .match-team {
   color: #ffffff;
 }
 
-#main .match-even:hover .match-score,
-#main .match-even:hover .match-schedule {
+#main .clickable-row.match:hover .match-score,
+#main .clickable-row.match:hover .match-schedule {
   color: #99daff;
 }
 
-#main .match-odd:hover {
-  cursor: pointer;
-  background-color: #22262a;
+#main .shooters {
+  font-size: 1.1rem;
 }
 
-#main .match-odd:hover .match-team {
+#main .shooters .row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+#main .shooters .shooters-home {
+  padding: 1.2rem;
+  background-color: #003351;
+}
+
+#main .shooters .shooters-away {
+  padding: 1.2rem;
+  background-color: #002a42;
+}
+
+#main .shooters .balls {
   color: #ffffff;
-}
-
-#main .match-odd:hover .match-score,
-#main .match-odd:hover .match-schedule {
-  color: #99daff;
 }
 
 @media (max-width: 768px) {

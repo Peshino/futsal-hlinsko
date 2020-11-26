@@ -609,6 +609,8 @@
     }
 
     .match {
+        background-color: #1b1e21;
+
         .row {
             margin-right: 0;
             margin-left: 0;
@@ -618,6 +620,7 @@
             font-size: 1.2rem;
             color: #dddddd;
             padding: 0.7rem;
+            text-transform: uppercase;
         }
 
         .team-name-long {
@@ -626,47 +629,30 @@
 
         .team-name-short {
             display: none;
-            text-transform: uppercase;
         }
 
         .match-score,
         .match-schedule {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             color: #6bc8ff;
             padding: 0.7rem;
 
-            .match-score-home {
+            .match-score-home,
+            .match-halftime-score-home {
                 border-right: 1px solid #aaaaaa;
+            }
+
+            .match-halftime-score-home,
+            .match-halftime-score-away {
+                font-size: 1rem;
+                color: #cccccc;
             }
         }
     }
 
-    .match-even {
-        background-color: #1b1e21;
-        // background: rgb(88, 0, 156);
-        // background: -moz-linear-gradient(-45deg, rgba(88, 0, 156, 1) 0%, rgba(0, 78, 130, 1) 100%);
-        // background: -webkit-linear-gradient(-45deg, rgba(88, 0, 156, 1) 0%, rgba(0, 78, 130, 1) 100%);
-        // background: linear-gradient(135deg, rgba(88, 0, 156, 1) 0%, rgba(0, 78, 130, 1) 100%);
-        // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#58009c', endColorstr='#004e82', GradientType=1);
-    }
-
-    .match-odd {
-        background-color: #1d2024;
-        // background: rgb(0, 70, 116);
-        // background: -moz-linear-gradient(-45deg, rgba(0, 70, 116, 1) 0%, rgba(84, 0, 148, 1) 100%);
-        // background: -webkit-linear-gradient(-45deg, rgba(0, 70, 116, 1) 0%, rgba(84, 0, 148, 1) 100%);
-        // background: linear-gradient(135deg, rgba(0, 70, 116, 1) 0%, rgba(84, 0, 148, 1) 100%);
-        // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#004674', endColorstr='#540094', GradientType=1);
-    }
-
-    .match-even:hover {
+    .clickable-row.match:hover {
         cursor: pointer;
         background-color: #22262a;
-        // background: rgb(107, 0, 188);
-        // background: -moz-linear-gradient(left, rgba(107, 0, 188, 1) 0%, rgba(0, 92, 154, 1) 100%);
-        // background: -webkit-linear-gradient(left, rgba(107, 0, 188, 1) 0%, rgba(0, 92, 154, 1) 100%);
-        // background: linear-gradient(to right, rgba(107, 0, 188, 1) 0%, rgba(0, 92, 154, 1) 100%);
-        // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b00bc', endColorstr='#005c9a', GradientType=1);
 
         .match-team {
             color: #ffffff;
@@ -678,22 +664,26 @@
         }
     }
 
-    .match-odd:hover {
-        cursor: pointer;
-        background-color: #22262a;
-        // background: rgb(0, 92, 154);
-        // background: -moz-linear-gradient(left, rgba(0, 92, 154, 1) 0%, rgba(107, 0, 188, 1) 100%);
-        // background: -webkit-linear-gradient(left, rgba(0, 92, 154, 1) 0%, rgba(107, 0, 188, 1) 100%);
-        // background: linear-gradient(to right, rgba(0, 92, 154, 1) 0%, rgba(107, 0, 188, 1) 100%);
-        // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#005c9a', endColorstr='#6b00bc', GradientType=1);
+    .shooters {
+        font-size: 1.1rem;
 
-        .match-team {
-            color: #ffffff;
+        .row {
+            margin-right: 0;
+            margin-left: 0;
         }
 
-        .match-score,
-        .match-schedule {
-            color: #99daff;
+        .shooters-home {
+            padding: 1.2rem;
+            background-color: #003351;
+        }
+
+        .shooters-away {
+            padding: 1.2rem;
+            background-color: #002a42;
+        }
+
+        .balls {
+            color: #ffffff;
         }
     }
 
