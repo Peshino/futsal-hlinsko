@@ -141,34 +141,63 @@ class MatchController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  \App\Competition  $competition
      * @param  \App\Match  $match
      * @return \Illuminate\Http\Response
      */
-    public function edit(Match $match)
+    public function edit(Competition $competition, Match $match)
     {
-        //
+        return view('matches.edit', compact('competition', 'match'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Competition  $competition
      * @param  \App\Match  $match
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Match $match)
+    public function update(Request $request, Competition $competition, Match $match)
     {
-        //
+        $attributes = $request->validate([
+            'round' => 'required|numeric|min:1',
+            'start_date' => 'required|date_format:Y-m-d',
+            'start_time' => 'required',
+            'home_team_id' => 'required|numeric|min:1',
+            'away_team_id' => 'required|numeric|min:1',
+            'home_team_score' => 'nullable|numeric',
+            'away_team_score' => 'nullable|numeric',
+            'home_team_halftime_score' => 'nullable|numeric',
+            'away_team_halftime_score' => 'nullable|numeric',
+            'rule_id' => 'required|numeric|min:1',
+            'competition_id' => 'required|numeric|min:1',
+        ]);
+
+        if ($match->update($attributes)) {
+            session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
+        } else {
+            session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
+        }
+
+        return redirect()->route('matches.show', ['competition' => $competition->id, 'match' => $match->id]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \App\Competition  $competition
      * @param  \App\Match  $match
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Match $match)
+    public function destroy(Competition $competition, Match $match)
     {
-        //
+        if ($match->delete()) {
+            session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
+        } else {
+            session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
+        }
+
+        return redirect()->route('matches.index', ['competition' => $competition->id]);
     }
 }

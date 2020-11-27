@@ -63,12 +63,13 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  \App\Competition  $competition
      * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function show(Team $team)
+    public function show(Competition $competition, Team $team)
     {
-        return view('teams.show', compact('team'));
+        return view('teams.show', compact('competition', 'team'));
     }
 
     /**

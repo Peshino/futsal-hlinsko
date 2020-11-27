@@ -15,10 +15,11 @@
                 <div class="row">
                     @if (count($competition->rules) > 0)
                     <div class="col-auto">
-                        <div class="dropdown p-1">
-                            <button class="btn dropdown-toggle" type="button" id="le-component-vehicle-type-id"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @lang('messages.rules')
+                        <div class="dropdown pr-1">
+                            <button class="control-button dropdown-toggle" type="button"
+                                id="le-component-vehicle-type-id" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                @lang('messages.' . $rule->name ?? '' . '')
                             </button>
                             <div class="dropdown-menu" aria-labelledby="le-component-vehicle-type-id">
                                 {{-- <a class="dropdown-item" href="">
@@ -37,10 +38,11 @@
 
                     @if (count($rounds) > 0)
                     <div class="col-auto">
-                        <div class="dropdown p-1">
-                            <button class="btn dropdown-toggle" type="button" id="le-component-vehicle-type-id"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @lang('messages.round')
+                        <div class="dropdown pr-1">
+                            <button class="control-button dropdown-toggle" type="button"
+                                id="le-component-vehicle-type-id" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                {{ $actualRound }}. @lang('messages.round')
                             </button>
                             <div class="dropdown-menu" aria-labelledby="le-component-vehicle-type-id">
                                 {{-- <a class="dropdown-item" href="">
@@ -49,7 +51,7 @@
                                 @foreach ($rounds as $round)
                                 <a class="dropdown-item{{ $round === $actualRound ? " active" : "" }}"
                                     href="{{ route('matches.params-index', [$competition->id, $rule->id, $round]) }}">
-                                    {{ $round ?? '' }}
+                                    {{ $round ?? '' }}. @lang('messages.round')
                                 </a>
                                 @endforeach
                             </div>
@@ -76,11 +78,6 @@
     <div class="card-body no-padding">
         <div class="content text-center">
             <div class="content-block">
-                <div class="mt-4">
-                    <h3>
-                        @lang('messages.' . $rule->name ?? '' . '') - {{ $actualRound ?? '' }}. @lang('messages.round')
-                    </h3>
-                </div>
                 @if (count($matches) > 0)
                 @php
                 $matchStartDates = [];

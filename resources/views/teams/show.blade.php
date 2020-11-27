@@ -9,16 +9,7 @@
     <div class="card-header app-bg">
         <div class="row">
             <div class="col col-left">
-                @lang('messages.homepage')
-            </div>
-            <div class="col">
-                <ul class="list-inline justify-content-end">
-                    <li class="list-inline-item">
-                        <a class="crud-button" href="{{ route('competitions.create') }}">
-                            <div class="plus"></div>
-                        </a>
-                    </li>
-                </ul>
+                {{ $team->name ?? '' }}
             </div>
         </div>
     </div>
@@ -26,7 +17,7 @@
     <div class="card-body">
         <div class="content">
             <div class="content-block">
-                týmy
+                {{ $team->name ?? '' }}
             </div>
         </div>
     </div>

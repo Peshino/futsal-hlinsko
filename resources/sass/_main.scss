@@ -158,6 +158,21 @@
         padding: 0.7rem 1.25rem;
     }
 
+    .card-header .control-button {
+        display: inline-block;
+        color: #ffffff;
+        background-color: rgba(0, 0, 0, 0.1);
+        border: none;
+        text-decoration: none;
+        text-align: center;
+        padding: 0.7rem 1rem;
+    }
+
+    .card-header .control-button:hover {
+        text-decoration: none;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
     .modal-content {
         background-color: #2a2f33;
     }
@@ -687,6 +702,22 @@
         }
     }
 
+    @media (max-width: 992px) {
+        .match {
+            .match-team {
+                font-size: 1rem;
+            }
+
+            .match-score {
+                font-size: 1.1rem;
+            }
+
+            .match-schedule {
+                font-size: 1.1rem;
+            }
+        }
+    }
+
     @media (max-width: 768px) {
 
         h3,
@@ -704,6 +735,7 @@
 
             .match-team {
                 font-size: 0.9rem;
+                text-transform: none;
             }
 
             .match-score {
@@ -717,7 +749,23 @@
     }
 
     @media (max-width: 576px) {
+        .card-header {
+            font-size: 0.8rem;
+        }
+
+        .card-header .control-button {
+            padding: 0.7rem 0.8rem;
+        }
+
+        .crud-button {
+            font-size: 0.8rem;
+        }
+
         .match {
+            .match-team {
+                text-transform: uppercase;
+            }
+
             .team-name-long {
                 display: none;
             }
@@ -729,8 +777,33 @@
     }
 
     @media (max-width: 460px) {
+        .card-header {
+            font-size: 0.7rem;
+        }
+
+        .card-header .control-button {
+            padding: 0.7rem 0.7rem;
+        }
+
+        .crud-button {
+            font-size: 0.7rem;
+            padding: 0.7rem 0rem;
+            width: 2.5rem;
+        }
+
+        .plus {
+            width: 15px;
+            height: 15px;
+        }
+
         .match {
             padding: 0.2rem 0;
+        }
+    }
+
+    @media (max-width: 350px) {
+        .card-header .control-button {
+            padding: 0.7rem 0.3rem;
         }
     }
 }

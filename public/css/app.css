@@ -11508,6 +11508,21 @@ html {
   padding: 0.7rem 1.25rem;
 }
 
+#main .card-header .control-button {
+  display: inline-block;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  padding: 0.7rem 1rem;
+}
+
+#main .card-header .control-button:hover {
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 #main .modal-content {
   background-color: #2a2f33;
 }
@@ -12027,6 +12042,20 @@ html {
   color: #ffffff;
 }
 
+@media (max-width: 992px) {
+  #main .match .match-team {
+    font-size: 1rem;
+  }
+
+  #main .match .match-score {
+    font-size: 1.1rem;
+  }
+
+  #main .match .match-schedule {
+    font-size: 1.1rem;
+  }
+}
+
 @media (max-width: 768px) {
   #main h3,
   #main .h3 {
@@ -12044,6 +12073,7 @@ html {
 
   #main .match .match-team {
     font-size: 0.9rem;
+    text-transform: none;
   }
 
   #main .match .match-score {
@@ -12056,6 +12086,22 @@ html {
 }
 
 @media (max-width: 576px) {
+  #main .card-header {
+    font-size: 0.8rem;
+  }
+
+  #main .card-header .control-button {
+    padding: 0.7rem 0.8rem;
+  }
+
+  #main .crud-button {
+    font-size: 0.8rem;
+  }
+
+  #main .match .match-team {
+    text-transform: uppercase;
+  }
+
   #main .match .team-name-long {
     display: none;
   }
@@ -12066,8 +12112,33 @@ html {
 }
 
 @media (max-width: 460px) {
+  #main .card-header {
+    font-size: 0.7rem;
+  }
+
+  #main .card-header .control-button {
+    padding: 0.7rem 0.7rem;
+  }
+
+  #main .crud-button {
+    font-size: 0.7rem;
+    padding: 0.7rem 0rem;
+    width: 2.5rem;
+  }
+
+  #main .plus {
+    width: 15px;
+    height: 15px;
+  }
+
   #main .match {
     padding: 0.2rem 0;
+  }
+}
+
+@media (max-width: 350px) {
+  #main .card-header .control-button {
+    padding: 0.7rem 0.3rem;
   }
 }
 

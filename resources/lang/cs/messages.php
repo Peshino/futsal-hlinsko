@@ -78,6 +78,7 @@ return [
     'edit_teams' => 'Upravit týmy',
     'edit_team' => 'Upravit tým',
     'create_match' => 'Vytvořit zápas',
+    'edit_match' => 'Upravit zápas',
 
     'system' => 'Systém',
     'main' => 'Základní část',

@@ -13,6 +13,7 @@
                 @lang('messages.match') - {{ $competition->name }}
             </div>
 
+            @auth
             <div class="col">
                 <ul class="list-inline justify-content-end">
                     <li class="list-inline-item">
@@ -52,6 +53,7 @@
                     </li>
                 </ul>
             </div>
+            @endauth
         </div>
     </div>
 
@@ -79,10 +81,18 @@
                         <div class="match-team col-4 d-flex flex-row-reverse">
                             <span class="justify-content-center align-self-center">
                                 <div class="team-name-long">
-                                    <span class="align-middle">{{ $match->homeTeam->name }}</span>
+                                    <span class="align-middle">
+                                        <a href="{{ route('teams.show', [$competition->id, $match->homeTeam->id]) }}">
+                                            {{ $match->homeTeam->name }}
+                                        </a>
+                                    </span>
                                 </div>
                                 <div class="team-name-short">
-                                    {{ mb_substr($match->homeTeam->name, 0, 3) }}
+                                    <span class="align-middle">
+                                        <a href="{{ route('teams.show', [$competition->id, $match->homeTeam->id]) }}">
+                                            {{ mb_substr($match->homeTeam->name, 0, 3) }}
+                                        </a>
+                                    </span>
                                 </div>
                             </span>
                         </div>
@@ -109,10 +119,18 @@
                         <div class="match-team col-4 d-flex">
                             <span class="justify-content-center align-self-center">
                                 <div class="team-name-long">
-                                    {{ $match->awayTeam->name }}
+                                    <span class="align-middle">
+                                        <a href="{{ route('teams.show', [$competition->id, $match->awayTeam->id]) }}">
+                                            {{ $match->awayTeam->name }}
+                                        </a>
+                                    </span>
                                 </div>
                                 <div class="team-name-short">
-                                    {{ mb_substr($match->awayTeam->name, 0, 3) }}
+                                    <span class="align-middle">
+                                        <a href="{{ route('teams.show', [$competition->id, $match->awayTeam->id]) }}">
+                                            {{ mb_substr($match->awayTeam->name, 0, 3) }}
+                                        </a>
+                                    </span>
                                 </div>
                             </span>
                         </div>

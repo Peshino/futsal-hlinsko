@@ -78,6 +78,7 @@ return [
     'edit_teams' => 'Edit teams',
     'edit_team' => 'Edit team',
     'create_match' => 'Create match',
+    'edit_match' => 'Edit match',
 
     'system' => 'System',
     'main' => 'Main stage',
