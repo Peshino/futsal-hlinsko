@@ -26,9 +26,11 @@
                 @if (count($seasons) > 0)
                 <div class="introduction-top text-center">
                     <div class="introduction-header">
-                        <a href="{{ url('/') }}">
-                            <h1>@lang('messages.app_name')</h1>
-                        </a>
+                        <h1>
+                            <a href="{{ url('/') }}">
+                                @lang('messages.app_name')
+                            </a>
+                        </h1>
 
                         {{-- <h2>@lang('messages.app_description')</h2> --}}
                     </div>

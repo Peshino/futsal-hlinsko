@@ -23,12 +23,16 @@
         padding: 24px 0;
     }
 
-    .introduction-header h1,
-    .introduction-header h2 {
-        color: #9fd0f3;
-        letter-spacing: 0.2em;
-        font-weight: bold;
-        text-shadow: 0px 0px 28px #00ceff;
+    .introduction-header h1 a,
+    .introduction-header h2 a {
+        color: #5cc3ff;
+        font-size: 3rem;
+        font-family: "easports", sans-serif;
+    }
+
+    .introduction-header h1 a:hover,
+    .introduction-header h2 a:hover {
+        color: #bee7ff;
     }
 
     .introduction-middle {

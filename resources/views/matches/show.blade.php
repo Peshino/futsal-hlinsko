@@ -10,7 +10,7 @@
     <div class="card-header app-bg">
         <div class="row">
             <div class="col col-left">
-                @lang('messages.match') - {{ $competition->name }}
+                @lang('messages.match')
             </div>
 
             @auth

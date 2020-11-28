@@ -10939,6 +10939,11 @@ html {
   src: url("/fonts/KoHo/KoHo-Regular.ttf");
 }
 
+@font-face {
+  font-family: easports;
+  src: url("/fonts/easports/easports.ttf");
+}
+
 #cookie-bar {
   position: fixed;
   left: 0px;
@@ -11001,10 +11006,14 @@ html {
 
 #introduction .introduction-header h1,
 #introduction .introduction-header h2 {
-  color: #9fd0f3;
-  letter-spacing: 0.2em;
-  font-weight: bold;
-  text-shadow: 0px 0px 28px #00ceff;
+  color: #5cc3ff;
+  font-size: 3rem;
+  font-family: "easports", sans-serif;
+}
+
+#introduction .introduction-header h1:hover,
+#introduction .introduction-header h2:hover {
+  color: #bee7ff;
 }
 
 #introduction .introduction-middle {
@@ -11211,6 +11220,9 @@ html {
 .navbar-dark .navbar-brand {
   color: #6bc8ff;
   text-transform: uppercase;
+  font-family: "easports", sans-serif;
+  letter-spacing: 0.1rem;
+  font-size: 1.4rem;
 }
 
 .navbar-dark .navbar-brand:hover {
@@ -11399,8 +11411,10 @@ html {
 #main .dropdown-item:hover,
 #main .dropdown-item:focus {
   color: #fefefe !important;
-  background-color: #2a2e33 !important;
   border-radius: 0 0 0.25rem 0.25rem;
+  background: #00314e;
+  background: linear-gradient(135deg, #00314e 0%, #00436a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00314e", endColorstr="#00436a", GradientType=1);
 }
 
 #main .dropdown-toggle::after {
@@ -11500,8 +11514,8 @@ html {
 }
 
 #main .card-header .row .col-auto {
-  padding-right: 0;
   padding-left: 0;
+  padding-right: 0;
 }
 
 #main .card-header .col-left {
@@ -12007,7 +12021,9 @@ html {
 
 #main .clickable-row.match:hover {
   cursor: pointer;
-  background-color: #22262a;
+  background: #002a42;
+  background: linear-gradient(to right, #002a42 0%, #002a42 50%, #002a42 50%, #003351 50%, #003351 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#002a42", endColorstr="#003351", GradientType=1);
 }
 
 #main .clickable-row.match:hover .match-team {
@@ -12026,16 +12042,17 @@ html {
 #main .shooters .row {
   margin-right: 0;
   margin-left: 0;
+  background: #002a42;
+  background: linear-gradient(to right, #002a42 0%, #002a42 50%, #002a42 50%, #003351 50%, #003351 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#002a42", endColorstr="#003351", GradientType=1);
 }
 
 #main .shooters .shooters-home {
   padding: 1.2rem;
-  background-color: #003351;
 }
 
 #main .shooters .shooters-away {
   padding: 1.2rem;
-  background-color: #002a42;
 }
 
 #main .shooters .balls {
@@ -12065,10 +12082,6 @@ html {
   #main h5,
   #main .h5 {
     font-size: 0.8rem;
-  }
-
-  #main .match {
-    padding: 0.5rem 0;
   }
 
   #main .match .match-team {
@@ -12139,6 +12152,15 @@ html {
 @media (max-width: 350px) {
   #main .card-header .control-button {
     padding: 0.7rem 0.3rem;
+  }
+
+  #main .card-header .row .col-8 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #main .card-header .row .col-4 {
+    padding-right: 0;
   }
 }
 

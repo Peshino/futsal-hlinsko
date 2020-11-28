@@ -53929,11 +53929,7 @@ $(document).ready(function () {
       expires: 365
     });
     $('#cookie-bar').addClass('d-none').removeClass('d-flex');
-  }); // $('.navbar-nav .nav-link').click(() => {
-  //     $('.navbar-nav .nav-link').removeClass('active');
-  //     $(this).addClass('active');
-  // });
-
+  });
   setTimeout(function () {
     $('.alert').fadeOut(500);
   }, 7500);
@@ -53964,8 +53960,6 @@ $(document).ready(function () {
     });
   }
 
-  var actualUrl = window.location.href;
-  $('.navbar-nav .nav-item > a[href="' + actualUrl + '"]').parent().addClass('active');
   $('footer a#created-by').on('click mouseover', function (event) {
     event.preventDefault();
     var $title = $('footer #created-by').attr('data-original-title'),

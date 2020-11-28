@@ -36,8 +36,12 @@
     .dropdown-item:hover,
     .dropdown-item:focus {
         color: #fefefe !important;
-        background-color: #2a2e33 !important;
         border-radius: 0 0 0.25rem 0.25rem;
+        background: rgb(0, 49, 78);
+        background: -moz-linear-gradient(-45deg, rgba(0, 49, 78, 1) 0%, rgba(0, 67, 106, 1) 100%);
+        background: -webkit-linear-gradient(-45deg, rgba(0, 49, 78, 1) 0%, rgba(0, 67, 106, 1) 100%);
+        background: linear-gradient(135deg, rgba(0, 49, 78, 1) 0%, rgba(0, 67, 106, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00314e', endColorstr='#00436a', GradientType=1);
     }
 
     .dropdown-toggle::after {
@@ -147,11 +151,11 @@
     .card-header .row {
         margin-right: 0;
         margin-left: 0;
-    }
 
-    .card-header .row .col-auto {
-        padding-right: 0;
-        padding-left: 0;
+        .col-auto {
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
 
     .card-header .col-left {
@@ -667,7 +671,11 @@
 
     .clickable-row.match:hover {
         cursor: pointer;
-        background-color: #22262a;
+        background: rgb(0, 42, 66);
+        background: -moz-linear-gradient(left, rgba(0, 42, 66, 1) 0%, rgba(0, 42, 66, 1) 50%, rgba(0, 42, 66, 1) 50%, rgba(0, 51, 81, 1) 50%, rgba(0, 51, 81, 1) 100%);
+        background: -webkit-linear-gradient(left, rgba(0, 42, 66, 1) 0%, rgba(0, 42, 66, 1) 50%, rgba(0, 42, 66, 1) 50%, rgba(0, 51, 81, 1) 50%, rgba(0, 51, 81, 1) 100%);
+        background: linear-gradient(to right, rgba(0, 42, 66, 1) 0%, rgba(0, 42, 66, 1) 50%, rgba(0, 42, 66, 1) 50%, rgba(0, 51, 81, 1) 50%, rgba(0, 51, 81, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#002a42', endColorstr='#003351', GradientType=1);
 
         .match-team {
             color: #ffffff;
@@ -685,16 +693,19 @@
         .row {
             margin-right: 0;
             margin-left: 0;
+            background: rgb(0, 42, 66);
+            background: -moz-linear-gradient(left, rgba(0, 42, 66, 1) 0%, rgba(0, 42, 66, 1) 50%, rgba(0, 42, 66, 1) 50%, rgba(0, 51, 81, 1) 50%, rgba(0, 51, 81, 1) 100%);
+            background: -webkit-linear-gradient(left, rgba(0, 42, 66, 1) 0%, rgba(0, 42, 66, 1) 50%, rgba(0, 42, 66, 1) 50%, rgba(0, 51, 81, 1) 50%, rgba(0, 51, 81, 1) 100%);
+            background: linear-gradient(to right, rgba(0, 42, 66, 1) 0%, rgba(0, 42, 66, 1) 50%, rgba(0, 42, 66, 1) 50%, rgba(0, 51, 81, 1) 50%, rgba(0, 51, 81, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#002a42', endColorstr='#003351', GradientType=1);
         }
 
         .shooters-home {
             padding: 1.2rem;
-            background-color: #003351;
         }
 
         .shooters-away {
             padding: 1.2rem;
-            background-color: #002a42;
         }
 
         .balls {
@@ -731,8 +742,6 @@
         }
 
         .match {
-            padding: 0.5rem 0;
-
             .match-team {
                 font-size: 0.9rem;
                 text-transform: none;
@@ -804,6 +813,18 @@
     @media (max-width: 350px) {
         .card-header .control-button {
             padding: 0.7rem 0.3rem;
+        }
+
+        .card-header .row {
+
+            .col-8 {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .col-4 {
+                padding-right: 0;
+            }
         }
     }
 }

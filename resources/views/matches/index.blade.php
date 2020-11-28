@@ -21,7 +21,7 @@
                                 aria-expanded="false">
                                 @lang('messages.' . $rule->name ?? '' . '')
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="le-component-vehicle-type-id">
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="le-component-vehicle-type-id">
                                 {{-- <a class="dropdown-item" href="">
                             @lang('messages.all')
                         </a> --}}
@@ -44,7 +44,7 @@
                                 aria-expanded="false">
                                 {{ $actualRound }}. @lang('messages.round')
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="le-component-vehicle-type-id">
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="le-component-vehicle-type-id">
                                 {{-- <a class="dropdown-item" href="">
                             @lang('messages.all')
                         </a> --}}

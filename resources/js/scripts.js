@@ -22,11 +22,6 @@ $(document).ready(() => {
             .removeClass('d-flex');
     });
 
-    // $('.navbar-nav .nav-link').click(() => {
-    //     $('.navbar-nav .nav-link').removeClass('active');
-    //     $(this).addClass('active');
-    // });
-
     setTimeout(() => {
         $('.alert').fadeOut(500);
     }, 7500);
@@ -57,9 +52,6 @@ $(document).ready(() => {
             });
         });
     }
-
-    var actualUrl = window.location.href;
-    $('.navbar-nav .nav-item > a[href="' + actualUrl + '"]').parent().addClass('active');
 
     $('footer a#created-by').on('click mouseover', (event) => {
         event.preventDefault();
