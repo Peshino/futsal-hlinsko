@@ -105,8 +105,8 @@ class MatchController extends Controller
 
                 $homeMatches[$team->id]['matches_count'] = count($team->homeMatches);
                 $homeMatches[$team->id]['wins'] = $wins;
-                $homeMatches[$team->id]['losts'] = $losts;
                 $homeMatches[$team->id]['draws'] = $draws;
+                $homeMatches[$team->id]['losts'] = $losts;
                 $homeMatches[$team->id]['points'] = $points;
             }
 
@@ -124,8 +124,8 @@ class MatchController extends Controller
 
                 $awayMatches[$team->id]['matches_count'] = count($team->awayMatches);
                 $awayMatches[$team->id]['wins'] = $wins;
-                $awayMatches[$team->id]['losts'] = $losts;
                 $awayMatches[$team->id]['draws'] = $draws;
+                $awayMatches[$team->id]['losts'] = $losts;
                 $awayMatches[$team->id]['points'] = $points;
             }
 

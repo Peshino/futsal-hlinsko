@@ -40,8 +40,8 @@
                             <td></td> --}}
                             <td>{{ array_sum($match['matches_count']) }}</td>
                             <td>{{ array_sum($match['wins']) }}</td>
-                            <td>{{ array_sum($match['losts']) }}</td>
                             <td>{{ array_sum($match['draws']) }}</td>
+                            <td>{{ array_sum($match['losts']) }}</td>
                             {{-- <td></td>
                             <td></td>
                             <td></td> --}}
