@@ -27,6 +27,7 @@ Route::prefix('competitions/{competition}')->group(function () {
     Route::resource('rules', 'RuleController');
     Route::get('matches/rules/{rule}/rounds/{round}', 'MatchController@paramsIndex')->name('matches.params-index');
     Route::get('schedule', 'MatchController@scheduleIndex')->name('matches.schedule-index');
+    Route::get('table', 'MatchController@tableIndex')->name('matches.table-index');
 });
 
 Route::prefix('admin')->group(function () {

@@ -20,8 +20,13 @@ class Team extends Model
         return $this->belongsTo(Competition::class);
     }
 
-    public function match()
+    public function homeMatches()
     {
-        return $this->belongsTo(Match::class);
+        return $this->hasMany(Match::class, 'home_team_id');
+    }
+
+    public function awayMatches()
+    {
+        return $this->hasMany(Match::class, 'away_team_id');
     }
 }

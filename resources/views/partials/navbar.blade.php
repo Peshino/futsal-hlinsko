@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li class="nav-item{{ (request()->is('*table*')) ? ' active' : '' }}">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{{ route('matches.table-index', $competition->id) }}">
                         <i class="fas fa-sort-amount-down align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.table')</span>
                     </a>

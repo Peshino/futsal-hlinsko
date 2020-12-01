@@ -11004,15 +11004,15 @@ html {
   padding: 24px 0;
 }
 
-#introduction .introduction-header h1,
-#introduction .introduction-header h2 {
+#introduction .introduction-header h1 a,
+#introduction .introduction-header h2 a {
   color: #5cc3ff;
   font-size: 3rem;
   font-family: "easports", sans-serif;
 }
 
-#introduction .introduction-header h1:hover,
-#introduction .introduction-header h2:hover {
+#introduction .introduction-header h1 a:hover,
+#introduction .introduction-header h2 a:hover {
   color: #bee7ff;
 }
 

@@ -82,6 +82,60 @@ class MatchController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @param  \App\Competition  $competition
+     * @return \Illuminate\Http\Response
+     */
+    public function tableIndex(Competition $competition)
+    {
+        $homeMatches = $awayMatches = $matches = [];
+        foreach ($competition->teams as $team) {
+            $wins = $draws = $losts = $points = 0;
+            foreach ($team->homeMatches as $homeMatch) {
+                if ($homeMatch->home_team_score > $homeMatch->away_team_score) {
+                    $wins++;
+                    $points += 3;
+                } elseif ($homeMatch->home_team_score < $homeMatch->away_team_score) {
+                    $losts++;
+                } else {
+                    $draws++;
+                    $points++;
+                }
+
+                $homeMatches[$team->id]['matches_count'] = count($team->homeMatches);
+                $homeMatches[$team->id]['wins'] = $wins;
+                $homeMatches[$team->id]['losts'] = $losts;
+                $homeMatches[$team->id]['draws'] = $draws;
+                $homeMatches[$team->id]['points'] = $points;
+            }
+
+            $wins = $draws = $losts = $points = 0;
+            foreach ($team->awayMatches as $awayMatch) {
+                if ($awayMatch->away_team_score > $awayMatch->home_team_score) {
+                    $wins++;
+                    $points += 3;
+                } elseif ($awayMatch->away_team_score < $awayMatch->home_team_score) {
+                    $losts++;
+                } else {
+                    $draws++;
+                    $points++;
+                }
+
+                $awayMatches[$team->id]['matches_count'] = count($team->awayMatches);
+                $awayMatches[$team->id]['wins'] = $wins;
+                $awayMatches[$team->id]['losts'] = $losts;
+                $awayMatches[$team->id]['draws'] = $draws;
+                $awayMatches[$team->id]['points'] = $points;
+            }
+
+            $matches[$team->id] = array_merge_recursive($homeMatches[$team->id], $awayMatches[$team->id]);
+        }
+
+        return view('matches.table-index', compact('competition', 'matches'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @param  \App\Competition  $competition
