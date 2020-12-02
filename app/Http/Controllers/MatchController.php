@@ -89,9 +89,9 @@ class MatchController extends Controller
      */
     public function tableIndex(Competition $competition)
     {
-        $homeMatches = $awayMatches = $matches = [];
+        $homeMatches = $awayMatches = $matches = $mergedMatches = [];
         foreach ($competition->teams as $team) {
-            $wins = $draws = $losts = $points = 0;
+            $wins = $draws = $losts = $teamGoalsScored = $teamGoalsReceived = $points = 0;
             foreach ($team->homeMatches as $homeMatch) {
                 if ($homeMatch->home_team_score > $homeMatch->away_team_score) {
                     $wins++;
@@ -103,14 +103,19 @@ class MatchController extends Controller
                     $points++;
                 }
 
+                $teamGoalsScored += $homeMatch->home_team_score;
+                $teamGoalsReceived += $homeMatch->away_team_score;
+
                 $homeMatches[$team->id]['matches_count'] = count($team->homeMatches);
                 $homeMatches[$team->id]['wins'] = $wins;
                 $homeMatches[$team->id]['draws'] = $draws;
                 $homeMatches[$team->id]['losts'] = $losts;
+                $homeMatches[$team->id]['team_goals_scored'] = $teamGoalsScored;
+                $homeMatches[$team->id]['team_goals_received'] = $teamGoalsReceived;
                 $homeMatches[$team->id]['points'] = $points;
             }
 
-            $wins = $draws = $losts = $points = 0;
+            $wins = $draws = $losts = $teamGoalsScored = $teamGoalsReceived = $points = 0;
             foreach ($team->awayMatches as $awayMatch) {
                 if ($awayMatch->away_team_score > $awayMatch->home_team_score) {
                     $wins++;
@@ -122,14 +127,27 @@ class MatchController extends Controller
                     $points++;
                 }
 
+                $teamGoalsScored += $awayMatch->away_team_score;
+                $teamGoalsReceived += $awayMatch->home_team_score;
+
                 $awayMatches[$team->id]['matches_count'] = count($team->awayMatches);
                 $awayMatches[$team->id]['wins'] = $wins;
                 $awayMatches[$team->id]['draws'] = $draws;
                 $awayMatches[$team->id]['losts'] = $losts;
+                $awayMatches[$team->id]['team_goals_scored'] = $teamGoalsScored;
+                $awayMatches[$team->id]['team_goals_received'] = $teamGoalsReceived;
                 $awayMatches[$team->id]['points'] = $points;
             }
 
-            $matches[$team->id] = array_merge_recursive($homeMatches[$team->id], $awayMatches[$team->id]);
+            $mergedMatches[$team->id] = array_merge_recursive($homeMatches[$team->id], $awayMatches[$team->id]);
+
+            foreach ($mergedMatches[$team->id] as $key => $value) {
+                $matches[$team->id][$key] = array_sum($value);
+            }
+
+            $matches[$team->id]['team_name'] = $team->name;
+
+            // dd($matches);
         }
 
         return view('matches.table-index', compact('competition', 'matches'));

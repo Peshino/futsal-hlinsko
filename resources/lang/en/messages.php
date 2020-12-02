@@ -41,6 +41,7 @@ return [
     'rules' => 'Rules',
     'rule' => 'Rule',
     'teams' => 'Teams',
+    'team' => 'Team',
     'table' => 'Table',
     'shooters' => 'Shooters',
     'cards' => 'Cards',

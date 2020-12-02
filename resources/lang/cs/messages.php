@@ -41,6 +41,7 @@ return [
     'rules' => 'Pravidla',
     'rule' => 'Pravidla',
     'teams' => 'Týmy',
+    'team' => 'Tým',
     'table' => 'Tabulka',
     'shooters' => 'Střelci',
     'cards' => 'Karty',
