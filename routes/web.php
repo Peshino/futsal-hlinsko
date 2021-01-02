@@ -23,11 +23,16 @@ Route::resource('competition-styles', 'CompetitionStyleController');
 
 Route::prefix('competitions/{competition}')->group(function () {
     Route::resource('teams', 'TeamController');
-    Route::resource('matches', 'MatchController');
-    Route::resource('rules', 'RuleController');
+
+    Route::resource('matches', 'MatchController', ['except' => [
+        'index'
+    ]]);
+    Route::get('{section}', 'MatchController@index')->name('matches.index');
     Route::get('matches/rules/{rule}/rounds/{round}', 'MatchController@paramsIndex')->name('matches.params-index');
+    Route::get('table/rules/{rule}/rounds/{round}', 'MatchController@tableParamsIndex')->name('table.params-index');
     Route::get('schedule', 'MatchController@scheduleIndex')->name('matches.schedule-index');
-    Route::get('table', 'MatchController@tableIndex')->name('matches.table-index');
+    
+    Route::resource('rules', 'RuleController');
 });
 
 Route::prefix('admin')->group(function () {

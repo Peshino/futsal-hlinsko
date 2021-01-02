@@ -93,6 +93,7 @@ return [
     'number_of_qualifiers' => 'Number of qualifiers',
     'number_of_descending' => 'Number of descending',
     'match_duration' => 'Match duration',
+    'points_for_win' => 'Points for win',
     'matches_day_min' => 'Minimum matches per day',
     'matches_day_max' => 'Maximum matches per day',
     'team_matches_day_round_min' => 'Team minimum matches per day and round',
@@ -107,6 +108,7 @@ return [
     'break_start_date' => 'Break start date',
     'break_end_date' => 'Break end date',
     'round' => 'round',
+    'to_n_round' => 'round',
     'start_time' => 'Start time',
     'home_team' => 'Home team',
     'away_team' => 'Away team',
@@ -122,7 +124,9 @@ return [
 
     'squad' => 'Squad',
 
-    'new' => 'new',
+    'to' => 'To',
+    'new' => 'New',
+    'all' => 'All',
 
 
 

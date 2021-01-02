@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li class="nav-item{{ (request()->is('*matches*')) ? ' active' : '' }}">
-                    <a class="nav-link" href="{{ route('matches.index', [$competition->id]) }}">
+                    <a class="nav-link" href="{{ route('matches.index', [$competition->id, 'matches']) }}">
                         <i class="fas fa-align-center align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.results')</span>
                     </a>
@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li class="nav-item{{ (request()->is('*table*')) ? ' active' : '' }}">
-                    <a class="nav-link" href="{{ route('matches.table-index', $competition->id) }}">
+                    <a class="nav-link" href="{{ route('matches.index', [$competition->id, 'table']) }}">
                         <i class="fas fa-sort-amount-down align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.table')</span>
                     </a>

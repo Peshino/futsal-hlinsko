@@ -16,7 +16,7 @@ class MatchController extends Controller
      * @param  \App\Competition  $competition
      * @return \Illuminate\Http\Response
      */
-    public function index(Competition $competition)
+    public function index(Competition $competition, $section = 'matches')
     {
         $lastRuleByPriority = $competition->getLastRuleByPriority();
 
@@ -24,7 +24,7 @@ class MatchController extends Controller
             $lastMatchByRound = $lastRuleByPriority->getLastMatchByRound();
 
             if ($lastMatchByRound !== null) {
-                return redirect()->route('matches.params-index', ['competition' => $competition->id, 'rule' => $lastRuleByPriority->id, 'round' => $lastMatchByRound->round]);
+                return redirect()->route($section . '.params-index', ['competition' => $competition->id, 'rule' => $lastRuleByPriority->id, 'round' => $lastMatchByRound->round]);
             } else {
                 session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
                 return redirect()->back();
@@ -44,30 +44,18 @@ class MatchController extends Controller
      * @param  \App\Repositories\Matches  $matchesRepository
      * @return \Illuminate\Http\Response
      */
-    public function paramsIndex(Competition $competition, Rule $rule, $actualRound = null, Matches $matchesRepository)
+    public function paramsIndex(Competition $competition, Rule $rule, $actualRound = null)
     {
-        $matchesRounds = null;
-        $lastRound = null;
-        $rounds = [];
-
+        $matchesRepository = new Matches;
+        $rounds = $matchesRepository->getRoundsByCompetitionRule($competition->id, $rule->id);
         $matches = $matchesRepository->getMatchesByCompetitionRule($competition->id, $rule->id);
 
-        if ($matches !== null) {
-            $matchesRounds = collect($matches)->unique('round')->sortDesc()->values();
-
-            if ($matchesRounds !== null) {
-                foreach ($matchesRounds as $matchesRound) {
-                    $rounds[] = $matchesRound->round;
-                }
-            }
-
-            if ($actualRound !== null) {
-                $actualRound = (int) $actualRound;
-                $matches = $matchesRepository->getMatchesByCompetitionRuleRound($competition->id, $rule->id, $actualRound);
-            }
+        if ($actualRound !== null) {
+            $actualRound = (int) $actualRound;
+            $matches = $matchesRepository->getMatchesByCompetitionRuleRound($competition->id, $rule->id, $actualRound);
         }
 
-        return view('matches.index', compact('competition', 'rule', 'actualRound', 'lastRound', 'matches', 'rounds'));
+        return view('matches.index', compact('competition', 'rule', 'actualRound', 'matches', 'rounds'));
     }
 
     /**
@@ -87,70 +75,14 @@ class MatchController extends Controller
      * @param  \App\Competition  $competition
      * @return \Illuminate\Http\Response
      */
-    public function tableIndex(Competition $competition)
+    public function tableParamsIndex(Competition $competition, Rule $rule, $toRound = null)
     {
-        $homeMatches = $awayMatches = $matches = $mergedMatches = [];
-        foreach ($competition->teams as $team) {
-            $wins = $draws = $losts = $teamGoalsScored = $teamGoalsReceived = $points = 0;
-            foreach ($team->homeMatches as $homeMatch) {
-                if ($homeMatch->home_team_score > $homeMatch->away_team_score) {
-                    $wins++;
-                    $points += 3;
-                } elseif ($homeMatch->home_team_score < $homeMatch->away_team_score) {
-                    $losts++;
-                } else {
-                    $draws++;
-                    $points++;
-                }
+        $matchesRepository = new Matches;
 
-                $teamGoalsScored += $homeMatch->home_team_score;
-                $teamGoalsReceived += $homeMatch->away_team_score;
+        $rounds = $matchesRepository->getRoundsByCompetitionRule($competition->id, $rule->id);
+        $tableData = $matchesRepository->getTableData($competition, $rule, $toRound);
 
-                $homeMatches[$team->id]['matches_count'] = count($team->homeMatches);
-                $homeMatches[$team->id]['wins'] = $wins;
-                $homeMatches[$team->id]['draws'] = $draws;
-                $homeMatches[$team->id]['losts'] = $losts;
-                $homeMatches[$team->id]['team_goals_scored'] = $teamGoalsScored;
-                $homeMatches[$team->id]['team_goals_received'] = $teamGoalsReceived;
-                $homeMatches[$team->id]['points'] = $points;
-            }
-
-            $wins = $draws = $losts = $teamGoalsScored = $teamGoalsReceived = $points = 0;
-            foreach ($team->awayMatches as $awayMatch) {
-                if ($awayMatch->away_team_score > $awayMatch->home_team_score) {
-                    $wins++;
-                    $points += 3;
-                } elseif ($awayMatch->away_team_score < $awayMatch->home_team_score) {
-                    $losts++;
-                } else {
-                    $draws++;
-                    $points++;
-                }
-
-                $teamGoalsScored += $awayMatch->away_team_score;
-                $teamGoalsReceived += $awayMatch->home_team_score;
-
-                $awayMatches[$team->id]['matches_count'] = count($team->awayMatches);
-                $awayMatches[$team->id]['wins'] = $wins;
-                $awayMatches[$team->id]['draws'] = $draws;
-                $awayMatches[$team->id]['losts'] = $losts;
-                $awayMatches[$team->id]['team_goals_scored'] = $teamGoalsScored;
-                $awayMatches[$team->id]['team_goals_received'] = $teamGoalsReceived;
-                $awayMatches[$team->id]['points'] = $points;
-            }
-
-            $mergedMatches[$team->id] = array_merge_recursive($homeMatches[$team->id], $awayMatches[$team->id]);
-
-            foreach ($mergedMatches[$team->id] as $key => $value) {
-                $matches[$team->id][$key] = array_sum($value);
-            }
-
-            $matches[$team->id]['team_name'] = $team->name;
-
-            // dd($matches);
-        }
-
-        return view('matches.table-index', compact('competition', 'matches'));
+        return view('matches.table-index', compact('competition', 'rule', 'toRound', 'tableData', 'rounds'));
     }
 
     /**

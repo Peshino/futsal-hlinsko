@@ -140,6 +140,16 @@
                                 name="match_duration" min="0" value="{{ $rule->match_duration }}" disabled />
                         </div>
                     </div>
+                    <div class="points-for-win col-md">
+                        <div class="floating-label">
+                            <label for="points-for-win">@lang('messages.points_for_win')</label>
+                            <input type="number" class="form-control border-dark" id="points-for-win"
+                                name="points_for_win" min="0" value="{{ $rule->points_for_win }}" disabled />
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row form-group">
                     <div class="matches-day-min col-md">
                         <div class="floating-label">
                             <label for="matches-day-min">@lang('messages.matches_day_min')</label>
@@ -208,15 +218,15 @@
                     <div class="start-date col-md">
                         <div class="floating-label">
                             <label for="start-date">@lang('messages.start_date')</label>
-                            <input type="text" class="form-control border-dark" id="start-date"
-                                name="start_date" value="{{ $rule->start_date }}" disabled />
+                            <input type="text" class="form-control border-dark" id="start-date" name="start_date"
+                                value="{{ $rule->start_date }}" disabled />
                         </div>
                     </div>
                     <div class="end-date col-md">
                         <div class="floating-label">
                             <label for="end-date">@lang('messages.end_date')</label>
-                            <input type="text" class="form-control border-dark" id="end-date"
-                                name="end_date" value="{{ $rule->end_date }}" disabled />
+                            <input type="text" class="form-control border-dark" id="end-date" name="end_date"
+                                value="{{ $rule->end_date }}" disabled />
                         </div>
                     </div>
                 </div>

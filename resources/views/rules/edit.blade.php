@@ -104,6 +104,16 @@
                                     min="0" value="{{ $rule->match_duration }}" />
                             </div>
                         </div>
+                        <div class="points-for-win col-md">
+                            <div class="floating-label">
+                                <label for="points-for-win">@lang('messages.points_for_win')</label>
+                                <input type="number" class="form-control" id="points-for-win" name="points_for_win"
+                                    min="0" value="{{ $rule->points_for_win }}" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
                         <div class="matches-day-min col-md">
                             <div class="floating-label">
                                 <label for="matches-day-min">@lang('messages.matches_day_min')</label>

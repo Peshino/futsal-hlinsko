@@ -93,6 +93,7 @@ return [
     'number_of_qualifiers' => 'Počet postupujících',
     'number_of_descending' => 'Počet sestupujících',
     'match_duration' => 'Celkový čas zápasu',
+    'points_for_win' => 'Body za výhru',
     'matches_day_min' => 'Minimálně zápasů denně',
     'matches_day_max' => 'Maximálně zápasů denně',
     'team_matches_day_round_min' => 'Tým minimálně zápasů za den a kolo',
@@ -107,6 +108,7 @@ return [
     'break_start_date' => 'Datum začátku přerušení',
     'break_end_date' => 'Datum konce přerušení',
     'round' => 'kolo',
+    'to_n_round' => 'kola',
     'start_time' => 'Čas začátku',
     'home_team' => 'Tým domácí',
     'away_team' => 'Tým hosté',
@@ -122,7 +124,9 @@ return [
 
     'squad' => 'Mužstvo',
 
+    'to' => 'do',
     'new' => 'nový',
+    'all' => 'Vše',
 
 
 

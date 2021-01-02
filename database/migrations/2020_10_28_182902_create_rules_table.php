@@ -22,6 +22,7 @@ class CreateRulesTable extends Migration
             $table->integer('number_of_qualifiers')->nullable();
             $table->integer('number_of_descending')->nullable();
             $table->integer('match_duration')->nullable();
+            $table->integer('points_for_win')->nullable();
             $table->integer('matches_day_min')->nullable();
             $table->integer('matches_day_max')->nullable();
             $table->integer('team_matches_day_round_min')->nullable();

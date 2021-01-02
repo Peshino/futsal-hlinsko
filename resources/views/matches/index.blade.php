@@ -13,15 +13,28 @@
             </div>
             <div class="col-8 col-right d-flex flex-row-reverse">
                 <div class="row">
+                    @auth
+                    <div class="col-auto pr-1">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a class="crud-button" href="{{ route('matches.create', $competition->id) }}">
+                                    <div class="plus"></div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    @endauth
+
                     @if (count($competition->rules) > 0)
-                    <div class="col-auto">
-                        <div class="dropdown pr-1">
+                    <div class="col-auto pr-1">
+                        <div class="dropdown">
                             <button class="control-button dropdown-toggle" type="button"
                                 id="le-component-vehicle-type-id" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
                                 @lang('messages.' . $rule->name ?? '' . '')
                             </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="le-component-vehicle-type-id">
+                            <div class="dropdown-menu dropdown-menu-right"
+                                aria-labelledby="le-component-vehicle-type-id">
                                 {{-- <a class="dropdown-item" href="">
                             @lang('messages.all')
                         </a> --}}
@@ -44,7 +57,8 @@
                                 aria-expanded="false">
                                 {{ $actualRound }}. @lang('messages.round')
                             </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="le-component-vehicle-type-id">
+                            <div class="dropdown-menu dropdown-menu-right"
+                                aria-labelledby="le-component-vehicle-type-id">
                                 {{-- <a class="dropdown-item" href="">
                             @lang('messages.all')
                         </a> --}}
@@ -58,18 +72,6 @@
                         </div>
                     </div>
                     @endif
-
-                    @auth
-                    <div class="col-auto">
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <a class="crud-button" href="{{ route('matches.create', $competition->id) }}">
-                                    <div class="plus"></div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    @endauth
                 </div>
             </div>
         </div>
