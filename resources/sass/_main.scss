@@ -627,6 +627,10 @@
         color: #ffffff !important;
     }
 
+    .competition-color {
+        color: #5cc3ff;
+    }
+
     .match {
         background-color: #1b1e21;
 
@@ -653,7 +657,7 @@
         .match-score,
         .match-schedule {
             font-size: 1.7rem;
-            color: #6bc8ff;
+            color: #5cc3ff;
             padding: 0.7rem;
 
             .match-score-home,

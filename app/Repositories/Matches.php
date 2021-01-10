@@ -74,7 +74,6 @@ class Matches
         return $rounds;
     }
 
-
     public function getTableData(Competition $competition, Rule $rule, $toRound = null)
     {
         $data = DB::select(

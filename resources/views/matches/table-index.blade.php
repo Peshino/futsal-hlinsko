@@ -68,7 +68,7 @@
                 <table class="table table-striped table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">pozice</th>
+                            <th scope="col"></th>
                             <th scope="col" class="text-left">@lang('messages.team')</th>
                             <th scope="col">@lang('messages.matches')</th>
                             <th scope="col">výhry</th>
@@ -83,7 +83,7 @@
                     <tbody>
                         @foreach ($tableData as $key => $tableItem)
                         <tr>
-                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $key + 1 }}.</td>
                             <td class="text-left">{{ $tableItem->team_name }}</td>
                             <td>{{ $tableItem->matches_count }}</td>
                             <td>{{ $tableItem->wins }}</td>
@@ -91,7 +91,7 @@
                             <td>{{ $tableItem->losts }}</td>
                             <td>{{ $tableItem->team_goals_scored }} : {{ $tableItem->team_goals_received }}
                             <td>{{ $tableItem->team_goals_difference }}</td>
-                            <td><strong>{{ $tableItem->points }}</strong></td>
+                            <td class="competition-color"><strong>{{ $tableItem->points }}</strong></td>
                             {{-- <td></td> --}}
                         </tr>
                         @endforeach

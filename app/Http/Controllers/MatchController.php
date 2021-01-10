@@ -26,12 +26,10 @@ class MatchController extends Controller
             if ($lastMatchByRound !== null) {
                 return redirect()->route($section . '.params-index', ['competition' => $competition->id, 'rule' => $lastRuleByPriority->id, 'round' => $lastMatchByRound->round]);
             } else {
-                session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
-                return redirect()->back();
+                return redirect()->route('matches.create', ['competition' => $competition->id]);
             }
         } else {
-            session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
-            return redirect()->back();
+            return redirect()->route('rules.create', ['competition' => $competition->id]);
         }
     }
 
