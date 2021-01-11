@@ -95,8 +95,35 @@
                             <td class="form">
                                 @if (count($tableItem->team_form) > 0)
                                 @foreach ($tableItem->team_form as $match)
-                                <li class="{{ $match->result }} button-tooltip">
-                                    {{-- match details - tooltip --}}
+                                <li class="{{ $match->result }} item-tooltip">
+                                    <a href="{{ route('matches.show', [$competition->id, $match->id]) }}"
+                                        class="item-tooltip-box tooltip-link tooltip-right" role="tooltip">
+                                        <span class="tooltip-content">
+                                            <div class="match-details">
+                                                <span class="match-datetime">
+                                                    @php
+                                                    $date = \Carbon\Carbon::parse($match->start_date);
+                                                    echo $date->isoFormat('dddd[,] Do[.] MMMM[, ]');
+                                                    $time = \Carbon\Carbon::parse($match->start_time);
+                                                    echo $time->isoFormat('HH:mm');
+                                                    @endphp
+                                                </span>
+                                                <span class="match-team">
+                                                    <abbr title="{{ $match->homeTeam->name }}" class="text-uppercase">
+                                                        {{ mb_substr($match->homeTeam->name, 0, 3) }}
+                                                    </abbr>
+                                                </span>
+                                                <span class="match-score">
+                                                    {{ $match->home_team_score }}&nbsp;|&nbsp;{{ $match->away_team_score }}
+                                                </span>
+                                                <span class="match-team">
+                                                    <abbr title="{{ $match->awayTeam->name }}" class="text-uppercase">
+                                                        {{ mb_substr($match->awayTeam->name, 0, 3) }}
+                                                    </abbr>
+                                                </span>
+                                            </div>
+                                        </span>
+                                    </a>
                                 </li>
                                 @endforeach
                                 @endif
@@ -109,4 +136,17 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    // $(document).ready(function () {
+    //     $('[data-toggle="popover"]').popover({
+    //         trigger: 'focus',
+    //         html: true,
+    //         placement: 'top',
+    //         container: '.form-item'
+    //     })
+    // });
+</script>
 @endsection
