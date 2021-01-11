@@ -117,6 +117,14 @@ return [
     'home_team_halftime_score' => 'Skóre domácí poločas',
     'away_team_halftime_score' => 'Skóre hosté poločas',
 
+    'win' => 'Výhra',
+    'draw' => 'Remíza',
+    'lost' => 'Prohra',
+    'win_short' => 'V',
+    'draw_short' => 'R',
+    'lost_short' => 'P',
+    '_short' => '',
+
     'status' => 'Status',
     'not_started' => 'nezahájena',
     'in_progress' => 'probíhá',

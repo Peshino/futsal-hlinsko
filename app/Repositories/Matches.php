@@ -83,7 +83,7 @@ class Matches
             count(*) matches_count, 
             count(case when home_team_score > away_team_score then 1 end) wins, 
             count(case when home_team_score = away_team_score then 1 end) draws, 
-            count(case when away_team_score> home_team_score then 1 end) losts, 
+            count(case when away_team_score > home_team_score then 1 end) losts, 
             sum(home_team_score) team_goals_scored, 
             sum(away_team_score) team_goals_received, 
             sum(home_team_score) - sum(away_team_score) team_goals_difference,

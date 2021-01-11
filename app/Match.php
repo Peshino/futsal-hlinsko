@@ -35,4 +35,29 @@ class Match extends Model
     {
         return $this->belongsTo(Team::class);
     }
+
+    public function getResultByTeamId($teamId)
+    {
+        if ($this->home_team_id === (int) $teamId) {
+            if ($this->home_team_score > $this->away_team_score) {
+                return 'win';
+            } elseif ($this->home_team_score < $this->away_team_score) {
+                return 'lost';
+            } else {
+                return 'draw';
+            }
+        }
+
+        if ($this->away_team_id === (int) $teamId) {
+            if ($this->home_team_score > $this->away_team_score) {
+                return 'lost';
+            } elseif ($this->home_team_score < $this->away_team_score) {
+                return 'win';
+            } else {
+                return 'draw';
+            }
+        }
+
+        return null;
+    }
 }

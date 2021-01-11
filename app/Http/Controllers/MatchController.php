@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Match;
-use App\Repositories\Matches;
 use App\Competition;
+use App\Match;
 use App\Rule;
+use App\Team;
+use App\Repositories\Matches;
 use Illuminate\Http\Request;
 
 class MatchController extends Controller
@@ -79,6 +80,21 @@ class MatchController extends Controller
 
         $rounds = $matchesRepository->getRoundsByCompetitionRule($competition->id, $rule->id);
         $tableData = $matchesRepository->getTableData($competition, $rule, $toRound);
+
+        if (!empty($tableData)) {
+            foreach ($tableData as $item) {
+                $teamForm = Team::find($item->team_id)->getMatchesFormByCompetitionRule($competition, $rule);
+
+                if (count($teamForm) > 0) {
+                    foreach ($teamForm as $match) {
+                        $matchResult = $match->getResultByTeamId($item->team_id);
+                        $match->result = $matchResult;
+                    }
+                }
+
+                $item->team_form = $teamForm;
+            }
+        }
 
         return view('matches.table-index', compact('competition', 'rule', 'toRound', 'tableData', 'rounds'));
     }

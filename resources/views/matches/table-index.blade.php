@@ -77,7 +77,7 @@
                             <th scope="col">skóre</th>
                             <th scope="col">GR</th>
                             <th scope="col">body</th>
-                            {{-- <th scope="col">forma</th> --}}
+                            <th scope="col">forma</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,10 +89,18 @@
                             <td>{{ $tableItem->wins }}</td>
                             <td>{{ $tableItem->draws }}</td>
                             <td>{{ $tableItem->losts }}</td>
-                            <td>{{ $tableItem->team_goals_scored }} : {{ $tableItem->team_goals_received }}
+                            <td>{{ $tableItem->team_goals_scored }}&nbsp;:&nbsp;{{ $tableItem->team_goals_received }}
                             <td>{{ $tableItem->team_goals_difference }}</td>
                             <td class="competition-color"><strong>{{ $tableItem->points }}</strong></td>
-                            {{-- <td></td> --}}
+                            <td class="form">
+                                @if (count($tableItem->team_form) > 0)
+                                @foreach ($tableItem->team_form as $match)
+                                <li class="{{ $match->result }} button-tooltip">
+                                    {{-- match details - tooltip --}}
+                                </li>
+                                @endforeach
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

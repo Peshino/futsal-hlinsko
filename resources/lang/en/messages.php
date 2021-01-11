@@ -117,6 +117,14 @@ return [
     'home_team_halftime_score' => 'Home team halftime score',
     'away_team_halftime_score' => 'Away team halftime score',
 
+    'win' => 'Win',
+    'draw' => 'Draw',
+    'lost' => 'Lost',
+    'win_short' => 'W',
+    'draw_short' => 'D',
+    'lost_short' => 'L',
+    '_short' => '',
+
     'status' => 'Status',
     'not_started' => 'Not started',
     'in_progress' => 'In progress',
