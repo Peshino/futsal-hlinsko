@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Match;
 use App\Competition;
 use App\Rule;
+use App\Team;
 use Illuminate\Support\Facades\DB;
 
 class Matches
@@ -36,6 +37,30 @@ class Matches
     public function getMatchesByCompetitionRuleRound($competitionId, $ruleId, $round, $order = 'desc')
     {
         return Match::where(['competition_id' => $competitionId, 'rule_id' => $ruleId, 'round' => $round])->orderBy('start_date', $order)->orderBy('start_time', $order)->get();
+    }
+
+    public function getTeamMatchesFormByCompetition(Team $team, Competition $competition, $matchesFormCount = 5)
+    {
+        return Match::where(function($query) use($team){
+            $query->where('home_team_id', $team->id)
+            ->orWhere('away_team_id', $team->id);
+        })->where(['competition_id' => $competition->id])->orderBy('start_date', 'desc')->orderBy('start_time', 'desc')->take($matchesFormCount)->get();
+    }
+
+    public function getTeamMatchesFormByCompetitionRule(Team $team, Competition $competition, Rule $rule, $matchesFormCount = 5)
+    {
+        return Match::where(function($query) use($team){
+            $query->where('home_team_id', $team->id)
+            ->orWhere('away_team_id', $team->id);
+        })->where(['competition_id' => $competition->id, 'rule_id' => $rule->id])->orderBy('start_date', 'desc')->orderBy('start_time', 'desc')->take($matchesFormCount)->get();
+    }
+
+    public function getTeamMatchesFormByCompetitionRuleToRound(Team $team, Competition $competition, Rule $rule, $toRound, $matchesFormCount = 5)
+    {
+        return Match::where(function($query) use($team){
+            $query->where('home_team_id', $team->id)
+            ->orWhere('away_team_id', $team->id);
+        })->where(['competition_id' => $competition->id, 'rule_id' => $rule->id])->where('round', '<=', $toRound)->orderBy('start_date', 'desc')->orderBy('start_time', 'desc')->take($matchesFormCount)->get();
     }
 
     public function getLastRecord()

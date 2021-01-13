@@ -83,7 +83,7 @@ class MatchController extends Controller
 
         if (!empty($tableData)) {
             foreach ($tableData as $item) {
-                $teamForm = Team::find($item->team_id)->getMatchesFormByCompetitionRule($competition, $rule);
+                $teamForm = $matchesRepository->getTeamMatchesFormByCompetitionRuleToRound(Team::find($item->team_id), $competition, $rule, $toRound);
 
                 if (count($teamForm) > 0) {
                     foreach ($teamForm as $match) {
