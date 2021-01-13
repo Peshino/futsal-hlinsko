@@ -12120,7 +12120,7 @@ html {
 }
 
 #main .item-tooltip-box.tooltip-right {
-  right: -1.7rem;
+  right: -1.75rem;
   left: auto;
   transform: translateX(0);
 }
@@ -12146,22 +12146,15 @@ html {
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
-  color: #242424;
+  color: #ffffff;
   opacity: 0;
   transition: 0.2s;
 }
 
-#main .item-tooltip-box.tooltip-link .tooltip-content {
-  padding: 0;
-}
-
 #main .item-tooltip-box .tooltip-content {
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   position: relative;
   display: block;
   transition: all 0.2s;
-  padding: 1rem;
 }
 
 #main .item-tooltip-box.tooltip-right .tooltip-content:after {
@@ -12171,14 +12164,14 @@ html {
 
 #main .item-tooltip-box.tooltip-link .tooltip-content:focus:after,
 #main .item-tooltip-box.tooltip-link .tooltip-content:hover:after {
-  border-top-color: #ff2882;
+  border-top-color: #003351;
 }
 
 #main .item-tooltip-box .tooltip-content:after {
   content: "";
   display: block;
   border: 10px solid transparent;
-  border-top-color: #fff;
+  border-top-color: #003351;
   border-bottom: 0;
   position: absolute;
   bottom: -9px;
@@ -12187,43 +12180,35 @@ html {
   transition: all 0.2s;
 }
 
-#main .item-tooltip-box .match-details {
-  background-color: transparent;
-  padding: 1rem 2.5rem 1rem 1rem;
-}
-
-#main .match-details,
-#main .match-details abbr[title] {
-  text-decoration: none;
-}
-
 #main .match-details {
-  background: #fff;
-  padding: 0.4rem 1rem;
-  padding-right: 2rem;
-  border-bottom: 1px solid #efefef;
+  background: #003351;
+  background: linear-gradient(to bottom, #003351 0%, #002a42 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#003351", endColorstr="#002a42", GradientType=0);
   display: block;
-  color: #242424;
   position: relative;
   transition: all 0.2s;
-  line-height: 24px;
-  font-family: PremierSans-Regular, Arial, Helvetica Neue, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 1.2rem;
+  padding: 1rem;
 }
 
 #main .match-details:not(.disabled):focus,
 #main .match-details:not(.disabled):hover {
-  background: linear-gradient(270deg, #ff2882, #963cff 45%);
-  color: #fff;
+  background: #00446c;
+  background: linear-gradient(to bottom, #00446c 0%, #003a5c 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00446c", endColorstr="#003a5c", GradientType=0);
   cursor: pointer;
+}
+
+#main .match-details:not(.disabled):focus .match-score,
+#main .match-details:not(.disabled):hover .match-score {
+  background: #002841;
 }
 
 #main .match-details .match-datetime {
   display: block;
-  color: #76766f;
-  margin-bottom: 0.5rem;
+  color: #cccccc;
+  margin-bottom: 0.6rem;
   transition: all 0.2s;
+  font-size: small;
 }
 
 #main .match-team {
@@ -12231,49 +12216,19 @@ html {
 }
 
 #main .match-details .match-team {
-  font-family: PremierSans-Bold, Arial, Helvetica Neue, Helvetica, sans-serif;
-  font-weight: 400;
-  min-width: 3.1rem;
-  font-size: 1.1rem;
-  text-align: right;
+  min-width: 3.2rem;
 }
 
 #main .match-details .match-score {
-  background: #37003c;
-  color: #fff;
-  padding: 0;
-  line-height: 2.4rem;
-  font-size: 1.3rem;
+  background: #001c2e;
+  padding: 0.3rem 0;
   min-width: 4.6rem;
   text-align: center;
-  font-family: PremierSans-Bold, Arial, Helvetica Neue, Helvetica, sans-serif;
-  font-weight: 400;
 }
 
 #main .match-details span {
   display: inline-block;
   vertical-align: middle;
-}
-
-#main .popover-content {
-  opacity: 0;
-  position: absolute;
-  bottom: 1.7rem;
-  color: #ffffff;
-  background: #272c30;
-  background: linear-gradient(to bottom, #272c30 0%, #1d2124 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#272c30", endColorstr="#1d2124", GradientType=0);
-  border: 1px solid transparent;
-  border-radius: 4px;
-  height: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-#main .popover-content:hover {
-  background: #2d3337;
-  background: linear-gradient(to bottom, #2d3337 0%, #24292c 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2d3337", endColorstr="#24292c", GradientType=0);
 }
 
 @media (max-width: 992px) {

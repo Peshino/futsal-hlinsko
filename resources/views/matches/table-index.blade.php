@@ -109,17 +109,17 @@
                                                     @endphp
                                                 </span>
                                                 <span class="match-team">
-                                                    <abbr title="{{ $match->homeTeam->name }}" class="text-uppercase">
+                                                    <span title="{{ $match->homeTeam->name }}" class="text-uppercase">
                                                         {{ mb_substr($match->homeTeam->name, 0, 3) }}
-                                                    </abbr>
+                                                    </span>
                                                 </span>
                                                 <span class="match-score">
                                                     {{ $match->home_team_score }}&nbsp;|&nbsp;{{ $match->away_team_score }}
                                                 </span>
                                                 <span class="match-team">
-                                                    <abbr title="{{ $match->awayTeam->name }}" class="text-uppercase">
+                                                    <span title="{{ $match->awayTeam->name }}" class="text-uppercase">
                                                         {{ mb_substr($match->awayTeam->name, 0, 3) }}
-                                                    </abbr>
+                                                    </span>
                                                 </span>
                                             </div>
                                         </span>
