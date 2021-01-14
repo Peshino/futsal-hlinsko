@@ -38,7 +38,9 @@ class Match extends Model
 
     public function getResultByTeamId($teamId)
     {
-        if ($this->home_team_id === (int) $teamId) {
+        $teamId = (int) $teamId;
+        
+        if ($this->home_team_id === $teamId) {
             if ($this->home_team_score > $this->away_team_score) {
                 return 'win';
             } elseif ($this->home_team_score < $this->away_team_score) {
@@ -48,7 +50,7 @@ class Match extends Model
             }
         }
 
-        if ($this->away_team_id === (int) $teamId) {
+        if ($this->away_team_id === $teamId) {
             if ($this->home_team_score > $this->away_team_score) {
                 return 'lost';
             } elseif ($this->home_team_score < $this->away_team_score) {

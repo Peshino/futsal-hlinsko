@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Season;
 use App\Match;
 use App\Competition;
 use App\Rule;
@@ -19,50 +20,6 @@ class Matches
         return Match::all();
     }
 
-    public function getMatches($order = 'desc')
-    {
-        return Match::orderBy('id', $order)->get();
-    }
-
-    public function getMatchesBySeason($seasonId, $order = 'desc')
-    {
-        return Match::where('season_id', $seasonId)->orderBy('id', $order)->get();
-    }
-
-    public function getMatchesByCompetitionRule($competitionId, $ruleId, $order = 'desc')
-    {
-        return Match::where(['competition_id' => $competitionId, 'rule_id' => $ruleId])->orderBy('start_date', $order)->orderBy('start_time', $order)->get();
-    }
-
-    public function getMatchesByCompetitionRuleRound($competitionId, $ruleId, $round, $order = 'desc')
-    {
-        return Match::where(['competition_id' => $competitionId, 'rule_id' => $ruleId, 'round' => $round])->orderBy('start_date', $order)->orderBy('start_time', $order)->get();
-    }
-
-    public function getTeamMatchesFormByCompetition(Team $team, Competition $competition, $matchesFormCount = 5)
-    {
-        return Match::where(function($query) use($team){
-            $query->where('home_team_id', $team->id)
-            ->orWhere('away_team_id', $team->id);
-        })->where(['competition_id' => $competition->id])->orderBy('start_date', 'desc')->orderBy('start_time', 'desc')->take($matchesFormCount)->get();
-    }
-
-    public function getTeamMatchesFormByCompetitionRule(Team $team, Competition $competition, Rule $rule, $matchesFormCount = 5)
-    {
-        return Match::where(function($query) use($team){
-            $query->where('home_team_id', $team->id)
-            ->orWhere('away_team_id', $team->id);
-        })->where(['competition_id' => $competition->id, 'rule_id' => $rule->id])->orderBy('start_date', 'desc')->orderBy('start_time', 'desc')->take($matchesFormCount)->get();
-    }
-
-    public function getTeamMatchesFormByCompetitionRuleToRound(Team $team, Competition $competition, Rule $rule, $toRound, $matchesFormCount = 5)
-    {
-        return Match::where(function($query) use($team){
-            $query->where('home_team_id', $team->id)
-            ->orWhere('away_team_id', $team->id);
-        })->where(['competition_id' => $competition->id, 'rule_id' => $rule->id])->where('round', '<=', $toRound)->orderBy('start_date', 'desc')->orderBy('start_time', 'desc')->take($matchesFormCount)->get();
-    }
-
     public function getLastRecord()
     {
         $record = Match::latest('created_at')->first();
@@ -74,17 +31,51 @@ class Matches
         return null;
     }
 
-    /**
-     * Returns an array of rounds filtered by $competitionId, $ruleId.
-     *
-     * @param  int  $competitionId
-     * @param  int  $ruleId
-     * @return array $rounds
-     */
-    public function getRoundsByCompetitionRule($competitionId, $ruleId, $order = 'desc')
+    public function getMatchesFiltered(Competition $competition = null, Rule $rule = null, $round = null, $order = 'desc')
+    {
+        $query = Match::query();
+
+        if ($competition !== null) {
+            $query = $query->where('competition_id', $competition->id);
+        }
+        
+        if ($rule !== null) {
+            $query = $query->where('rule_id', $rule->id);
+        }
+        
+        if ($round !== null) {
+            $query = $query->where('round', $round);
+        }
+        
+        return $query->orderBy('start_date', $order)->orderBy('start_time', $order)->get();
+    }
+
+    public function getTeamMatchesFormFiltered(Team $team, Competition $competition = null, Rule $rule = null, $toRound = null, $matchesFormCount = 5, $order = 'desc')
+    {
+        $query = Match::query();
+        $query = $query->where(function($query) use($team){
+            $query->where('home_team_id', $team->id)->orWhere('away_team_id', $team->id);
+        });
+
+        if ($competition !== null) {
+            $query = $query->where('competition_id', $competition->id);
+        }
+        
+        if ($rule !== null) {
+            $query = $query->where('rule_id', $rule->id);
+        }
+        
+        if ($toRound !== null) {
+            $query = $query->where('round', '<=', $toRound);
+        }
+        
+        return $query->orderBy('start_date', $order)->orderBy('start_time', $order)->take($matchesFormCount)->get();
+    }
+
+    public function getRoundsFiltered(Competition $competition = null, Rule $rule = null, $order = 'desc')
     {
         $rounds = [];
-        $matches = $this->getMatchesByCompetitionRule($competitionId, $ruleId, $order);
+        $matches = $this->getMatchesFiltered($competition, $rule, null, $order);
 
         if ($matches !== null) {
             $matchesRounds = collect($matches)->unique('round')->values();

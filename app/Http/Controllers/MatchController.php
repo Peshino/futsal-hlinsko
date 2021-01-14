@@ -46,12 +46,13 @@ class MatchController extends Controller
     public function paramsIndex(Competition $competition, Rule $rule, $actualRound = null)
     {
         $matchesRepository = new Matches;
-        $rounds = $matchesRepository->getRoundsByCompetitionRule($competition->id, $rule->id);
-        $matches = $matchesRepository->getMatchesByCompetitionRule($competition->id, $rule->id);
+        $rounds = $matchesRepository->getRoundsFiltered($competition, $rule);
 
         if ($actualRound !== null) {
             $actualRound = (int) $actualRound;
-            $matches = $matchesRepository->getMatchesByCompetitionRuleRound($competition->id, $rule->id, $actualRound);
+            $matches = $matchesRepository->getMatchesFiltered($competition, $rule, $actualRound);
+        } else {
+            $matches = $matchesRepository->getMatchesFiltered($competition, $rule);
         }
 
         return view('matches.index', compact('competition', 'rule', 'actualRound', 'matches', 'rounds'));
@@ -78,12 +79,12 @@ class MatchController extends Controller
     {
         $matchesRepository = new Matches;
 
-        $rounds = $matchesRepository->getRoundsByCompetitionRule($competition->id, $rule->id);
+        $rounds = $matchesRepository->getRoundsFiltered($competition, $rule);
         $tableData = $matchesRepository->getTableData($competition, $rule, $toRound);
 
         if (!empty($tableData)) {
             foreach ($tableData as $item) {
-                $teamForm = $matchesRepository->getTeamMatchesFormByCompetitionRuleToRound(Team::find($item->team_id), $competition, $rule, $toRound);
+                $teamForm = $matchesRepository->getTeamMatchesFormFiltered(Team::find($item->team_id), $competition, $rule, $toRound);
 
                 if (count($teamForm) > 0) {
                     foreach ($teamForm as $match) {

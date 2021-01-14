@@ -18,9 +18,6 @@
         <div class="content">
             <div class="content-block">
                 {{ $team->name ?? '' }}
-                @foreach ($team->getMatchesFormByCompetition($competition) as $match)
-                {{ $match->id }}
-                @endforeach
             </div>
         </div>
     </div>
