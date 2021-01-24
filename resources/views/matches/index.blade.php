@@ -13,7 +13,7 @@
             </div>
             <div class="col-8 col-right d-flex flex-row-reverse">
                 <div class="row">
-                    @auth
+                    @can('create_match')
                     <div class="col-auto pr-1">
                         <ul class="list-inline">
                             <li class="list-inline-item">
@@ -23,7 +23,7 @@
                             </li>
                         </ul>
                     </div>
-                    @endauth
+                    @endcan
 
                     @if (count($competition->rules) > 0)
                     <div class="col-auto pr-1">

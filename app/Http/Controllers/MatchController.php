@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class MatchController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:create_match')->only('create');
+    }
+
     /**
      * Display a listing of the resource.
      *

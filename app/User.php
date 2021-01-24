@@ -89,4 +89,23 @@ class User extends Authenticatable
     {
         return $this->matches()->create($match);
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class)->withTimestamps();
+    }
+
+    public function assignRole($role)
+    {
+        if (is_string($role)) {
+            $role = Role::whereName($role)->firstOrFail();
+        }
+
+        return $this->roles()->sync($role, false);
+    }
+
+    public function abilities()
+    {
+        return $this->roles->map->abilities->flatten()->pluck('name')->unique();
+    }
 }
