@@ -11,7 +11,7 @@
             <div class="col col-left">
                 @lang('messages.schedule')
             </div>
-            @auth
+            @can('crud_matches')
             <div class="col justify-content-end">
                 <ul class="list-inline justify-content-end">
                     <li class="list-inline-item">
@@ -26,7 +26,7 @@
                     </li>
                 </ul>
             </div>
-            @endauth
+            @endcan
         </div>
     </div>
 

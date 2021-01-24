@@ -13,7 +13,7 @@
             </div>
             <div class="col-8 col-right d-flex flex-row-reverse">
                 <div class="row">
-                    @can('create_match')
+                    @can('crud_matches')
                     <div class="col-auto pr-1">
                         <ul class="list-inline">
                             <li class="list-inline-item">

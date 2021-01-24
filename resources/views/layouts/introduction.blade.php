@@ -62,12 +62,12 @@
                         @else
                         -----
                         @endif
-                        @auth
+                        @can('crud_competitions')
                         <a href="{{ route('competitions.create', $lastSeason->id) }}"
                             class="crud-button btn-plus btn btn-lg">
                             <div class="plus"></div>
                         </a>
-                        @endauth
+                        @endcan
                     </div>
                 </div>
                 @else

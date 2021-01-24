@@ -13,7 +13,7 @@ class MatchController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:create_match')->only('create');
+        $this->middleware('can:crud_matches')->only(['create', 'store', 'edit', 'update', 'destroy']);
     }
 
     /**

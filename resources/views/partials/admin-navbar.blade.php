@@ -14,7 +14,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            @auth
+            @can('manage_admin_routes')
             <ul class="navbar-nav mr-auto">
                 @isset($season)
                 @php
@@ -77,7 +77,7 @@
                     </div>
                 </li>
             </ul>
-            @endauth
+            @endcan
         </div>
     </div>
 </nav>

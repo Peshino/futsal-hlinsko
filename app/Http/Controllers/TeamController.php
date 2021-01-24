@@ -10,6 +10,7 @@ class TeamController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('can:crud_teams')->only(['create', 'store', 'edit', 'update', 'destroy']);
     }
 
     /**

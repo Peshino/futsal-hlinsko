@@ -11,7 +11,7 @@ class CompetitionController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('can:crud_competitions')->only(['create', 'store', 'edit', 'update', 'destroy']);
     }
 
     /**

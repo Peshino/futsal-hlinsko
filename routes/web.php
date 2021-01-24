@@ -31,11 +31,11 @@ Route::prefix('competitions/{competition}')->group(function () {
     Route::get('matches/rules/{rule}/rounds/{round}', 'MatchController@paramsIndex')->name('matches.params-index');
     Route::get('table/rules/{rule}/rounds/{round}', 'MatchController@tableParamsIndex')->name('table.params-index');
     Route::get('schedule', 'MatchController@scheduleIndex')->name('matches.schedule-index');
-    
+
     Route::resource('rules', 'RuleController');
 });
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('can:manage_admin_routes')->group(function () {
     Route::get('competitions/{competition}', 'CompetitionController@adminShow')->name('competitions.admin-show');
 
     Route::prefix('competitions/{competition}')->group(function () {

@@ -13,7 +13,7 @@
                 @lang('messages.match')
             </div>
 
-            @auth
+            @can('crud_matches')
             <div class="col">
                 <ul class="list-inline justify-content-end">
                     <li class="list-inline-item">
@@ -53,7 +53,7 @@
                     </li>
                 </ul>
             </div>
-            @endauth
+            @endcan
         </div>
     </div>
 
