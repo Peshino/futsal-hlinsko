@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app container">
         <div id="introduction">
             <div class="text-center">
                 @if (count($seasons) > 0)
@@ -47,6 +47,11 @@
                                 {{ $season->name ?? '' }}
                             </a>
                             @endforeach
+                            @can('crud_seasons')
+                            <a href="{{ route('seasons.create') }}" class="dropdown-item">
+                                <div class="plus"></div>
+                            </a>
+                            @endcan
                         </div>
                     </div>
                 </div>
@@ -73,25 +78,34 @@
                 @else
                 -----
                 @endif
-            </div>
 
-            <div class="introduction-bottom text-center">
-                @auth
-                <a class="" href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fas fa-power-off"></i>&nbsp; @lang('messages.user_logout')
-                </a>
+                <div class="introduction-bottom text-center">
+                    @auth
+                    <a class="" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fas fa-power-off"></i>&nbsp; @lang('messages.user_logout')
+                    </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-                @endauth
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    @endauth
 
-                @guest
-                <a class="" href="{{ route('login') }}">
-                    <i class="far fa-user"></i>
-                </a>
-                @endguest
+                    @guest
+                    <div class="row justify-content-center">
+                        <div class="col-1 text-right">
+                            <a href="{{ route('login') }}">
+                                <i class="far fa-user"></i>
+                            </a>
+                        </div>
+                        <div class="col-1 text-left">
+                            <a href="{{ route('register') }}">
+                                <i class="fas fa-user-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    @endguest
+                </div>
             </div>
 
             @include('partials/footer')

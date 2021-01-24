@@ -38,6 +38,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function seasons()
+    {
+        return $this->hasMany(Season::class);
+    }
+
     public function competitions()
     {
         return $this->hasMany(Competition::class);
@@ -61,6 +66,11 @@ class User extends Authenticatable
     public function addCompetition($competition)
     {
         return $this->competitions()->create($competition);
+    }
+
+    public function addSeason($season)
+    {
+        return $this->seasons()->create($season);
     }
 
     public function addRule($rule)

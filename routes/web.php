@@ -36,6 +36,7 @@ Route::prefix('competitions/{competition}')->group(function () {
 });
 
 Route::prefix('admin')->middleware('can:manage_admin_routes')->group(function () {
+    Route::get('seasons/{season}', 'SeasonController@show')->name('seasons.show');
     Route::get('competitions/{competition}', 'CompetitionController@adminShow')->name('competitions.admin-show');
 
     Route::prefix('competitions/{competition}')->group(function () {

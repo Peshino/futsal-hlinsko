@@ -9,7 +9,7 @@ class SeasonController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('can:crud_seasons')->only(['create', 'store', 'edit', 'update', 'destroy']);
     }
 
     /**
@@ -19,7 +19,7 @@ class SeasonController extends Controller
      */
     public function index()
     {
-        //
+        return view('seasons.index');
     }
 
     /**
@@ -29,7 +29,7 @@ class SeasonController extends Controller
      */
     public function create()
     {
-        //
+        return view('seasons.create');
     }
 
     /**
@@ -40,7 +40,19 @@ class SeasonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = $request->validate([
+            'name' => 'required|min:2|max:100',
+        ]);
+
+        $seasonCreated = auth()->user()->addSeason($attributes);
+
+        if ($seasonCreated !== null) {
+            session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
+            return redirect()->route('seasons.show', ['season' => $seasonCreated->id]);
+        } else {
+            session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
+            return redirect()->back();
+        }
     }
 
     /**

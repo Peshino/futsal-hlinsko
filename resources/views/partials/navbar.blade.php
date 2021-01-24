@@ -59,6 +59,49 @@
                     </a>
                 </li>
             </ul>
+            
+            <!-- Right Side Of Navbar -->
+            @auth
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a id="profile-dropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <i class="far fa-user align-middle"></i>&nbsp; <span
+                            class="caret align-middle">{{ Auth::user()->firstname }}
+                            {{ Auth::user()->lastname }}</span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
+                        <a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">
+                            <i class="far fa-user-circle"></i>&nbsp; @lang('messages.profile')
+                        </a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                            <i class="fas fa-power-off"></i>&nbsp; @lang('messages.user_logout')
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+            </ul>
+            @endauth
+
+            @guest
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">
+                        <i class="far fa-user"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">
+                        <i class="fas fa-user-plus"></i>
+                    </a>
+                </li>
+            </ul>
+            @endguest
         </div>
     </div>
 </nav>
