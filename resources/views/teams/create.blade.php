@@ -28,21 +28,56 @@
                                     required />
                             </div>
                         </div>
-                        <div class="squad col-md">
+                        <div class="name-short col-md">
                             <div class="floating-label">
-                                <label for="squad">
-                                    @lang('messages.squad')
+                                <label for="name-short">@lang('messages.name_short')</label>
+                                <input type="text" class="form-control" id="name-short" name="name_short"
+                                    value="{{ old('name_short') }}" required />
+                            </div>
+                        </div>
+                        <div class="website col-md">
+                            <div class="floating-label">
+                                <label for="website">@lang('messages.website')</label>
+                                <input type="text" class="form-control" id="website" name="website"
+                                    value="{{ old('website') }}" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="superior-team-id col-md">
+                            <div class="floating-label">
+                                <label for="superior-team-id">
+                                    @lang('messages.superior_team')
                                 </label>
-                                <select class="form-control" id="squad" name="squad" required>
-                                    <option {{ old('squad') === 'A' ? "selected" : "" }} value="A">
-                                        A
+                                <select class="form-control" id="superior-team-id" name="superior_team_id">
+                                    <option value=""></option>
+                                    @if (count($otherTeams) > 0)
+                                    @foreach ($otherTeams as $otherTeam)
+                                    <option {{ old('superior_team_id') === $otherTeam->id ? "selected" : "" }}
+                                        value="{{ $otherTeam->id }}">
+                                        {{ $otherTeam->name ?? '' }}
                                     </option>
-                                    <option {{ old('squad') === 'B' ? "selected" : "" }} value="B">
-                                        B
+                                    @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
+                        <div class="inferior-team-id col-md">
+                            <div class="floating-label">
+                                <label for="inferior-team-id">
+                                    @lang('messages.inferior_team')
+                                </label>
+                                <select class="form-control" id="inferior-team-id" name="inferior_team_id">
+                                    <option value=""></option>
+                                    @if (count($otherTeams) > 0)
+                                    @foreach ($otherTeams as $otherTeam)
+                                    <option {{ old('inferior_team_id') === $otherTeam->id ? "selected" : "" }}
+                                        value="{{ $otherTeam->id }}">
+                                        {{ $otherTeam->name ?? '' }}
                                     </option>
-                                    <option {{ old('squad') === 'C' ? "selected" : "" }} value="C">
-                                        C
-                                    </option>
+                                    @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>

@@ -65,22 +65,35 @@
                                 value="{{ $team->name }}" disabled />
                         </div>
                     </div>
-                    <div class="squad col-md">
+                    <div class="name-short col-md">
                         <div class="floating-label">
-                            <label for="squad">
-                                @lang('messages.squad')
-                            </label>
-                            <select class="form-control border-dark" id="squad" name="squad" disabled>
-                                <option {{ $team->squad === 'A' ? "selected" : "" }} value="one_rounded">
-                                    {{ $team->squad ?? '' }}
-                                </option>
-                                <option {{ $team->squad === 'B' ? "selected" : "" }} value="two_rounded">
-                                    {{ $team->squad ?? '' }}
-                                </option>
-                                <option {{ $team->squad === 'C' ? "selected" : "" }} value="two_rounded">
-                                    {{ $team->squad ?? '' }}
-                                </option>
-                            </select>
+                            <label for="name-short">@lang('messages.name_short')</label>
+                            <input type="text" class="form-control border-dark" id="name-short" name="name_short"
+                                value="{{ $team->name_short }}" disabled />
+                        </div>
+                    </div>
+                    <div class="website col-md">
+                        <div class="floating-label">
+                            <label for="website">@lang('messages.website')</label>
+                            <input type="text" class="form-control border-dark" id="website" name="website"
+                                value="{{ $team->website }}" disabled />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="superior-team col-md">
+                        <div class="floating-label">
+                            <label for="superior-team">@lang('messages.superior_team')</label>
+                            <input type="text" class="form-control border-dark" id="superior-team" name="superior_team"
+                                value="{{ $team->superiorTeam->name ?? '' }}" disabled />
+                        </div>
+                    </div>
+                    <div class="inferior-team col-md">
+                        <div class="floating-label">
+                            <label for="inferior-team">@lang('messages.inferior_team')</label>
+                            <input type="text" class="form-control border-dark" id="inferior-team" name="inferior_team"
+                                value="{{ $team->inferiorTeam->name ?? '' }}" disabled />
                         </div>
                     </div>
                 </div>

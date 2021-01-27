@@ -32,7 +32,10 @@ class TeamController extends Controller
      */
     public function create(Competition $competition)
     {
-        return view('teams.create', compact('competition'));
+        $otherCompetitions = $competition->season->competitions->whereNotIn('id', $competition->id)->pluck('id')->toArray();
+        $otherTeams = Team::whereIn('competition_id', $otherCompetitions)->orderBy('name', 'asc')->get();
+
+        return view('teams.create', compact('competition', 'otherTeams'));
     }
 
     /**
@@ -46,9 +49,14 @@ class TeamController extends Controller
     {
         $attributes = $request->validate([
             'name' => 'required|min:2|max:100',
-            'squad' => 'required|min:1|max:10',
+            'name_short' => 'required|min:2|max:10',
+            'website' => 'nullable|string|max:100',
+            'superior_team_id' => 'nullable|numeric',
+            'inferior_team_id' => 'nullable|numeric',
             'competition_id' => 'required|numeric|min:1'
         ]);
+
+        $attributes['name_short'] = strtoupper($attributes['name_short']);
 
         $teamCreated = auth()->user()->addTeam($attributes);
 
@@ -94,7 +102,10 @@ class TeamController extends Controller
      */
     public function edit(Competition $competition, Team $team)
     {
-        return view('teams.edit', compact('competition', 'team'));
+        $otherCompetitions = $competition->season->competitions->whereNotIn('id', $competition->id)->pluck('id')->toArray();
+        $otherTeams = Team::whereIn('competition_id', $otherCompetitions)->orderBy('name', 'asc')->get();
+
+        return view('teams.edit', compact('competition', 'team', 'otherTeams'));
     }
 
     /**
@@ -109,9 +120,14 @@ class TeamController extends Controller
     {
         $attributes = $request->validate([
             'name' => 'required|min:2|max:100',
-            'squad' => 'required|min:1|max:10',
-            'competition_id' => 'required|numeric|min:1',
+            'name_short' => 'required|min:2|max:10',
+            'website' => 'nullable|string|max:100',
+            'superior_team_id' => 'nullable|numeric',
+            'inferior_team_id' => 'nullable|numeric',
+            'competition_id' => 'required|numeric|min:1'
         ]);
+
+        $attributes['name_short'] = strtoupper($attributes['name_short']);
 
         if ($team->update($attributes)) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');

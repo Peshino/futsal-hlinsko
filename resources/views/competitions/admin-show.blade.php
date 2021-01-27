@@ -68,7 +68,6 @@
                             <thead>
                                 <tr>
                                     <th scope="col">@lang('messages.name')</th>
-                                    <th scope="col">@lang('messages.squad')</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -78,9 +77,6 @@
                                         data-url="{{ route('teams.admin-show', [$competition->id, $team->id]) }}">
                                         <td>
                                             {{ $team->name ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $team->squad ?? '' }}
                                         </td>
                                     </tr>
                                 </div>

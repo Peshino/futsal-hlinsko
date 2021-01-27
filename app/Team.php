@@ -9,7 +9,7 @@ use App\Rule;
 class Team extends Model
 {
     protected $fillable = [
-        'name', 'squad', 'primary_color_id', 'secondary_color_id', 'user_id', 'competition_id'
+        'name', 'name_short', 'website', 'primary_color_id', 'secondary_color_id', 'superior_team_id', 'inferior_team_id', 'user_id', 'competition_id'
     ];
 
     public function user()
@@ -30,5 +30,15 @@ class Team extends Model
     public function awayMatches()
     {
         return $this->hasMany(Match::class, 'away_team_id');
+    }
+
+    public function superiorTeam()
+    {
+        return $this->belongsTo($this);
+    }
+
+    public function inferiorTeam()
+    {
+        return $this->belongsTo($this);
     }
 }

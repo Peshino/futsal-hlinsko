@@ -131,6 +131,10 @@ return [
     'finished' => 'Finished',
 
     'squad' => 'Squad',
+    'name_short' => 'Short name',
+    'website' => 'Website',
+    'superior_team' => 'Superior team',
+    'inferior_team' => 'Inferior team',
 
     'to' => 'To',
     'new' => 'New',

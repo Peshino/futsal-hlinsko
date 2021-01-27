@@ -131,6 +131,10 @@ return [
     'finished' => 'ukončena',
 
     'squad' => 'Mužstvo',
+    'name_short' => 'Krátký název',
+    'website' => 'Webové stránky',
+    'superior_team' => 'Nadřazený tým',
+    'inferior_team' => 'Podřazený tým',
 
     'to' => 'do',
     'new' => 'nový',
