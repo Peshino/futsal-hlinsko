@@ -16,8 +16,9 @@ class CreateTeamsTable extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('name_short')->nullable();
-            $table->string('website')->nullable();
+            $table->string('name_short');
+            $table->string('unique_code');
+            $table->string('web_presentation')->nullable();
             $table->foreignId('primary_color_id')->nullable();
             $table->foreignId('secondary_color_id')->nullable();
             $table->foreignId('superior_team_id')->nullable();

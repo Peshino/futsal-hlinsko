@@ -132,7 +132,7 @@ return [
 
     'squad' => 'Squad',
     'name_short' => 'Short name',
-    'website' => 'Website',
+    'web_presentation' => 'Web presentation',
     'superior_team' => 'Superior team',
     'inferior_team' => 'Inferior team',
 

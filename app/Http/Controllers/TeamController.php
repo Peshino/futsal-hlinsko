@@ -50,13 +50,15 @@ class TeamController extends Controller
         $attributes = $request->validate([
             'name' => 'required|min:2|max:100',
             'name_short' => 'required|min:2|max:10',
-            'website' => 'nullable|string|max:100',
+            'web_presentation' => 'nullable|string|max:100',
             'superior_team_id' => 'nullable|numeric',
             'inferior_team_id' => 'nullable|numeric',
             'competition_id' => 'required|numeric|min:1'
         ]);
 
         $attributes['name_short'] = strtoupper($attributes['name_short']);
+        // unique_code - vytvořit nový jen pokud nepřebírám od historického týmu (pro zachování kódu týmu)
+        $attributes['unique_code'] = time() . '_' . strtolower($attributes['name_short']);
 
         $teamCreated = auth()->user()->addTeam($attributes);
 
@@ -121,13 +123,18 @@ class TeamController extends Controller
         $attributes = $request->validate([
             'name' => 'required|min:2|max:100',
             'name_short' => 'required|min:2|max:10',
-            'website' => 'nullable|string|max:100',
+            'web_presentation' => 'nullable|string|max:100',
             'superior_team_id' => 'nullable|numeric',
             'inferior_team_id' => 'nullable|numeric',
             'competition_id' => 'required|numeric|min:1'
         ]);
 
         $attributes['name_short'] = strtoupper($attributes['name_short']);
+        // unique_code - vytvořit nový jen pokud nepřebírám od historického týmu (pro zachování kódu týmu)
+
+        if ($team->unique_code === null) {
+            $attributes['unique_code'] = time() . '_' . strtolower($attributes['name_short']);
+        }
 
         if ($team->update($attributes)) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');

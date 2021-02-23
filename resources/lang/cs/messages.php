@@ -132,7 +132,7 @@ return [
 
     'squad' => 'Mužstvo',
     'name_short' => 'Krátký název',
-    'website' => 'Webové stránky',
+    'web_presentation' => 'Webová prezentace',
     'superior_team' => 'Nadřazený tým',
     'inferior_team' => 'Podřazený tým',
 

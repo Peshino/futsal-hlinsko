@@ -37,11 +37,11 @@
                                     value="{{ $team->name_short }}" required />
                             </div>
                         </div>
-                        <div class="website col-md">
+                        <div class="web-presentation col-md">
                             <div class="floating-label">
-                                <label for="website">@lang('messages.website')</label>
-                                <input type="text" class="form-control" id="website" name="website"
-                                    value="{{ $team->website }}" />
+                                <label for="web-presentation">@lang('messages.web_presentation')</label>
+                                <input type="text" class="form-control" id="web-presentation" name="web_presentation"
+                                    value="{{ $team->web_presentation }}" />
                             </div>
                         </div>
                     </div>

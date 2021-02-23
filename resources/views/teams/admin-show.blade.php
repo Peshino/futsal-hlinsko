@@ -72,11 +72,11 @@
                                 value="{{ $team->name_short }}" disabled />
                         </div>
                     </div>
-                    <div class="website col-md">
+                    <div class="web-presentation col-md">
                         <div class="floating-label">
-                            <label for="website">@lang('messages.website')</label>
-                            <input type="text" class="form-control border-dark" id="website" name="website"
-                                value="{{ $team->website }}" disabled />
+                            <label for="web-presentation">@lang('messages.web_presentation')</label>
+                            <input type="text" class="form-control border-dark" id="web-presentation" name="web_presentation"
+                                value="{{ $team->web_presentation }}" disabled />
                         </div>
                     </div>
                 </div>
