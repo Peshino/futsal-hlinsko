@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 @section('title')
-{{ strtoupper(mb_substr($match->homeTeam->name, 0, 3)) }} {{ $match->home_team_score }}:{{ $match->away_team_score }}
-{{ strtoupper(mb_substr($match->awayTeam->name, 0, 3)) }} | @lang('messages.app_name')
+{{ $match->homeTeam->name_short }} {{ $match->home_team_score }}:{{ $match->away_team_score }}
+{{ $match->awayTeam->name_short }} | @lang('messages.app_name')
 @endsection
 
 @section('content')
@@ -90,7 +90,7 @@
                                 <div class="team-name-short">
                                     <span class="align-middle">
                                         <a href="{{ route('teams.show', [$competition->id, $match->homeTeam->id]) }}">
-                                            {{ mb_substr($match->homeTeam->name, 0, 3) }}
+                                            {{ $match->homeTeam->name_short }}
                                         </a>
                                     </span>
                                 </div>
@@ -128,7 +128,7 @@
                                 <div class="team-name-short">
                                     <span class="align-middle">
                                         <a href="{{ route('teams.show', [$competition->id, $match->awayTeam->id]) }}">
-                                            {{ mb_substr($match->awayTeam->name, 0, 3) }}
+                                            {{ $match->awayTeam->name_short }}
                                         </a>
                                     </span>
                                 </div>

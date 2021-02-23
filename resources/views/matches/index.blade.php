@@ -107,7 +107,7 @@
                                     {{ $match->homeTeam->name }}
                                 </div>
                                 <div class="team-name-short">
-                                    {{ mb_substr($match->homeTeam->name, 0, 3) }}
+                                    {{ $match->homeTeam->name_short }}
                                 </div>
                             </span>
                         </div>
@@ -129,7 +129,7 @@
                                     {{ $match->awayTeam->name }}
                                 </div>
                                 <div class="team-name-short">
-                                    {{ mb_substr($match->awayTeam->name, 0, 3) }}
+                                    {{ $match->awayTeam->name_short }}
                                 </div>
                             </span>
                         </div>

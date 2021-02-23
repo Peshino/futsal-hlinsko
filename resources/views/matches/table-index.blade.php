@@ -84,7 +84,11 @@
                         @foreach ($tableData as $key => $tableItem)
                         <tr>
                             <td>{{ $key + 1 }}.</td>
-                            <td class="text-left">{{ $tableItem->team_name }}</td>
+                            <td class="text-left">
+                                <a href="{{ route('teams.show', [$competition->id, $tableItem->team_id]) }}">
+                                    {{ $tableItem->team_name }}
+                                </a>
+                            </td>
                             <td>{{ $tableItem->matches_count }}</td>
                             <td>{{ $tableItem->wins }}</td>
                             <td>{{ $tableItem->draws }}</td>
@@ -110,7 +114,7 @@
                                                 </span>
                                                 <span class="match-team">
                                                     <span title="{{ $match->homeTeam->name }}" class="text-uppercase">
-                                                        {{ mb_substr($match->homeTeam->name, 0, 3) }}
+                                                        {{ $match->homeTeam->name_short }}
                                                     </span>
                                                 </span>
                                                 <span class="match-score">
@@ -118,7 +122,7 @@
                                                 </span>
                                                 <span class="match-team">
                                                     <span title="{{ $match->awayTeam->name }}" class="text-uppercase">
-                                                        {{ mb_substr($match->awayTeam->name, 0, 3) }}
+                                                        {{ $match->awayTeam->name_short }}
                                                     </span>
                                                 </span>
                                             </div>

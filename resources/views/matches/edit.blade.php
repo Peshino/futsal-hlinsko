@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
 @section('title')
-{{ strtoupper(mb_substr($match->homeTeam->name, 0, 3)) }} {{ $match->home_team_score }}:{{ $match->away_team_score }}
-{{ strtoupper(mb_substr($match->awayTeam->name, 0, 3)) }} | @lang('messages.app_name')
+{{ $match->homeTeam->name_short }} {{ $match->home_team_score }}:{{ $match->away_team_score }}
+{{ $match->awayTeam->name_short }} | @lang('messages.app_name')
 @endsection
 
 @section('content')
