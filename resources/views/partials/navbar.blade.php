@@ -16,50 +16,56 @@
             <!-- Left Side Of Navbar -->
 
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item{{ (request()->is('*competitions/' . $competition->id .'')) ? ' active' : '' }}">
+                <li class="nav-item{{ (request()->is('*competitions/' . $competition->id)) ? ' active' : '' }}">
                     <a class="nav-link" href="{{ route('competitions.show', $competition->id) }}">
                         <i class="fas fa-home align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.home')</span>
                     </a>
                 </li>
-                <li class="nav-item{{ (request()->is('*teams*')) ? ' active' : '' }}">
+                <li
+                    class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/teams*')) ? ' active' : '' }}">
                     <a class="nav-link" href="{{ route('teams.index', $competition->id) }}">
                         <i class="fas fa-users align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.teams')</span>
                     </a>
                 </li>
-                <li class="nav-item{{ (request()->is('*matches*')) ? ' active' : '' }}">
-                    <a class="nav-link" href="{{ route('matches.index', [$competition->id, 'matches']) }}">
+                <li
+                    class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/results*')) ? ' active' : '' }}">
+                    <a class="nav-link" href="{{ route('matches.index', [$competition->id, 'results']) }}">
                         <i class="fas fa-align-center align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.results')</span>
                     </a>
                 </li>
-                <li class="nav-item{{ (request()->is('*schedule*')) ? ' active' : '' }}">
-                    <a class="nav-link" href="{{ route('matches.schedule-index', $competition->id) }}">
+                <li
+                    class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/schedule*')) ? ' active' : '' }}">
+                    <a class="nav-link" href="{{ route('matches.index', [$competition->id, 'schedule']) }}">
                         <i class="far fa-calendar-alt align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.schedule')</span>
                     </a>
                 </li>
-                <li class="nav-item{{ (request()->is('*table*')) ? ' active' : '' }}">
+                <li
+                    class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/table*')) ? ' active' : '' }}">
                     <a class="nav-link" href="{{ route('matches.index', [$competition->id, 'table']) }}">
                         <i class="fas fa-sort-amount-down align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.table')</span>
                     </a>
                 </li>
-                <li class="nav-item{{ (request()->is('*shooters*')) ? ' active' : '' }}">
+                <li
+                    class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/shooters*')) ? ' active' : '' }}">
                     <a class="nav-link" href="">
                         <i class="far fa-futbol align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.shooters')</span>
                     </a>
                 </li>
-                <li class="nav-item{{ (request()->is('*cards*')) ? ' active' : '' }}">
+                <li
+                    class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/cards*')) ? ' active' : '' }}">
                     <a class="nav-link" href="">
                         <i class="fas fa-clone align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.cards')</span>
                     </a>
                 </li>
             </ul>
-            
+
             <!-- Right Side Of Navbar -->
             @auth
             <ul class="navbar-nav ml-auto">

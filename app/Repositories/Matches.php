@@ -8,6 +8,7 @@ use App\Competition;
 use App\Rule;
 use App\Team;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class Matches
 {
@@ -31,7 +32,7 @@ class Matches
         return null;
     }
 
-    public function getMatchesFiltered(Competition $competition = null, Rule $rule = null, $round = null, $order = 'desc')
+    public function getMatchesFiltered(Competition $competition = null, Rule $rule = null, Team $team = null, $matchesStatus = 'all', $round = null, $order = 'desc')
     {
         $query = Match::query();
 
@@ -47,15 +48,36 @@ class Matches
             $query = $query->where('round', $round);
         }
         
+        if ($team !== null) {
+            $query = $query->where(function($query) use($team){
+                $query->where('home_team_id', $team->id)->orWhere('away_team_id', $team->id);
+            });
+        }
+
+        switch ($matchesStatus) {
+            case 'results':
+                $query = $query->whereDate('start_date', '<=', Carbon::now())->whereTime('start_time', '<=', Carbon::now());
+                break;
+            case 'schedule':
+                $query = $query->whereDate('start_date', '>', Carbon::now())->whereTime('start_time', '>', Carbon::now());
+                break;
+            case 'all':
+                break;
+            default:
+        }
+        
         return $query->orderBy('start_date', $order)->orderBy('start_time', $order)->get();
     }
 
     public function getTeamMatchesFormFiltered(Team $team, Competition $competition = null, Rule $rule = null, $toRound = null, $matchesFormCount = 5, $order = 'desc')
     {
         $query = Match::query();
-        $query = $query->where(function($query) use($team){
-            $query->where('home_team_id', $team->id)->orWhere('away_team_id', $team->id);
-        });
+        
+        if ($team !== null) {
+            $query = $query->where(function($query) use($team){
+                $query->where('home_team_id', $team->id)->orWhere('away_team_id', $team->id);
+            });
+        }
 
         if ($competition !== null) {
             $query = $query->where('competition_id', $competition->id);
@@ -75,7 +97,7 @@ class Matches
     public function getRoundsFiltered(Competition $competition = null, Rule $rule = null, $order = 'desc')
     {
         $rounds = [];
-        $matches = $this->getMatchesFiltered($competition, $rule, null, $order);
+        $matches = $this->getMatchesFiltered($competition, $rule, null, 'all', null, $order);
 
         if ($matches !== null) {
             $matchesRounds = collect($matches)->unique('round')->values();

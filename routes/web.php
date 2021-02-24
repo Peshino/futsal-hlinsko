@@ -24,13 +24,18 @@ Route::resource('competition-styles', 'CompetitionStyleController');
 Route::prefix('competitions/{competition}')->group(function () {
     Route::resource('teams', 'TeamController');
 
+    Route::prefix('teams/{team}')->group(function () {
+        Route::get('results', 'TeamController@getTeamResults')->name('team-results');
+    });
+
     Route::resource('matches', 'MatchController', ['except' => [
         'index'
     ]]);
     Route::get('{section}', 'MatchController@index')->name('matches.index');
-    Route::get('matches/rules/{rule}/rounds/{round}', 'MatchController@paramsIndex')->name('matches.params-index');
+    Route::get('results/rules/{rule}/rounds/{round}', 'MatchController@resultsParamsIndex')->name('results.params-index');
+    Route::get('schedule/rules/{rule}/rounds/{round}', 'MatchController@scheduleParamsIndex')->name('schedule.params-index');
     Route::get('table/rules/{rule}/rounds/{round}', 'MatchController@tableParamsIndex')->name('table.params-index');
-    Route::get('schedule', 'MatchController@scheduleIndex')->name('matches.schedule-index');
+    // Route::get('schedule', 'MatchController@scheduleIndex')->name('matches.schedule-index');
 
     Route::resource('rules', 'RuleController');
 });

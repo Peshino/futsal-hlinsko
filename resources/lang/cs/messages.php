@@ -130,11 +130,12 @@ return [
     'in_progress' => 'probíhá',
     'finished' => 'ukončena',
 
-    'squad' => 'Mužstvo',
+    'squad' => 'Kádr',
     'name_short' => 'Krátký název',
     'web_presentation' => 'Webová prezentace',
     'superior_team' => 'Nadřazený tým',
     'inferior_team' => 'Podřazený tým',
+    'statistics' => 'Statistiky',
 
     'to' => 'do',
     'new' => 'nový',

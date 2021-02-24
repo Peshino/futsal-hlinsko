@@ -22,7 +22,7 @@ class MatchController extends Controller
      * @param  \App\Competition  $competition
      * @return \Illuminate\Http\Response
      */
-    public function index(Competition $competition, $section = 'matches')
+    public function index(Competition $competition, $section = 'results')
     {
         $lastRuleByPriority = $competition->getLastRuleByPriority();
 
@@ -45,33 +45,44 @@ class MatchController extends Controller
      * @param  \App\Competition  $competition
      * @param  \App\Rule  $rule
      * @param  int $actualRound
-     * @param  \App\Repositories\Matches  $matchesRepository
      * @return \Illuminate\Http\Response
      */
-    public function paramsIndex(Competition $competition, Rule $rule, $actualRound = null)
+    public function resultsParamsIndex(Competition $competition, Rule $rule, $actualRound = null)
     {
         $matchesRepository = new Matches;
         $rounds = $matchesRepository->getRoundsFiltered($competition, $rule);
 
         if ($actualRound !== null) {
             $actualRound = (int) $actualRound;
-            $matches = $matchesRepository->getMatchesFiltered($competition, $rule, $actualRound);
+            $matches = $matchesRepository->getMatchesFiltered($competition, $rule, null, 'results', $actualRound);
         } else {
-            $matches = $matchesRepository->getMatchesFiltered($competition, $rule);
+            $matches = $matchesRepository->getMatchesFiltered($competition, $rule, null, 'results');
         }
 
-        return view('matches.index', compact('competition', 'rule', 'actualRound', 'matches', 'rounds'));
+        return view('matches.results-index', compact('competition', 'rule', 'actualRound', 'matches', 'rounds'));
     }
 
     /**
      * Display a listing of the resource.
      *
      * @param  \App\Competition  $competition
+     * @param  \App\Rule  $rule
+     * @param  int $actualRound
      * @return \Illuminate\Http\Response
      */
-    public function scheduleIndex(Competition $competition)
+    public function scheduleParamsIndex(Competition $competition, Rule $rule, $actualRound = null)
     {
-        return view('matches.schedule-index', compact('competition'));
+        $matchesRepository = new Matches;
+        $rounds = $matchesRepository->getRoundsFiltered($competition, $rule);
+
+        if ($actualRound !== null) {
+            $actualRound = (int) $actualRound;
+            $matches = $matchesRepository->getMatchesFiltered($competition, $rule, null, 'schedule', $actualRound);
+        } else {
+            $matches = $matchesRepository->getMatchesFiltered($competition, $rule, null, 'schedule');
+        }
+
+        return view('matches.schedule-index', compact('competition', 'rule', 'actualRound', 'matches', 'rounds'));
     }
 
     /**

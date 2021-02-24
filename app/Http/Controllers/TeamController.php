@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Team;
 use App\Competition;
+use App\Repositories\Matches;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -50,6 +51,7 @@ class TeamController extends Controller
         $attributes = $request->validate([
             'name' => 'required|min:2|max:100',
             'name_short' => 'required|min:2|max:10',
+            'logo' => 'nullable|string|max:100',
             'web_presentation' => 'nullable|string|max:100',
             'superior_team_id' => 'nullable|numeric',
             'inferior_team_id' => 'nullable|numeric',
@@ -123,6 +125,7 @@ class TeamController extends Controller
         $attributes = $request->validate([
             'name' => 'required|min:2|max:100',
             'name_short' => 'required|min:2|max:10',
+            'logo' => 'nullable|string|max:100',
             'web_presentation' => 'nullable|string|max:100',
             'superior_team_id' => 'nullable|numeric',
             'inferior_team_id' => 'nullable|numeric',
@@ -161,5 +164,21 @@ class TeamController extends Controller
         }
 
         return redirect()->route('competitions.admin-show', ['competition' => $competition->id]);
+    }
+
+    /**
+     * Display the team results.
+     *
+     * @param  \App\Competition  $competition
+     * @param  \App\Team  $team
+     * @return \Illuminate\Http\Response
+     */
+    public function getTeamResults(Competition $competition, Team $team)
+    {
+        $matchesRepository = new Matches;
+
+        $teamResults = $matchesRepository->getMatchesFiltered($competition, null, $team, 'results');
+
+        return view('teams.show', compact('competition', 'team', 'teamResults'));
     }
 }

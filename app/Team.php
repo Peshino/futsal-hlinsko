@@ -9,7 +9,7 @@ use App\Rule;
 class Team extends Model
 {
     protected $fillable = [
-        'name', 'name_short', 'unique_code', 'web_presentation', 'primary_color_id', 'secondary_color_id', 'superior_team_id', 'inferior_team_id', 'user_id', 'competition_id'
+        'name', 'name_short', 'unique_code', 'logo', 'web_presentation', 'primary_color_id', 'secondary_color_id', 'superior_team_id', 'inferior_team_id', 'user_id', 'competition_id'
     ];
 
     public function user()

@@ -18,6 +18,7 @@ class CreateTeamsTable extends Migration
             $table->string('name');
             $table->string('name_short');
             $table->string('unique_code');
+            $table->string('logo')->nullable();
             $table->string('web_presentation')->nullable();
             $table->foreignId('primary_color_id')->nullable();
             $table->foreignId('secondary_color_id')->nullable();

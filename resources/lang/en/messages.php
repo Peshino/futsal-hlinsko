@@ -135,6 +135,7 @@ return [
     'web_presentation' => 'Web presentation',
     'superior_team' => 'Superior team',
     'inferior_team' => 'Inferior team',
+    'statistics' => 'Statistics',
 
     'to' => 'To',
     'new' => 'New',
