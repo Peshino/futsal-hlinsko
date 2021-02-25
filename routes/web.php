@@ -25,6 +25,11 @@ Route::prefix('competitions/{competition}')->group(function () {
     Route::resource('teams', 'TeamController');
 
     Route::prefix('teams/{team}')->group(function () {
+        Route::resource('players', 'PlayerController', ['except' => [
+            'index'
+        ]]);
+
+        Route::get('players', 'TeamController@getTeamPlayers')->name('team-players');
         Route::get('results', 'TeamController@getTeamResults')->name('team-results');
     });
 
@@ -47,5 +52,9 @@ Route::prefix('admin')->middleware('can:manage_admin_routes')->group(function ()
     Route::prefix('competitions/{competition}')->group(function () {
         Route::get('rules/{rule}', 'RuleController@adminShow')->name('rules.admin-show');
         Route::get('teams/{team}', 'TeamController@adminShow')->name('teams.admin-show');
+
+        Route::prefix('teams/{team}')->group(function () {
+            Route::get('players/{player}', 'PlayerController@adminShow')->name('players.admin-show');
+        });
     });
 });

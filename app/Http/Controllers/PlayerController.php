@@ -69,7 +69,7 @@ class PlayerController extends Controller
 
         if ($playerCreated !== null) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
-            return redirect()->route('players.admin-show', ['player' => $playerCreated->id]);
+            return redirect()->route('players.admin-show', ['competition' => $competition->id, 'team' => $team->id, 'player' => $playerCreated->id]);
         } else {
             session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
             return redirect()->back();

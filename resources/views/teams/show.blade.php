@@ -34,7 +34,7 @@
                 <ul class="nav nav-pills nav-fill">
                     <li class="nav-item">
                         <a class="nav-link{{ (request()->is('*teams/' . $team->id . '/players')) ? ' active' : '' }}"
-                            href="#">@lang('messages.players')</a>
+                            href="{{ route('team-players', [$competition->id, $team->id]) }}">@lang('messages.players')</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link{{ (request()->is('*teams/' . $team->id . '/results')) ? ' active' : '' }}"
@@ -50,6 +50,15 @@
                     </li>
                 </ul>
             </div>
+
+            @isset($teamPlayers)
+            @php
+            $players = $teamPlayers;
+            @endphp
+            <div class="mt-2 text-center">
+                @include('partials/players')
+            </div>
+            @endisset
 
             @isset($teamResults)
             @php

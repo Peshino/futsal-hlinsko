@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Team;
 use App\Competition;
+use App\Repositories\Players;
 use App\Repositories\Matches;
 use Illuminate\Http\Request;
 
@@ -164,6 +165,22 @@ class TeamController extends Controller
         }
 
         return redirect()->route('competitions.admin-show', ['competition' => $competition->id]);
+    }
+
+    /**
+     * Display the team players.
+     *
+     * @param  \App\Competition  $competition
+     * @param  \App\Team  $team
+     * @return \Illuminate\Http\Response
+     */
+    public function getTeamPlayers(Competition $competition, Team $team)
+    {
+        $playersRepository = new Players;
+
+        $teamPlayers = $playersRepository->getPlayersFiltered($competition, $team);
+
+        return view('teams.show', compact('competition', 'team', 'teamPlayers'));
     }
 
     /**
