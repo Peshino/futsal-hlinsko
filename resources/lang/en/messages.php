@@ -110,6 +110,7 @@ return [
     'round' => 'round',
     'to_n_round' => 'round',
     'start_time' => 'Start time',
+    'start_datetime' => 'Start date and time',
     'home_team' => 'Home team',
     'away_team' => 'Away team',
     'home_team_score' => 'Home team score',

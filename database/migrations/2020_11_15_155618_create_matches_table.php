@@ -16,8 +16,7 @@ class CreateMatchesTable extends Migration
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
             $table->integer('round');
-            $table->date('start_date');
-            $table->time('start_time');
+            $table->dateTime('start_datetime');
             $table->foreignId('home_team_id');
             $table->foreignId('away_team_id');
             $table->integer('home_team_score')->nullable();

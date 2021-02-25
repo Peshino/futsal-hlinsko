@@ -52,19 +52,25 @@
                         </div>
                     </div>
 
+                    @php
+                    $startDateTime = \Carbon\Carbon::parse($match->start_datetime);
+                    @endphp
+
                     <div class="row form-group">
                         <div class="start-date col-md">
                             <div class="floating-label">
                                 <label for="start-date">@lang('messages.start_date')</label>
                                 <input type="text" class="form-control input-datepicker" id="start-date"
-                                    name="start_date" autocomplete="off" value="{{ $match->start_date }}" required />
+                                    name="start_date" autocomplete="off" value="{{ $startDateTime->toDateString() }}"
+                                    required />
                             </div>
                         </div>
                         <div class="start-time col-md">
                             <div class="floating-label">
                                 <label for="start-time">@lang('messages.start_time')</label>
                                 <input type="time" class="form-control" id="start-time" name="start_time" min="00:00"
-                                    max="23:59" value="{{ !empty($match->start_time) ? $match->start_time : '00:00' }}"
+                                    max="23:59"
+                                    value="{{ !empty($startDateTime) ? $startDateTime->format('H:i') : '00:00' }}"
                                     required />
                             </div>
                         </div>

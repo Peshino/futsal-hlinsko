@@ -110,6 +110,7 @@ return [
     'round' => 'kolo',
     'to_n_round' => 'kola',
     'start_time' => 'Čas začátku',
+    'start_datetime' => 'Datum a čas začátku',
     'home_team' => 'Tým domácí',
     'away_team' => 'Tým hosté',
     'home_team_score' => 'Skóre domácí',

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Match extends Model
 {
     protected $fillable = [
-        'round', 'start_date', 'start_time', 'home_team_id', 'away_team_id', 'home_team_score',
+        'round', 'start_datetime', 'home_team_id', 'away_team_id', 'home_team_score',
         'away_team_score', 'home_team_halftime_score', 'away_team_halftime_score', 'user_id', 'rule_id', 'competition_id'
     ];
 

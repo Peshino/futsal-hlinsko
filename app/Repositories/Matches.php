@@ -56,17 +56,17 @@ class Matches
 
         switch ($matchesStatus) {
             case 'results':
-                $query = $query->whereDate('start_date', '<=', Carbon::now())->whereTime('start_time', '<=', Carbon::now());
+                $query = $query->where('start_datetime', '<=', Carbon::now());
                 break;
             case 'schedule':
-                $query = $query->whereDate('start_date', '>', Carbon::now())->whereTime('start_time', '>', Carbon::now());
+                $query = $query->where('start_datetime', '>', Carbon::now());
                 break;
             case 'all':
                 break;
             default:
         }
         
-        return $query->orderBy('start_date', $order)->orderBy('start_time', $order)->get();
+        return $query->orderBy('start_datetime', $order)->get();
     }
 
     public function getTeamMatchesFormFiltered(Team $team, Competition $competition = null, Rule $rule = null, $toRound = null, $matchesFormCount = 5, $order = 'desc')
@@ -91,7 +91,7 @@ class Matches
             $query = $query->where('round', '<=', $toRound);
         }
         
-        return $query->orderBy('start_date', $order)->orderBy('start_time', $order)->take($matchesFormCount)->get();
+        return $query->orderBy('start_datetime', $order)->take($matchesFormCount)->get();
     }
 
     public function getRoundsFiltered(Competition $competition = null, Rule $rule = null, $order = 'desc')

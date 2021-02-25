@@ -139,7 +139,7 @@ class MatchController extends Controller
         $attributes = $request->validate([
             'round' => 'required|numeric|min:1',
             'start_date' => 'required|date_format:Y-m-d',
-            'start_time' => 'required',
+            'start_time' => 'required|date_format:H:i',
             'home_team_id' => 'required|numeric|min:1',
             'away_team_id' => 'required|numeric|min:1',
             'home_team_score' => 'nullable|numeric',
@@ -149,6 +149,10 @@ class MatchController extends Controller
             'rule_id' => 'required|numeric|min:1',
             'competition_id' => 'required|numeric|min:1',
         ]);
+
+        $attributes['start_datetime'] = date('Y-m-d H:i:s', strtotime($attributes['start_date'] . ' ' . $attributes['start_time']));
+        unset($attributes['start_date']);
+        unset($attributes['start_time']);
 
         $matchCreated = auth()->user()->addMatch($attributes);
 
@@ -198,7 +202,7 @@ class MatchController extends Controller
         $attributes = $request->validate([
             'round' => 'required|numeric|min:1',
             'start_date' => 'required|date_format:Y-m-d',
-            'start_time' => 'required',
+            'start_time' => 'required|date_format:H:i',
             'home_team_id' => 'required|numeric|min:1',
             'away_team_id' => 'required|numeric|min:1',
             'home_team_score' => 'nullable|numeric',
@@ -208,6 +212,10 @@ class MatchController extends Controller
             'rule_id' => 'required|numeric|min:1',
             'competition_id' => 'required|numeric|min:1',
         ]);
+
+        $attributes['start_datetime'] = date('Y-m-d H:i:s', strtotime($attributes['start_date'] . ' ' . $attributes['start_time']));
+        unset($attributes['start_date']);
+        unset($attributes['start_time']);
 
         if ($match->update($attributes)) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');

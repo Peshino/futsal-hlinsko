@@ -70,10 +70,8 @@
                     <div class="mt-4 text-center">
                         <h5>
                             @php
-                            $date = \Carbon\Carbon::parse($match->start_date);
-                            echo $date->isoFormat('dddd[,] Do[.] MMMM[, ]');
-                            $time = \Carbon\Carbon::parse($match->start_time);
-                            echo $time->isoFormat('HH:mm');
+                            $startDateTime = \Carbon\Carbon::parse($match->start_datetime);
+                            echo $startDateTime->isoFormat('dddd[,] Do[.] MMMM[, ] HH:mm');
                             @endphp
                         </h5>
                     </div>
