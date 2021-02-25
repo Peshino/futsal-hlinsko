@@ -59,8 +59,8 @@ class TeamController extends Controller
         ]);
 
         $attributes['name_short'] = strtoupper($attributes['name_short']);
-        // unique_code - vytvořit nový jen pokud nepřebírám od historického týmu (pro zachování kódu týmu)
-        $attributes['unique_code'] = time() . '_' . strtolower($attributes['name_short']);
+        // history_code - vytvořit nový jen pokud nepřebírám od historického týmu (pro zachování kódu týmu)
+        $attributes['history_code'] = time() . '_' . strtolower($attributes['name_short']);
 
         $teamCreated = auth()->user()->addTeam($attributes);
 
@@ -133,10 +133,10 @@ class TeamController extends Controller
         ]);
 
         $attributes['name_short'] = strtoupper($attributes['name_short']);
-        // unique_code - vytvořit nový jen pokud nepřebírám od historického týmu (pro zachování kódu týmu)
 
-        if ($team->unique_code === null) {
-            $attributes['unique_code'] = time() . '_' . strtolower($attributes['name_short']);
+        // history_code - vytvořit nový jen pokud nepřebírám od historického týmu (pro zachování kódu týmu)
+        if ($team->history_code === null) {
+            $attributes['history_code'] = time() . '_' . strtolower($attributes['name_short']);
         }
 
         if ($team->update($attributes)) {

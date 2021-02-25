@@ -9,7 +9,7 @@ use App\Rule;
 class Team extends Model
 {
     protected $fillable = [
-        'name', 'name_short', 'unique_code', 'logo', 'web_presentation', 'primary_color_id', 'secondary_color_id', 'superior_team_id', 'inferior_team_id', 'user_id', 'competition_id'
+        'name', 'name_short', 'history_code', 'logo', 'web_presentation', 'primary_color_id', 'secondary_color_id', 'superior_team_id', 'inferior_team_id', 'user_id', 'competition_id'
     ];
 
     public function user()
@@ -20,6 +20,11 @@ class Team extends Model
     public function competition()
     {
         return $this->belongsTo(Competition::class);
+    }
+
+    public function players()
+    {
+        return $this->hasMany(Player::class);
     }
 
     public function homeMatches()

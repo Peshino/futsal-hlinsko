@@ -17,7 +17,7 @@ class CreateTeamsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('name_short');
-            $table->string('unique_code');
+            $table->string('history_code');
             $table->string('logo')->nullable();
             $table->string('web_presentation')->nullable();
             $table->foreignId('primary_color_id')->nullable();
@@ -33,8 +33,6 @@ class CreateTeamsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('competition_id')->references('id')->on('competitions')->onDelete('cascade');
             $table->timestamps();
-
-            $table->unique(['name', 'competition_id']);
 
             $table->engine = 'InnoDB'; // if foreign keys are in use
         });

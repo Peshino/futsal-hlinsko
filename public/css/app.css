@@ -12021,26 +12021,27 @@ html {
   display: none;
 }
 
-#main .match .match-score,
-#main .match .match-schedule {
+#main .match .match-score {
   font-size: 1.7rem;
   color: #5cc3ff;
   padding: 0.7rem;
 }
 
 #main .match .match-score .match-score-home,
-#main .match .match-score .match-halftime-score-home,
-#main .match .match-schedule .match-score-home,
-#main .match .match-schedule .match-halftime-score-home {
+#main .match .match-score .match-halftime-score-home {
   border-right: 1px solid #aaaaaa;
 }
 
 #main .match .match-score .match-halftime-score-home,
-#main .match .match-score .match-halftime-score-away,
-#main .match .match-schedule .match-halftime-score-home,
-#main .match .match-schedule .match-halftime-score-away {
+#main .match .match-score .match-halftime-score-away {
   font-size: 1rem;
   color: #cccccc;
+}
+
+#main .match .match-schedule {
+  font-size: 1.7rem;
+  color: #5cffb4;
+  padding: 0.7rem;
 }
 
 #main .clickable-row.match:hover {
@@ -12054,9 +12055,12 @@ html {
   color: #ffffff;
 }
 
-#main .clickable-row.match:hover .match-score,
-#main .clickable-row.match:hover .match-schedule {
+#main .clickable-row.match:hover .match-score {
   color: #99daff;
+}
+
+#main .clickable-row.match:hover .match-schedule {
+  color: #88fdc6;
 }
 
 #main .shooters {

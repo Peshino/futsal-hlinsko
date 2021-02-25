@@ -685,8 +685,7 @@
             display: none;
         }
 
-        .match-score,
-        .match-schedule {
+        .match-score {
             font-size: 1.7rem;
             color: #5cc3ff;
             padding: 0.7rem;
@@ -702,6 +701,12 @@
                 color: #cccccc;
             }
         }
+
+        .match-schedule {
+            font-size: 1.7rem;
+            color: #5cffb4;
+            padding: 0.7rem;
+        }
     }
 
     .clickable-row.match:hover {
@@ -716,9 +721,12 @@
             color: #ffffff;
         }
 
-        .match-score,
-        .match-schedule {
+        .match-score {
             color: #99daff;
+        }
+
+        .match-schedule {
+            color: #88fdc6;
         }
     }
 

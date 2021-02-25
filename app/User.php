@@ -58,6 +58,11 @@ class User extends Authenticatable
         return $this->hasMany(Team::class);
     }
 
+    public function players()
+    {
+        return $this->hasMany(Player::class);
+    }
+
     public function matches()
     {
         return $this->hasMany(Match::class);
@@ -98,6 +103,11 @@ class User extends Authenticatable
     public function addMatch($match)
     {
         return $this->matches()->create($match);
+    }
+
+    public function addPlayer($player)
+    {
+        return $this->players()->create($player);
     }
 
     public function roles()

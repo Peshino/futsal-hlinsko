@@ -28,6 +28,13 @@ $matchStartDateTimes[] = $match->start_datetime;
                 </div>
             </span>
         </div>
+        @if ($match->home_team_score === null && $match->away_team_score === null)
+        <div class="match-schedule col-4 text-center">
+            <span class="justify-content-center align-self-center">
+                {{ $startDateTime->format('H:i') }}
+            </span>
+        </div>
+        @else
         <div class="match-score col-4 text-center">
             <span class="justify-content-center align-self-center">
                 <div class="row">
@@ -40,6 +47,7 @@ $matchStartDateTimes[] = $match->start_datetime;
                 </div>
             </span>
         </div>
+        @endif
         <div class="match-team col-4 d-flex">
             <span class="justify-content-center align-self-center">
                 <div class="team-name-long">
