@@ -68,6 +68,11 @@ class User extends Authenticatable
         return $this->hasMany(Match::class);
     }
 
+    public function goals()
+    {
+        return $this->hasMany(Goal::class);
+    }
+
     public function addCompetition($competition)
     {
         return $this->competitions()->create($competition);

@@ -730,26 +730,15 @@
         }
     }
 
-    .shooters {
-        font-size: 1.1rem;
-
-        .row {
-            margin-right: 0;
-            margin-left: 0;
-            background: rgb(0, 42, 66);
-            background: -moz-linear-gradient(left, rgba(0, 42, 66, 1) 0%, rgba(0, 42, 66, 1) 50%, rgba(0, 42, 66, 1) 50%, rgba(0, 51, 81, 1) 50%, rgba(0, 51, 81, 1) 100%);
-            background: -webkit-linear-gradient(left, rgba(0, 42, 66, 1) 0%, rgba(0, 42, 66, 1) 50%, rgba(0, 42, 66, 1) 50%, rgba(0, 51, 81, 1) 50%, rgba(0, 51, 81, 1) 100%);
-            background: linear-gradient(to right, rgba(0, 42, 66, 1) 0%, rgba(0, 42, 66, 1) 50%, rgba(0, 42, 66, 1) 50%, rgba(0, 51, 81, 1) 50%, rgba(0, 51, 81, 1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#002a42', endColorstr='#003351', GradientType=1);
-        }
-
-        .shooters-home {
-            padding: 1.2rem;
-        }
-
-        .shooters-away {
-            padding: 1.2rem;
-        }
+    .goals-cards {
+        font-size: 1rem;
+        margin-right: 0;
+        margin-left: 0;
+        background: rgb(0, 42, 66);
+        background: -moz-linear-gradient(left, rgba(0, 42, 66, 1) 0%, rgba(0, 42, 66, 1) 50%, rgba(0, 42, 66, 1) 50%, rgba(0, 51, 81, 1) 50%, rgba(0, 51, 81, 1) 100%);
+        background: -webkit-linear-gradient(left, rgba(0, 42, 66, 1) 0%, rgba(0, 42, 66, 1) 50%, rgba(0, 42, 66, 1) 50%, rgba(0, 51, 81, 1) 50%, rgba(0, 51, 81, 1) 100%);
+        background: linear-gradient(to right, rgba(0, 42, 66, 1) 0%, rgba(0, 42, 66, 1) 50%, rgba(0, 42, 66, 1) 50%, rgba(0, 51, 81, 1) 50%, rgba(0, 51, 81, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#002a42', endColorstr='#003351', GradientType=1);
 
         .balls {
             color: #ffffff;
@@ -980,6 +969,10 @@
             .match-schedule {
                 font-size: 1rem;
             }
+        }
+
+        .goals-cards {
+            font-size: 0.8rem;
         }
     }
 

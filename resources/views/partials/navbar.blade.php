@@ -51,10 +51,10 @@
                     </a>
                 </li>
                 <li
-                    class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/shooters*')) ? ' active' : '' }}">
+                    class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/goals*')) ? ' active' : '' }}">
                     <a class="nav-link" href="">
                         <i class="far fa-futbol align-middle"></i>&nbsp;
-                        <span class="align-middle">@lang('messages.shooters')</span>
+                        <span class="align-middle">@lang('messages.goals')</span>
                     </a>
                 </li>
                 <li

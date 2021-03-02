@@ -12063,11 +12063,8 @@ html {
   color: #88fdc6;
 }
 
-#main .shooters {
-  font-size: 1.1rem;
-}
-
-#main .shooters .row {
+#main .goals-cards {
+  font-size: 1rem;
   margin-right: 0;
   margin-left: 0;
   background: #002a42;
@@ -12075,15 +12072,7 @@ html {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#002a42", endColorstr="#003351", GradientType=1);
 }
 
-#main .shooters .shooters-home {
-  padding: 1.2rem;
-}
-
-#main .shooters .shooters-away {
-  padding: 1.2rem;
-}
-
-#main .shooters .balls {
+#main .goals-cards .balls {
   color: #ffffff;
 }
 
@@ -12297,6 +12286,10 @@ html {
 
   #main .match .match-schedule {
     font-size: 1rem;
+  }
+
+  #main .goals-cards {
+    font-size: 0.8rem;
   }
 }
 

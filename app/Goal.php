@@ -4,15 +4,25 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Player extends Model
+class Goal extends Model
 {
     protected $fillable = [
-        'firstname', 'lastname', 'history_code', 'jersey_number', 'birthdate', 'position', 'photo', 'futis_code', 'height', 'nationality', 'team_id', 'user_id', 'competition_id'
+        'amount', 'player_id', 'team_id', 'match_id', 'user_id', 'competition_id'
     ];
+
+    public function player()
+    {
+        return $this->belongsTo(Player::class);
+    }
 
     public function team()
     {
         return $this->belongsTo(Team::class);
+    }
+
+    public function match()
+    {
+        return $this->belongsTo(Match::class);
     }
 
     public function user()
@@ -23,10 +33,5 @@ class Player extends Model
     public function competition()
     {
         return $this->belongsTo(Competition::class);
-    }
-
-    public function goals()
-    {
-        return $this->hasMany(Goal::class);
     }
 }

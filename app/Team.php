@@ -46,4 +46,9 @@ class Team extends Model
     {
         return $this->belongsTo($this);
     }
+
+    public function goals()
+    {
+        return $this->hasMany(Goal::class);
+    }
 }

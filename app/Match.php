@@ -62,4 +62,9 @@ class Match extends Model
 
         return null;
     }
+
+    public function goals()
+    {
+        return $this->hasMany(Goal::class);
+    }
 }

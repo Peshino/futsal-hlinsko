@@ -44,6 +44,8 @@ return [
     'team' => 'Tým',
     'table' => 'Tabulka',
     'shooters' => 'Střelci',
+    'goals' => 'Góly',
+    'goal' => 'Gól',
     'cards' => 'Karty',
     'matches' => 'Zápasy',
     'match' => 'Zápas',

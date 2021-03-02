@@ -134,51 +134,53 @@
                         </div>
                     </div>
                 </div>
-                <div class="shooters">
-                    <div class="row">
-                        <div class="col shooters-home">
-                            <table class="w-100">
-                                <tbody>
-                                    <tr>
-                                        <td class="balls text-right pr-3">
-                                            4 x <i class="far fa-futbol"></i>
-                                        </td>
-                                        <td>
-                                            Mášík Drahoš
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="balls text-right pr-3">
-                                            2 x <i class="far fa-futbol"></i>
-                                        </td>
-                                        <td>
-                                            Jiří Pešek
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="balls text-right pr-3">
-                                            <i class="far fa-futbol"></i>
-                                        </td>
-                                        <td>
-                                            Pavel Adámek, Michal Šally
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <div class="row goals-cards">
+                    <div class="col p-3">
+                        <div class="row">
+                            <div class="col-md goals-home mb-2">
+                                <div class="row">
+                                    <div class="col-4 text-center">
+                                        4 x <i class="far fa-futbol"></i>
+                                    </div>
+                                    <div class="col-8 text-left">
+                                        Mášík Drahoš
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md cards-home">
+                                <div class="row">
+                                    <div class="col-4 text-center">
+                                        ŽK
+                                    </div>
+                                    <div class="col-8 text-left">
+                                        Jiří Pešek
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col shooters-away">
-                            <table class="w-100">
-                                <tbody>
-                                    <tr>
-                                        <td class="balls text-right pr-3">
-                                            2 x <i class="far fa-futbol"></i>
-                                        </td>
-                                        <td>
-                                            Franta Vopršálek
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    </div>
+                    <div class="col p-3">
+                        <div class="row">
+                            <div class="col-md goals-home mb-2">
+                                <div class="row">
+                                    <div class="col-4 text-center">
+                                        4 x <i class="far fa-futbol"></i>
+                                    </div>
+                                    <div class="col-8 text-left">
+                                        Mášík Drahoš
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md cards-home">
+                                <div class="row">
+                                    <div class="col-4 text-center">
+                                        ŽK
+                                    </div>
+                                    <div class="col-8 text-left">
+                                        Jiří Pešek
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
