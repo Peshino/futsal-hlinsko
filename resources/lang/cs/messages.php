@@ -50,6 +50,7 @@ return [
     'results' => 'Výsledky',
     'schedule' => 'Rozpis',
     'players' => 'Hráči',
+    'player' => 'Hráč',
 
     'title' => 'Titulek',
     'name' => 'Název',

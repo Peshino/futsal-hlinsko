@@ -6,6 +6,7 @@ use App\Player;
 use App\Team;
 use App\Competition;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class PlayerController extends Controller
 {
@@ -56,7 +57,7 @@ class PlayerController extends Controller
             'position' => 'nullable|string|max:100',
             'photo' => 'nullable|string|max:100',
             'futis_code' => 'nullable|numeric|max:100',
-            'height' => 'nullable|numeric|max:100',
+            'height' => 'nullable|numeric|max:999',
             'nationality' => 'nullable|string|max:100',
             'team_id' => 'required|numeric|min:1',
             'competition_id' => 'required|numeric|min:1'
@@ -86,7 +87,13 @@ class PlayerController extends Controller
      */
     public function show(Competition $competition, Team $team, Player $player)
     {
-        return view('players.show', compact('competition', 'team', 'player'));
+        $age = null;
+
+        if ($player->birthdate !== null) {
+            $age = Carbon::parse($player->birthdate)->age;
+        }
+
+        return view('players.show', compact('competition', 'team', 'player', 'age'));
     }
 
     /**
@@ -134,7 +141,7 @@ class PlayerController extends Controller
             'position' => 'nullable|string|max:100',
             'photo' => 'nullable|string|max:100',
             'futis_code' => 'nullable|numeric|max:100',
-            'height' => 'nullable|numeric|max:100',
+            'height' => 'nullable|numeric|max:999',
             'nationality' => 'nullable|string|max:100',
             'team_id' => 'required|numeric|min:1',
             'competition_id' => 'required|numeric|min:1'

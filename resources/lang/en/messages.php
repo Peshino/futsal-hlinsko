@@ -50,6 +50,7 @@ return [
     'results' => 'Results',
     'schedule' => 'Schedule',
     'players' => 'Players',
+    'player' => 'Player',
 
     'title' => 'Title',
     'name' => 'Name',
