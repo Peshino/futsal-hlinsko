@@ -31,21 +31,21 @@
                 </li>
                 <li
                     class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/results*')) ? ' active' : '' }}">
-                    <a class="nav-link" href="{{ route('matches.index', [$competition->id, 'results']) }}">
+                    <a class="nav-link" href="{{ route('games.index', [$competition->id, 'results']) }}">
                         <i class="fas fa-align-center align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.results')</span>
                     </a>
                 </li>
                 <li
                     class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/schedule*')) ? ' active' : '' }}">
-                    <a class="nav-link" href="{{ route('matches.index', [$competition->id, 'schedule']) }}">
+                    <a class="nav-link" href="{{ route('games.index', [$competition->id, 'schedule']) }}">
                         <i class="far fa-calendar-alt align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.schedule')</span>
                     </a>
                 </li>
                 <li
                     class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/table*')) ? ' active' : '' }}">
-                    <a class="nav-link" href="{{ route('matches.index', [$competition->id, 'table']) }}">
+                    <a class="nav-link" href="{{ route('games.index', [$competition->id, 'table']) }}">
                         <i class="fas fa-sort-amount-down align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.table')</span>
                     </a>

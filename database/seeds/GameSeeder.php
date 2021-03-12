@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class MatchSeeder extends Seeder
+class GameSeeder extends Seeder
 {
     /**
      * Run the database seeds.

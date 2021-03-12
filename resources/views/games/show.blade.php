@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 @section('title')
-{{ $match->homeTeam->name_short }} {{ $match->home_team_score }}:{{ $match->away_team_score }}
-{{ $match->awayTeam->name_short }} | @lang('messages.app_name')
+{{ $game->homeTeam->name_short }} {{ $game->home_team_score }}:{{ $game->away_team_score }}
+{{ $game->awayTeam->name_short }} | @lang('messages.app_name')
 @endsection
 
 @section('content')
@@ -10,31 +10,31 @@
     <div class="card-header app-bg">
         <div class="row">
             <div class="col col-left">
-                @lang('messages.match')
+                @lang('messages.game')
             </div>
 
-            @can('crud_matches')
+            @can('crud_games')
             <div class="col">
                 <ul class="list-inline justify-content-end">
                     <li class="list-inline-item">
-                        <a class="crud-button" href="{{ route('matches.edit', [$competition->id, $match->id]) }}">
+                        <a class="crud-button" href="{{ route('games.edit', [$competition->id, $game->id]) }}">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <form method="POST" action="{{ route('matches.destroy', [$competition->id, $match->id]) }}"
+                        <form method="POST" action="{{ route('games.destroy', [$competition->id, $game->id]) }}"
                             autocomplete="off">
                             @csrf
                             @method('DELETE')
                             <button class="crud-button" type="button" data-toggle="modal"
-                                data-target="#modal-match-delete"><i class="far fa-trash-alt"></i></button>
+                                data-target="#modal-game-delete"><i class="far fa-trash-alt"></i></button>
 
-                            <div class="modal fade" id="modal-match-delete" tabindex="-1" role="dialog"
-                                aria-labelledby="modal-match-delete-title" aria-hidden="true">
+                            <div class="modal fade" id="modal-game-delete" tabindex="-1" role="dialog"
+                                aria-labelledby="modal-game-delete-title" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="modal-match-delete-title">
+                                            <h5 class="modal-title" id="modal-game-delete-title">
                                                 @lang('messages.really_delete')
                                             </h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -60,73 +60,73 @@
     <div class="card-body no-padding">
         <div class="content">
             <div class="content-block">
-                <div class="pt-4 pb-3 match">
+                <div class="pt-4 pb-3 game">
                     <div class="text-center">
                         <h3>
-                            @lang('messages.' . $match->rule->name ?? '' . '') - {{ $match->round ?? '' }}.
+                            @lang('messages.' . $game->rule->name ?? '' . '') - {{ $game->round ?? '' }}.
                             @lang('messages.round')
                         </h3>
                     </div>
                     <div class="mt-4 text-center">
                         <h5>
                             @php
-                            $startDateTime = \Carbon\Carbon::parse($match->start_datetime);
+                            $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
                             echo $startDateTime->isoFormat('dddd[,] Do[.] MMMM[, ] HH:mm');
                             @endphp
                         </h5>
                     </div>
                     <div class="mt-4 row">
-                        <div class="match-team col-4 d-flex flex-row-reverse">
+                        <div class="game-team col-4 d-flex flex-row-reverse">
                             <span class="justify-content-center align-self-center">
                                 <div class="team-name-long">
                                     <span class="align-middle">
-                                        <a href="{{ route('teams.show', [$competition->id, $match->homeTeam->id]) }}">
-                                            {{ $match->homeTeam->name }}
+                                        <a href="{{ route('teams.show', [$competition->id, $game->homeTeam->id]) }}">
+                                            {{ $game->homeTeam->name }}
                                         </a>
                                     </span>
                                 </div>
                                 <div class="team-name-short">
                                     <span class="align-middle">
-                                        <a href="{{ route('teams.show', [$competition->id, $match->homeTeam->id]) }}">
-                                            {{ $match->homeTeam->name_short }}
+                                        <a href="{{ route('teams.show', [$competition->id, $game->homeTeam->id]) }}">
+                                            {{ $game->homeTeam->name_short }}
                                         </a>
                                     </span>
                                 </div>
                             </span>
                         </div>
-                        <div class="match-score col-4 text-center">
+                        <div class="game-score col-4 text-center">
                             <span class="justify-content-center align-self-center">
                                 <div class="row">
-                                    <div class="col-6 match-score-home d-flex flex-row-reverse">
-                                        {{ $match->home_team_score }}
+                                    <div class="col-6 game-score-home d-flex flex-row-reverse">
+                                        {{ $game->home_team_score }}
                                     </div>
-                                    <div class="col-6 match-score-away d-flex">
-                                        {{ $match->away_team_score }}
+                                    <div class="col-6 game-score-away d-flex">
+                                        {{ $game->away_team_score }}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-6 match-halftime-score-home d-flex flex-row-reverse">
-                                        {{ $match->home_team_halftime_score }}
+                                    <div class="col-6 game-halftime-score-home d-flex flex-row-reverse">
+                                        {{ $game->home_team_halftime_score }}
                                     </div>
-                                    <div class="col-6 match-halftime-score-away d-flex">
-                                        {{ $match->away_team_halftime_score }}
+                                    <div class="col-6 game-halftime-score-away d-flex">
+                                        {{ $game->away_team_halftime_score }}
                                     </div>
                                 </div>
                             </span>
                         </div>
-                        <div class="match-team col-4 d-flex">
+                        <div class="game-team col-4 d-flex">
                             <span class="justify-content-center align-self-center">
                                 <div class="team-name-long">
                                     <span class="align-middle">
-                                        <a href="{{ route('teams.show', [$competition->id, $match->awayTeam->id]) }}">
-                                            {{ $match->awayTeam->name }}
+                                        <a href="{{ route('teams.show', [$competition->id, $game->awayTeam->id]) }}">
+                                            {{ $game->awayTeam->name }}
                                         </a>
                                     </span>
                                 </div>
                                 <div class="team-name-short">
                                     <span class="align-middle">
-                                        <a href="{{ route('teams.show', [$competition->id, $match->awayTeam->id]) }}">
-                                            {{ $match->awayTeam->name_short }}
+                                        <a href="{{ route('teams.show', [$competition->id, $game->awayTeam->id]) }}">
+                                            {{ $game->awayTeam->name_short }}
                                         </a>
                                     </span>
                                 </div>
@@ -147,7 +147,7 @@
                                     </div>
                                     <div class="col-8 text-left">
                                         <a
-                                            href="{{ route('players.show', [$competition->id, $match->homeTeam->id, $homeTeamGoal->player->id]) }}">
+                                            href="{{ route('players.show', [$competition->id, $game->homeTeam->id, $homeTeamGoal->player->id]) }}">
                                             {{ $homeTeamGoal->player->lastname }} {{ $homeTeamGoal->player->firstname }}
                                         </a>
                                     </div>
@@ -179,7 +179,7 @@
                                     </div>
                                     <div class="col-8 text-left">
                                         <a
-                                            href="{{ route('players.show', [$competition->id, $match->awayTeam->id, $awayTeamGoal->player->id]) }}">
+                                            href="{{ route('players.show', [$competition->id, $game->awayTeam->id, $awayTeamGoal->player->id]) }}">
                                             {{ $awayTeamGoal->player->firstname }} {{ $awayTeamGoal->player->lastname }}
                                         </a>
                                     </div>

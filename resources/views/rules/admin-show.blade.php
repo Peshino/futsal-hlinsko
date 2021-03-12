@@ -133,11 +133,11 @@
                 </div>
 
                 <div class="row form-group">
-                    <div class="match-duration col-md">
+                    <div class="game-duration col-md">
                         <div class="floating-label">
-                            <label for="match-duration">@lang('messages.match_duration')</label>
-                            <input type="number" class="form-control border-dark" id="match-duration"
-                                name="match_duration" min="0" value="{{ $rule->match_duration }}" disabled />
+                            <label for="game-duration">@lang('messages.game_duration')</label>
+                            <input type="number" class="form-control border-dark" id="game-duration"
+                                name="game_duration" min="0" value="{{ $rule->game_duration }}" disabled />
                         </div>
                     </div>
                     <div class="points-for-win col-md">
@@ -148,49 +148,49 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row form-group">
-                    <div class="matches-day-min col-md">
+                    <div class="games-day-min col-md">
                         <div class="floating-label">
-                            <label for="matches-day-min">@lang('messages.matches_day_min')</label>
-                            <input type="number" class="form-control border-dark" id="matches-day-min"
-                                name="matches_day_min" min="0" value="{{ $rule->matches_day_min }}" disabled />
+                            <label for="games-day-min">@lang('messages.games_day_min')</label>
+                            <input type="number" class="form-control border-dark" id="games-day-min"
+                                name="games_day_min" min="0" value="{{ $rule->games_day_min }}" disabled />
                         </div>
                     </div>
-                    <div class="matches-day-max col-md">
+                    <div class="games-day-max col-md">
                         <div class="floating-label">
-                            <label for="matches-day-max">@lang('messages.matches_day_max')</label>
-                            <input type="number" class="form-control border-dark" id="matches-day-max"
-                                name="matches_day_max" min="0" value="{{ $rule->matches_day_max }}" disabled />
+                            <label for="games-day-max">@lang('messages.games_day_max')</label>
+                            <input type="number" class="form-control border-dark" id="games-day-max"
+                                name="games_day_max" min="0" value="{{ $rule->games_day_max }}" disabled />
                         </div>
                     </div>
                 </div>
 
                 <div class="row form-group">
-                    <div class="team-matches-day-round-min col-md">
+                    <div class="team-games-day-round-min col-md">
                         <div class="floating-label">
-                            <label for="team-matches-day-round-min">@lang('messages.team_matches_day_round_min')</label>
-                            <input type="number" class="form-control border-dark" id="team-matches-day-round-min"
-                                name="team_matches_day_round_min" min="0"
-                                value="{{ $rule->team_matches_day_round_min }}" disabled />
+                            <label for="team-games-day-round-min">@lang('messages.team_games_day_round_min')</label>
+                            <input type="number" class="form-control border-dark" id="team-games-day-round-min"
+                                name="team_games_day_round_min" min="0" value="{{ $rule->team_games_day_round_min }}"
+                                disabled />
                         </div>
                     </div>
-                    <div class="team-matches-day-round-max col-md">
+                    <div class="team-games-day-round-max col-md">
                         <div class="floating-label">
-                            <label for="team-matches-day-round-max">@lang('messages.team_matches_day_round_max')</label>
-                            <input type="number" class="form-control border-dark" id="team-matches-day-round-max"
-                                name="team_matches_day_round_max" min="0"
-                                value="{{ $rule->team_matches_day_round_max }}" disabled />
+                            <label for="team-games-day-round-max">@lang('messages.team_games_day_round_max')</label>
+                            <input type="number" class="form-control border-dark" id="team-games-day-round-max"
+                                name="team_games_day_round_max" min="0" value="{{ $rule->team_games_day_round_max }}"
+                                disabled />
                         </div>
                     </div>
                 </div>
 
                 <div class="row form-group">
-                    <div class="match-days-times col-md">
+                    <div class="game-days-times col-md">
                         <div class="floating-label">
-                            <label for="match-days-times">@lang('messages.match_days_times')</label>
-                            <input type="text" class="form-control border-dark" id="match-days-times"
-                                name="match_days_times" value="{{ $rule->match_days_times }}" disabled />
+                            <label for="game-days-times">@lang('messages.game_days_times')</label>
+                            <input type="text" class="form-control border-dark" id="game-days-times"
+                                name="game_days_times" value="{{ $rule->game_days_times }}" disabled />
                         </div>
                     </div>
                     <div class="case_of_draw col-md">

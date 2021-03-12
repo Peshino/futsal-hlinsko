@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
 @section('title')
-{{ $match->homeTeam->name_short }} {{ $match->home_team_score }}:{{ $match->away_team_score }}
-{{ $match->awayTeam->name_short }} | @lang('messages.app_name')
+{{ $game->homeTeam->name_short }} {{ $game->home_team_score }}:{{ $game->away_team_score }}
+{{ $game->awayTeam->name_short }} | @lang('messages.app_name')
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
     <div class="card-header app-bg">
         <div class="row">
             <div class="col col-left">
-                @lang('messages.edit') @lang('messages.match') - {{ $competition->name }}
+                @lang('messages.edit') @lang('messages.game') - {{ $competition->name }}
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
     <div class="card-body">
         <div class="content">
             <div class="content-block">
-                <form method="POST" action="{{ route('matches.update', [$competition->id, $match->id]) }}"
+                <form method="POST" action="{{ route('games.update', [$competition->id, $game->id]) }}"
                     autocomplete="off">
                     @csrf
                     @method('PATCH')
@@ -32,7 +32,7 @@
                                 <select class="form-control" id="rule-id" name="rule_id" required>
                                     @if (count($competition->rules) > 0)
                                     @foreach ($competition->rules as $rule)
-                                    <option {{ $match->rule_id === $rule->id ? "selected" : "" }}
+                                    <option {{ $game->rule_id === $rule->id ? "selected" : "" }}
                                         value="{{ $rule->id }}">
                                         @lang('messages.' . $rule->name ?? '' . '')
                                     </option>
@@ -47,13 +47,13 @@
                             <div class="floating-label">
                                 <label for="round">@lang('messages.round')</label>
                                 <input type="number" class="form-control" id="round" name="round" min="0"
-                                    value="{{ $match->round }}" required />
+                                    value="{{ $game->round }}" required />
                             </div>
                         </div>
                     </div>
 
                     @php
-                    $startDateTime = \Carbon\Carbon::parse($match->start_datetime);
+                    $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
                     @endphp
 
                     <div class="row form-group">
@@ -85,7 +85,7 @@
                                 <select class="form-control" id="home-team-id" name="home_team_id" required>
                                     @if (count($competition->teams) > 0)
                                     @foreach ($competition->teams as $team)
-                                    <option {{ $match->home_team_id === $team->id ? "selected" : "" }}
+                                    <option {{ $game->home_team_id === $team->id ? "selected" : "" }}
                                         value="{{ $team->id }}">
                                         {{ $team->name }}
                                     </option>
@@ -104,7 +104,7 @@
                                 <select class="form-control" id="away-team-id" name="away_team_id" required>
                                     @if (count($competition->teams) > 0)
                                     @foreach ($competition->teams as $team)
-                                    <option {{ $match->away_team_id === $team->id ? "selected" : "" }}
+                                    <option {{ $game->away_team_id === $team->id ? "selected" : "" }}
                                         value="{{ $team->id }}">
                                         {{ $team->name }}
                                     </option>
@@ -122,14 +122,14 @@
                             <div class="floating-label">
                                 <label for="home-team-score">@lang('messages.home_team_score')</label>
                                 <input type="number" class="form-control" id="home-team-score" name="home_team_score"
-                                    min="0" value="{{ $match->home_team_score }}" />
+                                    min="0" value="{{ $game->home_team_score }}" />
                             </div>
                         </div>
                         <div class="away-team-score col-md">
                             <div class="floating-label">
                                 <label for="away-team-score">@lang('messages.away_team_score')</label>
                                 <input type="number" class="form-control" id="away-team-score" name="away_team_score"
-                                    min="0" value="{{ $match->away_team_score }}" />
+                                    min="0" value="{{ $game->away_team_score }}" />
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                                 <label for="home-team-halftime-score">@lang('messages.home_team_halftime_score')</label>
                                 <input type="number" class="form-control" id="home-team-halftime-score"
                                     name="home_team_halftime_score" min="0"
-                                    value="{{ $match->home_team_halftime_score }}" />
+                                    value="{{ $game->home_team_halftime_score }}" />
                             </div>
                         </div>
                         <div class="away-team-halftime-score col-md">
@@ -148,7 +148,7 @@
                                 <label for="away-team-halftime-score">@lang('messages.away_team_halftime_score')</label>
                                 <input type="number" class="form-control" id="away-team-halftime-score"
                                     name="away_team_halftime_score" min="0"
-                                    value="{{ $match->away_team_halftime_score }}" />
+                                    value="{{ $game->away_team_halftime_score }}" />
                             </div>
                         </div>
                     </div>
@@ -161,8 +161,8 @@
                                 @if (count($homeTeamGoals) > 0)
                                 @php
                                 $teamType = 'home';
-                                $players = $match->homeTeam->players;
-                                $team = $match->homeTeam;
+                                $players = $game->homeTeam->players;
+                                $team = $game->homeTeam;
                                 @endphp
                                 @foreach ($homeTeamGoals as $key => $homeTeamGoal)
                                 @php
@@ -180,8 +180,8 @@
                                 @if (count($awayTeamGoals) > 0)
                                 @php
                                 $teamType = 'away';
-                                $players = $match->awayTeam->players;
-                                $team = $match->awayTeam;
+                                $players = $game->awayTeam->players;
+                                $team = $game->awayTeam;
                                 @endphp
                                 @foreach ($awayTeamGoals as $key => $awayTeamGoal)
                                 @php
@@ -198,10 +198,10 @@
                         </div>
                     </div>
 
-                    <input type="hidden" id="competition-id" name="competition_id" value="{{ $match->competition_id }}">
+                    <input type="hidden" id="competition-id" name="competition_id" value="{{ $game->competition_id }}">
 
                     <div class="form-group text-center mt-4">
-                        <button type="submit" class="btn introduction-btn">@lang('messages.edit_match')</button>
+                        <button type="submit" class="btn introduction-btn">@lang('messages.edit_game')</button>
                     </div>
 
                     @include('partials.errors')
@@ -238,16 +238,16 @@
                                 html += '<option value=""></option>';
                 
                             if (teamType === 'home') {
-                                html += '@if (count($match->homeTeam->players) > 0)';
-                                html += '@foreach ($match->homeTeam->players as $player)';
+                                html += '@if (count($game->homeTeam->players) > 0)';
+                                html += '@foreach ($game->homeTeam->players as $player)';
                                 html += '<option value="{{ $player->id }}">';
                                     html += '{{ $player->lastname }} {{ $player->firstname }}';
                                     html += '</option>';
                                 html += '@endforeach';
                                 html += '@endif';
                             } else {
-                                html += '@if (count($match->awayTeam->players) > 0)';
-                                html += '@foreach ($match->awayTeam->players as $player)';
+                                html += '@if (count($game->awayTeam->players) > 0)';
+                                html += '@foreach ($game->awayTeam->players as $player)';
                                 html += '<option value="{{ $player->id }}">';
                                     html += '{{ $player->lastname }} {{ $player->firstname }}';
                                     html += '</option>';
@@ -264,9 +264,9 @@
                         html += '</div>';
                     html += '</div>';
                     if (teamType === 'home') {
-                        html += '<input type="hidden" name="' + teamType + '_team_goals[' + blockCount + '][team]" value="{{ $match->homeTeam->id }}">';
+                        html += '<input type="hidden" name="' + teamType + '_team_goals[' + blockCount + '][team]" value="{{ $game->homeTeam->id }}">';
                     } else {
-                        html += '<input type="hidden" name="' + teamType + '_team_goals[' + blockCount + '][team]" value="{{ $match->awayTeam->id }}">';
+                        html += '<input type="hidden" name="' + teamType + '_team_goals[' + blockCount + '][team]" value="{{ $game->awayTeam->id }}">';
                     }
                     html += '<div class="delete col-2 pt-2">';
                         html += '<span class="crud-button">';

@@ -11998,69 +11998,69 @@ html {
   color: #5cc3ff;
 }
 
-#main .match {
+#main .game {
   background-color: #1b1e21;
 }
 
-#main .match .row {
+#main .game .row {
   margin-right: 0;
   margin-left: 0;
 }
 
-#main .match .match-team {
+#main .game .game-team {
   font-size: 1.2rem;
   color: #dddddd;
   padding: 0.7rem;
   text-transform: uppercase;
 }
 
-#main .match .team-name-long {
+#main .game .team-name-long {
   display: block;
 }
 
-#main .match .team-name-short {
+#main .game .team-name-short {
   display: none;
 }
 
-#main .match .match-score {
+#main .game .game-score {
   font-size: 1.7rem;
   color: #5cc3ff;
   padding: 0.7rem;
 }
 
-#main .match .match-score .match-score-home,
-#main .match .match-score .match-halftime-score-home {
+#main .game .game-score .game-score-home,
+#main .game .game-score .game-halftime-score-home {
   border-right: 1px solid #aaaaaa;
 }
 
-#main .match .match-score .match-halftime-score-home,
-#main .match .match-score .match-halftime-score-away {
+#main .game .game-score .game-halftime-score-home,
+#main .game .game-score .game-halftime-score-away {
   font-size: 1rem;
   color: #cccccc;
 }
 
-#main .match .match-schedule {
+#main .game .game-schedule {
   font-size: 1.7rem;
   color: #5cffb4;
   padding: 0.7rem;
 }
 
-#main .clickable-row.match:hover {
+#main .clickable-row.game:hover {
   cursor: pointer;
   background: #002a42;
   background: linear-gradient(to right, #002a42 0%, #002a42 50%, #002a42 50%, #003351 50%, #003351 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#002a42", endColorstr="#003351", GradientType=1);
 }
 
-#main .clickable-row.match:hover .match-team {
+#main .clickable-row.game:hover .game-team {
   color: #ffffff;
 }
 
-#main .clickable-row.match:hover .match-score {
+#main .clickable-row.game:hover .game-score {
   color: #99daff;
 }
 
-#main .clickable-row.match:hover .match-schedule {
+#main .clickable-row.game:hover .game-schedule {
   color: #88fdc6;
 }
 
@@ -12200,7 +12200,7 @@ html {
   transition: all 0.2s;
 }
 
-#main .match-details {
+#main .game-details {
   background: #003351;
   background: linear-gradient(to bottom, #003351 0%, #002a42 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#003351", endColorstr="#002a42", GradientType=0);
@@ -12210,20 +12210,20 @@ html {
   padding: 1rem;
 }
 
-#main .match-details:not(.disabled):focus,
-#main .match-details:not(.disabled):hover {
+#main .game-details:not(.disabled):focus,
+#main .game-details:not(.disabled):hover {
   background: #00446c;
   background: linear-gradient(to bottom, #00446c 0%, #003a5c 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00446c", endColorstr="#003a5c", GradientType=0);
   cursor: pointer;
 }
 
-#main .match-details:not(.disabled):focus .match-score,
-#main .match-details:not(.disabled):hover .match-score {
+#main .game-details:not(.disabled):focus .game-score,
+#main .game-details:not(.disabled):hover .game-score {
   background: #002841;
 }
 
-#main .match-details .match-datetime {
+#main .game-details .game-datetime {
   display: block;
   color: #cccccc;
   margin-bottom: 0.6rem;
@@ -12231,36 +12231,36 @@ html {
   font-size: small;
 }
 
-#main .match-team {
+#main .game-team {
   min-width: 0;
 }
 
-#main .match-details .match-team {
+#main .game-details .game-team {
   min-width: 3.2rem;
 }
 
-#main .match-details .match-score {
+#main .game-details .game-score {
   background: #001c2e;
   padding: 0.3rem 0;
   min-width: 4.6rem;
   text-align: center;
 }
 
-#main .match-details span {
+#main .game-details span {
   display: inline-block;
   vertical-align: middle;
 }
 
 @media (max-width: 992px) {
-  #main .match .match-team {
+  #main .game .game-team {
     font-size: 1rem;
   }
 
-  #main .match .match-score {
+  #main .game .game-score {
     font-size: 1.1rem;
   }
 
-  #main .match .match-schedule {
+  #main .game .game-schedule {
     font-size: 1.1rem;
   }
 }
@@ -12276,16 +12276,16 @@ html {
     font-size: 0.8rem;
   }
 
-  #main .match .match-team {
+  #main .game .game-team {
     font-size: 0.9rem;
     text-transform: none;
   }
 
-  #main .match .match-score {
+  #main .game .game-score {
     font-size: 1rem;
   }
 
-  #main .match .match-schedule {
+  #main .game .game-schedule {
     font-size: 1rem;
   }
 
@@ -12307,15 +12307,15 @@ html {
     font-size: 0.8rem;
   }
 
-  #main .match .match-team {
+  #main .game .game-team {
     text-transform: uppercase;
   }
 
-  #main .match .team-name-long {
+  #main .game .team-name-long {
     display: none;
   }
 
-  #main .match .team-name-short {
+  #main .game .team-name-short {
     display: block;
   }
 }
@@ -12340,7 +12340,7 @@ html {
     height: 15px;
   }
 
-  #main .match {
+  #main .game {
     padding: 0.2rem 0;
   }
 }

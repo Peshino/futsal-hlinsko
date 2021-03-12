@@ -33,9 +33,9 @@ class Competition extends Model
         return $this->hasMany(Player::class);
     }
 
-    public function matches()
+    public function games()
     {
-        return $this->hasMany(Match::class);
+        return $this->hasMany(Game::class);
     }
 
     public function goals()

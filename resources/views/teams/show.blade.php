@@ -62,7 +62,7 @@
 
             @isset($teamResults)
             @php
-            $matches = $teamResults;
+            $games = $teamResults;
             @endphp
             <div class="mt-2 text-center">
                 @include('partials/results')

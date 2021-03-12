@@ -3,14 +3,14 @@
 namespace App\Repositories;
 
 use App\Season;
-use App\Match;
+use App\Game;
 use App\Competition;
 use App\Rule;
 use App\Team;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 
-class Matches
+class Games
 {
     public function __construct()
     {
@@ -18,12 +18,12 @@ class Matches
 
     public function all()
     {
-        return Match::all();
+        return Game::all();
     }
 
     public function getLastRecord()
     {
-        $record = Match::latest('created_at')->first();
+        $record = Game::latest('created_at')->first();
 
         if ($record !== null) {
             return $record;
@@ -32,29 +32,29 @@ class Matches
         return null;
     }
 
-    public function getMatchesFiltered(Competition $competition = null, Rule $rule = null, Team $team = null, $matchesStatus = 'all', $round = null, $order = 'desc')
+    public function getGamesFiltered(Competition $competition = null, Rule $rule = null, Team $team = null, $gamesStatus = 'all', $round = null, $order = 'desc')
     {
-        $query = Match::query();
+        $query = Game::query();
 
         if ($competition !== null) {
             $query = $query->where('competition_id', $competition->id);
         }
-        
+
         if ($rule !== null) {
             $query = $query->where('rule_id', $rule->id);
         }
-        
+
         if ($round !== null) {
             $query = $query->where('round', $round);
         }
-        
+
         if ($team !== null) {
-            $query = $query->where(function($query) use($team){
+            $query = $query->where(function ($query) use ($team) {
                 $query->where('home_team_id', $team->id)->orWhere('away_team_id', $team->id);
             });
         }
 
-        switch ($matchesStatus) {
+        switch ($gamesStatus) {
             case 'results':
                 $query = $query->where('start_datetime', '<=', Carbon::now());
                 break;
@@ -65,16 +65,16 @@ class Matches
                 break;
             default:
         }
-        
+
         return $query->orderBy('start_datetime', $order)->get();
     }
 
-    public function getTeamMatchesFormFiltered(Team $team, Competition $competition = null, Rule $rule = null, $toRound = null, $matchesFormCount = 5, $order = 'desc')
+    public function getTeamGamesFormFiltered(Team $team, Competition $competition = null, Rule $rule = null, $toRound = null, $gamesFormCount = 5, $order = 'desc')
     {
-        $query = Match::query();
-        
+        $query = Game::query();
+
         if ($team !== null) {
-            $query = $query->where(function($query) use($team){
+            $query = $query->where(function ($query) use ($team) {
                 $query->where('home_team_id', $team->id)->orWhere('away_team_id', $team->id);
             });
         }
@@ -82,29 +82,29 @@ class Matches
         if ($competition !== null) {
             $query = $query->where('competition_id', $competition->id);
         }
-        
+
         if ($rule !== null) {
             $query = $query->where('rule_id', $rule->id);
         }
-        
+
         if ($toRound !== null) {
             $query = $query->where('round', '<=', $toRound);
         }
-        
-        return $query->orderBy('start_datetime', $order)->take($matchesFormCount)->get();
+
+        return $query->orderBy('start_datetime', $order)->take($gamesFormCount)->get();
     }
 
     public function getRoundsFiltered(Competition $competition = null, Rule $rule = null, $order = 'desc')
     {
         $rounds = [];
-        $matches = $this->getMatchesFiltered($competition, $rule, null, 'all', null, $order);
+        $games = $this->getGamesFiltered($competition, $rule, null, 'all', null, $order);
 
-        if ($matches !== null) {
-            $matchesRounds = collect($matches)->unique('round')->values();
+        if ($games !== null) {
+            $gamesRounds = collect($games)->unique('round')->values();
 
-            if ($matchesRounds !== null) {
-                foreach ($matchesRounds as $matchesRound) {
-                    $rounds[] = $matchesRound->round;
+            if ($gamesRounds !== null) {
+                foreach ($gamesRounds as $gamesRound) {
+                    $rounds[] = $gamesRound->round;
                 }
             }
         }
@@ -118,7 +118,7 @@ class Matches
             'select 
             team_id, 
             teams.name team_name,
-            count(*) matches_count, 
+            count(*) games_count, 
             count(case when home_team_score > away_team_score then 1 end) wins, 
             count(case when home_team_score = away_team_score then 1 end) draws, 
             count(case when away_team_score > home_team_score then 1 end) losts, 
@@ -128,10 +128,10 @@ class Matches
             sum(case when home_team_score > away_team_score then ? else 0 end + 
                 case when home_team_score = away_team_score then 1 else 0 end) points
             from (
-                select home_team_id team_id, home_team_score, away_team_score from matches
+                select home_team_id team_id, home_team_score, away_team_score from games
                 where competition_id = ? and rule_id = ? and round <= ?
             union all
-                select away_team_id, away_team_score, home_team_score from matches
+                select away_team_id, away_team_score, home_team_score from games
                 where competition_id = ? and rule_id = ? and round <= ?
             ) a
             INNER JOIN Teams ON teams.id = a.team_id

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Team;
 use App\Competition;
 use App\Repositories\Players;
-use App\Repositories\Matches;
+use App\Repositories\Games;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -192,9 +192,9 @@ class TeamController extends Controller
      */
     public function getTeamResults(Competition $competition, Team $team)
     {
-        $matchesRepository = new Matches;
+        $gamesRepository = new Games;
 
-        $teamResults = $matchesRepository->getMatchesFiltered($competition, null, $team, 'results');
+        $teamResults = $gamesRepository->getGamesFiltered($competition, null, $team, 'results');
 
         return view('teams.show', compact('competition', 'team', 'teamResults'));
     }

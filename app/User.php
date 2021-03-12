@@ -63,9 +63,9 @@ class User extends Authenticatable
         return $this->hasMany(Player::class);
     }
 
-    public function matches()
+    public function games()
     {
-        return $this->hasMany(Match::class);
+        return $this->hasMany(Game::class);
     }
 
     public function goals()
@@ -105,9 +105,9 @@ class User extends Authenticatable
         return $result;
     }
 
-    public function addMatch($match)
+    public function addGame($game)
     {
-        return $this->matches()->create($match);
+        return $this->games()->create($game);
     }
 
     public function addPlayer($player)

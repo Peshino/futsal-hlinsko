@@ -27,14 +27,14 @@ class Team extends Model
         return $this->hasMany(Player::class)->orderBy('lastname', 'asc')->orderBy('firstname', 'asc');
     }
 
-    public function homeMatches()
+    public function homeGames()
     {
-        return $this->hasMany(Match::class, 'home_team_id');
+        return $this->hasMany(Game::class, 'home_team_id');
     }
 
-    public function awayMatches()
+    public function awayGames()
     {
-        return $this->hasMany(Match::class, 'away_team_id');
+        return $this->hasMany(Game::class, 'away_team_id');
     }
 
     public function superiorTeam()

@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Competition;
-use App\Match;
+use App\Game;
 use App\Rule;
 use App\Team;
 use App\Goal;
-use App\Repositories\Matches;
+use App\Repositories\Games;
 use App\Repositories\Goals;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class MatchController extends Controller
+class GameController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:crud_matches')->only(['create', 'store', 'edit', 'update', 'destroy']);
+        $this->middleware('can:crud_games')->only(['create', 'store', 'edit', 'update', 'destroy']);
     }
 
     /**
@@ -30,12 +30,12 @@ class MatchController extends Controller
         $lastRuleByPriority = $competition->getLastRuleByPriority();
 
         if ($lastRuleByPriority !== null) {
-            $lastMatchByRound = $lastRuleByPriority->getLastMatchByRound();
+            $lastGameByRound = $lastRuleByPriority->getLastGameByRound();
 
-            if ($lastMatchByRound !== null) {
-                return redirect()->route($section . '.params-index', ['competition' => $competition->id, 'rule' => $lastRuleByPriority->id, 'round' => $lastMatchByRound->round]);
+            if ($lastGameByRound !== null) {
+                return redirect()->route($section . '.params-index', ['competition' => $competition->id, 'rule' => $lastRuleByPriority->id, 'round' => $lastGameByRound->round]);
             } else {
-                return redirect()->route('matches.create', ['competition' => $competition->id]);
+                return redirect()->route('games.create', ['competition' => $competition->id]);
             }
         } else {
             return redirect()->route('rules.create', ['competition' => $competition->id]);
@@ -52,17 +52,17 @@ class MatchController extends Controller
      */
     public function resultsParamsIndex(Competition $competition, Rule $rule, $actualRound = null)
     {
-        $matchesRepository = new Matches;
-        $rounds = $matchesRepository->getRoundsFiltered($competition, $rule);
+        $gamesRepository = new Games;
+        $rounds = $gamesRepository->getRoundsFiltered($competition, $rule);
 
         if ($actualRound !== null) {
             $actualRound = (int) $actualRound;
-            $matches = $matchesRepository->getMatchesFiltered($competition, $rule, null, 'results', $actualRound);
+            $games = $gamesRepository->getGamesFiltered($competition, $rule, null, 'results', $actualRound);
         } else {
-            $matches = $matchesRepository->getMatchesFiltered($competition, $rule, null, 'results');
+            $games = $gamesRepository->getGamesFiltered($competition, $rule, null, 'results');
         }
 
-        return view('matches.results-index', compact('competition', 'rule', 'actualRound', 'matches', 'rounds'));
+        return view('games.results-index', compact('competition', 'rule', 'actualRound', 'games', 'rounds'));
     }
 
     /**
@@ -75,17 +75,17 @@ class MatchController extends Controller
      */
     public function scheduleParamsIndex(Competition $competition, Rule $rule, $actualRound = null)
     {
-        $matchesRepository = new Matches;
-        $rounds = $matchesRepository->getRoundsFiltered($competition, $rule);
+        $gamesRepository = new Games;
+        $rounds = $gamesRepository->getRoundsFiltered($competition, $rule);
 
         if ($actualRound !== null) {
             $actualRound = (int) $actualRound;
-            $matches = $matchesRepository->getMatchesFiltered($competition, $rule, null, 'schedule', $actualRound);
+            $games = $gamesRepository->getGamesFiltered($competition, $rule, null, 'schedule', $actualRound);
         } else {
-            $matches = $matchesRepository->getMatchesFiltered($competition, $rule, null, 'schedule');
+            $games = $gamesRepository->getGamesFiltered($competition, $rule, null, 'schedule');
         }
 
-        return view('matches.schedule-index', compact('competition', 'rule', 'actualRound', 'matches', 'rounds'));
+        return view('games.schedule-index', compact('competition', 'rule', 'actualRound', 'games', 'rounds'));
     }
 
     /**
@@ -96,19 +96,19 @@ class MatchController extends Controller
      */
     public function tableParamsIndex(Competition $competition, Rule $rule, $toRound = null)
     {
-        $matchesRepository = new Matches;
+        $gamesRepository = new Games;
 
-        $rounds = $matchesRepository->getRoundsFiltered($competition, $rule);
-        $tableData = $matchesRepository->getTableData($competition, $rule, $toRound);
+        $rounds = $gamesRepository->getRoundsFiltered($competition, $rule);
+        $tableData = $gamesRepository->getTableData($competition, $rule, $toRound);
 
         if (!empty($tableData)) {
             foreach ($tableData as $item) {
-                $teamForm = $matchesRepository->getTeamMatchesFormFiltered(Team::find($item->team_id), $competition, $rule, $toRound);
+                $teamForm = $gamesRepository->getTeamGamesFormFiltered(Team::find($item->team_id), $competition, $rule, $toRound);
 
                 if (count($teamForm) > 0) {
-                    foreach ($teamForm as $match) {
-                        $matchResult = $match->getResultByTeamId($item->team_id);
-                        $match->result = $matchResult;
+                    foreach ($teamForm as $game) {
+                        $gameResult = $game->getResultByTeamId($item->team_id);
+                        $game->result = $gameResult;
                     }
                 }
 
@@ -116,7 +116,7 @@ class MatchController extends Controller
             }
         }
 
-        return view('matches.table-index', compact('competition', 'rule', 'toRound', 'tableData', 'rounds'));
+        return view('games.table-index', compact('competition', 'rule', 'toRound', 'tableData', 'rounds'));
     }
 
     /**
@@ -127,7 +127,7 @@ class MatchController extends Controller
      */
     public function create(Competition $competition)
     {
-        return view('matches.create', compact('competition'));
+        return view('games.create', compact('competition'));
     }
 
     /**
@@ -157,11 +157,11 @@ class MatchController extends Controller
         unset($attributes['start_date']);
         unset($attributes['start_time']);
 
-        $matchCreated = auth()->user()->addMatch($attributes);
+        $gameCreated = auth()->user()->addGame($attributes);
 
-        if ($matchCreated !== null) {
+        if ($gameCreated !== null) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
-            return redirect()->route('matches.show', ['competition' => $competition->id, 'match' => $matchCreated->id]);
+            return redirect()->route('games.show', ['competition' => $competition->id, 'game' => $gameCreated->id]);
         } else {
             session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
             return redirect()->back();
@@ -172,32 +172,32 @@ class MatchController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Competition  $competition
-     * @param  \App\Match  $match
+     * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function show(Competition $competition, Match $match)
+    public function show(Competition $competition, Game $game)
     {
         $goalsRepository = new Goals;
-        $homeTeamGoals = $goalsRepository->getGoalsFiltered($competition, $match, $match->homeTeam);
-        $awayTeamGoals = $goalsRepository->getGoalsFiltered($competition, $match, $match->awayTeam);
+        $homeTeamGoals = $goalsRepository->getGoalsFiltered($competition, $game, $game->homeTeam);
+        $awayTeamGoals = $goalsRepository->getGoalsFiltered($competition, $game, $game->awayTeam);
 
-        return view('matches.show', compact('competition', 'match', 'homeTeamGoals', 'awayTeamGoals'));
+        return view('games.show', compact('competition', 'game', 'homeTeamGoals', 'awayTeamGoals'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Competition  $competition
-     * @param  \App\Match  $match
+     * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function edit(Competition $competition, Match $match)
+    public function edit(Competition $competition, Game $game)
     {
         $goalsRepository = new Goals;
-        $homeTeamGoals = $goalsRepository->getGoalsFiltered($competition, $match, $match->homeTeam);
-        $awayTeamGoals = $goalsRepository->getGoalsFiltered($competition, $match, $match->awayTeam);
+        $homeTeamGoals = $goalsRepository->getGoalsFiltered($competition, $game, $game->homeTeam);
+        $awayTeamGoals = $goalsRepository->getGoalsFiltered($competition, $game, $game->awayTeam);
 
-        return view('matches.edit', compact('competition', 'match', 'homeTeamGoals', 'awayTeamGoals'));
+        return view('games.edit', compact('competition', 'game', 'homeTeamGoals', 'awayTeamGoals'));
     }
 
     /**
@@ -205,14 +205,14 @@ class MatchController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Competition  $competition
-     * @param  \App\Match  $match
+     * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Competition $competition, Match $match)
+    public function update(Request $request, Competition $competition, Game $game)
     {
         $flashSuccess = true;
         $teamTypes = ['home', 'away'];
-        $toDeleteMatchGoals = $match->goals;
+        $toDeleteGameGoals = $game->goals;
 
         $attributes = $request->validate([
             'round' => 'required|numeric|min:1',
@@ -234,7 +234,7 @@ class MatchController extends Controller
         unset($attributes['start_date']);
         unset($attributes['start_time']);
 
-        if ($match->update($attributes)) {
+        if ($game->update($attributes)) {
         } else {
             $flashSuccess = false;
         }
@@ -249,7 +249,7 @@ class MatchController extends Controller
                         'amount' => 'required|numeric|min:1',
                         'team' => 'required|numeric|min:1',
                     ]);
-            
+
                     if ($validator->fails()) {
                         return redirect()->back()->withErrors($validator)->withInput();
                     }
@@ -258,14 +258,14 @@ class MatchController extends Controller
                         'amount' => $teamGoal['amount'],
                         'player_id' => $teamGoal['player'],
                         'team_id' => $teamGoal['team'],
-                        'match_id' => $match->id,
+                        'game_id' => $game->id,
                         'competition_id' => $competitionId,
                     ];
 
                     if (isset($teamGoal['id']) && !empty($teamGoal['id'])) {
                         $id = (int) $teamGoal['id'];
                         $goal = Goal::find($id);
-                        $toDeleteMatchGoals = $toDeleteMatchGoals->reject($goal);
+                        $toDeleteGameGoals = $toDeleteGameGoals->reject($goal);
 
                         if ($goal->update($attributes)) {
                         } else {
@@ -283,9 +283,9 @@ class MatchController extends Controller
             }
         }
 
-        if ($toDeleteMatchGoals->isNotEmpty()) {
-            foreach ($toDeleteMatchGoals as $toDeleteMatchGoal) {
-                if ($toDeleteMatchGoal->delete()) {
+        if ($toDeleteGameGoals->isNotEmpty()) {
+            foreach ($toDeleteGameGoals as $toDeleteGameGoal) {
+                if ($toDeleteGameGoal->delete()) {
                 } else {
                     $flashSuccess = false;
                 }
@@ -298,24 +298,24 @@ class MatchController extends Controller
             session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
         }
 
-        return redirect()->route('matches.show', ['competition' => $competition->id, 'match' => $match->id]);
+        return redirect()->route('games.show', ['competition' => $competition->id, 'game' => $game->id]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Competition  $competition
-     * @param  \App\Match  $match
+     * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Competition $competition, Match $match)
+    public function destroy(Competition $competition, Game $game)
     {
-        if ($match->delete()) {
+        if ($game->delete()) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
         } else {
             session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
         }
 
-        return redirect()->route('matches.index', ['competition' => $competition->id]);
+        return redirect()->route('games.index', ['competition' => $competition->id]);
     }
 }

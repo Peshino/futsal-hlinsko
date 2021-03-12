@@ -13,11 +13,11 @@
             </div>
             <div class="col-8 col-right d-flex flex-row-reverse">
                 <div class="row">
-                    @can('crud_matches')
+                    @can('crud_games')
                     <div class="col-auto pr-1">
                         <ul class="list-inline">
                             <li class="list-inline-item">
-                                <a class="crud-button" href="{{ route('matches.create', $competition->id) }}">
+                                <a class="crud-button" href="{{ route('games.create', $competition->id) }}">
                                     <div class="plus"></div>
                                 </a>
                             </li>
@@ -40,7 +40,7 @@
                         </a> --}}
                                 @foreach ($competition->rules as $competitionRule)
                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
-                                    href="{{ route('results.params-index', [$competition->id, $competitionRule->id, $competitionRule->getLastMatchByRound()->round]) }}">
+                                    href="{{ route('results.params-index', [$competition->id, $competitionRule->id, $competitionRule->getLastGameByRound()->round]) }}">
                                     @lang('messages.' . $competitionRule->name ?? '' . '')
                                 </a>
                                 @endforeach
@@ -80,7 +80,7 @@
     <div class="card-body no-padding">
         <div class="content text-center">
             <div class="content-block">
-                @isset($matches)
+                @isset($games)
                 <div class="mt-2 text-center">
                     @include('partials/results')
                 </div>

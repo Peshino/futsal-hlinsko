@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\Goal;
 use App\Player;
 use App\Team;
-use App\Match;
+use App\Game;
 use App\Competition;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
@@ -32,7 +32,7 @@ class Goals
         return null;
     }
 
-    public function getGoalsFiltered(Competition $competition = null, Match $match = null, Team $team = null, Player $player = null, $order = 'desc')
+    public function getGoalsFiltered(Competition $competition = null, Game $game = null, Team $team = null, Player $player = null, $order = 'desc')
     {
         $query = Goal::query();
 
@@ -40,8 +40,8 @@ class Goals
             $query = $query->where('competition_id', $competition->id);
         }
 
-        if ($match !== null) {
-            $query = $query->where('match_id', $match->id);
+        if ($game !== null) {
+            $query = $query->where('game_id', $game->id);
         }
 
         if ($team !== null) {

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Match extends Model
+class Game extends Model
 {
     protected $fillable = [
         'round', 'start_datetime', 'home_team_id', 'away_team_id', 'home_team_score',
@@ -39,7 +39,7 @@ class Match extends Model
     public function getResultByTeamId($teamId)
     {
         $teamId = (int) $teamId;
-        
+
         if ($this->home_team_id === $teamId) {
             if ($this->home_team_score > $this->away_team_score) {
                 return 'win';

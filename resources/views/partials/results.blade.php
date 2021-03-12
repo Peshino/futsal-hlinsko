@@ -1,60 +1,60 @@
-@if (count($matches) > 0)
+@if (count($games) > 0)
 @php
-$matchStartDateTimes = [];
+$gameStartDateTimes = [];
 @endphp
-@foreach ($matches as $match)
-@if (!in_array($match->start_datetime, $matchStartDateTimes))
+@foreach ($games as $game)
+@if (!in_array($game->start_datetime, $gameStartDateTimes))
 <div class="mt-4">
     <h5>
         @php
-        $startDateTime = \Carbon\Carbon::parse($match->start_datetime);
+        $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
         echo $startDateTime->isoFormat('dddd[,] Do[.] MMMM');
         @endphp
     </h5>
 </div>
 @php
-$matchStartDateTimes[] = $match->start_datetime;
+$gameStartDateTimes[] = $game->start_datetime;
 @endphp
 @endif
-<div class="match mb-3 clickable-row" data-url="{{ route('matches.show', [$competition->id, $match->id]) }}">
+<div class="game mb-3 clickable-row" data-url="{{ route('games.show', [$competition->id, $game->id]) }}">
     <div class="row">
-        <div class="match-team col-4 d-flex flex-row-reverse">
+        <div class="game-team col-4 d-flex flex-row-reverse">
             <span class="justify-content-center align-self-center">
                 <div class="team-name-long">
-                    {{ $match->homeTeam->name }}
+                    {{ $game->homeTeam->name }}
                 </div>
                 <div class="team-name-short">
-                    {{ $match->homeTeam->name_short }}
+                    {{ $game->homeTeam->name_short }}
                 </div>
             </span>
         </div>
-        @if ($match->home_team_score === null && $match->away_team_score === null)
-        <div class="match-schedule col-4 text-center">
+        @if ($game->home_team_score === null && $game->away_team_score === null)
+        <div class="game-schedule col-4 text-center">
             <span class="justify-content-center align-self-center">
                 {{ $startDateTime->format('H:i') }}
             </span>
         </div>
         @else
-        <div class="match-score col-4 text-center">
+        <div class="game-score col-4 text-center">
             <span class="justify-content-center align-self-center">
                 <div class="row">
-                    <div class="col-6 match-score-home d-flex flex-row-reverse">
-                        {{ $match->home_team_score }}
+                    <div class="col-6 game-score-home d-flex flex-row-reverse">
+                        {{ $game->home_team_score }}
                     </div>
-                    <div class="col-6 match-score-away d-flex">
-                        {{ $match->away_team_score }}
+                    <div class="col-6 game-score-away d-flex">
+                        {{ $game->away_team_score }}
                     </div>
                 </div>
             </span>
         </div>
         @endif
-        <div class="match-team col-4 d-flex">
+        <div class="game-team col-4 d-flex">
             <span class="justify-content-center align-self-center">
                 <div class="team-name-long">
-                    {{ $match->awayTeam->name }}
+                    {{ $game->awayTeam->name }}
                 </div>
                 <div class="team-name-short">
-                    {{ $match->awayTeam->name_short }}
+                    {{ $game->awayTeam->name_short }}
                 </div>
             </span>
         </div>

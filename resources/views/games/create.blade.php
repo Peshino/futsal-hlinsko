@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-@lang('messages.create_match') | @lang('messages.app_name')
+@lang('messages.create_game') | @lang('messages.app_name')
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
     <div class="card-header app-bg">
         <div class="row">
             <div class="col col-left">
-                @lang('messages.create_match') - {{ $competition->name }}
+                @lang('messages.create_game') - {{ $competition->name }}
             </div>
         </div>
     </div>
@@ -17,7 +17,7 @@
     <div class="card-body">
         <div class="content text-center">
             <div class="content-block">
-                <form method="POST" action="{{ route('matches.store', $competition->id) }}">
+                <form method="POST" action="{{ route('games.store', $competition->id) }}">
                     @csrf
 
                     <div class="row form-group">
@@ -147,7 +147,7 @@
                     <input type="hidden" id="competition-id" name="competition_id" value="{{ $competition->id }}">
 
                     <div class="form-group text-center mt-4">
-                        <button type="submit" class="btn introduction-btn">@lang('messages.create_match')</button>
+                        <button type="submit" class="btn introduction-btn">@lang('messages.create_game')</button>
                     </div>
 
                     @include('partials.errors')

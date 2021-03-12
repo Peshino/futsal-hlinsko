@@ -28,7 +28,7 @@
                         </a> --}}
                                 @foreach ($competition->rules as $competitionRule)
                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
-                                    href="{{ route('table.params-index', [$competition->id, $competitionRule->id, $competitionRule->getLastMatchByRound()->round]) }}">
+                                    href="{{ route('table.params-index', [$competition->id, $competitionRule->id, $competitionRule->getLastGameByRound()->round]) }}">
                                     @lang('messages.' . $competitionRule->name ?? '' . '')
                                 </a>
                                 @endforeach
@@ -70,7 +70,7 @@
                         <tr>
                             <th scope="col"></th>
                             <th scope="col" class="text-left">@lang('messages.team')</th>
-                            <th scope="col">@lang('messages.matches')</th>
+                            <th scope="col">@lang('messages.games')</th>
                             <th scope="col">výhry</th>
                             <th scope="col">remízy</th>
                             <th scope="col">prohry</th>
@@ -89,7 +89,7 @@
                                     {{ $tableItem->team_name }}
                                 </a>
                             </td>
-                            <td>{{ $tableItem->matches_count }}</td>
+                            <td>{{ $tableItem->games_count }}</td>
                             <td>{{ $tableItem->wins }}</td>
                             <td>{{ $tableItem->draws }}</td>
                             <td>{{ $tableItem->losts }}</td>
@@ -98,29 +98,29 @@
                             <td class="competition-color"><strong>{{ $tableItem->points }}</strong></td>
                             <td class="form">
                                 @if (count($tableItem->team_form) > 0)
-                                @foreach ($tableItem->team_form as $match)
-                                <li class="{{ $match->result }} item-tooltip">
-                                    <a href="{{ route('matches.show', [$competition->id, $match->id]) }}"
+                                @foreach ($tableItem->team_form as $game)
+                                <li class="{{ $game->result }} item-tooltip">
+                                    <a href="{{ route('games.show', [$competition->id, $game->id]) }}"
                                         class="item-tooltip-box tooltip-link tooltip-right" role="tooltip">
                                         <span class="tooltip-content">
-                                            <div class="match-details">
-                                                <span class="match-datetime">
+                                            <div class="game-details">
+                                                <span class="game-datetime">
                                                     @php
-                                                    $startDateTime = \Carbon\Carbon::parse($match->start_datetime);
+                                                    $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
                                                     echo $startDateTime->isoFormat('dddd[,] Do[.] MMMM[, ] HH:mm');
                                                     @endphp
                                                 </span>
-                                                <span class="match-team">
-                                                    <span title="{{ $match->homeTeam->name }}" class="text-uppercase">
-                                                        {{ $match->homeTeam->name_short }}
+                                                <span class="game-team">
+                                                    <span title="{{ $game->homeTeam->name }}" class="text-uppercase">
+                                                        {{ $game->homeTeam->name_short }}
                                                     </span>
                                                 </span>
-                                                <span class="match-score">
-                                                    {{ $match->home_team_score }}&nbsp;|&nbsp;{{ $match->away_team_score }}
+                                                <span class="game-score">
+                                                    {{ $game->home_team_score }}&nbsp;|&nbsp;{{ $game->away_team_score }}
                                                 </span>
-                                                <span class="match-team">
-                                                    <span title="{{ $match->awayTeam->name }}" class="text-uppercase">
-                                                        {{ $match->awayTeam->name_short }}
+                                                <span class="game-team">
+                                                    <span title="{{ $game->awayTeam->name }}" class="text-uppercase">
+                                                        {{ $game->awayTeam->name_short }}
                                                     </span>
                                                 </span>
                                             </div>
