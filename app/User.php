@@ -115,6 +115,11 @@ class User extends Authenticatable
         return $this->players()->create($player);
     }
 
+    public function addGoal($goal)
+    {
+        return $this->goals()->create($goal);
+    }
+
     public function roles()
     {
         return $this->belongsToMany(Role::class)->withTimestamps();

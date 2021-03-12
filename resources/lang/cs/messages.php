@@ -123,6 +123,8 @@ return [
     'away_team_score' => 'Skóre hosté',
     'home_team_halftime_score' => 'Skóre domácí poločas',
     'away_team_halftime_score' => 'Skóre hosté poločas',
+    'home_shooter' => 'Střelec domácí',
+    'away_shooter' => 'Střelec hosté',
     'jersey_number' => 'Číslo dresu',
     'birthdate' => 'Datum narození',
     'position' => 'Pozice',
@@ -134,6 +136,7 @@ return [
     'futis_code' => 'Futis ID',
     'height' => 'Výška',
     'nationality' => 'Národnost',
+    'amount' => 'Počet',
 
     'win' => 'Výhra',
     'draw' => 'Remíza',

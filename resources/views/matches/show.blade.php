@@ -139,17 +139,25 @@
                         <div class="row">
                             <div class="col-md goals-home mb-2">
                                 <div class="row">
-                                    <div class="col-4 text-center">
-                                        4 x <i class="far fa-futbol"></i>
+                                    @if (count($homeTeamGoals) > 0)
+                                    @foreach ($homeTeamGoals as $homeTeamGoal)
+                                    <div class="col-4 text-right">
+                                        {{ $homeTeamGoal->amount > 1 ? $homeTeamGoal->amount . ' x' : '' }} <i
+                                            class="far fa-futbol"></i>
                                     </div>
                                     <div class="col-8 text-left">
-                                        Mášík Drahoš
+                                        <a
+                                            href="{{ route('players.show', [$competition->id, $match->homeTeam->id, $homeTeamGoal->player->id]) }}">
+                                            {{ $homeTeamGoal->player->lastname }} {{ $homeTeamGoal->player->firstname }}
+                                        </a>
                                     </div>
+                                    @endforeach
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md cards-home">
                                 <div class="row">
-                                    <div class="col-4 text-center">
+                                    <div class="col-4 text-right">
                                         ŽK
                                     </div>
                                     <div class="col-8 text-left">
@@ -161,19 +169,27 @@
                     </div>
                     <div class="col p-3">
                         <div class="row">
-                            <div class="col-md goals-home mb-2">
+                            <div class="col-md goals-away mb-2">
                                 <div class="row">
-                                    <div class="col-4 text-center">
-                                        4 x <i class="far fa-futbol"></i>
+                                    @if (count($awayTeamGoals) > 0)
+                                    @foreach ($awayTeamGoals as $awayTeamGoal)
+                                    <div class="col-4 text-right">
+                                        {{ $awayTeamGoal->amount > 1 ? $awayTeamGoal->amount . ' x' : '' }} <i
+                                            class="far fa-futbol"></i>
                                     </div>
                                     <div class="col-8 text-left">
-                                        Mášík Drahoš
+                                        <a
+                                            href="{{ route('players.show', [$competition->id, $match->awayTeam->id, $awayTeamGoal->player->id]) }}">
+                                            {{ $awayTeamGoal->player->firstname }} {{ $awayTeamGoal->player->lastname }}
+                                        </a>
                                     </div>
+                                    @endforeach
+                                    @endif
                                 </div>
                             </div>
-                            <div class="col-md cards-home">
+                            <div class="col-md cards-away">
                                 <div class="row">
-                                    <div class="col-4 text-center">
+                                    <div class="col-4 text-right">
                                         ŽK
                                     </div>
                                     <div class="col-8 text-left">

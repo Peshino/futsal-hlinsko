@@ -6,8 +6,11 @@ use App\Competition;
 use App\Match;
 use App\Rule;
 use App\Team;
+use App\Goal;
 use App\Repositories\Matches;
+use App\Repositories\Goals;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MatchController extends Controller
 {
@@ -174,7 +177,11 @@ class MatchController extends Controller
      */
     public function show(Competition $competition, Match $match)
     {
-        return view('matches.show', compact('competition', 'match'));
+        $goalsRepository = new Goals;
+        $homeTeamGoals = $goalsRepository->getGoalsFiltered($competition, $match, $match->homeTeam);
+        $awayTeamGoals = $goalsRepository->getGoalsFiltered($competition, $match, $match->awayTeam);
+
+        return view('matches.show', compact('competition', 'match', 'homeTeamGoals', 'awayTeamGoals'));
     }
 
     /**
@@ -186,7 +193,11 @@ class MatchController extends Controller
      */
     public function edit(Competition $competition, Match $match)
     {
-        return view('matches.edit', compact('competition', 'match'));
+        $goalsRepository = new Goals;
+        $homeTeamGoals = $goalsRepository->getGoalsFiltered($competition, $match, $match->homeTeam);
+        $awayTeamGoals = $goalsRepository->getGoalsFiltered($competition, $match, $match->awayTeam);
+
+        return view('matches.edit', compact('competition', 'match', 'homeTeamGoals', 'awayTeamGoals'));
     }
 
     /**
@@ -199,6 +210,10 @@ class MatchController extends Controller
      */
     public function update(Request $request, Competition $competition, Match $match)
     {
+        $flashSuccess = true;
+        $teamTypes = ['home', 'away'];
+        $toDeleteMatchGoals = $match->goals;
+
         $attributes = $request->validate([
             'round' => 'required|numeric|min:1',
             'start_date' => 'required|date_format:Y-m-d',
@@ -213,11 +228,71 @@ class MatchController extends Controller
             'competition_id' => 'required|numeric|min:1',
         ]);
 
+        $competitionId = $attributes['competition_id'];
+
         $attributes['start_datetime'] = date('Y-m-d H:i:s', strtotime($attributes['start_date'] . ' ' . $attributes['start_time']));
         unset($attributes['start_date']);
         unset($attributes['start_time']);
 
         if ($match->update($attributes)) {
+        } else {
+            $flashSuccess = false;
+        }
+
+        foreach ($teamTypes as $teamType) {
+            if ($request->has($teamType . '_team_goals')) {
+                $teamGoals = $request->input($teamType . '_team_goals');
+
+                foreach ($teamGoals as $key => $teamGoal) {
+                    $validator = Validator::make($teamGoal, [
+                        'player' => 'required|numeric|min:1',
+                        'amount' => 'required|numeric|min:1',
+                        'team' => 'required|numeric|min:1',
+                    ]);
+            
+                    if ($validator->fails()) {
+                        return redirect()->back()->withErrors($validator)->withInput();
+                    }
+
+                    $attributes = [
+                        'amount' => $teamGoal['amount'],
+                        'player_id' => $teamGoal['player'],
+                        'team_id' => $teamGoal['team'],
+                        'match_id' => $match->id,
+                        'competition_id' => $competitionId,
+                    ];
+
+                    if (isset($teamGoal['id']) && !empty($teamGoal['id'])) {
+                        $id = (int) $teamGoal['id'];
+                        $goal = Goal::find($id);
+                        $toDeleteMatchGoals = $toDeleteMatchGoals->reject($goal);
+
+                        if ($goal->update($attributes)) {
+                        } else {
+                            $flashSuccess = false;
+                        }
+                    } else {
+                        $goalCreated = auth()->user()->addGoal($attributes);
+
+                        if ($goalCreated !== null) {
+                        } else {
+                            $flashSuccess = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        if ($toDeleteMatchGoals->isNotEmpty()) {
+            foreach ($toDeleteMatchGoals as $toDeleteMatchGoal) {
+                if ($toDeleteMatchGoal->delete()) {
+                } else {
+                    $flashSuccess = false;
+                }
+            }
+        }
+
+        if ($flashSuccess) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
         } else {
             session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');

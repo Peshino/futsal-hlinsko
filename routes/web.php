@@ -36,6 +36,7 @@ Route::prefix('competitions/{competition}')->group(function () {
     Route::resource('matches', 'MatchController', ['except' => [
         'index'
     ]]);
+
     Route::get('{section}', 'MatchController@index')->name('matches.index');
     Route::get('results/rules/{rule}/rounds/{round}', 'MatchController@resultsParamsIndex')->name('results.params-index');
     Route::get('schedule/rules/{rule}/rounds/{round}', 'MatchController@scheduleParamsIndex')->name('schedule.params-index');

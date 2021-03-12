@@ -153,6 +153,51 @@
                         </div>
                     </div>
 
+                    <div class="mt-4 mb-2">
+                        <h3 class="pb-1">@lang('messages.goals')</h3>
+
+                        <div class="row form-group">
+                            <div id="home-team-goals" class="home-team-goals col-md">
+                                @if (count($homeTeamGoals) > 0)
+                                @php
+                                $teamType = 'home';
+                                $players = $match->homeTeam->players;
+                                $team = $match->homeTeam;
+                                @endphp
+                                @foreach ($homeTeamGoals as $key => $homeTeamGoal)
+                                @php
+                                $teamGoal = $homeTeamGoal;
+                                @endphp
+                                @include('partials/goals-crud')
+                                @endforeach
+                                @endif
+
+                                <span class="crud-button home-team-goals-add block">
+                                    <div class="plus"></div>
+                                </span>
+                            </div>
+                            <div id="away-team-goals" class="away-team-goals col-md">
+                                @if (count($awayTeamGoals) > 0)
+                                @php
+                                $teamType = 'away';
+                                $players = $match->awayTeam->players;
+                                $team = $match->awayTeam;
+                                @endphp
+                                @foreach ($awayTeamGoals as $key => $awayTeamGoal)
+                                @php
+                                $teamGoal = $awayTeamGoal;
+                                @endphp
+                                @include('partials/goals-crud')
+                                @endforeach
+                                @endif
+
+                                <span class="crud-button away-team-goals-add block">
+                                    <div class="plus"></div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
                     <input type="hidden" id="competition-id" name="competition_id" value="{{ $match->competition_id }}">
 
                     <div class="form-group text-center mt-4">
@@ -165,4 +210,78 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    $(document).ready(function () {
+        var teamTypes = ['home', 'away'];
+        
+        $(teamTypes).each(function(index, teamType) {
+            $('.' + teamType + '-team-goals-add').click(function() {
+                var html = '',
+                    blockCount = $('.block').length;
+                
+                html += '<div class="row block">';
+                    html += '<div class="col-8">';
+                        html += '<div class="floating-label">';
+                            html += '<label for="' + teamType + '-team-goal-player-' + blockCount + '">';
+                
+                            if (teamType === 'home') {
+                                html += '@lang("messages.home_shooter")';
+                            } else {
+                                html += '@lang("messages.away_shooter")';
+                            }
+                
+                            html += '</label>';
+                            html += '<select class="form-control" id="' + teamType + '-team-goal-player-' + blockCount + '" name="' + teamType + '_team_goals[' + blockCount + '][player]">';
+                                html += '<option value=""></option>';
+                
+                            if (teamType === 'home') {
+                                html += '@if (count($match->homeTeam->players) > 0)';
+                                html += '@foreach ($match->homeTeam->players as $player)';
+                                html += '<option value="{{ $player->id }}">';
+                                    html += '{{ $player->lastname }} {{ $player->firstname }}';
+                                    html += '</option>';
+                                html += '@endforeach';
+                                html += '@endif';
+                            } else {
+                                html += '@if (count($match->awayTeam->players) > 0)';
+                                html += '@foreach ($match->awayTeam->players as $player)';
+                                html += '<option value="{{ $player->id }}">';
+                                    html += '{{ $player->lastname }} {{ $player->firstname }}';
+                                    html += '</option>';
+                                html += '@endforeach';
+                                html += '@endif';
+                            }
+                                html += '</select>';
+                            html += '</div>';
+                        html += '</div>';
+                    html += '<div class="amount col-2 no-padding">';
+                        html += '<div class="floating-label">';
+                            html += '<label for="' + teamType + '-team-goal-amount-' + blockCount + '">@lang("messages.amount")</label>';
+                            html += '<input type="number" class="form-control" id="' + teamType + '-team-goal-amount-' + blockCount + '" name="' + teamType + '_team_goals[' + blockCount + '][amount]" min="1" max="999" value="" />';
+                        html += '</div>';
+                    html += '</div>';
+                    if (teamType === 'home') {
+                        html += '<input type="hidden" name="' + teamType + '_team_goals[' + blockCount + '][team]" value="{{ $match->homeTeam->id }}">';
+                    } else {
+                        html += '<input type="hidden" name="' + teamType + '_team_goals[' + blockCount + '][team]" value="{{ $match->awayTeam->id }}">';
+                    }
+                    html += '<div class="delete col-2 pt-2">';
+                        html += '<span class="crud-button">';
+                            html += '<i class="far fa-trash-alt"></i>';
+                        html += '</span>';
+                    html += '</div>';
+                html += '</div>';
+
+                $('#' + teamType + '-team-goals .block:last').before(html);
+            });
+
+            $('#' + teamType + '-team-goals').on('click', '.delete', function() {
+                $(this).parent().remove();
+            });
+        });
+    });
+</script>
 @endsection

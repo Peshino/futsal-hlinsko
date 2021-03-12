@@ -65,6 +65,6 @@ class Match extends Model
 
     public function goals()
     {
-        return $this->hasMany(Goal::class);
+        return $this->hasMany(Goal::class)->orderBy('amount', 'desc');
     }
 }

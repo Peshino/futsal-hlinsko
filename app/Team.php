@@ -24,7 +24,7 @@ class Team extends Model
 
     public function players()
     {
-        return $this->hasMany(Player::class);
+        return $this->hasMany(Player::class)->orderBy('lastname', 'asc')->orderBy('firstname', 'asc');
     }
 
     public function homeMatches()
@@ -49,6 +49,6 @@ class Team extends Model
 
     public function goals()
     {
-        return $this->hasMany(Goal::class);
+        return $this->hasMany(Goal::class)->orderBy('amount', 'desc');
     }
 }

@@ -123,6 +123,8 @@ return [
     'away_team_score' => 'Away team score',
     'home_team_halftime_score' => 'Home team halftime score',
     'away_team_halftime_score' => 'Away team halftime score',
+    'home_shooter' => 'Home shooter',
+    'away_shooter' => 'Away shooter',
     'jersey_number' => 'Jersey number',
     'birthdate' => 'Birthdate',
     'position' => 'Position',
@@ -134,6 +136,7 @@ return [
     'futis_code' => 'Futis ID',
     'height' => 'Height',
     'nationality' => 'Nationality',
+    'amount' => 'Amount',
 
     'win' => 'Win',
     'draw' => 'Draw',
