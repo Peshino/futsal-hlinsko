@@ -234,7 +234,7 @@
                             }
                 
                             html += '</label>';
-                            html += '<select class="form-control" id="' + teamType + '-team-goal-player-' + blockCount + '" name="' + teamType + '_team_goals[' + blockCount + '][player]">';
+                            html += '<select class="form-control" id="' + teamType + '-team-goal-player-' + blockCount + '" name="' + teamType + '_team_goals[' + blockCount + '][player]" required>';
                                 html += '<option value=""></option>';
                 
                             if (teamType === 'home') {
@@ -260,7 +260,7 @@
                     html += '<div class="amount col-2 no-padding">';
                         html += '<div class="floating-label">';
                             html += '<label for="' + teamType + '-team-goal-amount-' + blockCount + '">@lang("messages.amount")</label>';
-                            html += '<input type="number" class="form-control" id="' + teamType + '-team-goal-amount-' + blockCount + '" name="' + teamType + '_team_goals[' + blockCount + '][amount]" min="1" max="999" value="" />';
+                            html += '<input type="number" class="form-control" id="' + teamType + '-team-goal-amount-' + blockCount + '" name="' + teamType + '_team_goals[' + blockCount + '][amount]" min="1" max="999" value="" required />';
                         html += '</div>';
                     html += '</div>';
                     if (teamType === 'home') {

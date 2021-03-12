@@ -52,7 +52,7 @@
                 </li>
                 <li
                     class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/goals*')) ? ' active' : '' }}">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{{ route('goals.index', $competition->id) }}">
                         <i class="far fa-futbol align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.goals')</span>
                     </a>

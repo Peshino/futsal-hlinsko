@@ -3,18 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Goal;
+use App\Competition;
 use Illuminate\Http\Request;
 
 class GoalController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('can:crud_goals')->only(['create', 'store', 'edit', 'update', 'destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Competition  $competition
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Competition $competition)
     {
-        //
+        return view('goals.index', compact('competition'));
     }
 
     /**

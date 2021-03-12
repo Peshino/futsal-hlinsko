@@ -5,7 +5,7 @@
                 @lang('messages.' . $teamType . '_shooter')
             </label>
             <select class="form-control" id="{{ $teamType }}-team-goal-player-{{ $key }}"
-                name="{{ $teamType }}_team_goals[{{ $key }}][player]">
+                name="{{ $teamType }}_team_goals[{{ $key }}][player]" required>
                 <option value=""></option>
                 @if (count($players) > 0)
                 @foreach ($players as $player)
@@ -22,7 +22,7 @@
         <div class="floating-label">
             <label for="{{ $teamType }}-team-goal-amount-{{ $key }}">@lang('messages.amount')</label>
             <input type="number" class="form-control" id="{{ $teamType }}-team-goal-amount-{{ $key }}"
-                name="{{ $teamType }}_team_goals[{{ $key }}][amount]" min="1" max="999" value="{{ $teamGoal->amount }}" />
+                name="{{ $teamType }}_team_goals[{{ $key }}][amount]" min="1" max="999" value="{{ $teamGoal->amount }}" required />
         </div>
     </div>
 

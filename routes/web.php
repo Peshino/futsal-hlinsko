@@ -23,6 +23,8 @@ Route::resource('competition-styles', 'CompetitionStyleController');
 
 Route::prefix('competitions/{competition}')->group(function () {
     Route::resource('teams', 'TeamController');
+    Route::resource('rules', 'RuleController');
+    Route::resource('goals', 'GoalController');
 
     Route::prefix('teams/{team}')->group(function () {
         Route::resource('players', 'PlayerController', ['except' => [
@@ -42,8 +44,6 @@ Route::prefix('competitions/{competition}')->group(function () {
     Route::get('schedule/rules/{rule}/rounds/{round}', 'GameController@scheduleParamsIndex')->name('schedule.params-index');
     Route::get('table/rules/{rule}/rounds/{round}', 'GameController@tableParamsIndex')->name('table.params-index');
     // Route::get('schedule', 'GameController@scheduleIndex')->name('games.schedule-index');
-
-    Route::resource('rules', 'RuleController');
 });
 
 Route::prefix('admin')->middleware('can:manage_admin_routes')->group(function () {
