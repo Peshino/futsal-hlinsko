@@ -16,6 +16,11 @@ class Rule extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function goals()
+    {
+        return $this->hasMany(Goal::class);
+    }
+
     public function competition()
     {
         return $this->belongsTo(Competition::class);

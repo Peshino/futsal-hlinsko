@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Goal extends Model
 {
     protected $fillable = [
-        'amount', 'player_id', 'team_id', 'game_id', 'user_id', 'competition_id'
+        'amount', 'player_id', 'team_id', 'game_id', 'user_id', 'rule_id', 'competition_id'
     ];
 
     public function player()
@@ -28,6 +28,11 @@ class Goal extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function rule()
+    {
+        return $this->belongsTo(Rule::class);
     }
 
     public function competition()

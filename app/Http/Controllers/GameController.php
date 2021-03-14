@@ -178,8 +178,8 @@ class GameController extends Controller
     public function show(Competition $competition, Game $game)
     {
         $goalsRepository = new Goals;
-        $homeTeamGoals = $goalsRepository->getGoalsFiltered($competition, $game, $game->homeTeam);
-        $awayTeamGoals = $goalsRepository->getGoalsFiltered($competition, $game, $game->awayTeam);
+        $homeTeamGoals = $goalsRepository->getGoalsFiltered($competition, null, $game, $game->homeTeam);
+        $awayTeamGoals = $goalsRepository->getGoalsFiltered($competition, null, $game, $game->awayTeam);
 
         return view('games.show', compact('competition', 'game', 'homeTeamGoals', 'awayTeamGoals'));
     }
@@ -194,8 +194,8 @@ class GameController extends Controller
     public function edit(Competition $competition, Game $game)
     {
         $goalsRepository = new Goals;
-        $homeTeamGoals = $goalsRepository->getGoalsFiltered($competition, $game, $game->homeTeam);
-        $awayTeamGoals = $goalsRepository->getGoalsFiltered($competition, $game, $game->awayTeam);
+        $homeTeamGoals = $goalsRepository->getGoalsFiltered($competition, null, $game, $game->homeTeam);
+        $awayTeamGoals = $goalsRepository->getGoalsFiltered($competition, null, $game, $game->awayTeam);
 
         return view('games.edit', compact('competition', 'game', 'homeTeamGoals', 'awayTeamGoals'));
     }
@@ -228,6 +228,7 @@ class GameController extends Controller
             'competition_id' => 'required|numeric|min:1',
         ]);
 
+        $ruleId = $attributes['rule_id'];
         $competitionId = $attributes['competition_id'];
 
         $attributes['start_datetime'] = date('Y-m-d H:i:s', strtotime($attributes['start_date'] . ' ' . $attributes['start_time']));
@@ -259,6 +260,7 @@ class GameController extends Controller
                         'player_id' => $teamGoal['player'],
                         'team_id' => $teamGoal['team'],
                         'game_id' => $game->id,
+                        'rule_id' => $ruleId,
                         'competition_id' => $competitionId,
                     ];
 

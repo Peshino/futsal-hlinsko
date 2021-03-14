@@ -198,6 +198,7 @@
                         </div>
                     </div>
 
+                    <input type="hidden" id="rule-id" name="rule_id" value="{{ $game->rule_id }}">
                     <input type="hidden" id="competition-id" name="competition_id" value="{{ $game->competition_id }}">
 
                     <div class="form-group text-center mt-4">

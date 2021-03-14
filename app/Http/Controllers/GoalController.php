@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Team;
 use App\Goal;
+use App\Rule;
 use App\Competition;
+use App\Repositories\Goals;
 use Illuminate\Http\Request;
 
 class GoalController extends Controller
@@ -17,11 +20,26 @@ class GoalController extends Controller
      * Display a listing of the resource.
      *
      * @param  \App\Competition  $competition
+     * @param  \App\Rule  $rule
+     * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function index(Competition $competition)
+    public function index(Competition $competition, Rule $rule = null, Team $team = null)
     {
-        return view('goals.index', compact('competition'));
+        $goalsRepository = new Goals;
+        $rule = $rule === null ? $competition->getLastRuleByPriority() : $rule;
+
+        if ($rule !== null) {
+            if ($team !== null) {
+                $goals = $goalsRepository->getSummedGoalsFiltered($competition, $rule, null, $team);
+            } else {
+                $goals = $goalsRepository->getSummedGoalsFiltered($competition, $rule);
+            }
+
+            return view('goals.index', compact('competition', 'goals', 'rule', 'team'));
+        } else {
+            return redirect()->route('rules.create', ['competition' => $competition->id]);
+        }
     }
 
     /**

@@ -1,9 +1,12 @@
 @if (count($games) > 0)
 @php
-$gameStartDateTimes = [];
+$gameStartDates = [];
 @endphp
 @foreach ($games as $game)
-@if (!in_array($game->start_datetime, $gameStartDateTimes))
+@php
+$gameStartDate = \Carbon\Carbon::parse($game->start_datetime)->toDateString();
+@endphp
+@if (!in_array($gameStartDate, $gameStartDates))
 <div class="mt-4">
     <h5>
         @php
@@ -13,7 +16,7 @@ $gameStartDateTimes = [];
     </h5>
 </div>
 @php
-$gameStartDateTimes[] = $game->start_datetime;
+$gameStartDates[] = $gameStartDate;
 @endphp
 @endif
 <div class="game mb-3 clickable-row" data-url="{{ route('games.show', [$competition->id, $game->id]) }}">

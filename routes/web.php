@@ -39,11 +39,12 @@ Route::prefix('competitions/{competition}')->group(function () {
         'index'
     ]]);
 
-    Route::get('{section}', 'GameController@index')->name('games.index');
     Route::get('results/rules/{rule}/rounds/{round}', 'GameController@resultsParamsIndex')->name('results.params-index');
     Route::get('schedule/rules/{rule}/rounds/{round}', 'GameController@scheduleParamsIndex')->name('schedule.params-index');
     Route::get('table/rules/{rule}/rounds/{round}', 'GameController@tableParamsIndex')->name('table.params-index');
+    Route::get('goals/rules/{rule}', 'GoalController@index')->name('goals.params-index'); // do budoucna přidat /teams/{team}
     // Route::get('schedule', 'GameController@scheduleIndex')->name('games.schedule-index');
+    Route::get('{section}', 'GameController@index')->name('games.index'); // must be the last one
 });
 
 Route::prefix('admin')->middleware('can:manage_admin_routes')->group(function () {

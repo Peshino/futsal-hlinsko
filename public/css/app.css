@@ -11289,6 +11289,7 @@ html {
 .navbar-dark .navbar-nav .nav-link.show,
 .navbar-dark .navbar-nav .nav-link.active {
   color: #ffffff;
+  border-top: 1px solid #ffffff;
 }
 
 .navbar-nav .dropdown-menu {
