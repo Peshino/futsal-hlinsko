@@ -17,20 +17,45 @@
                     @if (count($competition->rules) > 0)
                     <div class="col-auto pr-1">
                         <div class="dropdown">
-                            <button class="control-button dropdown-toggle" type="button"
-                                id="le-component-vehicle-type-id" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
+                            <button class="control-button dropdown-toggle" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 @lang('messages.' . $rule->name ?? '' . '')
                             </button>
-                            <div class="dropdown-menu dropdown-menu-right"
-                                aria-labelledby="le-component-vehicle-type-id">
+                            <div class="dropdown-menu dropdown-menu-right">
                                 {{-- <a class="dropdown-item" href="">
                             @lang('messages.all')
                         </a> --}}
                                 @foreach ($competition->rules as $competitionRule)
                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
-                                    href="{{ route('goals.params-index', [$competition->id, $competitionRule->id]) }}">
+                                    href="{{ route('goals.rule-index', [$competition->id, $competitionRule->id, null]) }}">
                                     @lang('messages.' . $competitionRule->name ?? '' . '')
+                                </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
+                    @if (count($goalsTeams) > 0)
+                    <div class="col-auto pr-1">
+                        <div class="dropdown">
+                            <button class="control-button dropdown-toggle" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                @if ($team === null)
+                                @lang('messages.teams')
+                                @else
+                                {{ $team->name_short ?? '' }}
+                                @endif
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item"
+                                    href="{{ route('goals.rule-index', [$competition->id, $rule->id, null]) }}">
+                                    @lang('messages.all')
+                                </a>
+                                @foreach ($goalsTeams as $goalsTeam)
+                                <a class="dropdown-item{{ ($team !== null && $goalsTeam->id === $team->id) ? " active" : "" }}"
+                                    href="{{ route('goals.team-index', [$competition->id, $rule->id, $goalsTeam->id]) }}">
+                                    {{ $goalsTeam->name ?? '' }}
                                 </a>
                                 @endforeach
                             </div>

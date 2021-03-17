@@ -30,13 +30,14 @@ class GoalController extends Controller
         $rule = $rule === null ? $competition->getLastRuleByPriority() : $rule;
 
         if ($rule !== null) {
+            $goals = $goalsRepository->getSummedGoalsFiltered($competition, $rule);
+            $goalsTeams = Team::whereIn('id', $goals->unique('team_id')->pluck('team_id')->toArray())->get();
+
             if ($team !== null) {
                 $goals = $goalsRepository->getSummedGoalsFiltered($competition, $rule, null, $team);
-            } else {
-                $goals = $goalsRepository->getSummedGoalsFiltered($competition, $rule);
             }
 
-            return view('goals.index', compact('competition', 'goals', 'rule', 'team'));
+            return view('goals.index', compact('competition', 'goals', 'rule', 'goalsTeams', 'team'));
         } else {
             return redirect()->route('rules.create', ['competition' => $competition->id]);
         }

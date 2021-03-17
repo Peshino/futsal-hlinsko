@@ -42,7 +42,8 @@ Route::prefix('competitions/{competition}')->group(function () {
     Route::get('results/rules/{rule}/rounds/{round}', 'GameController@resultsParamsIndex')->name('results.params-index');
     Route::get('schedule/rules/{rule}/rounds/{round}', 'GameController@scheduleParamsIndex')->name('schedule.params-index');
     Route::get('table/rules/{rule}/rounds/{round}', 'GameController@tableParamsIndex')->name('table.params-index');
-    Route::get('goals/rules/{rule}', 'GoalController@index')->name('goals.params-index'); // do budoucna přidat /teams/{team}
+    Route::get('goals/rules/{rule}', 'GoalController@index')->name('goals.rule-index');
+    Route::get('goals/rules/{rule}/teams/{team}', 'GoalController@index')->name('goals.team-index');
     // Route::get('schedule', 'GameController@scheduleIndex')->name('games.schedule-index');
     Route::get('{section}', 'GameController@index')->name('games.index'); // must be the last one
 });

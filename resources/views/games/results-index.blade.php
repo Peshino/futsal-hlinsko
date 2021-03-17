@@ -28,13 +28,11 @@
                     @if (count($competition->rules) > 0)
                     <div class="col-auto pr-1">
                         <div class="dropdown">
-                            <button class="control-button dropdown-toggle" type="button"
-                                id="le-component-vehicle-type-id" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
+                            <button class="control-button dropdown-toggle" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 @lang('messages.' . $rule->name ?? '' . '')
                             </button>
-                            <div class="dropdown-menu dropdown-menu-right"
-                                aria-labelledby="le-component-vehicle-type-id">
+                            <div class="dropdown-menu dropdown-menu-right">
                                 {{-- <a class="dropdown-item" href="">
                             @lang('messages.all')
                         </a> --}}
@@ -52,13 +50,11 @@
                     @if (count($rounds) > 0)
                     <div class="col-auto">
                         <div class="dropdown pr-1">
-                            <button class="control-button dropdown-toggle" type="button"
-                                id="le-component-vehicle-type-id" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
+                            <button class="control-button dropdown-toggle" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 {{ $actualRound }}. @lang('messages.round')
                             </button>
-                            <div class="dropdown-menu dropdown-menu-right"
-                                aria-labelledby="le-component-vehicle-type-id">
+                            <div class="dropdown-menu dropdown-menu-right">
                                 {{-- <a class="dropdown-item" href="">
                             @lang('messages.all')
                         </a> --}}
