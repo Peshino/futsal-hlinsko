@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Game extends Model
 {
@@ -36,6 +37,11 @@ class Game extends Model
         return $this->belongsTo(Team::class);
     }
 
+    public function goals()
+    {
+        return $this->hasMany(Goal::class)->orderBy('amount', 'desc');
+    }
+
     public function getResultByTeamId($teamId)
     {
         $teamId = (int) $teamId;
@@ -63,8 +69,25 @@ class Game extends Model
         return null;
     }
 
-    public function goals()
+    public function hasScore()
     {
-        return $this->hasMany(Goal::class)->orderBy('amount', 'desc');
+        if ($this->home_team_score !== null && $this->away_team_score !== null) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function isCurrentlyBeingPlayed()
+    {
+        $startDateTime = Carbon::parse($this->start_datetime);
+        $startDateTimeCarbon = Carbon::parse($this->start_datetime);
+        $endDateTime = $startDateTimeCarbon->addMinutes($this->rule->game_duration);
+
+        if ($startDateTime->lte(Carbon::now()) && $endDateTime->gte(Carbon::now())) {
+            return true;
+        }
+
+        return false;
     }
 }

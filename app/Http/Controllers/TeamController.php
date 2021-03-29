@@ -198,4 +198,20 @@ class TeamController extends Controller
 
         return view('teams.show', compact('competition', 'team', 'teamResults'));
     }
+
+    /**
+     * Display the team schedule.
+     *
+     * @param  \App\Competition  $competition
+     * @param  \App\Team  $team
+     * @return \Illuminate\Http\Response
+     */
+    public function getTeamSchedule(Competition $competition, Team $team)
+    {
+        $gamesRepository = new Games;
+
+        $teamSchedule = $gamesRepository->getGamesFiltered($competition, null, $team, 'schedule');
+
+        return view('teams.show', compact('competition', 'team', 'teamSchedule'));
+    }
 }

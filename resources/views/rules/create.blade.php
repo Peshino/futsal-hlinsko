@@ -97,16 +97,17 @@
                     <div class="row form-group">
                         <div class="game-duration col-md">
                             <div class="floating-label">
-                                <label for="game-duration">@lang('messages.game_duration')</label>
+                                <label for="game-duration">@lang('messages.game_duration')
+                                    (@lang('messages.minutes'))</label>
                                 <input type="number" class="form-control" id="game-duration" name="game_duration"
-                                    min="0" value="{{ old('game_duration') }}" />
+                                    min="0" value="{{ old('game_duration') }}" required />
                             </div>
                         </div>
                         <div class="points-for-win col-md">
                             <div class="floating-label">
                                 <label for="points-for-win">@lang('messages.points_for_win')</label>
                                 <input type="number" class="form-control" id="points-for-win" name="points_for_win"
-                                    min="0" value="{{ old('points_for_win') }}" />
+                                    min="0" value="{{ old('points_for_win') }}" required />
                             </div>
                         </div>
                     </div>

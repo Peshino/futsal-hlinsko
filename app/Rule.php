@@ -35,4 +35,24 @@ class Rule extends Model
     {
         return $this->games()->latest('round')->first();
     }
+
+    public function results()
+    {
+        return $this->hasMany(Game::class)->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $this->game_duration . ' MINUTE) <= NOW()');
+    }
+
+    public function getLastResultByRound()
+    {
+        return $this->results()->latest('round')->first();
+    }
+
+    public function schedule()
+    {
+        return $this->hasMany(Game::class)->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $this->game_duration . ' MINUTE) > NOW()');
+    }
+
+    public function getFirstScheduleByRound()
+    {
+        return $this->schedule()->first();
+    }
 }

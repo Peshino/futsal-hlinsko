@@ -17,9 +17,15 @@
     <div class="card-body">
         <div class="content">
             <div class="content-block">
-                <h2>na homepagi soutěže by mohlo být:</h2>
-                <ul>
-                    <li>důležitá upozornění od administrátora</li>
+                <h3>Zde na homepagi soutěže by mohlo být:</h3>
+                <ul class="pl-5">
+                    <li>důležitá upozornění od administrátora, novinky přidané do aplikace</li>
+                    <ul class="pl-5">
+                        <li>toto by mohlo být komentovatelné a likovatelné přihlášenými osobami, případně vytvořit
+                            možnost přihlášení skrze facebook?</li>
+                        <li>cílem je aplikaci více socializovat, udělat věci, které by zde registrovaní mohli dělat -
+                            větší návštěvnost a sledovanost</li>
+                    </ul>
                     <li>seznam týmů</li>
                     <li>první tým postupové skupiny, první tým sestupové skupiny (případně aktuálně postupující a
                         aktuálně sestupující tým)</li>

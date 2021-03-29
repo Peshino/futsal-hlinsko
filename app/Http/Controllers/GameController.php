@@ -30,10 +30,20 @@ class GameController extends Controller
         $lastRuleByPriority = $competition->getLastRuleByPriority();
 
         if ($lastRuleByPriority !== null) {
-            $lastGameByRound = $lastRuleByPriority->getLastGameByRound();
+            switch ($section) {
+                case 'results':
+                case 'table':
+                    $game = $lastRuleByPriority->getLastResultByRound();
+                    break;
+                case 'schedule':
+                    $game = $lastRuleByPriority->getFirstScheduleByRound();
+                    break;
+                default:
+                    $game = $lastRuleByPriority->getLastGameByRound();
+            }
 
-            if ($lastGameByRound !== null) {
-                return redirect()->route($section . '.params-index', ['competition' => $competition->id, 'rule' => $lastRuleByPriority->id, 'round' => $lastGameByRound->round]);
+            if ($game !== null) {
+                return redirect()->route($section . '.params-index', ['competition' => $competition->id, 'rule' => $lastRuleByPriority->id, 'round' => $game->round]);
             } else {
                 return redirect()->route('games.create', ['competition' => $competition->id]);
             }
@@ -53,7 +63,7 @@ class GameController extends Controller
     public function resultsParamsIndex(Competition $competition, Rule $rule, $actualRound = null)
     {
         $gamesRepository = new Games;
-        $rounds = $gamesRepository->getRoundsFiltered($competition, $rule);
+        $rounds = $gamesRepository->getRoundsFiltered($competition, $rule, 'results');
 
         if ($actualRound !== null) {
             $actualRound = (int) $actualRound;
@@ -76,7 +86,7 @@ class GameController extends Controller
     public function scheduleParamsIndex(Competition $competition, Rule $rule, $actualRound = null)
     {
         $gamesRepository = new Games;
-        $rounds = $gamesRepository->getRoundsFiltered($competition, $rule);
+        $rounds = $gamesRepository->getRoundsFiltered($competition, $rule, 'schedule');
 
         if ($actualRound !== null) {
             $actualRound = (int) $actualRound;
@@ -98,7 +108,7 @@ class GameController extends Controller
     {
         $gamesRepository = new Games;
 
-        $rounds = $gamesRepository->getRoundsFiltered($competition, $rule);
+        $rounds = $gamesRepository->getRoundsFiltered($competition, $rule, 'results');
         $tableData = $gamesRepository->getTableData($competition, $rule, $toRound);
 
         if (!empty($tableData)) {

@@ -135,7 +135,8 @@
                 <div class="row form-group">
                     <div class="game-duration col-md">
                         <div class="floating-label">
-                            <label for="game-duration">@lang('messages.game_duration')</label>
+                            <label for="game-duration">@lang('messages.game_duration')
+                                (@lang('messages.minutes'))</label>
                             <input type="number" class="form-control border-dark" id="game-duration"
                                 name="game_duration" min="0" value="{{ $rule->game_duration }}" disabled />
                         </div>

@@ -42,7 +42,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link{{ (request()->is('*teams/' . $team->id . '/schedule')) ? ' active' : '' }}"
-                            href="#">@lang('messages.schedule')</a>
+                            href="{{ route('team-schedule', [$competition->id, $team->id]) }}">@lang('messages.schedule')</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link{{ (request()->is('*teams/' . $team->id . '/statistics')) ? ' active' : '' }}"
@@ -65,7 +65,16 @@
             $games = $teamResults;
             @endphp
             <div class="mt-2 text-center">
-                @include('partials/results')
+                @include('partials/games')
+            </div>
+            @endisset
+
+            @isset($teamSchedule)
+            @php
+            $games = $teamSchedule;
+            @endphp
+            <div class="mt-2 text-center">
+                @include('partials/games')
             </div>
             @endisset
         </div>

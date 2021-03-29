@@ -25,10 +25,14 @@
                             @lang('messages.all')
                         </a> --}}
                                 @foreach ($competition->rules as $competitionRule)
+                                @if ($competitionRule->getLastResultByRound() !== null)
                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
-                                    href="{{ route('table.params-index', [$competition->id, $competitionRule->id, $competitionRule->getLastGameByRound()->round]) }}">
+                                    href="{{ route('table.params-index', [$competition->id, $competitionRule->id, $competitionRule->getLastResultByRound()->round]) }}">
                                     @lang('messages.' . $competitionRule->name ?? '' . '')
                                 </a>
+                                @else
+                                @continue
+                                @endif
                                 @endforeach
                             </div>
                         </div>

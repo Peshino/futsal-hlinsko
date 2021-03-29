@@ -37,10 +37,14 @@
                             @lang('messages.all')
                         </a> --}}
                                 @foreach ($competition->rules as $competitionRule)
+                                @if ($competitionRule->getLastResultByRound() !== null)
                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
-                                    href="{{ route('results.params-index', [$competition->id, $competitionRule->id, $competitionRule->getLastGameByRound()->round]) }}">
+                                    href="{{ route('results.params-index', [$competition->id, $competitionRule->id, $competitionRule->getLastResultByRound()->round]) }}">
                                     @lang('messages.' . $competitionRule->name ?? '' . '')
                                 </a>
+                                @else
+                                @continue
+                                @endif
                                 @endforeach
                             </div>
                         </div>
@@ -78,7 +82,7 @@
             <div class="content-block">
                 @isset($games)
                 <div class="mt-2 text-center">
-                    @include('partials/results')
+                    @include('partials/games')
                 </div>
                 @endisset
             </div>

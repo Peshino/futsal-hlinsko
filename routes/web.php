@@ -33,6 +33,7 @@ Route::prefix('competitions/{competition}')->group(function () {
 
         Route::get('players', 'TeamController@getTeamPlayers')->name('team-players');
         Route::get('results', 'TeamController@getTeamResults')->name('team-results');
+        Route::get('schedule', 'TeamController@getTeamSchedule')->name('team-schedule');
     });
 
     Route::resource('games', 'GameController', ['except' => [

@@ -56,10 +56,18 @@ class Games
 
         switch ($gamesStatus) {
             case 'results':
-                $query = $query->where('start_datetime', '<=', Carbon::now());
+                if ($rule !== null) {
+                    $query = $query->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $rule->game_duration . ' MINUTE) <= NOW()');
+                } else {
+                    $query = $query->where('start_datetime', '<=', Carbon::now());
+                }
                 break;
             case 'schedule':
-                $query = $query->where('start_datetime', '>', Carbon::now());
+                if ($rule !== null) {
+                    $query = $query->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $rule->game_duration . ' MINUTE) > NOW()');
+                } else {
+                    $query = $query->where('start_datetime', '>', Carbon::now());
+                }
                 break;
             case 'all':
                 break;
@@ -94,10 +102,10 @@ class Games
         return $query->orderBy('start_datetime', $order)->take($gamesFormCount)->get();
     }
 
-    public function getRoundsFiltered(Competition $competition = null, Rule $rule = null, $order = 'desc')
+    public function getRoundsFiltered(Competition $competition = null, Rule $rule = null, $gamesStatus = null, $order = 'desc')
     {
         $rounds = [];
-        $games = $this->getGamesFiltered($competition, $rule, null, 'all', null, $order);
+        $games = $this->getGamesFiltered($competition, $rule, null, $gamesStatus, null, $order);
 
         if ($games !== null) {
             $gamesRounds = collect($games)->unique('round')->values();

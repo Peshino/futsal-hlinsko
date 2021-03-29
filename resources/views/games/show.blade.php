@@ -94,6 +94,7 @@
                                 </div>
                             </span>
                         </div>
+                        @if ($game->hasScore())
                         <div class="game-score col-4 text-center">
                             <span class="justify-content-center align-self-center">
                                 <div class="row">
@@ -114,6 +115,13 @@
                                 </div>
                             </span>
                         </div>
+                        @else
+                        <div class="game-schedule col-4 text-center">
+                            <span class="justify-content-center align-self-center">
+                                vs
+                            </span>
+                        </div>
+                        @endif
                         <div class="game-team col-4 d-flex">
                             <span class="justify-content-center align-self-center">
                                 <div class="team-name-long">

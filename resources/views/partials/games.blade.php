@@ -31,13 +31,7 @@ $gameStartDates[] = $gameStartDate;
                 </div>
             </span>
         </div>
-        @if ($game->home_team_score === null && $game->away_team_score === null)
-        <div class="game-schedule col-4 text-center">
-            <span class="justify-content-center align-self-center">
-                {{ $startDateTime->format('H:i') }}
-            </span>
-        </div>
-        @else
+        @if ($game->hasScore())
         <div class="game-score col-4 text-center">
             <span class="justify-content-center align-self-center">
                 <div class="row">
@@ -48,6 +42,12 @@ $gameStartDates[] = $gameStartDate;
                         {{ $game->away_team_score }}
                     </div>
                 </div>
+            </span>
+        </div>
+        @else
+        <div class="game-schedule col-4 text-center">
+            <span class="justify-content-center align-self-center">
+                {{ $startDateTime->format('H:i') }}
             </span>
         </div>
         @endif
@@ -62,6 +62,11 @@ $gameStartDates[] = $gameStartDate;
             </span>
         </div>
     </div>
+    @if ($game->isCurrentlyBeingPlayed())
+    <div class="text-center game-currently-being-played">
+        <small class="blinking">@lang('messages.game_currently_being_played')</small>
+    </div>
+    @endif
 </div>
 @endforeach
 @endif

@@ -8,6 +8,16 @@
         box-shadow: 0 0 0 0 !important;
     }
 
+    .blinking {
+        animation: blinker 2s linear infinite;
+    }
+
+    @keyframes blinker {
+        50% {
+            opacity: 0.75;
+        }
+    }
+
     main a {
         color: #dddddd;
         text-decoration: none;
@@ -708,6 +718,11 @@
             color: #5cffb4;
             padding: 0.7rem;
         }
+    }
+
+    .game-currently-being-played {
+        color: #ecffa8;
+        letter-spacing: 1px;
     }
 
     .clickable-row.game:hover {

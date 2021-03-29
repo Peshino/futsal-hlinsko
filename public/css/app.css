@@ -11419,6 +11419,23 @@ html {
   box-shadow: 0 0 0 0 !important;
 }
 
+#main .blinking {
+  -webkit-animation: blinker 2s linear infinite;
+          animation: blinker 2s linear infinite;
+}
+
+@-webkit-keyframes blinker {
+  50% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0.75;
+  }
+}
+
 #main main a {
   color: #dddddd;
   text-decoration: none;
@@ -12085,6 +12102,11 @@ html {
   font-size: 1.7rem;
   color: #5cffb4;
   padding: 0.7rem;
+}
+
+#main .game-currently-being-played {
+  color: #ecffa8;
+  letter-spacing: 1px;
 }
 
 #main .clickable-row.game:hover {

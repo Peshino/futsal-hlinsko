@@ -8,99 +8,97 @@
 <div class="card mb-4">
     <div class="card-header app-bg">
         <div class="row">
-            <div class="col col-left">
+            <div class="col-4 col-left">
                 @lang('messages.schedule')
             </div>
-            @can('crud_games')
-            <div class="col justify-content-end">
-                <ul class="list-inline justify-content-end">
-                    <li class="list-inline-item">
-                        <a class="" href="{{ route('games.create', $competition->id) }}">
-                            základní část
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="" href="{{ route('games.create', $competition->id) }}">
-                            7. kolo
-                        </a>
-                    </li>
-                </ul>
+            <div class="col-8 col-right d-flex flex-row-reverse">
+                <div class="row">
+                    @can('crud_games')
+                    <div class="col-auto pr-1">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a class="crud-button" href="{{ route('games.create', $competition->id) }}">
+                                    <div class="plus"></div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    @endcan
+
+                    @if (count($competition->rules) > 0)
+                    <div class="col-auto pr-1">
+                        <div class="dropdown">
+                            <button class="control-button dropdown-toggle" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                @lang('messages.' . $rule->name ?? '' . '')
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                {{-- <a class="dropdown-item" href="">
+                            @lang('messages.all')
+                        </a> --}}
+                                @foreach ($competition->rules as $competitionRule)
+                                @if ($competitionRule->getFirstScheduleByRound() !== null)
+                                <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
+                                    href="{{ route('schedule.params-index', [$competition->id, $competitionRule->id, $competitionRule->getFirstScheduleByRound()->round]) }}">
+                                    @lang('messages.' . $competitionRule->name ?? '' . '')
+                                </a>
+                                @else
+                                @continue
+                                @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
+                    @if (count($rounds) > 0)
+                    <div class="col-auto">
+                        <div class="dropdown pr-1">
+                            <button class="control-button dropdown-toggle" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                {{ $actualRound }}. @lang('messages.round')
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                {{-- <a class="dropdown-item" href="">
+                            @lang('messages.all')
+                        </a> --}}
+                                @foreach ($rounds as $round)
+                                <a class="dropdown-item{{ $round === $actualRound ? " active" : "" }}"
+                                    href="{{ route('schedule.params-index', [$competition->id, $rule->id, $round]) }}">
+                                    {{ $round ?? '' }}. @lang('messages.round')
+                                </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                </div>
             </div>
-            @endcan
         </div>
     </div>
 
     <div class="card-body no-padding">
         <div class="content text-center">
             <div class="content-block">
-                <div class="mt-4">
-                    <h3>
-                        neděle 16. února
-                    </h3>
+                @isset($games)
+                <div class="mt-2 text-center">
+                    @include('partials/games')
                 </div>
-                <div class="mt-2">
-                    <div class="game game-even mb-3">
-                        <div class="row">
-                            <div class="game-team col-5 text-right align-middle">
-                                Jamaica Slaves Hlinsko
-                            </div>
-                            <div class="game-schedule col-2 text-center align-middle">
-                                14:00
-                            </div>
-                            <div class="game-team col-5 text-left align-middle">
-                                Bison Steak Hlinsko
-                            </div>
-                        </div>
-                    </div>
-                    <div class="game game-odd mb-3">
-                        <div class="row">
-                            <div class="game-team col-5 text-right">
-                                Sokol Holetín
-                            </div>
-                            <div class="game-schedule col-2 text-center">
-                                17:45
-                            </div>
-                            <div class="game-team col-5 text-left">
-                                Matuláci Včelákov
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <h3>
-                        sobota 15. února
-                    </h3>
-                </div>
-                <div class="mt-2">
-                    <div class="game game-even mb-3">
-                        <div class="row">
-                            <div class="game-team col-5 text-right">
-                                <span class="align-middle">Jamaica Slaves Hlinsko</span>
-                            </div>
-                            <div class="game-schedule col-2 text-center">
-                                <span class="align-middle">14:00</span>
-                            </div>
-                            <div class="game-team col-5 text-left">
-                                <span class="align-middle">Bison Steak Hlinsko</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="game game-odd mb-3">
-                        <div class="row">
-                            <div class="game-team col-5 text-right">
-                                Sokol Holetín
-                            </div>
-                            <div class="game-schedule col-2 text-center">
-                                17:45
-                            </div>
-                            <div class="game-team col-5 text-left">
-                                Matuláci Včelákov
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endisset
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    $(document).ready(function () {
+        $('.clickable-row').click(function () {
+            var url = $(this).data('url');
+
+            window.location.href = url;
+        });
+    });
+</script>
 @endsection
