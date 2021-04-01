@@ -233,6 +233,14 @@
         background: rgba(255, 255, 255, 1);
     }
 
+    input[type=radio],
+    input[type=checkbox] {
+        box-sizing: border-box;
+        padding: 0;
+        width: 1rem;
+        height: 1rem;
+    }
+
     ::placeholder {
         color: #aaaaaa;
         opacity: 1;
@@ -491,6 +499,22 @@
     .form-control:hover {
         border-color: #ffffff;
         box-shadow: none;
+    }
+
+    .form-check-inline {
+        display: inline-flex;
+        align-items: center;
+        padding-left: 0;
+        margin-right: 0.75rem;
+        padding-top: 1rem;
+    }
+
+    .form-check-inline .form-check-input {
+        position: static;
+        margin-top: 0;
+        margin-right: 0.3125rem;
+        margin-left: 0;
+        margin-top: 0.5rem;
     }
 
     .plus {
@@ -759,6 +783,38 @@
         .balls {
             color: #ffffff;
         }
+    }
+
+    .card-yellow {
+        background: rgb(255, 251, 27);
+        background: -moz-linear-gradient(-45deg, rgba(255, 251, 27, 1) 0%, rgba(214, 211, 22, 1) 100%);
+        background: -webkit-linear-gradient(-45deg, rgba(255, 251, 27, 1) 0%, rgba(214, 211, 22, 1) 100%);
+        background: linear-gradient(135deg, rgba(255, 251, 27, 1) 0%, rgba(214, 211, 22, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffb1b', endColorstr='#d6d316', GradientType=1);
+        width: 0.95rem;
+        height: 1.3rem;
+        border: 1px solid #fffb00;
+        border-radius: 0.1rem;
+    }
+
+    .card-yellow:hover {
+        background-color: #6a6811;
+    }
+
+    .card-red {
+        background: rgb(255, 44, 44);
+        background: -moz-linear-gradient(-45deg, rgba(255, 44, 44, 1) 0%, rgba(211, 33, 33, 1) 100%);
+        background: -webkit-linear-gradient(-45deg, rgba(255, 44, 44, 1) 0%, rgba(211, 33, 33, 1) 100%);
+        background: linear-gradient(135deg, rgba(255, 44, 44, 1) 0%, rgba(211, 33, 33, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff2c2c', endColorstr='#d32121', GradientType=1);
+        width: 0.95rem;
+        height: 1.3rem;
+        border: 1px solid #ff0000;
+        border-radius: 0.1rem;
+    }
+
+    .card-red:hover {
+        background-color: #d32121;
     }
 
     .win {

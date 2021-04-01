@@ -42,6 +42,11 @@ class Game extends Model
         return $this->hasMany(Goal::class)->orderBy('amount', 'desc');
     }
 
+    public function cards()
+    {
+        return $this->hasMany(Card::class);
+    }
+
     public function getResultByTeamId($teamId)
     {
         $teamId = (int) $teamId;

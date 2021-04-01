@@ -7,8 +7,10 @@ use App\Game;
 use App\Rule;
 use App\Team;
 use App\Goal;
+use App\Card;
 use App\Repositories\Games;
 use App\Repositories\Goals;
+use App\Repositories\Cards;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -191,7 +193,11 @@ class GameController extends Controller
         $homeTeamGoals = $goalsRepository->getGoalsFiltered($competition, null, $game, $game->homeTeam);
         $awayTeamGoals = $goalsRepository->getGoalsFiltered($competition, null, $game, $game->awayTeam);
 
-        return view('games.show', compact('competition', 'game', 'homeTeamGoals', 'awayTeamGoals'));
+        $cardsRepository = new Cards;
+        $homeTeamCards = $cardsRepository->getCardsFiltered($competition, null, $game, $game->homeTeam);
+        $awayTeamCards = $cardsRepository->getCardsFiltered($competition, null, $game, $game->awayTeam);
+
+        return view('games.show', compact('competition', 'game', 'homeTeamGoals', 'awayTeamGoals', 'homeTeamCards', 'awayTeamCards'));
     }
 
     /**
@@ -207,7 +213,11 @@ class GameController extends Controller
         $homeTeamGoals = $goalsRepository->getGoalsFiltered($competition, null, $game, $game->homeTeam);
         $awayTeamGoals = $goalsRepository->getGoalsFiltered($competition, null, $game, $game->awayTeam);
 
-        return view('games.edit', compact('competition', 'game', 'homeTeamGoals', 'awayTeamGoals'));
+        $cardsRepository = new Cards;
+        $homeTeamCards = $cardsRepository->getCardsFiltered($competition, null, $game, $game->homeTeam);
+        $awayTeamCards = $cardsRepository->getCardsFiltered($competition, null, $game, $game->awayTeam);
+
+        return view('games.edit', compact('competition', 'game', 'homeTeamGoals', 'awayTeamGoals', 'homeTeamCards', 'awayTeamCards'));
     }
 
     /**
@@ -223,6 +233,7 @@ class GameController extends Controller
         $flashSuccess = true;
         $teamTypes = ['home', 'away'];
         $toDeleteGameGoals = $game->goals;
+        $toDeleteGameCards = $game->cards;
 
         $attributes = $request->validate([
             'round' => 'required|numeric|min:1',
@@ -293,11 +304,65 @@ class GameController extends Controller
                     }
                 }
             }
+
+            if ($request->has($teamType . '_team_cards')) {
+                $teamCards = $request->input($teamType . '_team_cards');
+
+                foreach ($teamCards as $key => $teamCard) {
+                    $validator = Validator::make($teamCard, [
+                        'player' => 'required|numeric|min:1',
+                        'yellow' => 'min:0|max:1',
+                        'red' => 'min:0|max:1',
+                        'team' => 'required|numeric|min:1',
+                    ]);
+
+                    if ($validator->fails()) {
+                        return redirect()->back()->withErrors($validator)->withInput();
+                    }
+
+                    $attributes = [
+                        'yellow' => $teamCard['yellow'] ?? 0,
+                        'red' => $teamCard['red'] ?? 0,
+                        'player_id' => $teamCard['player'],
+                        'team_id' => $teamCard['team'],
+                        'game_id' => $game->id,
+                        'rule_id' => $ruleId,
+                        'competition_id' => $competitionId,
+                    ];
+
+                    if (isset($teamCard['id']) && !empty($teamCard['id'])) {
+                        $id = (int) $teamCard['id'];
+                        $card = Card::find($id);
+                        $toDeleteGameCards = $toDeleteGameCards->reject($card);
+
+                        if ($card->update($attributes)) {
+                        } else {
+                            $flashSuccess = false;
+                        }
+                    } else {
+                        $cardCreated = auth()->user()->addCard($attributes);
+
+                        if ($cardCreated !== null) {
+                        } else {
+                            $flashSuccess = false;
+                        }
+                    }
+                }
+            }
         }
 
         if ($toDeleteGameGoals->isNotEmpty()) {
             foreach ($toDeleteGameGoals as $toDeleteGameGoal) {
                 if ($toDeleteGameGoal->delete()) {
+                } else {
+                    $flashSuccess = false;
+                }
+            }
+        }
+
+        if ($toDeleteGameCards->isNotEmpty()) {
+            foreach ($toDeleteGameCards as $toDeleteGameCard) {
+                if ($toDeleteGameCard->delete()) {
                 } else {
                     $flashSuccess = false;
                 }

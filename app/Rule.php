@@ -21,6 +21,11 @@ class Rule extends Model
         return $this->hasMany(Goal::class);
     }
 
+    public function cards()
+    {
+        return $this->hasMany(Card::class);
+    }
+
     public function competition()
     {
         return $this->belongsTo(Competition::class);

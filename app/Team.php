@@ -51,4 +51,9 @@ class Team extends Model
     {
         return $this->hasMany(Goal::class)->orderBy('amount', 'desc');
     }
+
+    public function cards()
+    {
+        return $this->hasMany(Card::class);
+    }
 }

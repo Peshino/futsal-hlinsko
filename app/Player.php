@@ -29,4 +29,9 @@ class Player extends Model
     {
         return $this->hasMany(Goal::class);
     }
+
+    public function cards()
+    {
+        return $this->hasMany(Card::class);
+    }
 }

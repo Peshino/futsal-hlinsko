@@ -157,7 +157,7 @@
                         <h3 class="pb-1">@lang('messages.goals')</h3>
 
                         <div class="row form-group">
-                            <div id="home-team-goals" class="home-team-goals col-md">
+                            <div id="home-team-goals" class="home-team-goals col-lg">
                                 @if (count($homeTeamGoals) > 0)
                                 @php
                                 $teamType = 'home';
@@ -176,7 +176,7 @@
                                     <div class="plus"></div>
                                 </span>
                             </div>
-                            <div id="away-team-goals" class="away-team-goals col-md">
+                            <div id="away-team-goals" class="away-team-goals col-lg">
                                 @if (count($awayTeamGoals) > 0)
                                 @php
                                 $teamType = 'away';
@@ -192,6 +192,51 @@
                                 @endif
 
                                 <span class="crud-button away-team-goals-add block">
+                                    <div class="plus"></div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 mb-2">
+                        <h3 class="pb-1">@lang('messages.cards')</h3>
+
+                        <div class="row form-group">
+                            <div id="home-team-cards" class="home-team-cards col-lg">
+                                @if (count($homeTeamCards) > 0)
+                                @php
+                                $teamType = 'home';
+                                $players = $game->homeTeam->players;
+                                $team = $game->homeTeam;
+                                @endphp
+                                @foreach ($homeTeamCards as $key => $homeTeamCard)
+                                @php
+                                $teamCard = $homeTeamCard;
+                                @endphp
+                                @include('partials/cards-crud')
+                                @endforeach
+                                @endif
+
+                                <span class="crud-button home-team-cards-add block">
+                                    <div class="plus"></div>
+                                </span>
+                            </div>
+                            <div id="away-team-cards" class="away-team-cards col-lg">
+                                @if (count($awayTeamCards) > 0)
+                                @php
+                                $teamType = 'away';
+                                $players = $game->awayTeam->players;
+                                $team = $game->awayTeam;
+                                @endphp
+                                @foreach ($awayTeamCards as $key => $awayTeamCard)
+                                @php
+                                $teamCard = $awayTeamCard;
+                                @endphp
+                                @include('partials/cards-crud')
+                                @endforeach
+                                @endif
+
+                                <span class="crud-button away-team-cards-add block">
                                     <div class="plus"></div>
                                 </span>
                             </div>
@@ -217,70 +262,102 @@
 <script>
     $(document).ready(function () {
         var teamTypes = ['home', 'away'];
+        var statTypes = ['goal', 'card'];
         
         $(teamTypes).each(function(index, teamType) {
-            $('.' + teamType + '-team-goals-add').click(function() {
-                var html = '',
-                    blockCount = $('.block').length;
-                
-                html += '<div class="row block">';
-                    html += '<div class="col-8">';
-                        html += '<div class="floating-label">';
-                            html += '<label for="' + teamType + '-team-goal-player-' + blockCount + '">';
-                
-                            if (teamType === 'home') {
-                                html += '@lang("messages.home_shooter")';
-                            } else {
-                                html += '@lang("messages.away_shooter")';
-                            }
-                
-                            html += '</label>';
-                            html += '<select class="form-control" id="' + teamType + '-team-goal-player-' + blockCount + '" name="' + teamType + '_team_goals[' + blockCount + '][player]" required>';
-                                html += '<option value=""></option>';
-                
-                            if (teamType === 'home') {
-                                html += '@if (count($game->homeTeam->players) > 0)';
-                                html += '@foreach ($game->homeTeam->players as $player)';
-                                html += '<option value="{{ $player->id }}">';
-                                    html += '{{ $player->lastname }} {{ $player->firstname }}';
-                                    html += '</option>';
-                                html += '@endforeach';
-                                html += '@endif';
-                            } else {
-                                html += '@if (count($game->awayTeam->players) > 0)';
-                                html += '@foreach ($game->awayTeam->players as $player)';
-                                html += '<option value="{{ $player->id }}">';
-                                    html += '{{ $player->lastname }} {{ $player->firstname }}';
-                                    html += '</option>';
-                                html += '@endforeach';
-                                html += '@endif';
-                            }
+            $(statTypes).each(function(index, statType) {
+                $addElement = $('.' + teamType + '-team-' + statType + 's-add');
+                $addElement.click(function() {
+                    var html = '',
+                        blockCount = $('.block').length;
+                    
+                    html += '<div class="row block">';
+                        html += '<div class="col-7">';
+                            html += '<div class="floating-label">';
+                                html += '<label for="' + teamType + '-team-' + statType + '-player-' + blockCount + '">';
+                                    if (teamType === 'home') {
+                                        if (statType === 'goal') {
+                                            html += '@lang("messages.home_shooter")';
+                                        } else {
+                                            html += '@lang("messages.home_card")';
+                                        }
+                                    } else {
+                                        if (statType === 'goal') {
+                                            html += '@lang("messages.away_shooter")';
+                                        } else {
+                                            html += '@lang("messages.away_card")';
+                                        }
+                                    }
+                                html += '</label>';
+
+                                html += '<select class="form-control" id="' + teamType + '-team-' + statType + '-player-' + blockCount + '" name="' + teamType + '_team_' + statType + 's[' + blockCount + '][player]" required>';
+                                    html += '<option value=""></option>';
+                    
+                                    if (teamType === 'home') {
+                                        html += '@if (count($game->homeTeam->players) > 0)';
+                                        html += '@foreach ($game->homeTeam->players as $player)';
+                                        html += '<option value="{{ $player->id }}">';
+                                            html += '{{ $player->lastname }} {{ $player->firstname }}';
+                                            html += '</option>';
+                                        html += '@endforeach';
+                                        html += '@endif';
+                                    } else {
+                                        html += '@if (count($game->awayTeam->players) > 0)';
+                                        html += '@foreach ($game->awayTeam->players as $player)';
+                                        html += '<option value="{{ $player->id }}">';
+                                            html += '{{ $player->lastname }} {{ $player->firstname }}';
+                                            html += '</option>';
+                                        html += '@endforeach';
+                                        html += '@endif';
+                                    }
                                 html += '</select>';
                             html += '</div>';
                         html += '</div>';
-                    html += '<div class="amount col-2 no-padding">';
-                        html += '<div class="floating-label">';
-                            html += '<label for="' + teamType + '-team-goal-amount-' + blockCount + '">@lang("messages.amount")</label>';
-                            html += '<input type="number" class="form-control" id="' + teamType + '-team-goal-amount-' + blockCount + '" name="' + teamType + '_team_goals[' + blockCount + '][amount]" min="1" max="999" value="" required />';
+
+                        if (statType === 'goal') {
+                            html += '<div class="amount col-3 no-padding">';
+                                html += '<div class="floating-label">';
+                                    html += '<label for="' + teamType + '-team-' + statType + '-amount-' + blockCount + '">@lang("messages.amount")</label>';
+                                    html += '<input type="number" class="form-control" id="' + teamType + '-team-' + statType + '-amount-' + blockCount + '" name="' + teamType + '_team_' + statType + 's[' + blockCount + '][amount]" min="1" max="999" value="" required />';
+                                html += '</div>';
+                            html += '</div>';
+                        } else {
+                            html += '<div class="yellow-red col-3 no-padding text-center">';
+                                html += '<div class="form-check form-check-inline">';
+                                    html += '<input class="form-check-input" type="checkbox" id="' + teamType + '-team-card-yellow-' + blockCount + '" name="' + teamType + '_team_cards[' + blockCount + '][yellow]" value="1">';
+                                    html += '<label class="form-check-label" for="' + teamType + '-team-card-yellow-' + blockCount + '">';
+                                        html += '<div class="card-yellow"></div>';
+                                    html += '</label>';
+                                html += '</div>';
+                                html += '<div class="form-check form-check-inline">';
+                                    html += '<input class="form-check-input" type="checkbox" id="' + teamType + '-team-card-red-' + blockCount + '" name="' + teamType + '_team_cards[' + blockCount + '][red]" value="1">';
+                                    html += '<label class="form-check-label" for="' + teamType + '-team-card-red-' + blockCount + '">';
+                                        html += '<div class="card-red"></div>';
+                                    html += '</label>';
+                                html += '</div>';
+                            html += '</div>';
+                        }
+
+                        if (teamType === 'home') {
+                            html += '<input type="hidden" name="' + teamType + '_team_' + statType + 's[' + blockCount + '][team]" value="{{ $game->homeTeam->id }}">';
+                        } else {
+                            html += '<input type="hidden" name="' + teamType + '_team_' + statType + 's[' + blockCount + '][team]" value="{{ $game->awayTeam->id }}">';
+                        }
+
+                        html += '<div class="delete col-2 pt-2">';
+                            html += '<span class="crud-button">';
+                                html += '<i class="far fa-trash-alt"></i>';
+                            html += '</span>';
                         html += '</div>';
-                    html += '</div>';
-                    if (teamType === 'home') {
-                        html += '<input type="hidden" name="' + teamType + '_team_goals[' + blockCount + '][team]" value="{{ $game->homeTeam->id }}">';
-                    } else {
-                        html += '<input type="hidden" name="' + teamType + '_team_goals[' + blockCount + '][team]" value="{{ $game->awayTeam->id }}">';
-                    }
-                    html += '<div class="delete col-2 pt-2">';
-                        html += '<span class="crud-button">';
-                            html += '<i class="far fa-trash-alt"></i>';
-                        html += '</span>';
-                    html += '</div>';
-                html += '</div>';
 
-                $('#' + teamType + '-team-goals .block:last').before(html);
-            });
+                    html += '</div>';
 
-            $('#' + teamType + '-team-goals').on('click', '.delete', function() {
-                $(this).parent().remove();
+                    $('#' + teamType + '-team-' + statType + 's .block:last').before(html);
+                });
+
+                $('#' + teamType + '-team-' + statType + 's').on('click', '.delete', function() {
+                    $(this).parent().remove();
+                });
             });
         });
     });

@@ -17,7 +17,7 @@
     <div class="card-body">
         <div class="content">
             <div class="content-block">
-                <h3>Zde na homepagi soutěže by mohlo být:</h3>
+                <h3>Zde na homepage soutěže by mohlo být:</h3>
                 <ul class="pl-5">
                     <li>důležitá upozornění od administrátora, novinky přidané do aplikace</li>
                     <ul class="pl-5">

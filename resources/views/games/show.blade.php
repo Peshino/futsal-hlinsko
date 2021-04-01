@@ -165,12 +165,23 @@
                             </div>
                             <div class="col-md cards-home">
                                 <div class="row">
+                                    @if (count($homeTeamCards) > 0)
+                                    @foreach ($homeTeamCards as $homeTeamCard)
                                     <div class="col-4 text-right">
-                                        ŽK
+                                        {!! $homeTeamCard->yellow > 0 ? '<div class="d-inline-flex card-yellow"></div>'
+                                        : ''
+                                        !!}
+                                        {!! $homeTeamCard->red > 0 ? '<div class="d-inline-flex card-red"></div>' : ''
+                                        !!}
                                     </div>
                                     <div class="col-8 text-left">
-                                        Jiří Pešek
+                                        <a
+                                            href="{{ route('players.show', [$competition->id, $game->homeTeam->id, $homeTeamCard->player->id]) }}">
+                                            {{ $homeTeamCard->player->lastname }} {{ $homeTeamCard->player->firstname }}
+                                        </a>
                                     </div>
+                                    @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -197,12 +208,23 @@
                             </div>
                             <div class="col-md cards-away">
                                 <div class="row">
+                                    @if (count($awayTeamCards) > 0)
+                                    @foreach ($awayTeamCards as $awayTeamCard)
                                     <div class="col-4 text-right">
-                                        ŽK
+                                        {!! $awayTeamCard->yellow > 0 ? '<div class="d-inline-flex card-yellow"></div>'
+                                        : ''
+                                        !!}
+                                        {!! $awayTeamCard->red > 0 ? '<div class="d-inline-flex card-red"></div>' : ''
+                                        !!}
                                     </div>
                                     <div class="col-8 text-left">
-                                        Jiří Pešek
+                                        <a
+                                            href="{{ route('players.show', [$competition->id, $game->awayTeam->id, $awayTeamCard->player->id]) }}">
+                                            {{ $awayTeamCard->player->lastname }} {{ $awayTeamCard->player->firstname }}
+                                        </a>
                                     </div>
+                                    @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -73,6 +73,11 @@ class User extends Authenticatable
         return $this->hasMany(Goal::class);
     }
 
+    public function cards()
+    {
+        return $this->hasMany(Card::class);
+    }
+
     public function addCompetition($competition)
     {
         return $this->competitions()->create($competition);
@@ -118,6 +123,11 @@ class User extends Authenticatable
     public function addGoal($goal)
     {
         return $this->goals()->create($goal);
+    }
+
+    public function addCard($card)
+    {
+        return $this->cards()->create($card);
     }
 
     public function roles()

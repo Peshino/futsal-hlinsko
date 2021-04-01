@@ -25,6 +25,7 @@ Route::prefix('competitions/{competition}')->group(function () {
     Route::resource('teams', 'TeamController');
     Route::resource('rules', 'RuleController');
     Route::resource('goals', 'GoalController');
+    Route::resource('cards', 'CardController');
 
     Route::prefix('teams/{team}')->group(function () {
         Route::resource('players', 'PlayerController', ['except' => [
@@ -45,6 +46,8 @@ Route::prefix('competitions/{competition}')->group(function () {
     Route::get('table/rules/{rule}/rounds/{round}', 'GameController@tableParamsIndex')->name('table.params-index');
     Route::get('goals/rules/{rule}', 'GoalController@index')->name('goals.rule-index');
     Route::get('goals/rules/{rule}/teams/{team}', 'GoalController@index')->name('goals.team-index');
+    Route::get('cards/rules/{rule}', 'CardController@index')->name('cards.rule-index');
+    Route::get('cards/rules/{rule}/teams/{team}', 'CardController@index')->name('cards.team-index');
     // Route::get('schedule', 'GameController@scheduleIndex')->name('games.schedule-index');
     Route::get('{section}', 'GameController@index')->name('games.index'); // must be the last one
 });

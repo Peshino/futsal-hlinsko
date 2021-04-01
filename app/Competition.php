@@ -43,6 +43,11 @@ class Competition extends Model
         return $this->hasMany(Goal::class);
     }
 
+    public function cards()
+    {
+        return $this->hasMany(Card::class);
+    }
+
     public function getLastRuleByPriority()
     {
         return $this->rules()->latest('priority')->first();

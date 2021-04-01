@@ -59,7 +59,7 @@
                 </li>
                 <li
                     class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/cards*')) ? ' active' : '' }}">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{{ route('cards.index', $competition->id) }}">
                         <i class="fas fa-clone align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.cards')</span>
                     </a>

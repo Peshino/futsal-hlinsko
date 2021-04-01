@@ -11636,6 +11636,14 @@ html {
   background: white;
 }
 
+#main input[type=radio],
+#main input[type=checkbox] {
+  box-sizing: border-box;
+  padding: 0;
+  width: 1rem;
+  height: 1rem;
+}
+
 #main ::-moz-placeholder {
   color: #aaaaaa;
   opacity: 1;
@@ -11870,6 +11878,22 @@ html {
 #main .form-control:hover {
   border-color: #ffffff;
   box-shadow: none;
+}
+
+#main .form-check-inline {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 0;
+  margin-right: 0.75rem;
+  padding-top: 1rem;
+}
+
+#main .form-check-inline .form-check-input {
+  position: static;
+  margin-top: 0;
+  margin-right: 0.3125rem;
+  margin-left: 0;
+  margin-top: 0.5rem;
 }
 
 #main .plus {
@@ -12139,6 +12163,34 @@ html {
 
 #main .goals-cards .balls {
   color: #ffffff;
+}
+
+#main .card-yellow {
+  background: #fffb1b;
+  background: linear-gradient(135deg, #fffb1b 0%, #d6d316 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fffb1b", endColorstr="#d6d316", GradientType=1);
+  width: 0.95rem;
+  height: 1.3rem;
+  border: 1px solid #fffb00;
+  border-radius: 0.1rem;
+}
+
+#main .card-yellow:hover {
+  background-color: #6a6811;
+}
+
+#main .card-red {
+  background: #ff2c2c;
+  background: linear-gradient(135deg, #ff2c2c 0%, #d32121 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff2c2c", endColorstr="#d32121", GradientType=1);
+  width: 0.95rem;
+  height: 1.3rem;
+  border: 1px solid #ff0000;
+  border-radius: 0.1rem;
+}
+
+#main .card-red:hover {
+  background-color: #d32121;
 }
 
 #main .win {
