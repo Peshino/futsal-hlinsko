@@ -44,6 +44,7 @@ Route::prefix('competitions/{competition}')->group(function () {
     Route::get('results/rules/{rule}/rounds/{round}', 'GameController@resultsParamsIndex')->name('results.params-index');
     Route::get('schedule/rules/{rule}/rounds/{round}', 'GameController@scheduleParamsIndex')->name('schedule.params-index');
     Route::get('table/rules/{rule}/rounds/{round}', 'GameController@tableParamsIndex')->name('table.params-index');
+    Route::get('brackets/rules/{rule}/rounds/{round}', 'GameController@bracketsParamsIndex')->name('brackets.params-index');
     Route::get('goals/rules/{rule}', 'GoalController@index')->name('goals.rule-index');
     Route::get('goals/rules/{rule}/teams/{team}', 'GoalController@index')->name('goals.team-index');
     Route::get('cards/rules/{rule}', 'CardController@index')->name('cards.rule-index');

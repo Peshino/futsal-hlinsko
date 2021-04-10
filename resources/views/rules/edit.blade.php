@@ -60,6 +60,21 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="display-as col-md">
+                            <div class="floating-label">
+                                <label for="display-as">
+                                    @lang('messages.display_as')
+                                </label>
+                                <select class="form-control" id="display-as" name="display_as" required>
+                                    <option {{ $rule->display_as === 'table' ? "selected" : "" }} value="table">
+                                        @lang('messages.table')
+                                    </option>
+                                    <option {{ $rule->display_as === 'brackets' ? "selected" : "" }} value="brackets">
+                                        @lang('messages.brackets')
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row form-group">

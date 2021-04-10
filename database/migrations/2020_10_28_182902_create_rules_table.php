@@ -17,6 +17,7 @@ class CreateRulesTable extends Migration
             $table->id();
             $table->enum('name', ['main', 'qualification', 'descent', 'playoff']);
             $table->enum('system', ['one_rounded', 'two_rounded']);
+            $table->enum('display_as', ['table', 'brackets']);
             $table->integer('priority');
             $table->integer('number_of_rounds')->nullable();
             $table->integer('number_of_qualifiers')->nullable();

@@ -43,6 +43,7 @@ return [
     'teams' => 'Týmy',
     'team' => 'Tým',
     'table' => 'Tabulka',
+    'brackets' => 'Pavouk',
     'shooters' => 'Střelci',
     'goals' => 'Góly',
     'goal' => 'Gól',
@@ -89,6 +90,7 @@ return [
     'edit_player' => 'Upravit hráče',
 
     'system' => 'Systém',
+    'display_as' => 'Zobrazovat jako',
     'main' => 'Základní část',
     'qualification' => 'Postupující část',
     'descent' => 'Sestupující část',

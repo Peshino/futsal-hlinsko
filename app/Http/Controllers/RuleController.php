@@ -46,6 +46,7 @@ class RuleController extends Controller
         $attributes = $request->validate([
             'name' => 'required|min:2|max:100',
             'system' => 'required|min:2|max:100',
+            'display_as' => 'required|min:2|max:100',
             'priority' => 'required|numeric|min:1',
             'number_of_rounds' => 'nullable|numeric',
             'number_of_qualifiers' => 'nullable|numeric',
@@ -124,6 +125,7 @@ class RuleController extends Controller
         $attributes = $request->validate([
             'name' => 'required|min:2|max:100',
             'system' => 'required|min:2|max:100',
+            'display_as' => 'required|min:2|max:100',
             'priority' => 'required|numeric|min:1',
             'number_of_rounds' => 'nullable|numeric',
             'number_of_qualifiers' => 'nullable|numeric',

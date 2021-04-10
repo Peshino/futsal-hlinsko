@@ -43,6 +43,7 @@ return [
     'teams' => 'Teams',
     'team' => 'Team',
     'table' => 'Table',
+    'brackets' => 'Brackets',
     'shooters' => 'Shooters',
     'goals' => 'Goals',
     'goal' => 'Goal',
@@ -89,6 +90,7 @@ return [
     'edit_player' => 'Edit player',
 
     'system' => 'System',
+    'display_as' => 'Display as',
     'main' => 'Main stage',
     'qualification' => 'Qualification stage',
     'descent' => 'Descent stage',

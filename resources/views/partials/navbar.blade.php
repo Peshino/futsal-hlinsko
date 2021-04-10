@@ -43,13 +43,20 @@
                         <span class="align-middle">@lang('messages.schedule')</span>
                     </a>
                 </li>
+                @php
+                $ruleJustPlayed = $competition->getRuleJustPlayed();
+                $rule = isset($rule) ? $rule : $ruleJustPlayed;
+                @endphp
+                @if ($ruleJustPlayed !== null)
                 <li
-                    class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/table*')) ? ' active' : '' }}">
-                    <a class="nav-link" href="{{ route('games.index', [$competition->id, 'table']) }}">
+                    class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/' . $rule->display_as . '*')) ? ' active' : '' }}">
+                    <a class="nav-link"
+                        href="{{ route('games.index', [$competition->id, '' . $rule->display_as . '']) }}">
                         <i class="fas fa-sort-amount-down align-middle"></i>&nbsp;
-                        <span class="align-middle">@lang('messages.table')</span>
+                        <span class="align-middle">@lang('messages.' . $rule->display_as . '')</span>
                     </a>
                 </li>
+                @endif
                 <li
                     class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/goals*')) ? ' active' : '' }}">
                     <a class="nav-link" href="{{ route('goals.index', $competition->id) }}">

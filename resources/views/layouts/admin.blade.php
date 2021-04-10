@@ -30,6 +30,8 @@
             <main class="py-4">
                 <div class="container content">
                     @yield('content')
+
+                    @include('partials/current-competition')
                 </div>
             </main>
 

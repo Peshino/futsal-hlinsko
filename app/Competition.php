@@ -52,4 +52,19 @@ class Competition extends Model
     {
         return $this->rules()->latest('priority')->first();
     }
+
+    public function getRuleJustPlayed()
+    {
+        $rulesOrderedByPriority = $this->rules()->orderBy('priority', 'desc')->get();
+
+        if ($rulesOrderedByPriority->isNotEmpty()) {
+            foreach ($rulesOrderedByPriority as $rule) {
+                if ($rule->games()->exists()) {
+                    return $rule;
+                }
+            }
+        }
+
+        return null;
+    }
 }

@@ -35,6 +35,7 @@ class GameController extends Controller
             switch ($section) {
                 case 'results':
                 case 'table':
+                case 'brackets':
                     $game = $lastRuleByPriority->getLastResultByRound();
                     break;
                 case 'schedule':
@@ -129,6 +130,21 @@ class GameController extends Controller
         }
 
         return view('games.table-index', compact('competition', 'rule', 'toRound', 'tableData', 'rounds'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \App\Competition  $competition
+     * @return \Illuminate\Http\Response
+     */
+    public function bracketsParamsIndex(Competition $competition, Rule $rule, $toRound = null)
+    {
+        $gamesRepository = new Games;
+
+        $rounds = $gamesRepository->getRoundsFiltered($competition, $rule, 'results');
+
+        return view('games.brackets-index', compact('competition', 'rule', 'toRound', 'rounds'));
     }
 
     /**

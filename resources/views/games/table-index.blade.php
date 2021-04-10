@@ -27,7 +27,7 @@
                                 @foreach ($competition->rules as $competitionRule)
                                 @if ($competitionRule->getLastResultByRound() !== null)
                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
-                                    href="{{ route('table.params-index', [$competition->id, $competitionRule->id, $competitionRule->getLastResultByRound()->round]) }}">
+                                    href="{{ route($competitionRule->display_as . '.params-index', [$competition->id, $competitionRule->id, $competitionRule->getLastResultByRound()->round]) }}">
                                     @lang('messages.' . $competitionRule->name ?? '' . '')
                                 </a>
                                 @else
@@ -49,7 +49,7 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 @foreach ($rounds as $round)
                                 <a class="dropdown-item{{ $round === $toRound ? " active" : "" }}"
-                                    href="{{ route('table.params-index', [$competition->id, $rule->id, $round]) }}">
+                                    href="{{ route($rule->display_as . '.params-index', [$competition->id, $rule->id, $round]) }}">
                                     @lang('messages.to') {{ $round ?? '' }}. @lang('messages.to_n_round')
                                 </a>
                                 @endforeach
