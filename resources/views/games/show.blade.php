@@ -199,7 +199,7 @@
                                     <div class="col-8 text-left">
                                         <a
                                             href="{{ route('players.show', [$competition->id, $game->awayTeam->id, $awayTeamGoal->player->id]) }}">
-                                            {{ $awayTeamGoal->player->firstname }} {{ $awayTeamGoal->player->lastname }}
+                                            {{ $awayTeamGoal->player->lastname }} {{ $awayTeamGoal->player->firstname }}
                                         </a>
                                     </div>
                                     @endforeach
