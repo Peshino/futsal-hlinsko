@@ -31,10 +31,10 @@
                                 </label>
                                 <select class="form-control" id="rule-id" name="rule_id" required>
                                     @if (count($competition->rules) > 0)
-                                    @foreach ($competition->rules as $rule)
-                                    <option {{ $game->rule_id === $rule->id ? "selected" : "" }}
-                                        value="{{ $rule->id }}">
-                                        @lang('messages.' . $rule->name ?? '' . '')
+                                    @foreach ($competition->rules as $competitionRule)
+                                    <option {{ $game->rule_id === $competitionRule->id ? "selected" : "" }}
+                                        value="{{ $competitionRule->id }}">
+                                        @lang('messages.' . $competitionRule->name ?? '' . '')
                                     </option>
                                     @endforeach
                                     @else

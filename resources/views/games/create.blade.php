@@ -26,18 +26,36 @@
                                 <label for="rule-id">
                                     @lang('messages.rule')
                                 </label>
+                                @if ($rule !== null)
+                                <select class="form-control border-dark" id="rule-id" name="rule_id" disabled>
+                                    <option {{ $rule->name === 'main' ? "selected" : "" }} value="main">
+                                        @lang('messages.main')
+                                    </option>
+                                    <option {{ $rule->name === 'qualification' ? "selected" : "" }}
+                                        value="qualification">
+                                        @lang('messages.qualification')
+                                    </option>
+                                    <option {{ $rule->name === 'descent' ? "selected" : "" }} value="descent">
+                                        @lang('messages.descent')
+                                    </option>
+                                    <option {{ $rule->name === 'playoff' ? "selected" : "" }} value="playoff">
+                                        @lang('messages.playoff')
+                                    </option>
+                                </select>
+                                @else
                                 <select class="form-control" id="rule-id" name="rule_id" required>
                                     @if (count($competition->rules) > 0)
-                                    @foreach ($competition->rules as $rule)
-                                    <option {{ old('rule_id') === $rule->id ? "selected" : "" }}
-                                        value="{{ $rule->id }}">
-                                        @lang('messages.' . $rule->name ?? '' . '')
+                                    @foreach ($competition->rules as $competitionRule)
+                                    <option {{ old('rule_id') === $competitionRule->id ? "selected" : "" }}
+                                        value="{{ $competitionRule->id }}">
+                                        @lang('messages.' . $competitionRule->name ?? '' . '')
                                     </option>
                                     @endforeach
                                     @else
                                     <option value=""></option>
                                     @endif
                                 </select>
+                                @endif
                             </div>
                         </div>
                         <div class="round col-md">

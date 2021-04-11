@@ -25,7 +25,7 @@ class Competition extends Model
 
     public function teams()
     {
-        return $this->hasMany(Team::class);
+        return $this->hasMany(Team::class)->orderBy('name');
     }
 
     public function players()

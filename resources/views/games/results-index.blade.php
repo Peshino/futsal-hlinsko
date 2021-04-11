@@ -17,9 +17,16 @@
                     <div class="col-auto pr-1">
                         <ul class="list-inline">
                             <li class="list-inline-item">
+                                @if ($rule !== null)
+                                <a class="crud-button"
+                                    href="{{ route('games-rule.create', [$competition->id, $rule->id]) }}">
+                                    <div class="plus"></div>
+                                </a>
+                                @else
                                 <a class="crud-button" href="{{ route('games.create', $competition->id) }}">
                                     <div class="plus"></div>
                                 </a>
+                                @endif
                             </li>
                         </ul>
                     </div>

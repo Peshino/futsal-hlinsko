@@ -153,9 +153,9 @@ class GameController extends Controller
      * @param  \App\Competition  $competition
      * @return \Illuminate\Http\Response
      */
-    public function create(Competition $competition)
+    public function create(Competition $competition, Rule $rule = null)
     {
-        return view('games.create', compact('competition'));
+        return view('games.create', compact('competition', 'rule'));
     }
 
     /**

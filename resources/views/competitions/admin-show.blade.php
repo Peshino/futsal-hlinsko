@@ -32,18 +32,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($competition->rules as $rule)
+                                @foreach ($competition->rules as $competitionRule)
                                 <div class="container mt-3">
                                     <tr class="clickable-row"
-                                        data-url="{{ route('rules.admin-show', [$competition->id, $rule->id]) }}">
+                                        data-url="{{ route('rules.admin-show', [$competition->id, $competitionRule->id]) }}">
                                         <td>
-                                            @lang('messages.' . $rule->name ?? '' . '')
+                                            @lang('messages.' . $competitionRule->name ?? '' . '')
                                         </td>
                                         <td>
-                                            @lang('messages.' . $rule->system ?? '' . '')
+                                            @lang('messages.' . $competitionRule->system ?? '' . '')
                                         </td>
                                         <td class="text-center">
-                                            {{ $rule->number_of_rounds }}
+                                            {{ $competitionRule->number_of_rounds }}
                                         </td>
                                     </tr>
                                 </div>
