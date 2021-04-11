@@ -10,6 +10,6 @@ class Season extends Model
 
     public function competitions()
     {
-        return $this->hasMany(Competition::class)->orderBy('id', 'desc');
+        return $this->hasMany(Competition::class)->orderBy('id');
     }
 }

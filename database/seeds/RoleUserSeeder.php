@@ -1,10 +1,10 @@
 <?php
 
-use App\Color;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Seeder;
 
-class ColorSeeder extends Seeder
+class RoleUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,13 +13,12 @@ class ColorSeeder extends Seeder
      */
     public function run()
     {
-        $json = File::get('database/data/colors.json');
+        $json = File::get('database/data/roleUser.json');
         $objects = json_decode($json);
         foreach ($objects as $object) {
-            Color::create([
-                'name' => $object->name,
-                'hex_code' => $object->hex_code,
-                'rgb_code' => $object->rgb_code,
+            DB::table('role_user')->insert([
+                'user_id' => $object->user_id,
+                'role_id' => $object->role_id,
             ]);
         }
     }

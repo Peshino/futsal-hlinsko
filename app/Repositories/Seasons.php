@@ -23,7 +23,7 @@ class Seasons
 
     public function getLastRecord()
     {
-        $record = Season::latest('created_at')->first();
+        $record = Season::latest('id')->first();
 
         if ($record !== null) {
             return $record;

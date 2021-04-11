@@ -1,0 +1,57 @@
+[
+    {
+        "name": "blue",
+        "hex_code": "#0081cc",
+        "rgb_code": "0, 129, 204"
+    },
+    {
+        "name": "red",
+        "hex_code": "#E80000",
+        "rgb_code": "232, 0, 0"
+    },
+    {
+        "name": "orange",
+        "hex_code": "#E8A800",
+        "rgb_code": "232, 168, 0"
+    },
+    {
+        "name": "yellow",
+        "hex_code": "#E5E800",
+        "rgb_code": "229, 232, 0"
+    },
+    {
+        "name": "green",
+        "hex_code": "#05E800",
+        "rgb_code": "5, 232, 0"
+    },
+    {
+        "name": "cyan",
+        "hex_code": "#00E8DF",
+        "rgb_code": "0, 232, 223"
+    },
+    {
+        "name": "purple",
+        "hex_code": "#AD00E8",
+        "rgb_code": "173, 0, 232"
+    },
+    {
+        "name": "pink",
+        "hex_code": "#E8009E",
+        "rgb_code": "232, 0, 158"
+    },
+    {
+        "name": "white",
+        "hex_code": "#FFFFFF",
+        "rgb_code": "255, 255, 255"
+    },
+    {
+        "name": "grey",
+        "hex_code": "#A0A0A0",
+        "rgb_code": "160, 160, 160"
+    },
+    {
+        "name": "black",
+        "hex_code": "#000000",
+        "rgb_code": "0, 0, 0"
+    }
+]

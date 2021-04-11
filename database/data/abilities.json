@@ -1,0 +1,34 @@
+[
+    {
+        "name": "manage_admin_routes",
+        "label": "Manage admin routes"
+    },
+    {
+        "name": "crud_seasons",
+        "label": "CRUD seasons"
+    },
+    {
+        "name": "crud_competitions",
+        "label": "CRUD competitions"
+    },
+    {
+        "name": "crud_teams",
+        "label": "CRUD teams"
+    },
+    {
+        "name": "crud_games",
+        "label": "CRUD games"
+    },
+    {
+        "name": "crud_players",
+        "label": "CRUD players"
+    },
+    {
+        "name": "crud_goals",
+        "label": "CRUD goals"
+    },
+    {
+        "name": "crud_cards",
+        "label": "CRUD cards"
+    }
+]

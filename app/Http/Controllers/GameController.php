@@ -29,24 +29,24 @@ class GameController extends Controller
      */
     public function index(Competition $competition, $section = 'results')
     {
-        $lastRuleByPriority = $competition->getLastRuleByPriority();
+        $ruleJustPlayed = $competition->getRuleJustPlayed();
 
-        if ($lastRuleByPriority !== null) {
+        if ($ruleJustPlayed !== null) {
             switch ($section) {
                 case 'results':
                 case 'table':
                 case 'brackets':
-                    $game = $lastRuleByPriority->getLastResultByRound();
+                    $game = $ruleJustPlayed->getLastResultByRound();
                     break;
                 case 'schedule':
-                    $game = $lastRuleByPriority->getFirstScheduleByRound();
+                    $game = $ruleJustPlayed->getFirstScheduleByRound();
                     break;
                 default:
-                    $game = $lastRuleByPriority->getLastGameByRound();
+                    $game = $ruleJustPlayed->getLastGameByRound();
             }
 
             if ($game !== null) {
-                return redirect()->route($section . '.params-index', ['competition' => $competition->id, 'rule' => $lastRuleByPriority->id, 'round' => $game->round]);
+                return redirect()->route($section . '.params-index', ['competition' => $competition->id, 'rule' => $ruleJustPlayed->id, 'round' => $game->round]);
             } else {
                 return redirect()->route('games.create', ['competition' => $competition->id]);
             }

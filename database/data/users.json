@@ -1,0 +1,12 @@
+[
+    {
+        "firstname": "Jiří",
+        "lastname": "Pešek",
+        "email": "test@test.cz"
+    },
+    {
+        "firstname": "Máša",
+        "lastname": "Drahošová",
+        "email": "masa@test.cz"
+    }
+]
