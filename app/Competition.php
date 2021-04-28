@@ -20,7 +20,7 @@ class Competition extends Model
 
     public function rules()
     {
-        return $this->hasMany(Rule::class);
+        return $this->hasMany(Rule::class)->orderBy('priority', 'desc');
     }
 
     public function teams()

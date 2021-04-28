@@ -42,15 +42,15 @@ Route::prefix('competitions/{competition}')->group(function () {
     ]]);
 
     Route::get('games/create/rules/{rule}', 'GameController@create')->name('games-rule.create');
-    Route::get('results/rules/{rule}/rounds/{round}', 'GameController@resultsParamsIndex')->name('results.params-index');
-    Route::get('schedule/rules/{rule}/rounds/{round}', 'GameController@scheduleParamsIndex')->name('schedule.params-index');
-    Route::get('table/rules/{rule}/rounds/{round}', 'GameController@tableParamsIndex')->name('table.params-index');
-    Route::get('brackets/rules/{rule}/rounds/{round}', 'GameController@bracketsParamsIndex')->name('brackets.params-index');
+    Route::get('results/rules/{rule}/rounds/{round?}', 'GameController@resultsParamsIndex')->name('results.params-index');
+    Route::get('schedule/rules/{rule}/rounds/{round?}', 'GameController@scheduleParamsIndex')->name('schedule.params-index');
+    Route::get('table/rules/{rule}/rounds/{round?}', 'GameController@tableParamsIndex')->name('table.params-index');
+    Route::get('brackets/rules/{rule}/rounds/{round?}', 'GameController@bracketsParamsIndex')->name('brackets.params-index');
     Route::get('goals/rules/{rule}', 'GoalController@index')->name('goals.rule-index');
     Route::get('goals/rules/{rule}/teams/{team}', 'GoalController@index')->name('goals.team-index');
     Route::get('cards/rules/{rule}', 'CardController@index')->name('cards.rule-index');
     Route::get('cards/rules/{rule}/teams/{team}', 'CardController@index')->name('cards.team-index');
-    Route::get('{section}', 'GameController@index')->name('games.index'); // must be the last one
+    Route::get('{section}/rule/{rule?}', 'GameController@index')->name('games.index'); // must be the last one
 });
 
 Route::prefix('admin')->middleware('can:manage_admin_routes')->group(function () {

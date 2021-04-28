@@ -31,7 +31,10 @@
                                     @lang('messages.' . $competitionRule->name ?? '' . '')
                                 </a>
                                 @else
-                                @continue
+                                <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
+                                    href="{{ route('games.index', [$competition->id, $competitionRule->display_as, $competitionRule->id]) }}">
+                                    @lang('messages.' . $competitionRule->name ?? '' . '')
+                                </a>
                                 @endif
                                 @endforeach
                             </div>

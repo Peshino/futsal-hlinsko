@@ -31,7 +31,7 @@ class GoalController extends Controller
 
         if ($rule !== null) {
             $goals = $goalsRepository->getSummedGoalsFiltered($competition, $rule);
-            $goalsTeams = Team::whereIn('id', $goals->unique('team_id')->pluck('team_id')->toArray())->get();
+            $goalsTeams = Team::whereIn('id', $goals->unique('team_id')->pluck('team_id')->toArray())->orderBy('name')->get();
 
             if ($team !== null) {
                 $goals = $goalsRepository->getSummedGoalsFiltered($competition, $rule, null, $team);

@@ -12284,7 +12284,6 @@ html {
   white-space: nowrap;
   color: #ffffff;
   opacity: 0;
-  transition: 0.2s;
 }
 
 #main .item-tooltip-box .tooltip-content {

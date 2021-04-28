@@ -47,11 +47,11 @@
                 $ruleJustPlayed = $competition->getRuleJustPlayed();
                 $rule = isset($rule) ? $rule : $ruleJustPlayed;
                 @endphp
-                @if ($ruleJustPlayed !== null)
+                @if ($rule !== null)
                 <li
                     class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/' . $rule->display_as . '*')) ? ' active' : '' }}">
                     <a class="nav-link"
-                        href="{{ route('games.index', [$competition->id, '' . $rule->display_as . '']) }}">
+                        href="{{ route('games.index', [$competition->id, '' . $rule->display_as . '', $rule->id]) }}">
                         <i class="fas fa-sort-amount-down align-middle"></i>&nbsp;
                         <span class="align-middle">@lang('messages.' . $rule->display_as . '')</span>
                     </a>

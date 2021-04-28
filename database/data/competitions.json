@@ -1,20 +1,20 @@
 [
     {
-        "name": "I. TŘÍDA",
+        "name": "I. třída",
         "status": "finished",
         "user_id": "1",
         "season_id": "1",
         "competition_style_id": "1"
     },
     {
-        "name": "I. TŘÍDA",
+        "name": "I. třída",
         "status": "in_progress",
         "user_id": "1",
         "season_id": "2",
         "competition_style_id": "1"
     },
     {
-        "name": "II. TŘÍDA",
+        "name": "II. třída",
         "status": "not_started",
         "user_id": "1",
         "season_id": "2",

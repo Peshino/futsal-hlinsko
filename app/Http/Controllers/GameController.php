@@ -27,28 +27,31 @@ class GameController extends Controller
      * @param  \App\Competition  $competition
      * @return \Illuminate\Http\Response
      */
-    public function index(Competition $competition, $section = 'results')
+    public function index(Competition $competition, $section = 'results', Rule $rule = null)
     {
-        $ruleJustPlayed = $competition->getRuleJustPlayed();
+        if ($rule === null) {
+            $rule = $competition->getRuleJustPlayed();
+        }
 
-        if ($ruleJustPlayed !== null) {
+        if ($rule !== null) {
             switch ($section) {
                 case 'results':
                 case 'table':
                 case 'brackets':
-                    $game = $ruleJustPlayed->getLastResultByRound();
+                    $game = $rule->getLastResultByRound();
                     break;
                 case 'schedule':
-                    $game = $ruleJustPlayed->getFirstScheduleByRound();
+                    $game = $rule->getFirstScheduleByRound();
                     break;
                 default:
-                    $game = $ruleJustPlayed->getLastGameByRound();
+                    $game = $rule->getLastGameByRound();
             }
 
             if ($game !== null) {
-                return redirect()->route($section . '.params-index', ['competition' => $competition->id, 'rule' => $ruleJustPlayed->id, 'round' => $game->round]);
+                return redirect()->route($section . '.params-index', ['competition' => $competition->id, 'rule' => $rule->id, 'round' => $game->round]);
             } else {
-                return redirect()->route('games.create', ['competition' => $competition->id]);
+                return redirect()->route($section . '.params-index', ['competition' => $competition->id, 'rule' => $rule->id]);
+                // return redirect()->route('games.create', ['competition' => $competition->id]);
             }
         } else {
             return redirect()->route('rules.create', ['competition' => $competition->id]);
@@ -401,7 +404,7 @@ class GameController extends Controller
      * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Competition $competition, Game $game)
+    public function destroy(Competition $competition, Game $game, $section = 'results')
     {
         if ($game->delete()) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
@@ -409,6 +412,6 @@ class GameController extends Controller
             session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
         }
 
-        return redirect()->route('games.index', ['competition' => $competition->id]);
+        return redirect()->route('games.index', ['competition' => $competition->id, $section]);
     }
 }

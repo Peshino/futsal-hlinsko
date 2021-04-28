@@ -31,7 +31,7 @@ class CardController extends Controller
 
         if ($rule !== null) {
             $cards = $cardsRepository->getSummedCardsFiltered($competition, $rule);
-            $cardsTeams = Team::whereIn('id', $cards->unique('team_id')->pluck('team_id')->toArray())->get();
+            $cardsTeams = Team::whereIn('id', $cards->unique('team_id')->pluck('team_id')->toArray())->orderBy('name')->get();
 
             if ($team !== null) {
                 $cards = $cardsRepository->getSummedCardsFiltered($competition, $rule, null, $team);
