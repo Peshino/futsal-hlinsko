@@ -116,10 +116,13 @@ class GameController extends Controller
 
         $rounds = $gamesRepository->getRoundsFiltered($competition, $rule, 'results');
         $tableData = $gamesRepository->getTableData($competition, $rule, $toRound);
+        $miniTablesFromTableData = $gamesRepository->getMiniTablesFromTableData($tableData);
+        $orderedMiniTables = $gamesRepository->orderMiniTables($miniTablesFromTableData, $competition, $rule, $toRound, true, true);
+        $tableFinal = array_merge(...$orderedMiniTables);
 
-        if (!empty($tableData)) {
-            foreach ($tableData as $item) {
-                $teamForm = $gamesRepository->getTeamGamesFormFiltered(Team::find($item->team_id), $competition, $rule, $toRound);
+        if (!empty($tableFinal)) {
+            foreach ($tableFinal as $item) {
+                $teamForm = $gamesRepository->getGamesFiltered($competition, $rule, Team::find($item->team_id), 'results', null, $toRound, 5);
 
                 if (count($teamForm) > 0) {
                     foreach ($teamForm as $game) {
@@ -132,7 +135,7 @@ class GameController extends Controller
             }
         }
 
-        return view('games.table-index', compact('competition', 'rule', 'toRound', 'tableData', 'rounds'));
+        return view('games.table-index', compact('competition', 'rule', 'toRound', 'tableFinal', 'rounds'));
     }
 
     /**

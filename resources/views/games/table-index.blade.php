@@ -84,7 +84,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tableData as $key => $tableItem)
+                        @foreach ($tableFinal as $key => $tableItem)
                         <tr>
                             <td>{{ $key + 1 }}.</td>
                             <td class="text-left">
