@@ -27,7 +27,7 @@
                                     @lang('messages.rule')
                                 </label>
                                 @if ($rule !== null)
-                                <select class="form-control border-dark" id="rule-id" name="rule_id" disabled>
+                                <select class="form-control border-dark" id="rule-id" disabled>
                                     <option {{ $rule->name === 'main' ? "selected" : "" }} value="main">
                                         @lang('messages.main')
                                     </option>
@@ -42,6 +42,7 @@
                                         @lang('messages.playoff')
                                     </option>
                                 </select>
+                                <input type="hidden" id="rule-id-hidden" name="rule_id" value="{{ $rule->id }}">
                                 @else
                                 <select class="form-control" id="rule-id" name="rule_id" required>
                                     @if (count($competition->rules) > 0)

@@ -42,5 +42,28 @@
         "end_date": "2021-08-19",
         "user_id": "1",
         "competition_id": "2"
+    },
+    {
+        "name": "main",
+        "system": "one_rounded",
+        "display_as": "table",
+        "priority": "1",
+        "number_of_rounds": "3",
+        "number_of_qualifiers": "2",
+        "number_of_descending": "2",
+        "game_duration": "36",
+        "points_for_win": "3",
+        "games_day_min": "4",
+        "games_day_max": "5",
+        "team_games_day_round_min": "0",
+        "team_games_day_round_max": "3",
+        "game_days_times": "{\"PA\":\"19:00\"}",
+        "case_of_draw": "draw",
+        "start_date": "2021-03-11",
+        "end_date": "2021-07-11",
+        "break_start_date": "2021-06-01",
+        "break_end_date": "2021-06-07",
+        "user_id": "1",
+        "competition_id": "3"
     }
 ]

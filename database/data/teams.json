@@ -106,5 +106,41 @@
         "secondary_color_id": "11",
         "user_id": "1",
         "competition_id": "2"
+    },
+    {
+        "name": "Bison Steak Hlinsko",
+        "name_short": "BIS",
+        "web_presentation": "http://futsal.hlinsko.cz",
+        "primary_color_id": "2",
+        "secondary_color_id": "9",
+        "user_id": "1",
+        "competition_id": "3"
+    },
+    {
+        "name": "Matuláci Včelákov",
+        "name_short": "MAT",
+        "web_presentation": "http://futsal.hlinsko.cz",
+        "primary_color_id": "3",
+        "secondary_color_id": "11",
+        "user_id": "1",
+        "competition_id": "3"
+    },
+    {
+        "name": "Oflenda Hlinsko",
+        "name_short": "OFL",
+        "web_presentation": "http://futsal.hlinsko.cz",
+        "primary_color_id": "5",
+        "secondary_color_id": "9",
+        "user_id": "1",
+        "competition_id": "3"
+    },
+    {
+        "name": "Předhradí Rychmburk",
+        "name_short": "PŘE",
+        "web_presentation": "http://futsal.hlinsko.cz",
+        "primary_color_id": "2",
+        "secondary_color_id": "11",
+        "user_id": "1",
+        "competition_id": "3"
     }
 ]

@@ -65,6 +65,9 @@ class Games
                 } else {
                     $query = $query->where('start_datetime', '<=', Carbon::now());
                 }
+
+                $query = $query->whereNotNull('home_team_score');
+                $query = $query->whereNotNull('away_team_score');
                 break;
             case 'schedule':
                 if ($rule !== null) {
@@ -103,11 +106,11 @@ class Games
         return $rounds;
     }
 
-    public function getTableData(Competition $competition, Rule $rule, $toRound = null, $teams = [], $orderByGoalDifference = false, $orderByGoalsScored = false)
+    public function getTableData(Competition $competition, Rule $rule, $toRound = null, $orderByGoalDifference = false, $orderByGoalsScored = false, $teams = [])
     {
         $implodedTeams = null;
 
-        if (!empty($teams)) {
+        if (!empty($teams) && is_array($teams)) {
             $implodedTeams = implode(', ', $teams);
         }
 
@@ -132,8 +135,8 @@ class Games
                 FROM
                     games
                 WHERE
-                    competition_id = ? AND rule_id = ? AND ROUND <= ? AND start_datetime <= NOW()
-                    ' . ($implodedTeams !== null ? ' AND home_team_id IN (' . $implodedTeams . ')' : '') . '
+                    competition_id = ? AND rule_id = ? AND ROUND <= ? AND start_datetime <= NOW() AND home_team_score IS NOT NULL AND away_team_score IS NOT NULL
+                    ' . ($implodedTeams !== null ? ' AND home_team_id IN (' . $implodedTeams . ') AND away_team_id IN (' . $implodedTeams . ')' : '') . '
                 UNION ALL
             SELECT
                 away_team_id,
@@ -142,8 +145,8 @@ class Games
             FROM
                 games
             WHERE
-                competition_id = ? AND rule_id = ? AND ROUND <= ? AND start_datetime <= NOW()
-                ' . ($implodedTeams !== null ? ' AND away_team_id IN (' . $implodedTeams . ')' : '') . '
+                competition_id = ? AND rule_id = ? AND ROUND <= ? AND start_datetime <= NOW() AND away_team_score IS NOT NULL AND home_team_score IS NOT NULL
+                ' . ($implodedTeams !== null ? ' AND away_team_id IN (' . $implodedTeams . ') AND home_team_id IN (' . $implodedTeams . ')' : '') . '
             ) a
             INNER JOIN Teams ON teams.id = a.team_id
             GROUP BY
@@ -160,32 +163,55 @@ class Games
         return $tableData;
     }
 
-    public function getMiniTablesFromTableData($tableData)
+    public function getMiniTablesData($tableData)
     {
-        $miniTables = [];
+        $miniTablesData = [];
 
         if (!empty($tableData)) {
-            foreach ($tableData as $key => $tableTeamData) {
-                $miniTables[$tableTeamData->points][] = $tableTeamData;
+            foreach ($tableData as $tableTeamData) {
+                $miniTablesData[$tableTeamData->points][] = $tableTeamData;
             }
 
-            return $miniTables;
+            return $miniTablesData;
         }
 
         return null;
     }
 
-    public function orderMiniTables($miniTables, Competition $competition, Rule $rule, $toRound = null, $teams = [], $orderByGoalDifference = false, $orderByGoalsScored = false)
+    public function getOrderedMiniTables($miniTablesData, Competition $competition, Rule $rule, $toRound = null, $orderByGoalDifference = false, $orderByGoalsScored = false)
     {
         $orderedMiniTables = [];
 
-        if (!empty($miniTables)) {
-            foreach ($miniTables as $points => $miniTableData) {
+        if (!empty($miniTablesData)) {
+            foreach ($miniTablesData as $points => $miniTableData) {
                 $teams = array_column($miniTableData, 'team_id');
-                $orderedMiniTables[$points] = $this->getTableData($competition, $rule, $toRound, $teams, $orderByGoalDifference, $orderByGoalsScored);
+                $orderedMiniTables[$points] = $this->getTableData($competition, $rule, $toRound, $orderByGoalDifference, $orderByGoalsScored, $teams);
             }
 
             return $orderedMiniTables;
+        }
+
+        return null;
+    }
+
+    public function getTableDataWithMiniTablesApplied($miniTablesData, $orderedMiniTables)
+    {
+        $tableData = [];
+
+        if (!empty($miniTablesData) && !empty($orderedMiniTables)) {
+            foreach ($miniTablesData as $points => $miniTableData) {
+                if (count($miniTableData) > 1) {
+                    if (array_multisort($miniTableData, $orderedMiniTables[$points])) {
+                        $tableData[$points] = $miniTableData;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    $tableData[$points] = $miniTableData;
+                }
+            }
+
+            return array_merge(...$tableData);
         }
 
         return null;

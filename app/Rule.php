@@ -60,4 +60,29 @@ class Rule extends Model
     {
         return $this->schedule()->first();
     }
+
+    public function gamesToBePlayed()
+    {
+        $gamesToBePlayed = 0;
+        $teamsCount = count($this->competition->teams);
+        $system = $this->system === 'one_rounded' ? 1 : 2;
+
+        if ($this->display_as === 'table') {
+            $gamesToBePlayed = ($system * ($teamsCount * ($teamsCount - 1))) / 2;
+        }
+
+        if ($this->display_as === 'brackets') {
+            $gamesToBePlayed = $this->number_of_qualifiers;
+        }
+
+        return $gamesToBePlayed;
+    }
+
+    public function isFinished()
+    {
+        $gamesPlayed = count($this->games);
+        $gamesToBePlayed = $this->gamesToBePlayed();
+
+        return $gamesPlayed === $gamesToBePlayed;
+    }
 }

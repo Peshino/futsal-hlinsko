@@ -84,7 +84,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tableFinal as $key => $tableItem)
+                        @foreach ($tableData as $key => $tableItem)
                         <tr>
                             <td>{{ $key + 1 }}.</td>
                             <td class="text-left">
@@ -137,6 +137,10 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                <div class="p-3">
+                    <p>Při rovnosti bodů po odehrání všech zápasů rozhoduje vzájemná bilance.</p>
+                </div>
             </div>
         </div>
     </div>
