@@ -91,7 +91,7 @@ class Games
     public function getRoundsFiltered(Competition $competition = null, Rule $rule = null, $gamesStatus = null, $order = 'desc')
     {
         $rounds = [];
-        $games = $this->getGamesFiltered($competition, $rule, null, $gamesStatus, null, $order);
+        $games = $this->getGamesFiltered($competition, $rule, null, $gamesStatus, null, null, null, $order);
 
         if ($games !== null) {
             $gamesRounds = collect($games)->unique('round')->values();
@@ -200,7 +200,7 @@ class Games
 
         if (!empty($miniTablesData) && !empty($orderedMiniTables)) {
             foreach ($miniTablesData as $points => $miniTableData) {
-                if (count($miniTableData) > 1) {
+                if (count($miniTableData) === count($orderedMiniTables[$points])) {
                     if (array_multisort($miniTableData, $orderedMiniTables[$points])) {
                         $tableData[$points] = $miniTableData;
                     } else {
