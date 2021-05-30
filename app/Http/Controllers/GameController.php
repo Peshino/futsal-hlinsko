@@ -117,8 +117,8 @@ class GameController extends Controller
         $rounds = $gamesRepository->getRoundsFiltered($competition, $rule, 'results');
         $tableData = $gamesRepository->getTableData($competition, $rule, $toRound, true, true);
 
-        // Apply mini tables to rewrite the table data after all games have been played
-        if ($rule->isFinished()) {
+        // Apply mini tables to rewrite the table data after all games have been played and if mutual balance is applied
+        if ($rule->isFinished() && $rule->isAppliedMutualBalance()) {
             $miniTablesData = $gamesRepository->getMiniTablesData($tableData);
             $orderedMiniTables = $gamesRepository->getOrderedMiniTables($miniTablesData, $competition, $rule, $toRound, true, true);
             $tableData = $gamesRepository->getTableDataWithMiniTablesApplied($miniTablesData, $orderedMiniTables);

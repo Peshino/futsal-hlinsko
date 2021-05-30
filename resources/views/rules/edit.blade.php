@@ -77,6 +77,18 @@
                         </div>
                     </div>
 
+                    <div class="row form-group text-center p-2">
+                        <div class="apply-mutual-balance col-md">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="apply-mutual-balance"
+                                    name="apply_mutual_balance" value="{{ $rule->apply_mutual_balance === 1 ? 1 : 0 }}"
+                                    {{ $rule->apply_mutual_balance === 1 ? 'checked' : '' }}>
+                                <label class="custom-control-label"
+                                    for="apply-mutual-balance">@lang('messages.apply_mutual_balance')</label>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row form-group">
                         <div class="priority col-md">
                             <div class="floating-label">

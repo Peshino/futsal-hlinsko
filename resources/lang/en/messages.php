@@ -97,6 +97,8 @@ return [
     'playoff' => 'Playoff',
     'one_rounded' => 'One-rounded',
     'two_rounded' => 'Two-rounded',
+    'apply_mutual_balance' => 'Apply mutual balance',
+    'apply_mutual_balance_info' => 'In case of equality of points after all matches have been played, the mutual balance decides.',
     'priority' => 'Priority',
     'number_of_rounds' => 'Number of rounds',
     'number_of_qualifiers' => 'Number of qualifiers',

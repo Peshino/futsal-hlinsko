@@ -47,6 +47,7 @@ class RuleController extends Controller
             'name' => 'required|min:2|max:100',
             'system' => 'required|min:2|max:100',
             'display_as' => 'required|min:2|max:100',
+            'apply_mutual_balance' => 'max:1',
             'priority' => 'required|numeric|min:1',
             'number_of_rounds' => 'nullable|numeric',
             'number_of_qualifiers' => 'nullable|numeric',
@@ -65,6 +66,8 @@ class RuleController extends Controller
             'break_end_date' => 'nullable|date_format:Y-m-d',
             'competition_id' => 'required|numeric|min:1',
         ]);
+
+        $attributes['apply_mutual_balance'] = $request->has('apply_mutual_balance');
 
         $ruleCreated = auth()->user()->addRule($attributes);
 
@@ -126,6 +129,7 @@ class RuleController extends Controller
             'name' => 'required|min:2|max:100',
             'system' => 'required|min:2|max:100',
             'display_as' => 'required|min:2|max:100',
+            'apply_mutual_balance' => 'max:1',
             'priority' => 'required|numeric|min:1',
             'number_of_rounds' => 'nullable|numeric',
             'number_of_qualifiers' => 'nullable|numeric',
@@ -144,6 +148,8 @@ class RuleController extends Controller
             'break_end_date' => 'nullable|date_format:Y-m-d',
             'competition_id' => 'required|numeric|min:1',
         ]);
+
+        $attributes['apply_mutual_balance'] = $request->has('apply_mutual_balance');
 
         if ($rule->update($attributes)) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');

@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <div class="card-body no-padding">
+    <div class="card-body">
         <div class="content text-center">
             <div class="content-block">
                 <table class="table table-striped table-dark">
@@ -80,7 +80,7 @@
                             <th scope="col">skóre</th>
                             <th scope="col">GR</th>
                             <th scope="col">body</th>
-                            <th scope="col">forma</th>
+                            <th scope="col">forma <i class="fas fa-long-arrow-alt-left"></i></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -101,6 +101,7 @@
                             <td class="competition-color"><strong>{{ $tableItem->points }}</strong></td>
                             <td class="form">
                                 @if (count($tableItem->team_form) > 0)
+                                <i class="fas fa-chevron-left text-white-50"></i>
                                 @foreach ($tableItem->team_form as $game)
                                 <li class="{{ $game->result }} item-tooltip">
                                     <a href="{{ route('games.show', [$competition->id, $game->id]) }}"
@@ -139,7 +140,9 @@
                 </table>
 
                 <div class="p-3">
-                    <p>Při rovnosti bodů po odehrání všech zápasů rozhoduje vzájemná bilance.</p>
+                    @if ($rule->isAppliedMutualBalance())
+                    <p>@lang('messages.apply_mutual_balance_info')</p>
+                    @endif
                 </div>
             </div>
         </div>
