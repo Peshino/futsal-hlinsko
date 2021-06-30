@@ -108,9 +108,16 @@ class Games
 
     public function getTableData(Competition $competition, Rule $rule, $toRound = null, $orderByGoalDifference = false, $orderByGoalsScored = false, $teams = [])
     {
+        $originalPositionCase = null;
         $implodedTeams = null;
 
         if (!empty($teams) && is_array($teams)) {
+            $originalPositionCase = 'CASE team_id';
+            foreach ($teams as $originalPosition => $team) {
+                $originalPositionCase .= ' WHEN ' . $team . ' THEN "' . $originalPosition . '"';
+            }
+            $originalPositionCase .= ' END AS original_position';
+
             $implodedTeams = implode(', ', $teams);
         }
 
@@ -126,8 +133,9 @@ class Games
                 SUM(away_team_score) team_goals_received,
                 SUM(home_team_score) - SUM(away_team_score) team_goals_difference,
                 SUM(CASE WHEN home_team_score > away_team_score THEN ? ELSE 0 END + CASE WHEN home_team_score = away_team_score THEN 1 ELSE 0 END) points
+                ' . ($originalPositionCase !== null ? ', ' . $originalPositionCase : ', NULL AS original_position') . '
             FROM
-                (
+            (
                 SELECT
                     home_team_id team_id,
                     home_team_score,
@@ -138,24 +146,25 @@ class Games
                     competition_id = ? AND rule_id = ? AND ROUND <= ? AND start_datetime <= NOW() AND home_team_score IS NOT NULL AND away_team_score IS NOT NULL
                     ' . ($implodedTeams !== null ? ' AND home_team_id IN (' . $implodedTeams . ') AND away_team_id IN (' . $implodedTeams . ')' : '') . '
                 UNION ALL
-            SELECT
-                away_team_id,
-                away_team_score,
-                home_team_score
-            FROM
-                games
-            WHERE
-                competition_id = ? AND rule_id = ? AND ROUND <= ? AND start_datetime <= NOW() AND away_team_score IS NOT NULL AND home_team_score IS NOT NULL
-                ' . ($implodedTeams !== null ? ' AND away_team_id IN (' . $implodedTeams . ') AND home_team_id IN (' . $implodedTeams . ')' : '') . '
+                SELECT
+                    away_team_id,
+                    away_team_score,
+                    home_team_score
+                FROM
+                    games
+                WHERE
+                    competition_id = ? AND rule_id = ? AND ROUND <= ? AND start_datetime <= NOW() AND away_team_score IS NOT NULL AND home_team_score IS NOT NULL
+                    ' . ($implodedTeams !== null ? ' AND away_team_id IN (' . $implodedTeams . ') AND home_team_id IN (' . $implodedTeams . ')' : '') . '
             ) a
-            INNER JOIN Teams ON teams.id = a.team_id
+            INNER JOIN teams ON teams.id = a.team_id
             GROUP BY
                 team_id,
                 team_name
             ORDER BY
                 points DESC
                 ' . ($orderByGoalDifference ? ', team_goals_difference DESC' : '') . '
-                ' . ($orderByGoalsScored ? ', team_goals_scored DESC' : '') . ' ;
+                ' . ($orderByGoalsScored ? ', team_goals_scored DESC' : '') . '
+                ' . ($originalPositionCase !== null ? ', original_position ASC' : '') . ' ;
             ',
             array($rule->points_for_win, $competition->id, $rule->id, $toRound, $competition->id, $rule->id, $toRound)
         );
@@ -201,7 +210,12 @@ class Games
         if (!empty($miniTablesData) && !empty($orderedMiniTables)) {
             foreach ($miniTablesData as $points => $miniTableData) {
                 if (count($miniTableData) === count($orderedMiniTables[$points])) {
+                    // nahradit fci array_multisort (protože je lexicografická - porovnává dle abecedey - nežádoucí) za svou fci, 
+                    // která na základě mustru ($orderedMiniTables[$points]) porovná originál pole $miniTableData
                     if (array_multisort($miniTableData, $orderedMiniTables[$points])) {
+                        if ($points === 6) {
+                            dd($miniTableData);
+                        }
                         $tableData[$points] = $miniTableData;
                     } else {
                         return false;
@@ -215,5 +229,23 @@ class Games
         }
 
         return null;
+    }
+
+    private function isMiniTableDecidable($miniTableData, $orderByGoalDifference = false, $orderByGoalsScored = false)
+    {
+        if (!empty($miniTableData)) {
+            $minimumGamesCount = count($miniTableData) - 1;
+            $gamesCount = array_column($miniTableData, 'games_count');
+            $points = array_column($miniTableData, 'points');
+
+            foreach ($miniTableData as $item) {
+                if ($item['games_count'] >= $minimumGamesCount) {
+                }
+
+                return false;
+            }
+        }
+
+        return false;
     }
 }
