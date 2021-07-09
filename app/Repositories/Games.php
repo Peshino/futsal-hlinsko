@@ -164,8 +164,8 @@ class Games
                 points DESC
                 ' . ($orderByGoalDifference ? ', team_goals_difference DESC' : '') . '
                 ' . ($orderByGoalsScored ? ', team_goals_scored DESC' : '') . '
-                ' . ($originalPositionCase !== null ? ', original_position ASC' : '') . ' ;
-            ',
+                ' . ($originalPositionCase !== null ? ', original_position ASC' : '') . '
+            ;',
             array($rule->points_for_win, $competition->id, $rule->id, $toRound, $competition->id, $rule->id, $toRound)
         );
 
@@ -178,7 +178,7 @@ class Games
 
         if (!empty($tableData)) {
             foreach ($tableData as $tableTeamData) {
-                $miniTablesData[$tableTeamData->points][] = $tableTeamData;
+                $miniTablesData[$tableTeamData->points][$tableTeamData->team_id] = $tableTeamData;
             }
 
             return $miniTablesData;
@@ -209,17 +209,10 @@ class Games
 
         if (!empty($miniTablesData) && !empty($orderedMiniTables)) {
             foreach ($miniTablesData as $points => $miniTableData) {
-                if (count($miniTableData) === count($orderedMiniTables[$points])) {
-                    // nahradit fci array_multisort (protože je lexicografická - porovnává dle abecedey - nežádoucí) za svou fci, 
-                    // která na základě mustru ($orderedMiniTables[$points]) porovná originál pole $miniTableData
-                    if (array_multisort($miniTableData, $orderedMiniTables[$points])) {
-                        if ($points === 6) {
-                            dd($miniTableData);
-                        }
-                        $tableData[$points] = $miniTableData;
-                    } else {
-                        return false;
-                    }
+                $miniTableOrder = $orderedMiniTables[$points];
+                if (count($miniTableData) === count($miniTableOrder)) {
+                    $miniTableTeamOrder = array_column($miniTableOrder, 'team_id');
+                    $tableData[$points] = array_replace(array_flip($miniTableTeamOrder), $miniTableData);
                 } else {
                     $tableData[$points] = $miniTableData;
                 }
@@ -229,23 +222,5 @@ class Games
         }
 
         return null;
-    }
-
-    private function isMiniTableDecidable($miniTableData, $orderByGoalDifference = false, $orderByGoalsScored = false)
-    {
-        if (!empty($miniTableData)) {
-            $minimumGamesCount = count($miniTableData) - 1;
-            $gamesCount = array_column($miniTableData, 'games_count');
-            $points = array_column($miniTableData, 'points');
-
-            foreach ($miniTableData as $item) {
-                if ($item['games_count'] >= $minimumGamesCount) {
-                }
-
-                return false;
-            }
-        }
-
-        return false;
     }
 }

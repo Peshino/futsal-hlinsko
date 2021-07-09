@@ -25,6 +25,8 @@ class GameController extends Controller
      * Display a listing of the resource.
      *
      * @param  \App\Competition  $competition
+     * @param  string $section
+     * @param  \App\Rule  $rule
      * @return \Illuminate\Http\Response
      */
     public function index(Competition $competition, $section = 'results', Rule $rule = null)
@@ -108,6 +110,8 @@ class GameController extends Controller
      * Display a listing of the resource.
      *
      * @param  \App\Competition  $competition
+     * @param  \App\Rule  $rule
+     * @param  mixed $toRound
      * @return \Illuminate\Http\Response
      */
     public function tableParamsIndex(Competition $competition, Rule $rule, $toRound = null)
@@ -146,6 +150,8 @@ class GameController extends Controller
      * Display a listing of the resource.
      *
      * @param  \App\Competition  $competition
+     * @param  \App\Rule  $rule
+     * @param  mixed $toRound
      * @return \Illuminate\Http\Response
      */
     public function bracketsParamsIndex(Competition $competition, Rule $rule, $toRound = null)
@@ -161,6 +167,7 @@ class GameController extends Controller
      * Show the form for creating a new resource.
      *
      * @param  \App\Competition  $competition
+     * @param  \App\Rule|null  $rule
      * @return \Illuminate\Http\Response
      */
     public function create(Competition $competition, Rule $rule = null)
@@ -172,10 +179,11 @@ class GameController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Competition  $competition
+     * @param  \App\Rule|null  $rule
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Competition $competition, Request $request)
+    public function store(Competition $competition, Rule $rule = null, Request $request)
     {
         $attributes = $request->validate([
             'round' => 'required|numeric|min:1',
@@ -187,9 +195,14 @@ class GameController extends Controller
             'away_team_score' => 'nullable|numeric',
             'home_team_halftime_score' => 'nullable|numeric',
             'away_team_halftime_score' => 'nullable|numeric',
-            'rule_id' => 'required|numeric|min:1',
             'competition_id' => 'required|numeric|min:1',
         ]);
+
+        if ($rule !== null) {
+            $attributes['rule_id'] = $rule->id;
+        } else {
+            $attributes += $request->validate(['rule_id' => 'required|numeric|min:1']);
+        }
 
         $attributes['start_datetime'] = date('Y-m-d H:i:s', strtotime($attributes['start_date'] . ' ' . $attributes['start_time']));
         unset($attributes['start_date']);
@@ -260,13 +273,27 @@ class GameController extends Controller
         $teamTypes = ['home', 'away'];
         $toDeleteGameGoals = $game->goals;
         $toDeleteGameCards = $game->cards;
+        $goalsRepository = new Goals;
+        $cardsRepository = new Cards;
 
         $attributes = $request->validate([
             'round' => 'required|numeric|min:1',
             'start_date' => 'required|date_format:Y-m-d',
             'start_time' => 'required|date_format:H:i',
-            'home_team_id' => 'required|numeric|min:1',
-            'away_team_id' => 'required|numeric|min:1',
+        ]);
+
+        foreach ($teamTypes as $teamType) {
+            $teamGoalsFiltered = $goalsRepository->getGoalsFiltered($competition, null, $game, $game->{$teamType . 'Team'});
+            $teamCardsFiltered = $cardsRepository->getCardsFiltered($competition, null, $game, $game->{$teamType . 'Team'});
+
+            if ($teamGoalsFiltered->isEmpty() && $teamCardsFiltered->isEmpty() && $game->{$teamType . '_team_id'} !== null) {
+                $attributes += $request->validate([$teamType . '_team_id' => 'required|numeric|min:1']);
+            } else {
+                $attributes[$teamType . '_team_id'] = $game->{$teamType . '_team_id'};
+            }
+        }
+
+        $attributes += $request->validate([
             'home_team_score' => 'nullable|numeric',
             'away_team_score' => 'nullable|numeric',
             'home_team_halftime_score' => 'nullable|numeric',
@@ -409,6 +436,7 @@ class GameController extends Controller
      *
      * @param  \App\Competition  $competition
      * @param  \App\Game  $game
+     * @param  string $section
      * @return \Illuminate\Http\Response
      */
     public function destroy(Competition $competition, Game $game, $section = 'results')

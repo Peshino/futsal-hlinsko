@@ -98,7 +98,7 @@ return [
     'one_rounded' => 'Jednokolový',
     'two_rounded' => 'Dvoukolový',
     'apply_mutual_balance' => 'Aplikovat vzájemnou bilanci',
-    'apply_mutual_balance_info' => 'Při rovnosti bodů po odehrání všech zápasů rozhoduje vzájemná bilance.',
+    'apply_mutual_balance_info' => 'Při rovnosti bodů po odehrání vzájemných zápasů rozhoduje vzájemná bilance.',
     'priority' => 'Priorita',
     'number_of_rounds' => 'Počet kol',
     'number_of_qualifiers' => 'Počet postupujících',

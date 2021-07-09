@@ -42,6 +42,7 @@ Route::prefix('competitions/{competition}')->group(function () {
     ]]);
 
     Route::get('games/create/rules/{rule}', 'GameController@create')->name('games-rule.create');
+    Route::post('games/store/rules/{rule}', 'GameController@store')->name('games-rule.store');
     Route::get('results/rules/{rule}/rounds/{round?}', 'GameController@resultsParamsIndex')->name('results.params-index');
     Route::get('schedule/rules/{rule}/rounds/{round?}', 'GameController@scheduleParamsIndex')->name('schedule.params-index');
     Route::get('table/rules/{rule}/rounds/{round?}', 'GameController@tableParamsIndex')->name('table.params-index');
