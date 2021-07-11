@@ -111,6 +111,7 @@
                     </div>
                 </div>
 
+                @if ($rule->display_as === 'table')
                 <div class="row form-group text-center p-2">
                     <div class="apply-mutual-balance col-md">
                         <div class="custom-control custom-switch">
@@ -122,6 +123,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
                 <div class="row form-group">
                     <div class="priority col-md">

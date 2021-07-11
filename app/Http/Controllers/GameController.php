@@ -119,29 +119,7 @@ class GameController extends Controller
         $gamesRepository = new Games;
 
         $rounds = $gamesRepository->getRoundsFiltered($competition, $rule, 'results');
-        $tableData = $gamesRepository->getTableData($competition, $rule, $toRound, true, true);
-
-        // Apply mini tables to rewrite the table data after all games have been played and if mutual balance is applied
-        if ($rule->isAppliedMutualBalance()) {
-            $miniTablesData = $gamesRepository->getMiniTablesData($tableData);
-            $orderedMiniTables = $gamesRepository->getOrderedMiniTables($miniTablesData, $competition, $rule, $toRound, true, true);
-            $tableData = $gamesRepository->getTableDataWithMiniTablesApplied($miniTablesData, $orderedMiniTables);
-        }
-
-        if (!empty($tableData)) {
-            foreach ($tableData as $item) {
-                $teamForm = $gamesRepository->getGamesFiltered($competition, $rule, Team::find($item->team_id), 'results', null, $toRound, 5);
-
-                if (count($teamForm) > 0) {
-                    foreach ($teamForm as $game) {
-                        $gameResult = $game->getResultByTeamId($item->team_id);
-                        $game->result = $gameResult;
-                    }
-                }
-
-                $item->team_form = $teamForm;
-            }
-        }
+        $tableData = $gamesRepository->getTableData($competition, $rule, $toRound, true, true, 5);
 
         return view('games.table-index', compact('competition', 'rule', 'toRound', 'tableData', 'rounds'));
     }

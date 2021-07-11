@@ -141,7 +141,9 @@
 
                 <div class="p-3">
                     @if ($rule->isAppliedMutualBalance())
-                    <p>@lang('messages.apply_mutual_balance_info')</p>
+                    <p class="text-left">
+                        <i class="fas fa-info-circle text-info"></i> @lang('messages.apply_mutual_balance_info')
+                    </p>
                     @endif
                 </div>
             </div>

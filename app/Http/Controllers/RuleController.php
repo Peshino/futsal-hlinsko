@@ -67,7 +67,11 @@ class RuleController extends Controller
             'competition_id' => 'required|numeric|min:1',
         ]);
 
-        $attributes['apply_mutual_balance'] = $request->has('apply_mutual_balance');
+        if ($request->display_as !== 'table') {
+            $attributes['apply_mutual_balance'] = false;
+        } else {
+            $attributes['apply_mutual_balance'] = $request->has('apply_mutual_balance');
+        }
 
         $ruleCreated = auth()->user()->addRule($attributes);
 
@@ -149,7 +153,11 @@ class RuleController extends Controller
             'competition_id' => 'required|numeric|min:1',
         ]);
 
-        $attributes['apply_mutual_balance'] = $request->has('apply_mutual_balance');
+        if ($request->display_as !== 'table') {
+            $attributes['apply_mutual_balance'] = false;
+        } else {
+            $attributes['apply_mutual_balance'] = $request->has('apply_mutual_balance');
+        }
 
         if ($rule->update($attributes)) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');

@@ -20,6 +20,7 @@ class RuleSeeder extends Seeder
                 'name' => $object->name,
                 'system' => $object->system,
                 'display_as' => $object->display_as,
+                'apply_mutual_balance' => $object->apply_mutual_balance,
                 'priority' => $object->priority,
                 'number_of_rounds' => $object->number_of_rounds,
                 'number_of_qualifiers' => $object->number_of_qualifiers,

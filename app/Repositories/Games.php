@@ -106,7 +106,36 @@ class Games
         return $rounds;
     }
 
-    public function getTableData(Competition $competition, Rule $rule, $toRound = null, $orderByGoalDifference = false, $orderByGoalsScored = false, $teams = [])
+    public function getTableData(Competition $competition, Rule $rule, $toRound = null, $orderByGoalDifference = false, $orderByGoalsScored = false, $gamesFormCount = null, $useSimpleTable = false)
+    {
+        $tableData = $this->getTableDataSql($competition, $rule, $toRound, $orderByGoalDifference, $orderByGoalsScored, [], $useSimpleTable);
+
+        // Apply mini tables to rewrite the table data after mutual games have been played and if mutual balance is applied
+        if ($rule->isAppliedMutualBalance()) {
+            $miniTablesData = $this->getMiniTablesData($tableData);
+            $orderedMiniTables = $this->getOrderedMiniTables($miniTablesData, $competition, $rule, $toRound, $orderByGoalDifference, $orderByGoalsScored);
+            $tableData = $this->getTableDataWithMiniTablesApplied($miniTablesData, $orderedMiniTables);
+        }
+
+        if ($gamesFormCount !== null && !empty($tableData)) {
+            foreach ($tableData as $item) {
+                $teamForm = $this->getGamesFiltered($competition, $rule, Team::find($item->team_id), 'results', null, $toRound, $gamesFormCount);
+
+                if (count($teamForm) > 0) {
+                    foreach ($teamForm as $game) {
+                        $gameResult = $game->getResultByTeamId($item->team_id);
+                        $game->result = $gameResult;
+                    }
+                }
+
+                $item->team_form = $teamForm;
+            }
+        }
+
+        return $tableData;
+    }
+
+    private function getTableDataSql(Competition $competition, Rule $rule, $toRound = null, $orderByGoalDifference = false, $orderByGoalsScored = false, $teams = [], $useSimpleTable = false)
     {
         $originalPositionCase = null;
         $implodedTeams = null;
@@ -125,10 +154,10 @@ class Games
             'SELECT
                 team_id,
                 teams.name team_name,
-                COUNT(*) games_count,
-                COUNT(CASE WHEN home_team_score > away_team_score THEN 1 END) wins,
-                COUNT(CASE WHEN home_team_score = away_team_score THEN 1 END) draws,
-                COUNT(CASE WHEN away_team_score > home_team_score THEN 1 END) losts,
+                ' . ($useSimpleTable === false ? 'COUNT(*) games_count,' : '') . '
+                ' . ($useSimpleTable === false ? 'COUNT(CASE WHEN home_team_score > away_team_score THEN 1 END) wins,' : '') . '
+                ' . ($useSimpleTable === false ? 'COUNT(CASE WHEN home_team_score = away_team_score THEN 1 END) draws,' : '') . '
+                ' . ($useSimpleTable === false ? 'COUNT(CASE WHEN away_team_score > home_team_score THEN 1 END) losts,' : '') . '
                 SUM(home_team_score) team_goals_scored,
                 SUM(away_team_score) team_goals_received,
                 SUM(home_team_score) - SUM(away_team_score) team_goals_difference,
@@ -172,7 +201,7 @@ class Games
         return $tableData;
     }
 
-    public function getMiniTablesData($tableData)
+    private function getMiniTablesData($tableData)
     {
         $miniTablesData = [];
 
@@ -187,14 +216,14 @@ class Games
         return null;
     }
 
-    public function getOrderedMiniTables($miniTablesData, Competition $competition, Rule $rule, $toRound = null, $orderByGoalDifference = false, $orderByGoalsScored = false)
+    private function getOrderedMiniTables($miniTablesData, Competition $competition, Rule $rule, $toRound = null, $orderByGoalDifference = false, $orderByGoalsScored = false)
     {
         $orderedMiniTables = [];
 
         if (!empty($miniTablesData)) {
             foreach ($miniTablesData as $points => $miniTableData) {
                 $teams = array_column($miniTableData, 'team_id');
-                $orderedMiniTables[$points] = $this->getTableData($competition, $rule, $toRound, $orderByGoalDifference, $orderByGoalsScored, $teams);
+                $orderedMiniTables[$points] = $this->getTableDataSql($competition, $rule, $toRound, $orderByGoalDifference, $orderByGoalsScored, $teams);
             }
 
             return $orderedMiniTables;
@@ -203,7 +232,7 @@ class Games
         return null;
     }
 
-    public function getTableDataWithMiniTablesApplied($miniTablesData, $orderedMiniTables)
+    private function getTableDataWithMiniTablesApplied($miniTablesData, $orderedMiniTables)
     {
         $tableData = [];
 
