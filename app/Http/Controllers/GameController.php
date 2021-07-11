@@ -11,6 +11,7 @@ use App\Card;
 use App\Repositories\Games;
 use App\Repositories\Goals;
 use App\Repositories\Cards;
+use App\Repositories\Positions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -163,6 +164,8 @@ class GameController extends Controller
      */
     public function store(Competition $competition, Rule $rule = null, Request $request)
     {
+        $positionsRepository = new Positions;
+
         $attributes = $request->validate([
             'round' => 'required|numeric|min:1',
             'start_date' => 'required|date_format:Y-m-d',
@@ -187,8 +190,9 @@ class GameController extends Controller
         unset($attributes['start_time']);
 
         $gameCreated = auth()->user()->addGame($attributes);
+        $positionsSynchronized = $positionsRepository->synchronize($competition, $rule);
 
-        if ($gameCreated !== null) {
+        if ($gameCreated !== null && $positionsSynchronized) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
             return redirect()->route('games.show', ['competition' => $competition->id, 'game' => $gameCreated->id]);
         } else {
@@ -253,6 +257,8 @@ class GameController extends Controller
         $toDeleteGameCards = $game->cards;
         $goalsRepository = new Goals;
         $cardsRepository = new Cards;
+        $positionsRepository = new Positions;
+        $rule = Rule::find($game->rule_id);
 
         $attributes = $request->validate([
             'round' => 'required|numeric|min:1',
@@ -280,14 +286,26 @@ class GameController extends Controller
             'competition_id' => 'required|numeric|min:1',
         ]);
 
-        $ruleId = $attributes['rule_id'];
-        $competitionId = $attributes['competition_id'];
+        $ruleId = (int) $attributes['rule_id'];
+        $competitionId = (int) $attributes['competition_id'];
 
         $attributes['start_datetime'] = date('Y-m-d H:i:s', strtotime($attributes['start_date'] . ' ' . $attributes['start_time']));
         unset($attributes['start_date']);
         unset($attributes['start_time']);
 
         if ($game->update($attributes)) {
+            if ($rule->id === $ruleId) {
+                if (!$positionsRepository->synchronize($competition, $rule)) {
+                    $flashSuccess = false;
+                }
+            } else {
+                $ruleUpdate = Rule::find($ruleId);
+
+                // Pozor! Při úpravě zápasu z playoff na tabulku dojde k chybě, protože fce synchronize nemá data v $tableData
+                if (!$positionsRepository->synchronize($competition, $rule) || !$positionsRepository->synchronize($competition, $ruleUpdate)) {
+                    $flashSuccess = false;
+                }
+            }
         } else {
             $flashSuccess = false;
         }
@@ -419,7 +437,11 @@ class GameController extends Controller
      */
     public function destroy(Competition $competition, Game $game, $section = 'results')
     {
-        if ($game->delete()) {
+        $positionsRepository = new Positions;
+        $rule = Rule::find($game->rule_id);
+        $positionsSynchronized = $positionsRepository->synchronize($competition, $rule);
+
+        if ($game->delete() && $positionsSynchronized) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
         } else {
             session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');

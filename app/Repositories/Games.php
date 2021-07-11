@@ -118,17 +118,17 @@ class Games
         }
 
         if ($gamesFormCount !== null && !empty($tableData)) {
-            foreach ($tableData as $item) {
-                $teamForm = $this->getGamesFiltered($competition, $rule, Team::find($item->team_id), 'results', null, $toRound, $gamesFormCount);
+            foreach ($tableData as $tableItem) {
+                $teamForm = $this->getGamesFiltered($competition, $rule, Team::find($tableItem->team_id), 'results', null, $toRound, $gamesFormCount);
 
                 if (count($teamForm) > 0) {
                     foreach ($teamForm as $game) {
-                        $gameResult = $game->getResultByTeamId($item->team_id);
+                        $gameResult = $game->getResultByTeamId($tableItem->team_id);
                         $game->result = $gameResult;
                     }
                 }
 
-                $item->team_form = $teamForm;
+                $tableItem->team_form = $teamForm;
             }
         }
 
@@ -162,7 +162,7 @@ class Games
                 SUM(away_team_score) team_goals_received,
                 SUM(home_team_score) - SUM(away_team_score) team_goals_difference,
                 SUM(CASE WHEN home_team_score > away_team_score THEN ? ELSE 0 END + CASE WHEN home_team_score = away_team_score THEN 1 ELSE 0 END) points
-                ' . ($originalPositionCase !== null ? ', ' . $originalPositionCase : ', NULL AS original_position') . '
+                ' . ($originalPositionCase !== null ? ', ' . $originalPositionCase : ($useSimpleTable === false ? ', NULL AS original_position' : '')) . '
             FROM
             (
                 SELECT
@@ -172,7 +172,7 @@ class Games
                 FROM
                     games
                 WHERE
-                    competition_id = ? AND rule_id = ? AND ROUND <= ? AND start_datetime <= NOW() AND home_team_score IS NOT NULL AND away_team_score IS NOT NULL
+                    competition_id = ? AND rule_id = ? AND round <= ? AND start_datetime <= NOW() AND home_team_score IS NOT NULL AND away_team_score IS NOT NULL
                     ' . ($implodedTeams !== null ? ' AND home_team_id IN (' . $implodedTeams . ') AND away_team_id IN (' . $implodedTeams . ')' : '') . '
                 UNION ALL
                 SELECT
@@ -182,7 +182,7 @@ class Games
                 FROM
                     games
                 WHERE
-                    competition_id = ? AND rule_id = ? AND ROUND <= ? AND start_datetime <= NOW() AND away_team_score IS NOT NULL AND home_team_score IS NOT NULL
+                    competition_id = ? AND rule_id = ? AND round <= ? AND start_datetime <= NOW() AND away_team_score IS NOT NULL AND home_team_score IS NOT NULL
                     ' . ($implodedTeams !== null ? ' AND away_team_id IN (' . $implodedTeams . ') AND home_team_id IN (' . $implodedTeams . ')' : '') . '
             ) a
             INNER JOIN teams ON teams.id = a.team_id

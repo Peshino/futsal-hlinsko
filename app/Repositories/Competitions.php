@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Competition;
-use Illuminate\Support\Carbon;
 
 class Competitions
 {

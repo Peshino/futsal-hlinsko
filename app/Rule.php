@@ -36,6 +36,11 @@ class Rule extends Model
         return $this->hasMany(Game::class);
     }
 
+    public function positions()
+    {
+        return $this->hasMany(Position::class);
+    }
+
     public function getLastGameByRound()
     {
         return $this->games()->latest('round')->first();

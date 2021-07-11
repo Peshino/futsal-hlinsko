@@ -56,4 +56,9 @@ class Team extends Model
     {
         return $this->hasMany(Card::class);
     }
+
+    public function positions()
+    {
+        return $this->hasMany(Position::class);
+    }
 }
