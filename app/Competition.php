@@ -58,7 +58,7 @@ class Competition extends Model
         return $this->rules()->latest('priority')->first();
     }
 
-    public function getRuleJustPlayed()
+    public function getRuleJustPlayedByPriority()
     {
         $rulesOrderedByPriority = $this->rules()->orderBy('priority', 'desc')->get();
 

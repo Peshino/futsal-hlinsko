@@ -27,6 +27,11 @@ class Team extends Model
         return $this->hasMany(Player::class)->orderBy('lastname', 'asc')->orderBy('firstname', 'asc');
     }
 
+    public function rules()
+    {
+        return $this->belongsToMany(Rule::class)->withTimestamps();
+    }
+
     public function homeGames()
     {
         return $this->hasMany(Game::class, 'home_team_id');
@@ -60,5 +65,10 @@ class Team extends Model
     public function positions()
     {
         return $this->hasMany(Position::class);
+    }
+
+    public function getLastPlayedRuleByPriority()
+    {
+        return $this->rules()->latest('priority')->first();
     }
 }

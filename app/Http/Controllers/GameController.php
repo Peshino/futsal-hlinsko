@@ -33,7 +33,7 @@ class GameController extends Controller
     public function index(Competition $competition, $section = 'results', Rule $rule = null)
     {
         if ($rule === null) {
-            $rule = $competition->getRuleJustPlayed();
+            $rule = $competition->getRuleJustPlayedByPriority();
         }
 
         if ($rule !== null) {
@@ -44,7 +44,7 @@ class GameController extends Controller
                     $game = $rule->getLastResultByRound();
                     break;
                 case 'schedule':
-                    $game = $rule->getFirstScheduleByRound();
+                    $game = $rule->getFirstSchedule();
                     break;
                 default:
                     $game = $rule->getLastGameByRound();

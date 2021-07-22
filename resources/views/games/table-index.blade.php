@@ -70,17 +70,17 @@
             <div class="content-block">
                 <table class="table table-striped table-dark">
                     <thead>
-                        <tr>
-                            <th scope="col"></th>
+                        <tr style="font-size: 0.8rem;">
+                            <th scope="col">@lang('messages.position')</th>
                             <th scope="col" class="text-left">@lang('messages.team')</th>
                             <th scope="col">@lang('messages.games')</th>
-                            <th scope="col">výhry</th>
-                            <th scope="col">remízy</th>
-                            <th scope="col">prohry</th>
-                            <th scope="col">skóre</th>
+                            <th scope="col">Výhry</th>
+                            <th scope="col">Remízy</th>
+                            <th scope="col">Prohry</th>
+                            <th scope="col">Skóre</th>
                             <th scope="col">GR</th>
-                            <th scope="col">body</th>
-                            <th scope="col">forma <i class="fas fa-long-arrow-alt-left"></i></th>
+                            <th scope="col">Body</th>
+                            <th scope="col">Forma <i class="fas fa-long-arrow-alt-left"></i></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,7 +89,7 @@
                             <td>
                                 @if ($tableItem->team_previous_position !== null)
                                 @php
-                                $positionDifference = (int) ($tableItem->team_actual_position -
+                                $positionDifference = abs($tableItem->team_actual_position -
                                 $tableItem->team_previous_position);
                                 @endphp
 
@@ -108,7 +108,7 @@
                                             @endif
                                     </span>
                                     @else
-                                    <span class="text-primary">
+                                    <span class="text-primary" style="font-size: 0.45rem;">
                                         <i class="fas fa-circle"></i>
                                     </span>
                                     @endif

@@ -136,6 +136,17 @@ class Games
         return null;
     }
 
+    public function getTeamLastPlayedRound(Competition $competition, Rule $rule, Team $team)
+    {
+        $results = $this->getGamesFiltered($competition, $rule, $team, 'results');
+
+        if ($results->isNotEmpty()) {
+            return $results->max('round');
+        }
+
+        return null;
+    }
+
     private function getTableDataSql(Competition $competition, Rule $rule, $toRound = null, $orderByGoalDifference = false, $orderByGoalsScored = false, $teams = [], $useSimpleTable = false)
     {
         $originalPositionCase = null;

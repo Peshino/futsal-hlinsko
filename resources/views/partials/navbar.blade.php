@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 @php
-                $ruleJustPlayed = $competition->getRuleJustPlayed();
+                $ruleJustPlayed = $competition->getRuleJustPlayedByPriority();
                 $rule = isset($rule) ? $rule : $ruleJustPlayed;
                 @endphp
                 @if ($rule !== null)

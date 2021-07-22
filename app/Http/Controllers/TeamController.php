@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Team;
 use App\Competition;
+use App\Position;
 use App\Repositories\Players;
 use App\Repositories\Games;
+use App\Repositories\Positions;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
@@ -79,11 +81,38 @@ class TeamController extends Controller
      *
      * @param  \App\Competition  $competition
      * @param  \App\Team  $team
+     * @param  string $detail
      * @return \Illuminate\Http\Response
      */
-    public function show(Competition $competition, Team $team)
+    public function show(Competition $competition, Team $team, $section = null)
     {
-        return view('teams.show', compact('competition', 'team'));
+        $gamesRepository = new Games;
+        $playersRepository = new Players;
+        $positionsRepository = new Positions;
+        $lastPlayedRule = $team->getLastPlayedRuleByPriority();
+        $lastPlayedRound = $gamesRepository->getTeamLastPlayedRound($competition, $lastPlayedRule, $team);
+        $teamPlayers = $teamResults = $teamSchedule = null;
+        $sections = ['players', 'results', 'schedule', 'statistics'];
+
+        switch ($section) {
+            case 'players':
+                $teamPlayers = $playersRepository->getPlayersFiltered($competition, $team);
+                break;
+            case 'results':
+                $teamResults = $gamesRepository->getGamesFiltered($competition, null, $team, 'results');
+                break;
+            case 'schedule':
+                $teamSchedule = $gamesRepository->getGamesFiltered($competition, null, $team, 'schedule');
+                break;
+            case 'statistics':
+                break;
+            default:
+        }
+
+        $teamForm = $gamesRepository->getTeamForm($competition, $lastPlayedRule, $team, $lastPlayedRound);
+        $teamActualPosition = $positionsRepository->getTeamActualPosition($competition, $lastPlayedRule, $team, $lastPlayedRound);
+
+        return view('teams.show', compact('competition', 'lastPlayedRule', 'team', 'sections', 'teamForm', 'teamActualPosition', 'teamPlayers', 'teamResults', 'teamSchedule'));
     }
 
     /**
@@ -165,53 +194,5 @@ class TeamController extends Controller
         }
 
         return redirect()->route('competitions.admin-show', ['competition' => $competition->id]);
-    }
-
-    /**
-     * Display the team players.
-     *
-     * @param  \App\Competition  $competition
-     * @param  \App\Team  $team
-     * @return \Illuminate\Http\Response
-     */
-    public function getTeamPlayers(Competition $competition, Team $team)
-    {
-        $playersRepository = new Players;
-
-        $teamPlayers = $playersRepository->getPlayersFiltered($competition, $team);
-
-        return view('teams.show', compact('competition', 'team', 'teamPlayers'));
-    }
-
-    /**
-     * Display the team results.
-     *
-     * @param  \App\Competition  $competition
-     * @param  \App\Team  $team
-     * @return \Illuminate\Http\Response
-     */
-    public function getTeamResults(Competition $competition, Team $team)
-    {
-        $gamesRepository = new Games;
-
-        $teamResults = $gamesRepository->getGamesFiltered($competition, null, $team, 'results');
-
-        return view('teams.show', compact('competition', 'team', 'teamResults'));
-    }
-
-    /**
-     * Display the team schedule.
-     *
-     * @param  \App\Competition  $competition
-     * @param  \App\Team  $team
-     * @return \Illuminate\Http\Response
-     */
-    public function getTeamSchedule(Competition $competition, Team $team)
-    {
-        $gamesRepository = new Games;
-
-        $teamSchedule = $gamesRepository->getGamesFiltered($competition, null, $team, 'schedule');
-
-        return view('teams.show', compact('competition', 'team', 'teamSchedule'));
     }
 }

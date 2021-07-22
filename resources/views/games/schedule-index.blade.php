@@ -37,9 +37,9 @@
                             @lang('messages.all')
                         </a> --}}
                                 @foreach ($competition->rules as $competitionRule)
-                                @if ($competitionRule->getFirstScheduleByRound() !== null)
+                                @if ($competitionRule->getFirstSchedule() !== null)
                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
-                                    href="{{ route('schedule.params-index', [$competition->id, $competitionRule->id, $competitionRule->getFirstScheduleByRound()->round]) }}">
+                                    href="{{ route('schedule.params-index', [$competition->id, $competitionRule->id, $competitionRule->getFirstSchedule()->round]) }}">
                                     @lang('messages.' . $competitionRule->name ?? '' . '')
                                 </a>
                                 @else

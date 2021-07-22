@@ -32,9 +32,7 @@ Route::prefix('competitions/{competition}')->group(function () {
             'index'
         ]]);
 
-        Route::get('players', 'TeamController@getTeamPlayers')->name('team-players');
-        Route::get('results', 'TeamController@getTeamResults')->name('team-results');
-        Route::get('schedule', 'TeamController@getTeamSchedule')->name('team-schedule');
+        Route::get('{section?}', 'TeamController@show')->name('team-section'); // must be the last one
     });
 
     Route::resource('games', 'GameController', ['except' => [

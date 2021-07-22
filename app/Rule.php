@@ -31,6 +31,11 @@ class Rule extends Model
         return $this->belongsTo(Competition::class);
     }
 
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class)->withTimestamps();
+    }
+
     public function games()
     {
         return $this->hasMany(Game::class);
@@ -61,7 +66,7 @@ class Rule extends Model
         return $this->hasMany(Game::class)->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $this->game_duration . ' MINUTE) > NOW()');
     }
 
-    public function getFirstScheduleByRound()
+    public function getFirstSchedule()
     {
         return $this->schedule()->first();
     }

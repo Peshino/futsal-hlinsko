@@ -84,8 +84,8 @@ class Positions
                         $positionValue = $key + 1;
                         $positions = $this->getPositionsFiltered($competition, $rule, null, $positionValue, $round);
 
-                        if (count($positions) === 1) {
-                            $position = Position::find($positions[0]->id);
+                        if ($positions instanceof Position) {
+                            $position = $positions;
                             $position->team_id = $tableItem->team_id;
                             $position->save();
                         } elseif (count($positions) > 1) {

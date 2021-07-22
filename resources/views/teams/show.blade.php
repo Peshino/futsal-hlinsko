@@ -26,57 +26,86 @@
                     </div>
                     <div class="col-sm-9">
                         <h1>{{ $team->name ?? '' }}</h1>
+
+                        <div class="p-4">
+                            <div class="row">
+                                @if ($teamActualPosition !== null)
+                                <div class="col border-left border-dark">
+                                    <h5>
+                                        @lang('messages.position')
+                                    </h5>
+                                    <div class="pt-1">
+                                        <p>
+                                            <span class="competition-color">
+                                                {{ $teamActualPosition }}
+                                            </span>
+                                            &nbsp;|&nbsp;
+                                            <span class="text-white-50">
+                                                @lang('messages.' . $lastPlayedRule->name ?? '' . '')
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                                @endif
+
+                                @if (count($teamForm) > 0)
+                                <div class="col border-left border-dark">
+                                    <h5>
+                                        @lang('messages.form')
+                                    </h5>
+                                    <div class="form pt-1">
+                                        <i class="fas fa-chevron-left text-white-50"></i>
+                                        @foreach ($teamForm as $game)
+                                        @include('partials/team-form')
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="mt-2">
                 <ul class="nav nav-pills nav-fill">
+                    @foreach ($sections as $section)
                     <li class="nav-item">
-                        <a class="nav-link{{ (request()->is('*teams/' . $team->id . '/players')) ? ' active' : '' }}"
-                            href="{{ route('team-players', [$competition->id, $team->id]) }}">@lang('messages.players')</a>
+                        <a class="nav-link{{ (request()->is('*teams/' . $team->id . '/' . $section)) ? ' active' : '' }}"
+                            href="{{ route('team-section', [$competition->id, $team->id, $section]) }}">
+                            @lang('messages.' . $section)
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link{{ (request()->is('*teams/' . $team->id . '/results')) ? ' active' : '' }}"
-                            href="{{ route('team-results', [$competition->id, $team->id]) }}">@lang('messages.results')</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link{{ (request()->is('*teams/' . $team->id . '/schedule')) ? ' active' : '' }}"
-                            href="{{ route('team-schedule', [$competition->id, $team->id]) }}">@lang('messages.schedule')</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link{{ (request()->is('*teams/' . $team->id . '/statistics')) ? ' active' : '' }}"
-                            href="#">@lang('messages.statistics')</a>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
 
-            @isset($teamPlayers)
+            @if ($teamPlayers !== null)
             @php
             $players = $teamPlayers;
             @endphp
             <div class="mt-2 text-center">
                 @include('partials/players')
             </div>
-            @endisset
+            @endif
 
-            @isset($teamResults)
+            @if ($teamResults !== null)
             @php
             $games = $teamResults;
             @endphp
             <div class="mt-2 text-center">
                 @include('partials/games')
             </div>
-            @endisset
+            @endif
 
-            @isset($teamSchedule)
+            @if ($teamSchedule !== null)
             @php
             $games = $teamSchedule;
             @endphp
             <div class="mt-2 text-center">
                 @include('partials/games')
             </div>
-            @endisset
+            @endif
         </div>
     </div>
 </div>
