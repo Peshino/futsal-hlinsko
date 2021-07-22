@@ -106,7 +106,7 @@ class Games
         return $rounds;
     }
 
-    public function getTableData(Competition $competition, Rule $rule, $toRound = null, $orderByGoalDifference = false, $orderByGoalsScored = false, $gamesFormCount = null, $useSimpleTable = false)
+    public function getTableData(Competition $competition, Rule $rule, $toRound = null, $orderByGoalDifference = false, $orderByGoalsScored = false, $useSimpleTable = false)
     {
         $tableData = $this->getTableDataSql($competition, $rule, $toRound, $orderByGoalDifference, $orderByGoalsScored, [], $useSimpleTable);
 
@@ -117,22 +117,23 @@ class Games
             $tableData = $this->getTableDataWithMiniTablesApplied($miniTablesData, $orderedMiniTables);
         }
 
-        if ($gamesFormCount !== null && !empty($tableData)) {
-            foreach ($tableData as $tableItem) {
-                $teamForm = $this->getGamesFiltered($competition, $rule, Team::find($tableItem->team_id), 'results', null, $toRound, $gamesFormCount);
+        return $tableData;
+    }
 
-                if (count($teamForm) > 0) {
-                    foreach ($teamForm as $game) {
-                        $gameResult = $game->getResultByTeamId($tableItem->team_id);
-                        $game->result = $gameResult;
-                    }
-                }
+    public function getTeamForm(Competition $competition, Rule $rule, Team $team, $toRound = null, $gamesFormCount = 5)
+    {
+        $teamForm = $this->getGamesFiltered($competition, $rule, $team, 'results', null, $toRound, $gamesFormCount);
 
-                $tableItem->team_form = $teamForm;
+        if (count($teamForm) > 0) {
+            foreach ($teamForm as $game) {
+                $gameResult = $game->getResultByTeamId($team->id);
+                $game->result = $gameResult;
             }
+
+            return $teamForm;
         }
 
-        return $tableData;
+        return null;
     }
 
     private function getTableDataSql(Competition $competition, Rule $rule, $toRound = null, $orderByGoalDifference = false, $orderByGoalsScored = false, $teams = [], $useSimpleTable = false)

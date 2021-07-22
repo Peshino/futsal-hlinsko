@@ -147,6 +147,7 @@ return [
     'height' => 'Height',
     'nationality' => 'Nationality',
     'amount' => 'Amount',
+    'form' => 'Form',
 
     'win' => 'Win',
     'draw' => 'Draw',

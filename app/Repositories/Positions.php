@@ -31,8 +31,9 @@ class Positions
         return null;
     }
 
-    public function getPositionsFiltered(Competition $competition = null, Rule $rule = null, $position = null, $round = null, $order = 'asc')
+    public function getPositionsFiltered(Competition $competition = null, Rule $rule = null, Team $team = null, $position = null, $round = null, $toRound = null, $order = 'asc')
     {
+        $result = null;
         $query = Position::query();
 
         if ($competition !== null) {
@@ -43,6 +44,10 @@ class Positions
             $query = $query->where('rule_id', $rule->id);
         }
 
+        if ($team !== null) {
+            $query = $query->where('team_id', $team->id);
+        }
+
         if ($position !== null) {
             $query = $query->where('position', $position);
         }
@@ -51,7 +56,17 @@ class Positions
             $query = $query->where('round', $round);
         }
 
-        return $query->orderBy('position', $order)->get();
+        if ($toRound !== null) {
+            $query = $query->where('round', '<=', $toRound);
+        }
+
+        $result = $query->orderBy('position', $order)->get();
+
+        if (count($result) === 1) {
+            return $result[0];
+        }
+
+        return $result;
     }
 
     public function synchronize(Competition $competition = null, Rule $rule = null)
@@ -62,12 +77,12 @@ class Positions
         if (!empty($rounds)) {
             foreach ($rounds as $round) {
                 $toRound = $round;
-                $tableData = $gamesRepository->getTableData($competition, $rule, $toRound, true, true, null, true);
+                $tableData = $gamesRepository->getTableData($competition, $rule, $toRound, true, true, true);
 
                 if (!empty($tableData)) {
                     foreach ($tableData as $key => $tableItem) {
                         $positionValue = $key + 1;
-                        $positions = $this->getPositionsFiltered($competition, $rule, $positionValue, $round);
+                        $positions = $this->getPositionsFiltered($competition, $rule, null, $positionValue, $round);
 
                         if (count($positions) === 1) {
                             $position = Position::find($positions[0]->id);
@@ -94,5 +109,35 @@ class Positions
         }
 
         return false;
+    }
+
+    public function getTeamActualPosition(Competition $competition, Rule $rule, Team $team, $round)
+    {
+        $teamActualPosition = null;
+
+        if (isset($round) && !empty($round)) {
+            $position = $this->getPositionsFiltered($competition, $rule, $team, null, $round);
+
+            $teamActualPosition = $position->position ?? null;
+        }
+
+        return $teamActualPosition;
+    }
+
+    public function getTeamPreviousPosition(Competition $competition, Rule $rule, Team $team, $round)
+    {
+        $teamPreviousPosition = null;
+
+        if (isset($round) && !empty($round)) {
+            $round = (int) $round;
+
+            if ($round > 1) {
+                $round -= 1;
+
+                $teamPreviousPosition = $this->getTeamActualPosition($competition, $rule, $team, $round);
+            }
+        }
+
+        return $teamPreviousPosition;
     }
 }

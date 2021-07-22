@@ -118,9 +118,25 @@ class GameController extends Controller
     public function tableParamsIndex(Competition $competition, Rule $rule, $toRound = null)
     {
         $gamesRepository = new Games;
+        $positionsRepository = new Positions;
 
         $rounds = $gamesRepository->getRoundsFiltered($competition, $rule, 'results');
-        $tableData = $gamesRepository->getTableData($competition, $rule, $toRound, true, true, 5);
+        $actualRound = $toRound ?? null;
+        $tableData = $gamesRepository->getTableData($competition, $rule, $toRound, true, true);
+
+        if (!empty($tableData)) {
+            foreach ($tableData as $tableItem) {
+                $team = Team::find($tableItem->team_id);
+                $teamForm = $gamesRepository->getTeamForm($competition, $rule, $team, $toRound);
+
+                $teamActualPosition = $positionsRepository->getTeamActualPosition($competition, $rule, $team, $actualRound);
+                $teamPreviousPosition = $positionsRepository->getTeamPreviousPosition($competition, $rule, $team, $actualRound);
+
+                $tableItem->team_form = $teamForm;
+                $tableItem->team_actual_position = $teamActualPosition;
+                $tableItem->team_previous_position = $teamPreviousPosition;
+            }
+        }
 
         return view('games.table-index', compact('competition', 'rule', 'toRound', 'tableData', 'rounds'));
     }

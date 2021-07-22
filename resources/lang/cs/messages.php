@@ -147,6 +147,7 @@ return [
     'height' => 'Výška',
     'nationality' => 'Národnost',
     'amount' => 'Počet',
+    'form' => 'Forma',
 
     'win' => 'Výhra',
     'draw' => 'Remíza',

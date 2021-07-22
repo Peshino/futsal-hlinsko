@@ -84,9 +84,39 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tableData as $key => $tableItem)
+                        @foreach ($tableData as $tableItem)
                         <tr>
-                            <td>{{ $key + 1 }}.</td>
+                            <td>
+                                @if ($tableItem->team_previous_position !== null)
+                                @php
+                                $positionDifference = (int) ($tableItem->team_actual_position -
+                                $tableItem->team_previous_position);
+                                @endphp
+
+                                @if ($tableItem->team_actual_position < $tableItem->team_previous_position)
+                                    <span class="text-success">
+                                        @if ($positionDifference < 4) <i class="fas fa-angle-up"></i>
+                                            @else
+                                            <i class="fas fa-angle-double-up"></i>
+                                            @endif
+                                    </span>
+                                    @elseif ($tableItem->team_actual_position > $tableItem->team_previous_position)
+                                    <span class="text-danger">
+                                        @if ($positionDifference < 4) <i class="fas fa-angle-down"></i>
+                                            @else
+                                            <i class="fas fa-angle-double-down"></i>
+                                            @endif
+                                    </span>
+                                    @else
+                                    <span class="text-primary">
+                                        <i class="fas fa-circle"></i>
+                                    </span>
+                                    @endif
+                                    &nbsp;
+
+                                    @endif
+                                    {{ $tableItem->team_actual_position }}
+                            </td>
                             <td class="text-left">
                                 <a href="{{ route('teams.show', [$competition->id, $tableItem->team_id]) }}">
                                     {{ $tableItem->team_name }}
@@ -103,34 +133,7 @@
                                 @if (count($tableItem->team_form) > 0)
                                 <i class="fas fa-chevron-left text-white-50"></i>
                                 @foreach ($tableItem->team_form as $game)
-                                <li class="{{ $game->result }} item-tooltip">
-                                    <a href="{{ route('games.show', [$competition->id, $game->id]) }}"
-                                        class="item-tooltip-box tooltip-link tooltip-right" role="tooltip">
-                                        <span class="tooltip-content">
-                                            <div class="game-details">
-                                                <span class="game-datetime">
-                                                    @php
-                                                    $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
-                                                    echo $startDateTime->isoFormat('dddd[,] Do[.] MMMM[, ] HH:mm');
-                                                    @endphp
-                                                </span>
-                                                <span class="game-team">
-                                                    <span title="{{ $game->homeTeam->name }}" class="text-uppercase">
-                                                        {{ $game->homeTeam->name_short }}
-                                                    </span>
-                                                </span>
-                                                <span class="game-score">
-                                                    {{ $game->home_team_score }}&nbsp;|&nbsp;{{ $game->away_team_score }}
-                                                </span>
-                                                <span class="game-team">
-                                                    <span title="{{ $game->awayTeam->name }}" class="text-uppercase">
-                                                        {{ $game->awayTeam->name_short }}
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        </span>
-                                    </a>
-                                </li>
+                                @include('partials/team-form')
                                 @endforeach
                                 @endif
                             </td>
