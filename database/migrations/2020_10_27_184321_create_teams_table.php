@@ -20,18 +20,12 @@ class CreateTeamsTable extends Migration
             $table->string('history_code');
             $table->string('logo')->nullable();
             $table->string('web_presentation')->nullable();
-            $table->foreignId('primary_color_id')->nullable();
-            $table->foreignId('secondary_color_id')->nullable();
-            $table->foreignId('superior_team_id')->nullable();
-            $table->foreignId('inferior_team_id')->nullable();
-            $table->foreignId('user_id');
-            $table->foreignId('competition_id');
-            $table->foreign('primary_color_id')->references('id')->on('colors')->onDelete('cascade');
-            $table->foreign('secondary_color_id')->references('id')->on('colors')->onDelete('cascade');
-            $table->foreign('superior_team_id')->references('id')->on('teams')->onDelete('cascade');
-            $table->foreign('inferior_team_id')->references('id')->on('teams')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('competition_id')->references('id')->on('competitions')->onDelete('cascade');
+            $table->foreignId('primary_color_id')->nullable()->constrained('colors')->onDelete('cascade');
+            $table->foreignId('secondary_color_id')->nullable()->constrained('colors')->onDelete('cascade');
+            $table->foreignId('superior_team_id')->nullable()->constrained('teams')->onDelete('cascade');
+            $table->foreignId('inferior_team_id')->nullable()->constrained('teams')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('competition_id')->constrained()->onDelete('cascade');
             $table->timestamps();
 
             $table->engine = 'InnoDB'; // if foreign keys are in use

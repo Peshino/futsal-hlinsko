@@ -17,12 +17,9 @@ class CreateCompetitionsTable extends Migration
             $table->id();
             $table->string('name');
             $table->enum('status', ['not_started', 'in_progress', 'finished']);
-            $table->foreignId('user_id');
-            $table->foreignId('season_id')->nullable();
-            $table->foreignId('competition_style_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('season_id')->references('id')->on('seasons')->onDelete('cascade');
-            $table->foreign('competition_style_id')->references('id')->on('competition_styles')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('season_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('competition_style_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
 
             $table->engine = 'InnoDB'; // if foreign keys are in use

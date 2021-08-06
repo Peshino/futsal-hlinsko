@@ -25,12 +25,9 @@ class CreatePlayersTable extends Migration
             $table->bigInteger('futis_code')->nullable();
             $table->integer('height')->nullable();
             $table->string('nationality')->nullable();
-            $table->foreignId('team_id');
-            $table->foreignId('user_id');
-            $table->foreignId('competition_id');
-            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('competition_id')->references('id')->on('competitions')->onDelete('cascade');
+            $table->foreignId('team_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('competition_id')->constrained()->onDelete('cascade');
             $table->timestamps();
 
             $table->engine = 'InnoDB'; // if foreign keys are in use

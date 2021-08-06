@@ -15,10 +15,8 @@ class CreateRuleTeamTable extends Migration
     {
         Schema::create('rule_team', function (Blueprint $table) {
             $table->primary(['rule_id', 'team_id']);
-            $table->foreignId('rule_id');
-            $table->foreignId('team_id');
-            $table->foreign('rule_id')->references('id')->on('rules')->onDelete('cascade');
-            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
+            $table->foreignId('rule_id')->constrained()->onDelete('cascade');
+            $table->foreignId('team_id')->constrained()->onDelete('cascade');
             $table->timestamps();
 
             $table->engine = 'InnoDB'; // if foreign keys are in use
