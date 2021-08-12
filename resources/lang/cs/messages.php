@@ -90,6 +90,7 @@ return [
     'edit_player' => 'Upravit hráče',
 
     'system' => 'Systém',
+    'type' => 'Typ',
     'display_as' => 'Zobrazovat jako',
     'main' => 'Základní část',
     'qualification' => 'Postupující část',

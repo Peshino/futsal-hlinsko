@@ -18,7 +18,7 @@
                         <div class="dropdown pr-1">
                             <button class="control-button dropdown-toggle" type="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                @lang('messages.' . $rule->name ?? '' . '')
+                                {{ $rule->name ?? '' }}
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 {{-- <a class="dropdown-item" href="">
@@ -27,13 +27,13 @@
                                 @foreach ($competition->rules as $competitionRule)
                                 @if ($competitionRule->getLastResultByRound() !== null)
                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
-                                    href="{{ route($competitionRule->display_as . '.params-index', [$competition->id, $competitionRule->id, $competitionRule->getLastResultByRound()->round]) }}">
-                                    @lang('messages.' . $competitionRule->name ?? '' . '')
+                                    href="{{ route($competitionRule->type . '.params-index', [$competition->id, $competitionRule->id, $competitionRule->getLastResultByRound()->round]) }}">
+                                    {{ $competitionRule->name ?? '' }}
                                 </a>
                                 @else
                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
-                                    href="{{ route('games.index', [$competition->id, $competitionRule->display_as]) }}">
-                                    @lang('messages.' . $competitionRule->name ?? '' . '')
+                                    href="{{ route('games.index', [$competition->id, $competitionRule->type]) }}">
+                                    {{ $competitionRule->name ?? '' }}
                                 </a>
                                 @endif
                                 @endforeach
@@ -52,7 +52,7 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 @foreach ($rounds as $round)
                                 <a class="dropdown-item{{ $round === $toRound ? " active" : "" }}"
-                                    href="{{ route($rule->display_as . '.params-index', [$competition->id, $rule->id, $round]) }}">
+                                    href="{{ route($rule->type . '.params-index', [$competition->id, $rule->id, $round]) }}">
                                     @lang('messages.to') {{ $round ?? '' }}. @lang('messages.to_n_round')
                                 </a>
                                 @endforeach

@@ -90,6 +90,7 @@ return [
     'edit_player' => 'Edit player',
 
     'system' => 'System',
+    'type' => 'Type',
     'display_as' => 'Display as',
     'main' => 'Main stage',
     'qualification' => 'Qualification stage',

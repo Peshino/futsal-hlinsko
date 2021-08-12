@@ -37,7 +37,7 @@
                         <div class="dropdown">
                             <button class="control-button dropdown-toggle" type="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                @lang('messages.' . $rule->name ?? '' . '')
+                                {{ $rule->name ?? '' }}
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 {{-- <a class="dropdown-item" href="">
@@ -47,7 +47,7 @@
                                 @if ($competitionRule->getLastResultByRound() !== null)
                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
                                     href="{{ route('results.params-index', [$competition->id, $competitionRule->id, $competitionRule->getLastResultByRound()->round]) }}">
-                                    @lang('messages.' . $competitionRule->name ?? '' . '')
+                                    {{ $competitionRule->name ?? '' }}
                                 </a>
                                 @else
                                 @continue

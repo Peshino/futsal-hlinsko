@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Rule extends Model
 {
     protected $fillable = [
-        'name', 'system', 'display_as', 'apply_mutual_balance', 'number_of_rounds', 'number_of_qualifiers', 'number_of_descending', 'priority',
+        'name', 'type', 'system', 'apply_mutual_balance', 'number_of_rounds', 'number_of_qualifiers', 'number_of_descending', 'priority',
         'game_duration', 'points_for_win', 'games_day_min', 'games_day_max', 'team_games_day_round_min', 'team_games_day_round_max', 'game_days_times', 'case_of_draw', 'start_date', 'end_date', 'break_start_date', 'break_end_date', 'user_id', 'competition_id'
     ];
 
@@ -77,11 +77,11 @@ class Rule extends Model
         $teamsCount = count($this->competition->teams);
         $system = $this->system === 'one_rounded' ? 1 : 2;
 
-        if ($this->display_as === 'table') {
+        if ($this->type === 'table') {
             $gamesToBePlayed = ($system * ($teamsCount * ($teamsCount - 1))) / 2;
         }
 
-        if ($this->display_as === 'brackets') {
+        if ($this->type === 'brackets') {
             $gamesToBePlayed = $this->number_of_qualifiers;
         }
 

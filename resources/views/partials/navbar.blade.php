@@ -49,11 +49,11 @@
                 @endphp
                 @if ($rule !== null)
                 <li
-                    class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/' . $rule->display_as . '*')) ? ' active' : '' }}">
+                    class="nav-item{{ (request()->is('*competitions/' . $competition->id . '/' . $rule->type . '*')) ? ' active' : '' }}">
                     <a class="nav-link"
-                        href="{{ route('games.index', [$competition->id, '' . $rule->display_as . '', $rule->id]) }}">
+                        href="{{ route('games.index', [$competition->id, '' . $rule->type . '', $rule->id]) }}">
                         <i class="fas fa-sort-amount-down align-middle"></i>&nbsp;
-                        <span class="align-middle">@lang('messages.' . $rule->display_as . '')</span>
+                        <span class="align-middle">@lang('messages.' . $rule->type . '')</span>
                     </a>
                 </li>
                 @endif

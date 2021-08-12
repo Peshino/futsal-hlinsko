@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-@lang('messages.edit') @lang('messages.' . $rule->name ?? '' . '') | @lang('messages.app_name')
+@lang('messages.edit') {{ $rule->name ?? '' }} | @lang('messages.app_name')
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
     <div class="card-header app-bg">
         <div class="row">
             <div class="col col-left">
-                @lang('messages.edit') @lang('messages.' . $rule->name ?? '' . '') - {{ $competition->name }}
+                @lang('messages.edit') {{ $rule->name ?? '' }} - {{ $competition->name }}
             </div>
         </div>
     </div>
@@ -25,24 +25,9 @@
                     <div class="row form-group">
                         <div class="name col-md">
                             <div class="floating-label">
-                                <label for="name">
-                                    @lang('messages.name')
-                                </label>
-                                <select class="form-control" id="name" name="name" required>
-                                    <option {{ $rule->name === 'main' ? "selected" : "" }} value="main">
-                                        @lang('messages.main')
-                                    </option>
-                                    <option {{ $rule->name === 'qualification' ? "selected" : "" }}
-                                        value="qualification">
-                                        @lang('messages.qualification')
-                                    </option>
-                                    <option {{ $rule->name === 'descent' ? "selected" : "" }} value="descent">
-                                        @lang('messages.descent')
-                                    </option>
-                                    <option {{ $rule->name === 'playoff' ? "selected" : "" }} value="playoff">
-                                        @lang('messages.playoff')
-                                    </option>
-                                </select>
+                                <label for="name">@lang('messages.name')</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ $rule->name }}"
+                                    required />
                             </div>
                         </div>
                         <div class="system col-md">
@@ -63,13 +48,13 @@
                         <div class="display-as col-md">
                             <div class="floating-label">
                                 <label for="display-as">
-                                    @lang('messages.display_as')
+                                    @lang('messages.type')
                                 </label>
-                                <select class="form-control" id="display-as" name="display_as" required>
-                                    <option {{ $rule->display_as === 'table' ? "selected" : "" }} value="table">
+                                <select class="form-control" id="display-as" name="type" required>
+                                    <option {{ $rule->type === 'table' ? "selected" : "" }} value="table">
                                         @lang('messages.table')
                                     </option>
-                                    <option {{ $rule->display_as === 'brackets' ? "selected" : "" }} value="brackets">
+                                    <option {{ $rule->type === 'brackets' ? "selected" : "" }} value="brackets">
                                         @lang('messages.brackets')
                                     </option>
                                 </select>

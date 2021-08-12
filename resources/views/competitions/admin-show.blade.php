@@ -37,7 +37,7 @@
                                     <tr class="clickable-row"
                                         data-url="{{ route('rules.admin-show', [$competition->id, $competitionRule->id]) }}">
                                         <td>
-                                            @lang('messages.' . $competitionRule->name ?? '' . '')
+                                            {{ $competitionRule->name ?? '' }}
                                         </td>
                                         <td>
                                             @lang('messages.' . $competitionRule->system ?? '' . '')

@@ -19,7 +19,7 @@
                         <div class="dropdown">
                             <button class="control-button dropdown-toggle" type="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                @lang('messages.' . $rule->name ?? '' . '')
+                                {{ $rule->name ?? '' }}
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 {{-- <a class="dropdown-item" href="">
@@ -28,7 +28,7 @@
                                 @foreach ($competition->rules as $competitionRule)
                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
                                     href="{{ route('cards.rule-index', [$competition->id, $competitionRule->id, null]) }}">
-                                    @lang('messages.' . $competitionRule->name ?? '' . '')
+                                    {{ $competitionRule->name ?? '' }}
                                 </a>
                                 @endforeach
                             </div>

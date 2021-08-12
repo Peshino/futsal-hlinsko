@@ -46,7 +46,7 @@
                 @if(\Request::is('*/rules/*') && isset($rule))
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('rules.admin-show', [$competition->id, $rule->id]) }}">
-                        <span class="align-middle">@lang('messages.' . $rule->name ?? '' . '')</span>
+                        <span class="align-middle">{{ $rule->name ?? '' }}</span>
                     </a>
                 </li>
                 @endif

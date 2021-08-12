@@ -51,7 +51,7 @@
                                         @foreach ($competition->rules as $competitionRule)
                                         <option {{ old('rule_id') === $competitionRule->id ? "selected" : "" }}
                                             value="{{ $competitionRule->id }}">
-                                            @lang('messages.' . $competitionRule->name ?? '' . '')
+                                            {{ $competitionRule->name ?? '' }}
                                         </option>
                                         @endforeach
                                         @else

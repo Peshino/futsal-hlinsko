@@ -34,7 +34,7 @@
                                     @foreach ($competition->rules as $competitionRule)
                                     <option {{ $game->rule_id === $competitionRule->id ? "selected" : "" }}
                                         value="{{ $competitionRule->id }}">
-                                        @lang('messages.' . $competitionRule->name ?? '' . '')
+                                        {{ $competitionRule->name ?? '' }}
                                     </option>
                                     @endforeach
                                     @else

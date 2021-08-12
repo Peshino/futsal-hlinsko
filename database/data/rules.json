@@ -1,8 +1,8 @@
 [
     {
         "name": "main",
+        "type": "table",
         "system": "one_rounded",
-        "display_as": "table",
         "apply_mutual_balance": "1",
         "priority": "1",
         "number_of_rounds": "8",
@@ -25,8 +25,8 @@
     },
     {
         "name": "playoff",
+        "type": "brackets",
         "system": "one_rounded",
-        "display_as": "brackets",
         "apply_mutual_balance": "0",
         "priority": "2",
         "number_of_rounds": "3",
@@ -47,8 +47,8 @@
     },
     {
         "name": "main",
+        "type": "table",
         "system": "one_rounded",
-        "display_as": "table",
         "apply_mutual_balance": "1",
         "priority": "1",
         "number_of_rounds": "3",

@@ -18,8 +18,8 @@ class RuleSeeder extends Seeder
         foreach ($objects as $object) {
             Rule::create([
                 'name' => $object->name,
+                'type' => $object->type,
                 'system' => $object->system,
-                'display_as' => $object->display_as,
                 'apply_mutual_balance' => $object->apply_mutual_balance,
                 'priority' => $object->priority,
                 'number_of_rounds' => $object->number_of_rounds,

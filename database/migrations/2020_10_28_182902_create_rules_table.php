@@ -15,9 +15,9 @@ class CreateRulesTable extends Migration
     {
         Schema::create('rules', function (Blueprint $table) {
             $table->id();
-            $table->enum('name', ['main', 'qualification', 'descent', 'playoff']);
+            $table->string('name');
+            $table->enum('type', ['table', 'brackets']);
             $table->enum('system', ['one_rounded', 'two_rounded']);
-            $table->enum('display_as', ['table', 'brackets']);
             $table->boolean('apply_mutual_balance')->default(0);
             $table->integer('priority');
             $table->integer('number_of_rounds')->nullable();

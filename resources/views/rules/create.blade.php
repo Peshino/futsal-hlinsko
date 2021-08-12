@@ -23,24 +23,9 @@
                     <div class="row form-group">
                         <div class="name col-md">
                             <div class="floating-label">
-                                <label for="name">
-                                    @lang('messages.name')
-                                </label>
-                                <select class="form-control" id="name" name="name" required>
-                                    <option {{ old('name') === 'main' ? "selected" : "" }} value="main">
-                                        @lang('messages.main')
-                                    </option>
-                                    <option {{ old('name') === 'qualification' ? "selected" : "" }}
-                                        value="qualification">
-                                        @lang('messages.qualification')
-                                    </option>
-                                    <option {{ old('name') === 'descent' ? "selected" : "" }} value="descent">
-                                        @lang('messages.descent')
-                                    </option>
-                                    <option {{ old('name') === 'playoff' ? "selected" : "" }} value="playoff">
-                                        @lang('messages.playoff')
-                                    </option>
-                                </select>
+                                <label for="name">@lang('messages.name')</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"
+                                    required />
                             </div>
                         </div>
                         <div class="system col-md">
@@ -61,13 +46,13 @@
                         <div class="display-as col-md">
                             <div class="floating-label">
                                 <label for="display-as">
-                                    @lang('messages.display_as')
+                                    @lang('messages.type')
                                 </label>
-                                <select class="form-control" id="display-as" name="display_as" required>
-                                    <option {{ old('display_as') === 'table' ? "selected" : "" }} value="table">
+                                <select class="form-control" id="display-as" name="type" required>
+                                    <option {{ old('type') === 'table' ? "selected" : "" }} value="table">
                                         @lang('messages.table')
                                     </option>
-                                    <option {{ old('display_as') === 'brackets' ? "selected" : "" }} value="brackets">
+                                    <option {{ old('type') === 'brackets' ? "selected" : "" }} value="brackets">
                                         @lang('messages.brackets')
                                     </option>
                                 </select>

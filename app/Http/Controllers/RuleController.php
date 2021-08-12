@@ -45,8 +45,8 @@ class RuleController extends Controller
     {
         $attributes = $request->validate([
             'name' => 'required|min:2|max:100',
+            'type' => 'required|min:2|max:100',
             'system' => 'required|min:2|max:100',
-            'display_as' => 'required|min:2|max:100',
             'apply_mutual_balance' => 'max:1',
             'priority' => 'required|numeric|min:1',
             'number_of_rounds' => 'nullable|numeric',
@@ -67,7 +67,7 @@ class RuleController extends Controller
             'competition_id' => 'required|numeric|min:1',
         ]);
 
-        if ($request->display_as !== 'table') {
+        if ($request->type !== 'table') {
             $attributes['apply_mutual_balance'] = false;
         } else {
             $attributes['apply_mutual_balance'] = $request->has('apply_mutual_balance');
@@ -131,8 +131,8 @@ class RuleController extends Controller
     {
         $attributes = $request->validate([
             'name' => 'required|min:2|max:100',
+            'type' => 'required|min:2|max:100',
             'system' => 'required|min:2|max:100',
-            'display_as' => 'required|min:2|max:100',
             'apply_mutual_balance' => 'max:1',
             'priority' => 'required|numeric|min:1',
             'number_of_rounds' => 'nullable|numeric',
@@ -153,7 +153,7 @@ class RuleController extends Controller
             'competition_id' => 'required|numeric|min:1',
         ]);
 
-        if ($request->display_as !== 'table') {
+        if ($request->type !== 'table') {
             $attributes['apply_mutual_balance'] = false;
         } else {
             $attributes['apply_mutual_balance'] = $request->has('apply_mutual_balance');
