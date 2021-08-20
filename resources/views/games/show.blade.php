@@ -63,7 +63,7 @@
                 <div class="pt-4 pb-3 game">
                     <div class="text-center">
                         <h3>
-                            @lang('messages.' . $game->rule->name ?? '' . '') - {{ $game->round ?? '' }}.
+                            {{ $game->rule->name ?? '' }} - {{ $game->round ?? '' }}.
                             @lang('messages.round')
                         </h3>
                     </div>

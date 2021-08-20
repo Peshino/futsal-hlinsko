@@ -263,6 +263,24 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="mt-3 text-left">
+                    <h4 class="pt-2 pb-2">
+                        @lang('messages.teams')
+                    </h4>
+
+                    <div class="row">
+                        @foreach ($teams->chunk(count($teams) / 2) as $teamCollection)
+                        <div class="form-check col-sm">
+                            @foreach($teamCollection as $team)
+                            <div class="form-check mb-2">
+                                <p>{{ $team->name }}</p>
+                            </div>
+                            @endforeach
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </div>

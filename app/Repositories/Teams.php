@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Competition;
 use App\Team;
 
 class Teams
@@ -15,8 +16,25 @@ class Teams
         return Team::all();
     }
 
-    public function getTeams()
+    public function getLastRecord()
     {
-        return Team::orderBy('name', 'desc')->get();
+        $record = Team::latest('created_at')->first();
+
+        if ($record !== null) {
+            return $record;
+        }
+
+        return null;
+    }
+
+    public function getTeamsFiltered(Competition $competition = null, $order = 'asc')
+    {
+        $query = Team::query();
+
+        if ($competition !== null) {
+            $query = $query->where('competition_id', $competition->id);
+        }
+
+        return $query->orderBy('name', $order)->get();
     }
 }

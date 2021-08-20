@@ -226,6 +226,29 @@
                         </div>
                     </div>
 
+                    <div class="mt-3 text-left">
+                        <h4 class="pt-2 pb-2">
+                            @lang('messages.teams')
+                        </h4>
+
+                        <div class="row">
+                            @foreach ($teams->chunk(count($teams) / 2) as $teamCollection)
+                            <div class="form-check col-sm">
+                                @foreach($teamCollection as $team)
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox"
+                                        {{ $team->is_in_rule ? "checked" : "" }} name="teams[]" value="{{ $team->id }}"
+                                        id="team-{{ $team->id }}">
+                                    <label class="form-check-label" for="team-{{ $team->id }}">
+                                        {{ $team->name }}
+                                    </label>
+                                </div>
+                                @endforeach
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+
                     <input type="hidden" id="competition-id" name="competition_id" value="{{ $rule->competition_id }}">
 
                     <div class="form-group text-center mt-4">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Rule;
 use App\Competition;
+use App\Repositories\Teams;
 use Illuminate\Http\Request;
 
 class RuleController extends Controller
@@ -31,7 +32,10 @@ class RuleController extends Controller
      */
     public function create(Competition $competition)
     {
-        return view('rules.create', compact('competition'));
+        $teamsRepository = new Teams;
+        $teams = $teamsRepository->getTeamsFiltered($competition);
+
+        return view('rules.create', compact('competition', 'teams'));
     }
 
     /**
@@ -44,7 +48,7 @@ class RuleController extends Controller
     public function store(Competition $competition, Request $request)
     {
         $attributes = $request->validate([
-            'name' => 'required|min:2|max:100',
+            'name' => 'required|min:2|max:50',
             'type' => 'required|min:2|max:100',
             'system' => 'required|min:2|max:100',
             'apply_mutual_balance' => 'max:1',
@@ -76,6 +80,7 @@ class RuleController extends Controller
         $ruleCreated = auth()->user()->addRule($attributes);
 
         if ($ruleCreated !== null) {
+            $ruleCreated->teams()->sync($request->teams);
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
             return redirect()->route('rules.admin-show', ['competition' => $competition->id, 'rule' => $ruleCreated->id]);
         } else {
@@ -104,7 +109,9 @@ class RuleController extends Controller
      */
     public function adminShow(Competition $competition, Rule $rule)
     {
-        return view('rules.admin-show', compact('competition', 'rule'));
+        $teams = $rule->teams;
+
+        return view('rules.admin-show', compact('competition', 'rule', 'teams'));
     }
 
     /**
@@ -116,7 +123,20 @@ class RuleController extends Controller
      */
     public function edit(Competition $competition, Rule $rule)
     {
-        return view('rules.edit', compact('competition', 'rule'));
+        $teamsRepository = new Teams;
+
+        $ruleTeams = $rule->teams;
+        $teams = $teamsRepository->getTeamsFiltered($competition);
+
+        foreach ($teams as $team) {
+            if ($ruleTeams->contains($team)) {
+                $team->is_in_rule = true;
+            } else {
+                $team->is_in_rule = false;
+            }
+        }
+
+        return view('rules.edit', compact('competition', 'rule', 'teams'));
     }
 
     /**
@@ -130,7 +150,7 @@ class RuleController extends Controller
     public function update(Request $request, Competition $competition, Rule $rule)
     {
         $attributes = $request->validate([
-            'name' => 'required|min:2|max:100',
+            'name' => 'required|min:2|max:50',
             'type' => 'required|min:2|max:100',
             'system' => 'required|min:2|max:100',
             'apply_mutual_balance' => 'max:1',
@@ -152,6 +172,8 @@ class RuleController extends Controller
             'break_end_date' => 'nullable|date_format:Y-m-d',
             'competition_id' => 'required|numeric|min:1',
         ]);
+
+        $rule->teams()->sync($request->teams);
 
         if ($request->type !== 'table') {
             $attributes['apply_mutual_balance'] = false;

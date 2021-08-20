@@ -33,7 +33,7 @@ class Rule extends Model
 
     public function teams()
     {
-        return $this->belongsToMany(Team::class)->withTimestamps();
+        return $this->belongsToMany(Team::class)->orderBy('name')->withTimestamps();
     }
 
     public function games()
