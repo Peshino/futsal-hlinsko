@@ -130,7 +130,7 @@
                             <td>{{ $tableItem->team_goals_difference }}</td>
                             <td class="competition-color"><strong>{{ $tableItem->points }}</strong></td>
                             <td class="form">
-                                @if (count($tableItem->team_form) > 0)
+                                @if ($tableItem->team_form !== null && $tableItem->team_form->isNotEmpty())
                                 <i class="fas fa-chevron-left text-white-50"></i>
                                 @foreach ($tableItem->team_form as $game)
                                 @include('partials/team-form')

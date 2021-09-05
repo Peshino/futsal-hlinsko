@@ -118,7 +118,7 @@ class Positions
         if (isset($round) && !empty($round)) {
             $position = $this->getPositionsFiltered($competition, $rule, $team, null, $round);
 
-            $teamActualPosition = $position->position ?? null;
+            $teamActualPosition = isset($position->position) && !empty($position->position) ? $position->position : null;
         }
 
         return $teamActualPosition;

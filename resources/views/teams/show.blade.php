@@ -41,7 +41,7 @@
                                             </span>
                                             &nbsp;|&nbsp;
                                             <span class="text-white-50">
-                                                @lang('messages.' . $lastPlayedRule->name ?? '' . '')
+                                                {{ $lastPlayedRule->name ?? '' }}
                                             </span>
                                         </p>
                                     </div>

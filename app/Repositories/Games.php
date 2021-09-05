@@ -147,7 +147,7 @@ class Games
         return null;
     }
 
-    private function getTableDataSql(Competition $competition, Rule $rule, $toRound = null, $orderByGoalDifference = false, $orderByGoalsScored = false, $teams = [], $useSimpleTable = false)
+    private function getTableDataSql(Competition $competition, Rule $rule, $toRound = null, $orderByGoalDifference = false, $orderByGoalsScored = false, $teams = [], $useSimpleTable = false, $isAppliedMutualBalance = false)
     {
         $originalPositionCase = null;
         $implodedTeams = null;
@@ -164,50 +164,65 @@ class Games
 
         $tableData = DB::select(
             'SELECT
-                team_id,
-                teams.name team_name,
-                ' . ($useSimpleTable === false ? 'COUNT(*) games_count,' : '') . '
-                ' . ($useSimpleTable === false ? 'COUNT(CASE WHEN home_team_score > away_team_score THEN 1 END) wins,' : '') . '
-                ' . ($useSimpleTable === false ? 'COUNT(CASE WHEN home_team_score = away_team_score THEN 1 END) draws,' : '') . '
-                ' . ($useSimpleTable === false ? 'COUNT(CASE WHEN away_team_score > home_team_score THEN 1 END) losts,' : '') . '
-                SUM(home_team_score) team_goals_scored,
-                SUM(away_team_score) team_goals_received,
-                SUM(home_team_score) - SUM(away_team_score) team_goals_difference,
-                SUM(CASE WHEN home_team_score > away_team_score THEN ? ELSE 0 END + CASE WHEN home_team_score = away_team_score THEN 1 ELSE 0 END) points
-                ' . ($originalPositionCase !== null ? ', ' . $originalPositionCase : ($useSimpleTable === false ? ', NULL AS original_position' : '')) . '
-            FROM
-            (
-                SELECT
-                    home_team_id team_id,
-                    home_team_score,
-                    away_team_score
+                    b.team_id AS team_id,
+                    b.team_name AS team_name,
+                    ' . ($useSimpleTable === false ? '(b.wins + b.draws + b.losts) AS games_count,' : '') . '
+                    ' . ($useSimpleTable === false ? 'b.wins AS wins,' : '') . '
+                    ' . ($useSimpleTable === false ? 'b.draws AS draws,' : '') . '
+                    ' . ($useSimpleTable === false ? 'b.losts AS losts,' : '') . '
+                    b.team_goals_scored AS team_goals_scored,
+                    b.team_goals_received AS team_goals_received,
+                    b.team_goals_difference AS team_goals_difference,
+                    b.points AS points
+                    ' . ($useSimpleTable === false ? ', b.original_position AS original_position' : '') . '
                 FROM
-                    games
-                WHERE
-                    competition_id = ? AND rule_id = ? AND round <= ? AND start_datetime <= NOW() AND home_team_score IS NOT NULL AND away_team_score IS NOT NULL
-                    ' . ($implodedTeams !== null ? ' AND home_team_id IN (' . $implodedTeams . ') AND away_team_id IN (' . $implodedTeams . ')' : '') . '
-                UNION ALL
-                SELECT
-                    away_team_id,
-                    away_team_score,
-                    home_team_score
+                    (
+                    SELECT
+                    teams.id AS team_id,
+                    teams.name AS team_name,
+                    ' . ($useSimpleTable === false ? 'COALESCE(COUNT(CASE WHEN home_team_score > away_team_score THEN 1 END), 0) AS wins,' : '') . '
+                    ' . ($useSimpleTable === false ? 'COALESCE(COUNT(CASE WHEN home_team_score = away_team_score THEN 1 END), 0) AS draws,' : '') . '
+                    ' . ($useSimpleTable === false ? 'COALESCE(COUNT(CASE WHEN away_team_score > home_team_score THEN 1 END), 0) AS losts,' : '') . '
+                    COALESCE(SUM(home_team_score), 0) AS team_goals_scored,
+                    COALESCE(SUM(away_team_score), 0) AS team_goals_received,
+                    COALESCE(SUM(home_team_score) - SUM(away_team_score), 0) AS team_goals_difference,
+                    COALESCE(SUM(CASE WHEN home_team_score > away_team_score THEN ? ELSE 0 END + CASE WHEN home_team_score = away_team_score THEN 1 ELSE 0 END), 0) AS points
+                    ' . ($originalPositionCase !== null ? ', ' . $originalPositionCase : ($useSimpleTable === false ? ', NULL AS original_position' : '')) . '
                 FROM
-                    games
-                WHERE
-                    competition_id = ? AND rule_id = ? AND round <= ? AND start_datetime <= NOW() AND away_team_score IS NOT NULL AND home_team_score IS NOT NULL
-                    ' . ($implodedTeams !== null ? ' AND away_team_id IN (' . $implodedTeams . ') AND home_team_id IN (' . $implodedTeams . ')' : '') . '
-            ) a
-            INNER JOIN teams ON teams.id = a.team_id
-            GROUP BY
-                team_id,
-                team_name
-            ORDER BY
-                points DESC
-                ' . ($orderByGoalDifference ? ', team_goals_difference DESC' : '') . '
-                ' . ($orderByGoalsScored ? ', team_goals_scored DESC' : '') . '
-                ' . ($originalPositionCase !== null ? ', original_position ASC' : '') . '
+                (
+                    SELECT
+                        home_team_id team_id,
+                        home_team_score,
+                        away_team_score
+                    FROM
+                        games
+                    WHERE
+                        competition_id = ? AND rule_id = ? AND round <= ? AND start_datetime <= NOW() AND home_team_score IS NOT NULL AND away_team_score IS NOT NULL
+                        ' . ($implodedTeams !== null ? ' AND home_team_id IN (' . $implodedTeams . ') AND away_team_id IN (' . $implodedTeams . ')' : '') . '
+                    UNION ALL
+                    SELECT
+                        away_team_id,
+                        away_team_score,
+                        home_team_score
+                    FROM
+                        games
+                    WHERE
+                        competition_id = ? AND rule_id = ? AND round <= ? AND start_datetime <= NOW() AND away_team_score IS NOT NULL AND home_team_score IS NOT NULL
+                        ' . ($implodedTeams !== null ? ' AND away_team_id IN (' . $implodedTeams . ') AND home_team_id IN (' . $implodedTeams . ')' : '') . '
+                ) a
+                ' . ($isAppliedMutualBalance ? 'INNER JOIN teams ON teams.id = a.team_id' : 'RIGHT JOIN teams ON teams.id = a.team_id WHERE teams.id IN (SELECT team_id FROM rule_team WHERE rule_id = ?)') . '
+                GROUP BY
+                    team_id,
+                    team_name
+                ORDER BY
+                    points DESC
+                    ' . ($orderByGoalDifference ? ', team_goals_difference DESC' : '') . '
+                    ' . ($orderByGoalsScored ? ', team_goals_scored DESC' : '') . '
+                    ' . ($originalPositionCase !== null ? ', original_position ASC' : '') . '
+                    , team_name
+                ) b
             ;',
-            array($rule->points_for_win, $competition->id, $rule->id, $toRound, $competition->id, $rule->id, $toRound)
+            array($rule->points_for_win, $competition->id, $rule->id, $toRound, $competition->id, $rule->id, $toRound, $rule->id)
         );
 
         return $tableData;
@@ -235,7 +250,7 @@ class Games
         if (!empty($miniTablesData)) {
             foreach ($miniTablesData as $points => $miniTableData) {
                 $teams = array_column($miniTableData, 'team_id');
-                $orderedMiniTables[$points] = $this->getTableDataSql($competition, $rule, $toRound, $orderByGoalDifference, $orderByGoalsScored, $teams);
+                $orderedMiniTables[$points] = $this->getTableDataSql($competition, $rule, $toRound, $orderByGoalDifference, $orderByGoalsScored, $teams, false, true);
             }
 
             return $orderedMiniTables;

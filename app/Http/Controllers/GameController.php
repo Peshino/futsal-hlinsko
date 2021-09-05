@@ -120,22 +120,31 @@ class GameController extends Controller
         $gamesRepository = new Games;
         $positionsRepository = new Positions;
 
+        $synchronizePositions = false;
         $rounds = $gamesRepository->getRoundsFiltered($competition, $rule, 'results');
         $actualRound = $toRound ?? null;
         $tableData = $gamesRepository->getTableData($competition, $rule, $toRound, true, true);
 
         if (!empty($tableData)) {
-            foreach ($tableData as $tableItem) {
+            foreach ($tableData as $tablePosition => $tableItem) {
                 $team = Team::find($tableItem->team_id);
                 $teamForm = $gamesRepository->getTeamForm($competition, $rule, $team, $toRound);
 
                 $teamActualPosition = $positionsRepository->getTeamActualPosition($competition, $rule, $team, $actualRound);
                 $teamPreviousPosition = $positionsRepository->getTeamPreviousPosition($competition, $rule, $team, $actualRound);
 
+                if ($teamActualPosition === null || $teamPreviousPosition === null) {
+                    $synchronizePositions = true;
+                }
+
                 $tableItem->team_form = $teamForm;
-                $tableItem->team_actual_position = $teamActualPosition;
+                $tableItem->team_actual_position = $teamActualPosition ?? ($tablePosition + 1);
                 $tableItem->team_previous_position = $teamPreviousPosition;
             }
+        }
+
+        if ($synchronizePositions) {
+            $positionsRepository->synchronize($competition, $rule);
         }
 
         return view('games.table-index', compact('competition', 'rule', 'toRound', 'tableData', 'rounds'));
