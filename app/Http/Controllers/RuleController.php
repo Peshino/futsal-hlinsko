@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Rule;
 use App\Competition;
+use App\Phase;
 use App\Repositories\Teams;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RuleController extends Controller
 {
@@ -127,6 +129,7 @@ class RuleController extends Controller
 
         $ruleTeams = $rule->teams;
         $teams = $teamsRepository->getTeamsFiltered($competition);
+        $phases = $rule->phases;
 
         foreach ($teams as $team) {
             if ($ruleTeams->contains($team)) {
@@ -136,7 +139,7 @@ class RuleController extends Controller
             }
         }
 
-        return view('rules.edit', compact('competition', 'rule', 'teams'));
+        return view('rules.edit', compact('competition', 'rule', 'teams', 'phases'));
     }
 
     /**
@@ -149,6 +152,9 @@ class RuleController extends Controller
      */
     public function update(Request $request, Competition $competition, Rule $rule)
     {
+        $flashSuccess = true;
+        $toDeletePhases = $rule->phases;
+
         $attributes = $request->validate([
             'name' => 'required|min:2|max:50',
             'type' => 'required|min:2|max:100',
@@ -173,6 +179,58 @@ class RuleController extends Controller
             'competition_id' => 'required|numeric|min:1',
         ]);
 
+        if ($request->has('phases')) {
+            $phases = $request->input('phases');
+
+            foreach ($phases as $key => $phase) {
+                $validator = Validator::make($phase, [
+                    'from_position' => 'required|numeric|min:1|max:999|lte:to_position',
+                    'to_position' => 'required|numeric|min:1|max:999|gte:from_position',
+                    'to_rule_id' => 'required|numeric|min:1',
+                ]);
+
+                if ($validator->fails()) {
+                    return redirect()->back()->withErrors($validator)->withInput();
+                }
+
+                $phaseAttributes = [
+                    'from_position' => $phase['from_position'],
+                    'to_position' => $phase['to_position'],
+                    'phase' => $phase['phase'],
+                    'to_rule_id' => $phase['to_rule_id'],
+                    'rule_id' => $rule->id,
+                    'competition_id' => $competition->id,
+                ];
+
+                if (isset($phase['id']) && !empty($phase['id'])) {
+                    $id = (int) $phase['id'];
+                    $toDeletePhase = Phase::find($id);
+                    $toDeletePhases = $toDeletePhases->reject($toDeletePhase);
+
+                    if ($toDeletePhase->update($phaseAttributes)) {
+                    } else {
+                        $flashSuccess = false;
+                    }
+                } else {
+                    $phaseCreated = auth()->user()->addPhase($phaseAttributes);
+
+                    if ($phaseCreated !== null) {
+                    } else {
+                        $flashSuccess = false;
+                    }
+                }
+            }
+        }
+
+        if ($toDeletePhases->isNotEmpty()) {
+            foreach ($toDeletePhases as $toDeletePhase) {
+                if ($toDeletePhase->delete()) {
+                } else {
+                    $flashSuccess = false;
+                }
+            }
+        }
+
         $rule->teams()->sync($request->teams);
 
         if ($request->type !== 'table') {
@@ -182,6 +240,11 @@ class RuleController extends Controller
         }
 
         if ($rule->update($attributes)) {
+        } else {
+            $flashSuccess = false;
+        }
+
+        if ($flashSuccess) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
         } else {
             session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');

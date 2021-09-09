@@ -66,6 +66,11 @@ class Rule extends Model
         return $this->hasMany(Game::class)->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $this->game_duration . ' MINUTE) > NOW()');
     }
 
+    public function phases()
+    {
+        return $this->hasMany(Phase::class);
+    }
+
     public function getFirstSchedule()
     {
         return $this->schedule()->first();

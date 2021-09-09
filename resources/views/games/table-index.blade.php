@@ -86,7 +86,18 @@
                     <tbody>
                         @foreach ($tableData as $tableItem)
                         <tr>
-                            <td>
+                            <td style="
+                            {{ isset($tableItem->team_phase) && $tableItem->team_phase->phase === 'qualification' ? "background: -moz-linear-gradient(left,  rgba(35,111,178,0.5) 0%, rgba(125,185,232,0) 100%);
+background: -webkit-linear-gradient(left,  rgba(35,111,178,0.5) 0%,rgba(125,185,232,0) 100%);
+background: linear-gradient(to right,  rgba(35,111,178,0.5) 0%,rgba(125,185,232,0) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80236fb2', endColorstr='#007db9e8',GradientType=1 );
+" : '' }}
+                            {{ isset($tableItem->team_phase) && $tableItem->team_phase->phase === 'descent' ? " background: -moz-linear-gradient(left,  rgba(163,32,34,0.5) 0%, rgba(125,185,232,0) 100%);
+background: -webkit-linear-gradient(left,  rgba(163,32,34,0.5) 0%,rgba(125,185,232,0) 100%);
+background: linear-gradient(to right,  rgba(163,32,34,0.5) 0%,rgba(125,185,232,0) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80a32022', endColorstr='#007db9e8',GradientType=1 );
+" : '' }}
+                            ">
                                 @if ($tableItem->team_previous_position !== null)
                                 @php
                                 $positionDifference = abs($tableItem->team_actual_position -

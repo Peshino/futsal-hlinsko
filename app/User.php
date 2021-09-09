@@ -78,6 +78,11 @@ class User extends Authenticatable
         return $this->hasMany(Card::class);
     }
 
+    public function phases()
+    {
+        return $this->hasMany(Phase::class);
+    }
+
     public function addCompetition($competition)
     {
         return $this->competitions()->create($competition);
@@ -128,6 +133,11 @@ class User extends Authenticatable
     public function addCard($card)
     {
         return $this->cards()->create($card);
+    }
+
+    public function addPhase($phase)
+    {
+        return $this->phases()->create($phase);
     }
 
     public function roles()

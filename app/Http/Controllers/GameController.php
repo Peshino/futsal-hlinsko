@@ -124,6 +124,8 @@ class GameController extends Controller
         $rounds = $gamesRepository->getRoundsFiltered($competition, $rule, 'results');
         $actualRound = $toRound ?? null;
         $tableData = $gamesRepository->getTableData($competition, $rule, $toRound, true, true);
+        $phases = $rule->phases;
+        $filteredPhases = $phases->map->only(['from_position', 'to_position']);
 
         if (!empty($tableData)) {
             foreach ($tableData as $tablePosition => $tableItem) {
@@ -137,11 +139,26 @@ class GameController extends Controller
                     $synchronizePositions = true;
                 }
 
+                $teamActualPosition = $teamActualPosition ?? ($tablePosition + 1);
+
+                foreach ($filteredPhases as $phaseId => $filteredPhase) {
+                    $fromPosition = $filteredPhase['from_position'];
+                    $toPosition = $filteredPhase['to_position'];
+
+                    if ($teamActualPosition >= $fromPosition && $teamActualPosition <= $toPosition) {
+                        $tableItem->team_phase = $phases[$phaseId];
+
+                        break;
+                    }
+                }
+
                 $tableItem->team_form = $teamForm;
-                $tableItem->team_actual_position = $teamActualPosition ?? ($tablePosition + 1);
+                $tableItem->team_actual_position = $teamActualPosition;
                 $tableItem->team_previous_position = $teamPreviousPosition;
             }
         }
+
+        // dd($tableData);
 
         if ($synchronizePositions) {
             $positionsRepository->synchronize($competition, $rule);
