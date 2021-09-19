@@ -141,14 +141,16 @@ class GameController extends Controller
 
                 $teamActualPosition = $teamActualPosition ?? ($tablePosition + 1);
 
-                foreach ($filteredPhases as $phaseId => $filteredPhase) {
-                    $fromPosition = $filteredPhase['from_position'];
-                    $toPosition = $filteredPhase['to_position'];
+                if (!empty($filteredPhases)) {
+                    foreach ($filteredPhases as $key => $filteredPhase) {
+                        $fromPosition = $filteredPhase['from_position'];
+                        $toPosition = $filteredPhase['to_position'];
 
-                    if ($teamActualPosition >= $fromPosition && $teamActualPosition <= $toPosition) {
-                        $tableItem->team_phase = $phases[$phaseId];
+                        if ($teamActualPosition >= $fromPosition && $teamActualPosition <= $toPosition) {
+                            $tableItem->team_phase = $phases[$key];
 
-                        break;
+                            break;
+                        }
                     }
                 }
 
@@ -157,8 +159,6 @@ class GameController extends Controller
                 $tableItem->team_previous_position = $teamPreviousPosition;
             }
         }
-
-        // dd($tableData);
 
         if ($synchronizePositions) {
             $positionsRepository->synchronize($competition, $rule);
