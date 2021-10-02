@@ -193,7 +193,13 @@ class GameController extends Controller
      */
     public function create(Competition $competition, Rule $rule = null)
     {
-        return view('games.create', compact('competition', 'rule'));
+        if ($rule !== null) {
+            $teams = $rule->teams;
+        } else {
+            $teams = $competition->teams;
+        }
+
+        return view('games.create', compact('competition', 'rule', 'teams'));
     }
 
     /**

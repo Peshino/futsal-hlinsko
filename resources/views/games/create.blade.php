@@ -96,8 +96,8 @@
                                         @lang('messages.home_team')
                                     </label>
                                     <select class="form-control" id="home-team-id" name="home_team_id" required>
-                                        @if (count($competition->teams) > 0)
-                                        @foreach ($competition->teams as $team)
+                                        @if ($teams->isNotEmpty())
+                                        @foreach ($teams as $team)
                                         <option {{ old('home_team_id') === $team->id ? "selected" : "" }}
                                             value="{{ $team->id }}">
                                             {{ $team->name }}
@@ -115,8 +115,8 @@
                                         @lang('messages.away_team')
                                     </label>
                                     <select class="form-control" id="away-team-id" name="away_team_id" required>
-                                        @if (count($competition->teams) > 0)
-                                        @foreach ($competition->teams as $team)
+                                        @if ($teams->isNotEmpty())
+                                        @foreach ($teams as $team)
                                         <option {{ old('away_team_id') === $team->id ? "selected" : "" }}
                                             value="{{ $team->id }}">
                                             {{ $team->name }}
