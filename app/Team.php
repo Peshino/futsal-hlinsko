@@ -67,7 +67,7 @@ class Team extends Model
         return $this->hasMany(Position::class);
     }
 
-    public function getLastPlayedRuleByPriority()
+    public function getLastPlayedRule()
     {
         return $this->rules()->latest('priority')->first();
     }

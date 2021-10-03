@@ -120,7 +120,7 @@ class Games
         return $tableData;
     }
 
-    public function getTeamForm(Competition $competition, Rule $rule, Team $team, $toRound = null, $gamesFormCount = 5)
+    public function getTeamForm(Competition $competition, Team $team, Rule $rule = null, $toRound = null, $gamesFormCount = 5)
     {
         $teamForm = $this->getGamesFiltered($competition, $rule, $team, 'results', null, $toRound, $gamesFormCount);
 

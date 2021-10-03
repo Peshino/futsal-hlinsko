@@ -66,12 +66,12 @@
     </div>
 
     <div class="card-body">
-        <div class="content text-center">
+        <div class="content">
             <div class="content-block">
                 <table class="table table-striped table-dark">
                     <thead>
                         <tr style="font-size: 0.8rem;">
-                            <th scope="col">@lang('messages.position')</th>
+                            <th scope="col" class="text-center">@lang('messages.position')</th>
                             <th scope="col" class="text-left">@lang('messages.team')</th>
                             <th scope="col">@lang('messages.games')</th>
                             <th scope="col">Výhry</th>
@@ -85,33 +85,26 @@
                     </thead>
                     <tbody>
                         @foreach ($tableData as $tableItem)
+                        @php
+                        // $qualifications =
+                        @endphp
                         <tr>
-                            <td style="
-                            {{ isset($tableItem->team_phase) && $tableItem->team_phase->phase === 'qualification' ? "background: -moz-linear-gradient(left,  rgba(35,111,178,0.5) 0%, rgba(125,185,232,0) 100%);
-background: -webkit-linear-gradient(left,  rgba(35,111,178,0.5) 0%,rgba(125,185,232,0) 100%);
-background: linear-gradient(to right,  rgba(35,111,178,0.5) 0%,rgba(125,185,232,0) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80236fb2', endColorstr='#007db9e8',GradientType=1 );
-" : '' }}
-                            {{ isset($tableItem->team_phase) && $tableItem->team_phase->phase === 'descent' ? " background: -moz-linear-gradient(left,  rgba(163,32,34,0.5) 0%, rgba(125,185,232,0) 100%);
-background: -webkit-linear-gradient(left,  rgba(163,32,34,0.5) 0%,rgba(125,185,232,0) 100%);
-background: linear-gradient(to right,  rgba(163,32,34,0.5) 0%,rgba(125,185,232,0) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80a32022', endColorstr='#007db9e8',GradientType=1 );
-" : '' }}
-                            ">
+                            <td
+                                class="text-center{{ isset($tableItem->team_phase) ? ' ' . $tableItem->team_phase->phase . '-bg-' . $tableItem->team_phase->order : '' }}">
                                 @if ($tableItem->team_previous_position !== null)
                                 @php
-                                $positionDifference = abs($tableItem->team_actual_position -
+                                $positionDifference = abs($tableItem->team_current_position -
                                 $tableItem->team_previous_position);
                                 @endphp
 
-                                @if ($tableItem->team_actual_position < $tableItem->team_previous_position)
+                                @if ($tableItem->team_current_position < $tableItem->team_previous_position)
                                     <span class="text-success">
                                         @if ($positionDifference < 4) <i class="fas fa-angle-up"></i>
                                             @else
                                             <i class="fas fa-angle-double-up"></i>
                                             @endif
                                     </span>
-                                    @elseif ($tableItem->team_actual_position > $tableItem->team_previous_position)
+                                    @elseif ($tableItem->team_current_position > $tableItem->team_previous_position)
                                     <span class="text-danger">
                                         @if ($positionDifference < 4) <i class="fas fa-angle-down"></i>
                                             @else
@@ -126,7 +119,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80a32022', e
                                     &nbsp;
 
                                     @endif
-                                    {{ $tableItem->team_actual_position }}
+                                    {{ $tableItem->team_current_position }}
                             </td>
                             <td class="text-left">
                                 <a href="{{ route('teams.show', [$competition->id, $tableItem->team_id]) }}">

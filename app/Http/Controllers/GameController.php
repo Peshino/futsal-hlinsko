@@ -66,22 +66,22 @@ class GameController extends Controller
      *
      * @param  \App\Competition  $competition
      * @param  \App\Rule  $rule
-     * @param  int $actualRound
+     * @param  int $currentRound
      * @return \Illuminate\Http\Response
      */
-    public function resultsParamsIndex(Competition $competition, Rule $rule, $actualRound = null)
+    public function resultsParamsIndex(Competition $competition, Rule $rule, $currentRound = null)
     {
         $gamesRepository = new Games;
         $rounds = $gamesRepository->getRoundsFiltered($competition, $rule, 'results');
 
-        if ($actualRound !== null) {
-            $actualRound = (int) $actualRound;
-            $games = $gamesRepository->getGamesFiltered($competition, $rule, null, 'results', $actualRound);
+        if ($currentRound !== null) {
+            $currentRound = (int) $currentRound;
+            $games = $gamesRepository->getGamesFiltered($competition, $rule, null, 'results', $currentRound);
         } else {
             $games = $gamesRepository->getGamesFiltered($competition, $rule, null, 'results');
         }
 
-        return view('games.results-index', compact('competition', 'rule', 'actualRound', 'games', 'rounds'));
+        return view('games.results-index', compact('competition', 'rule', 'currentRound', 'games', 'rounds'));
     }
 
     /**
@@ -89,22 +89,22 @@ class GameController extends Controller
      *
      * @param  \App\Competition  $competition
      * @param  \App\Rule  $rule
-     * @param  int $actualRound
+     * @param  int $currentRound
      * @return \Illuminate\Http\Response
      */
-    public function scheduleParamsIndex(Competition $competition, Rule $rule, $actualRound = null)
+    public function scheduleParamsIndex(Competition $competition, Rule $rule, $currentRound = null)
     {
         $gamesRepository = new Games;
         $rounds = $gamesRepository->getRoundsFiltered($competition, $rule, 'schedule');
 
-        if ($actualRound !== null) {
-            $actualRound = (int) $actualRound;
-            $games = $gamesRepository->getGamesFiltered($competition, $rule, null, 'schedule', $actualRound);
+        if ($currentRound !== null) {
+            $currentRound = (int) $currentRound;
+            $games = $gamesRepository->getGamesFiltered($competition, $rule, null, 'schedule', $currentRound);
         } else {
             $games = $gamesRepository->getGamesFiltered($competition, $rule, null, 'schedule');
         }
 
-        return view('games.schedule-index', compact('competition', 'rule', 'actualRound', 'games', 'rounds'));
+        return view('games.schedule-index', compact('competition', 'rule', 'currentRound', 'games', 'rounds'));
     }
 
     /**
@@ -122,40 +122,51 @@ class GameController extends Controller
 
         $synchronizePositions = false;
         $rounds = $gamesRepository->getRoundsFiltered($competition, $rule, 'results');
-        $actualRound = $toRound ?? null;
+        $currentRound = $toRound ?? null;
         $tableData = $gamesRepository->getTableData($competition, $rule, $toRound, true, true);
         $phases = $rule->phases;
-        $filteredPhases = $phases->map->only(['from_position', 'to_position']);
+        $phasesOrder = [
+            'qualification' => [],
+            'descent' => [],
+        ];
+        $fromToPhases = $phases->map->only(['from_position', 'to_position']);
 
         if (!empty($tableData)) {
             foreach ($tableData as $tablePosition => $tableItem) {
                 $team = Team::find($tableItem->team_id);
-                $teamForm = $gamesRepository->getTeamForm($competition, $rule, $team, $toRound);
+                $teamForm = $gamesRepository->getTeamForm($competition, $team, $rule, $toRound);
 
-                $teamActualPosition = $positionsRepository->getTeamActualPosition($competition, $rule, $team, $actualRound);
-                $teamPreviousPosition = $positionsRepository->getTeamPreviousPosition($competition, $rule, $team, $actualRound);
+                $teamCurrentPosition = $positionsRepository->getTeamCurrentPosition($competition, $rule, $team, $currentRound);
+                $teamPreviousPosition = $positionsRepository->getTeamPreviousPosition($competition, $rule, $team, $currentRound);
 
-                if ($teamActualPosition === null || $teamPreviousPosition === null) {
+                if ($teamCurrentPosition === null || $teamPreviousPosition === null) {
                     $synchronizePositions = true;
                 }
 
-                $teamActualPosition = $teamActualPosition ?? ($tablePosition + 1);
+                $teamCurrentPosition = $teamCurrentPosition ?? ($tablePosition + 1);
 
-                if (!empty($filteredPhases)) {
-                    foreach ($filteredPhases as $key => $filteredPhase) {
-                        $fromPosition = $filteredPhase['from_position'];
-                        $toPosition = $filteredPhase['to_position'];
+                if (!empty($fromToPhases)) {
+                    foreach ($fromToPhases as $key => $fromToPhase) {
+                        $fromPosition = $fromToPhase['from_position'];
+                        $toPosition = $fromToPhase['to_position'];
 
-                        if ($teamActualPosition >= $fromPosition && $teamActualPosition <= $toPosition) {
-                            $tableItem->team_phase = $phases[$key];
+                        if ($teamCurrentPosition >= $fromPosition && $teamCurrentPosition <= $toPosition) {
+                            $teamPhase = $phases[$key];
 
+                            if (!in_array($teamPhase->id, $phasesOrder[$teamPhase->phase])) {
+                                $phasesOrder[$teamPhase->phase][] = $teamPhase->id;
+                            }
+
+                            $teamPhase->order = array_search($teamPhase->id, $phasesOrder[$teamPhase->phase]);
+
+                            $tableItem->team_phase = $teamPhase;
                             break;
                         }
                     }
                 }
 
                 $tableItem->team_form = $teamForm;
-                $tableItem->team_actual_position = $teamActualPosition;
+                $tableItem->team_current_position = $teamCurrentPosition;
                 $tableItem->team_previous_position = $teamPreviousPosition;
             }
         }

@@ -29,26 +29,32 @@
 
                         <div class="p-4">
                             <div class="row">
-                                @if ($teamActualPosition !== null)
+                                @if ($teamRules->isNotEmpty())
                                 <div class="col border-left border-dark">
                                     <h5>
                                         @lang('messages.position')
                                     </h5>
                                     <div class="pt-1">
-                                        <p>
-                                            <span class="competition-color">
-                                                {{ $teamActualPosition }}
-                                            </span>
-                                            &nbsp;|&nbsp;
-                                            <span class="text-white-50">
-                                                {{ $lastPlayedRule->name ?? '' }}
-                                            </span>
-                                        </p>
+                                        @foreach ($teamRules as $teamRule)
+                                        @if ($teamRule->position !== null)
+                                        <div class="row">
+                                            <div class="col">
+                                                <span class="text-white-50">
+                                                    {{ $teamRule->name ?? '' }}
+                                                </span>
+                                                &nbsp;|&nbsp;
+                                                <span class="competition-color">
+                                                    {{ $teamRule->position ?? '' }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        @endif
+                                        @endforeach
                                     </div>
                                 </div>
                                 @endif
 
-                                @if (count($teamForm) > 0)
+                                @if ($teamForm !== null)
                                 <div class="col border-left border-dark">
                                     <h5>
                                         @lang('messages.form')

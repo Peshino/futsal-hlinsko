@@ -274,7 +274,11 @@
                         <div class="form-check col-sm">
                             @foreach($teamCollection as $team)
                             <div class="form-check mb-2">
-                                <p>{{ $team->name }}</p>
+                                <p>
+                                    <a href="{{ route('teams.show', [$competition->id, $team->id]) }}">
+                                        {{ $team->name }}
+                                    </a>
+                                </p>
                             </div>
                             @endforeach
                         </div>

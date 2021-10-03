@@ -111,17 +111,17 @@ class Positions
         return false;
     }
 
-    public function getTeamActualPosition(Competition $competition, Rule $rule, Team $team, $round)
+    public function getTeamCurrentPosition(Competition $competition, Rule $rule, Team $team, $round)
     {
-        $teamActualPosition = null;
+        $teamCurrentPosition = null;
 
         if (isset($round) && !empty($round)) {
             $position = $this->getPositionsFiltered($competition, $rule, $team, null, $round);
 
-            $teamActualPosition = isset($position->position) && !empty($position->position) ? $position->position : null;
+            $teamCurrentPosition = isset($position->position) && !empty($position->position) ? $position->position : null;
         }
 
-        return $teamActualPosition;
+        return $teamCurrentPosition;
     }
 
     public function getTeamPreviousPosition(Competition $competition, Rule $rule, Team $team, $round)
@@ -134,7 +134,7 @@ class Positions
             if ($round > 1) {
                 $round -= 1;
 
-                $teamPreviousPosition = $this->getTeamActualPosition($competition, $rule, $team, $round);
+                $teamPreviousPosition = $this->getTeamCurrentPosition($competition, $rule, $team, $round);
             }
         }
 

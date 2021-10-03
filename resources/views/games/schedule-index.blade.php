@@ -56,14 +56,14 @@
                         <div class="dropdown pr-1">
                             <button class="control-button dropdown-toggle" type="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                {{ $actualRound }}. @lang('messages.round')
+                                {{ $currentRound }}. @lang('messages.round')
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 {{-- <a class="dropdown-item" href="">
                             @lang('messages.all')
                         </a> --}}
                                 @foreach ($rounds as $round)
-                                <a class="dropdown-item{{ $round === $actualRound ? " active" : "" }}"
+                                <a class="dropdown-item{{ $round === $currentRound ? " active" : "" }}"
                                     href="{{ route('schedule.params-index', [$competition->id, $rule->id, $round]) }}">
                                     {{ $round ?? '' }}. @lang('messages.round')
                                 </a>

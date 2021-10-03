@@ -10997,6 +10997,38 @@ html {
 #main .competition-color {
   color: #5cc3ff;
 }
+#main .qualification-bg-0 {
+  background: linear-gradient(to right, rgba(39, 45, 198, 0.5) 0%, rgba(125, 185, 232, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#80272dc6", endColorstr="#007db9e8", GradientType=1);
+}
+#main .qualification-bg-1 {
+  background: linear-gradient(to right, rgba(34, 113, 173, 0.5) 0%, rgba(125, 185, 232, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#802271ad", endColorstr="#007db9e8", GradientType=1);
+}
+#main .qualification-bg-2 {
+  background: linear-gradient(to right, rgba(29, 147, 116, 0.5) 0%, rgba(125, 185, 232, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#801d9374", endColorstr="#007db9e8", GradientType=1);
+}
+#main .qualification-bg-3 {
+  background: linear-gradient(to right, rgba(21, 107, 27, 0.5) 0%, rgba(125, 185, 232, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#80156b1b", endColorstr="#007db9e8", GradientType=1);
+}
+#main .descent-bg-0 {
+  background: linear-gradient(to right, rgba(183, 36, 39, 0.5) 0%, rgba(125, 185, 232, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#80b72427", endColorstr="#007db9e8", GradientType=1);
+}
+#main .descent-bg-1 {
+  background: linear-gradient(to right, rgba(163, 32, 108, 0.5) 0%, rgba(125, 185, 232, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#80a3206c", endColorstr="#007db9e8", GradientType=1);
+}
+#main .descent-bg-2 {
+  background: linear-gradient(to right, rgba(128, 27, 137, 0.5) 0%, rgba(125, 185, 232, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#80801b89", endColorstr="#007db9e8", GradientType=1);
+}
+#main .descent-bg-3 {
+  background: linear-gradient(to right, rgba(94, 29, 145, 0.5) 0%, rgba(125, 185, 232, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#805e1d91", endColorstr="#007db9e8", GradientType=1);
+}
 #main .game {
   background-color: #1b1e21;
 }

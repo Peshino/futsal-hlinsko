@@ -89,9 +89,9 @@ class TeamController extends Controller
         $gamesRepository = new Games;
         $playersRepository = new Players;
         $positionsRepository = new Positions;
-        $lastPlayedRule = $team->getLastPlayedRuleByPriority();
-        $lastPlayedRound = $gamesRepository->getTeamLastPlayedRound($competition, $lastPlayedRule, $team);
+        $teamRules = $team->rules;
         $teamPlayers = $teamResults = $teamSchedule = null;
+        $teamPositions = [];
         $sections = ['players', 'results', 'schedule', 'statistics'];
 
         switch ($section) {
@@ -109,10 +109,16 @@ class TeamController extends Controller
             default:
         }
 
-        $teamForm = $gamesRepository->getTeamForm($competition, $lastPlayedRule, $team, $lastPlayedRound);
-        $teamActualPosition = $positionsRepository->getTeamActualPosition($competition, $lastPlayedRule, $team, $lastPlayedRound);
+        $teamForm = $gamesRepository->getTeamForm($competition, $team);
 
-        return view('teams.show', compact('competition', 'lastPlayedRule', 'team', 'sections', 'teamForm', 'teamActualPosition', 'teamPlayers', 'teamResults', 'teamSchedule'));
+        if ($teamRules->isNotEmpty()) {
+            foreach ($teamRules as $teamRule) {
+                $lastPlayedRound = $gamesRepository->getTeamLastPlayedRound($competition, $teamRule, $team);
+                $teamRule->position = $positionsRepository->getTeamCurrentPosition($competition, $teamRule, $team, $lastPlayedRound);
+            }
+        }
+
+        return view('teams.show', compact('competition', 'team', 'sections', 'teamForm', 'teamRules', 'teamPlayers', 'teamResults', 'teamSchedule'));
     }
 
     /**

@@ -17,7 +17,7 @@ class Phase extends Model
 
     public function toRule()
     {
-        return $this->belongsTo(Rule::class, 'to_rule');
+        return $this->belongsTo(Rule::class, 'to_rule_id');
     }
 
     public function competition()
