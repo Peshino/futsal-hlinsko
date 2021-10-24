@@ -112,8 +112,9 @@ class RuleController extends Controller
     public function adminShow(Competition $competition, Rule $rule)
     {
         $teams = $rule->teams;
+        $phases = $rule->phases;
 
-        return view('rules.admin-show', compact('competition', 'rule', 'teams'));
+        return view('rules.admin-show', compact('competition', 'rule', 'teams', 'phases'));
     }
 
     /**

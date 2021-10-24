@@ -102,8 +102,8 @@
                     <div class="apply-mutual-balance col-md">
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input" id="apply-mutual-balance"
-                                name="apply_mutual_balance" value="{{ $rule->apply_mutual_balance === 1 ? 1 : 0 }}"
-                                {{ $rule->apply_mutual_balance === 1 ? 'checked' : '' }} disabled>
+                                name="apply_mutual_balance" value="{{ $rule->apply_mutual_balance === 1 ? 1 : 0 }}" {{
+                                $rule->apply_mutual_balance === 1 ? 'checked' : '' }} disabled>
                             <label class="custom-control-label"
                                 for="apply-mutual-balance">@lang('messages.apply_mutual_balance')</label>
                         </div>
@@ -283,6 +283,22 @@
                             @endforeach
                         </div>
                         @endforeach
+                    </div>
+                </div>
+
+                <div class="mt-4 mb-2">
+                    <h3 class="pb-1">
+                        @lang('messages.phases')
+                    </h3>
+
+                    <div class="row form-group">
+                        <div id="phases" class="phases col-lg">
+                            @if (count($phases) > 0)
+                            @foreach ($phases as $key => $phase)
+                            @include('partials/phases-show')
+                            @endforeach
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
