@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(() => {
   // console.log($('.input-datepicker'));
   if ($('.input-datepicker').each(function () {
     elem = this;

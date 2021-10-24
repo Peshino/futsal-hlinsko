@@ -22,8 +22,8 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 {{-- <a class="dropdown-item" href="">
-                            @lang('messages.all')
-                        </a> --}}
+                                    @lang('messages.all')
+                                </a> --}}
                                 @foreach ($competition->rules as $competitionRule)
                                 @if ($competitionRule->getLastResultByRound() !== null)
                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
@@ -73,14 +73,14 @@
                         <tr style="font-size: 0.8rem;">
                             <th scope="col" class="text-center">@lang('messages.position')</th>
                             <th scope="col" class="text-left">@lang('messages.team')</th>
-                            <th scope="col">@lang('messages.games')</th>
-                            <th scope="col">Výhry</th>
-                            <th scope="col">Remízy</th>
-                            <th scope="col">Prohry</th>
-                            <th scope="col">Skóre</th>
-                            <th scope="col">GR</th>
-                            <th scope="col">Body</th>
-                            <th scope="col">Forma <i class="fas fa-long-arrow-alt-left"></i></th>
+                            <th scope="col" class="text-center">@lang('messages.games')</th>
+                            <th scope="col" class="text-center">Výhry</th>
+                            <th scope="col" class="text-center">Remízy</th>
+                            <th scope="col" class="text-center">Prohry</th>
+                            <th scope="col" class="text-center">Skóre</th>
+                            <th scope="col" class="text-center">GR</th>
+                            <th scope="col" class="text-center">Body</th>
+                            <th scope="col" class="text-center">Forma <i class="fas fa-long-arrow-alt-left"></i></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,8 +89,15 @@
                         // $qualifications =
                         @endphp
                         <tr>
-                            <td
-                                class="text-center{{ isset($tableItem->team_phase) ? ' ' . $tableItem->team_phase->phase . '-bg-' . $tableItem->team_phase->order : '' }}">
+                            <td class="text-center{{ isset($tableItem->team_phase) ? ' ' . $tableItem->team_phase->phase . '-bg-' . $tableItem->team_phase->order : '' }}"
+                                data-toggle="popover" title="{{ $tableItem->team_name }}" data-content="
+                                    @if ($tableItem->team_previous_position !== null)
+                                        @lang('messages.previous_position') <strong>{{ $tableItem->team_previous_position }}</strong><br />
+                                    @endif
+                                    @isset ($tableItem->team_phase)
+                                        @lang('messages.' . $tableItem->team_phase->phase) <strong>{{ $tableItem->team_phase->toRule->name }}</strong>
+                                    @endisset
+                                ">
                                 @if ($tableItem->team_previous_position !== null)
                                 @php
                                 $positionDifference = abs($tableItem->team_current_position -
@@ -126,14 +133,15 @@
                                     {{ $tableItem->team_name }}
                                 </a>
                             </td>
-                            <td>{{ $tableItem->games_count }}</td>
-                            <td>{{ $tableItem->wins }}</td>
-                            <td>{{ $tableItem->draws }}</td>
-                            <td>{{ $tableItem->losts }}</td>
-                            <td>{{ $tableItem->team_goals_scored }}&nbsp;:&nbsp;{{ $tableItem->team_goals_received }}
-                            <td>{{ $tableItem->team_goals_difference }}</td>
-                            <td class="competition-color"><strong>{{ $tableItem->points }}</strong></td>
-                            <td class="form">
+                            <td class="text-center">{{ $tableItem->games_count }}</td>
+                            <td class="text-center">{{ $tableItem->wins }}</td>
+                            <td class="text-center">{{ $tableItem->draws }}</td>
+                            <td class="text-center">{{ $tableItem->losts }}</td>
+                            <td class="text-center">{{ $tableItem->team_goals_scored }}&nbsp;:&nbsp;{{
+                                $tableItem->team_goals_received }}
+                            <td class="text-center">{{ $tableItem->team_goals_difference }}</td>
+                            <td class="competition-color text-center"><strong>{{ $tableItem->points }}</strong></td>
+                            <td class="form text-center">
                                 @if ($tableItem->team_form !== null && $tableItem->team_form->isNotEmpty())
                                 <i class="fas fa-chevron-left text-white-50"></i>
                                 @foreach ($tableItem->team_form as $game)
@@ -161,7 +169,7 @@
 
 @section('scripts')
 <script>
-    // $(document).ready(function () {
+    // $(() => {
     //     $('[data-toggle="popover"]').popover({
     //         trigger: 'focus',
     //         html: true,

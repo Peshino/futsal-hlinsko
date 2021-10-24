@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(() => {
     if (Cookies.get('gdpr_cookie_bar') === '1') {
         $('#cookie-bar')
             .addClass('d-none')
@@ -10,6 +10,13 @@ $(document).ready(() => {
     }
 
     $('[data-toggle="tooltip"]').tooltip();
+
+
+    $('[data-toggle="popover"]').popover({
+        trigger: 'hover',
+        html: true,
+        placement: 'auto'
+    });
 
     $('.toast').toast('show');
 

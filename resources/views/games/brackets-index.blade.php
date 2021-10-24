@@ -22,8 +22,8 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 {{-- <a class="dropdown-item" href="">
-                            @lang('messages.all')
-                        </a> --}}
+                                    @lang('messages.all')
+                                </a> --}}
                                 @foreach ($competition->rules as $competitionRule)
                                 @if ($competitionRule->getLastResultByRound() !== null)
                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
@@ -77,7 +77,7 @@
 
 @section('scripts')
 <script>
-    // $(document).ready(function () {
+    // $(() => {
     //     $('[data-toggle="popover"]').popover({
     //         trigger: 'focus',
     //         html: true,

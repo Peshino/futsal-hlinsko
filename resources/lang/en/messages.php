@@ -65,6 +65,7 @@ return [
     'really_delete' => 'Really delete?',
     'your_comment' => 'Your comment',
     'add_comment' => 'Add comment',
+    'for_example' => 'e.g.',
 
     'post' => 'Post',
     'create_post' => 'Create post',
@@ -139,6 +140,7 @@ return [
     'jersey_number' => 'Jersey number',
     'birthdate' => 'Birthdate',
     'position' => 'Position',
+    'previous_position' => 'Previous position',
     'goalkeeper' => 'Goalkeeper',
     'defender' => 'Defender',
     'universal' => 'Universal',

@@ -34,8 +34,8 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 {{-- <a class="dropdown-item" href="">
-                            @lang('messages.all')
-                        </a> --}}
+                                    @lang('messages.all')
+                                </a> --}}
                                 @foreach ($competition->rules as $competitionRule)
                                 @if ($competitionRule->getFirstSchedule() !== null)
                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
@@ -60,8 +60,8 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 {{-- <a class="dropdown-item" href="">
-                            @lang('messages.all')
-                        </a> --}}
+                                    @lang('messages.all')
+                                </a> --}}
                                 @foreach ($rounds as $round)
                                 <a class="dropdown-item{{ $round === $currentRound ? " active" : "" }}"
                                     href="{{ route('schedule.params-index', [$competition->id, $rule->id, $round]) }}">
@@ -93,7 +93,7 @@
 
 @section('scripts')
 <script>
-    $(document).ready(function () {
+    $(() => {
         $('.clickable-row').click(function () {
             var url = $(this).data('url');
 

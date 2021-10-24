@@ -1947,7 +1947,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   \*********************************************/
 /***/ (() => {
 
-$(document).ready(function () {
+$(function () {
   // console.log($('.input-datepicker'));
   if ($('.input-datepicker').each(function () {
     elem = this; // The lines below are executed on page load
@@ -2193,7 +2193,7 @@ $(document).ready(function () {
   \*********************************/
 /***/ (() => {
 
-$(document).ready(function () {
+$(function () {
   if (Cookies.get('gdpr_cookie_bar') === '1') {
     $('#cookie-bar').addClass('d-none').removeClass('d-flex');
   } else {
@@ -2201,6 +2201,11 @@ $(document).ready(function () {
   }
 
   $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="popover"]').popover({
+    trigger: 'hover',
+    html: true,
+    placement: 'auto'
+  });
   $('.toast').toast('show');
   $('#cookie-bar-button').click(function () {
     Cookies.set('gdpr_cookie_bar', '1', {

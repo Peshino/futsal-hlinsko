@@ -236,9 +236,9 @@
                             <div class="form-check col-sm">
                                 @foreach($teamCollection as $team)
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox"
-                                        {{ $team->is_in_rule ? "checked" : "" }} name="teams[]" value="{{ $team->id }}"
-                                        id="team-{{ $team->id }}">
+                                    <input class="form-check-input" type="checkbox" {{ $team->is_in_rule ? "checked" :
+                                    "" }} name="teams[]" value="{{ $team->id }}"
+                                    id="team-{{ $team->id }}">
                                     <label class="form-check-label" for="team-{{ $team->id }}">
                                         {{ $team->name }}
                                     </label>
@@ -284,7 +284,7 @@
 
 @section('scripts')
 <script>
-    $(document).ready(function () {
+    $(() => {
         $addElement = $('.phases-add');
         $addElement.click(function() {
             var html = '',

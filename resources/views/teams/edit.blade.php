@@ -98,3 +98,24 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+<script>
+    $(() => {
+        var $name = $('#name'),
+        $shortName = $('#name-short'),
+        $shortNameLabel = $('label[for="' + $shortName.attr('id') + '"]');
+        shortNameLabelValue = $shortNameLabel.text();
+        shortNameLabelSuggestedValue = '';
+
+        $name.change(function() {
+            var nameValue = $name.val();
+
+            if (nameValue && nameValue.length >= 3) {
+                shortNameLabelSuggestedValue = shortNameLabelValue + ' - @lang("messages.for_example") ' + nameValue.substring(0, 3).toUpperCase();
+                $shortNameLabel.text(shortNameLabelSuggestedValue);
+            }
+        });
+    });
+</script>
+@endsection

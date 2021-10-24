@@ -271,7 +271,7 @@
 
 @section('scripts')
 <script>
-    $(document).ready(function () {
+    $(() => {
         var teamTypes = ['home', 'away'];
         var statTypes = ['goal', 'card'];
         

@@ -59,7 +59,7 @@
 
 @section('scripts')
 <script>
-    $(document).ready(function () {
+    $(() => {
         $('.clickable-row').click(function () {
             var url = $(this).data('url');
 

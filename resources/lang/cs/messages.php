@@ -65,6 +65,7 @@ return [
     'really_delete' => 'Opravdu smazat?',
     'your_comment' => 'Tvůj komentář',
     'add_comment' => 'Přidej komentář',
+    'for_example' => 'např.',
 
     'post' => 'Článek',
     'create_post' => 'Vytvořit článek',
@@ -139,6 +140,7 @@ return [
     'jersey_number' => 'Číslo dresu',
     'birthdate' => 'Datum narození',
     'position' => 'Pozice',
+    'previous_position' => 'Předchozí pozice',
     'goalkeeper' => 'Brankář',
     'defender' => 'Obránce',
     'universal' => 'Univerzál',

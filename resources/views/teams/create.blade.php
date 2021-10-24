@@ -54,7 +54,7 @@
                                     <option value=""></option>
                                     @if (count($otherTeams) > 0)
                                     @foreach ($otherTeams as $otherTeam)
-                                    <option {{ old('superior_team_id') === $otherTeam->id ? "selected" : "" }}
+                                    <option {{ old('superior_team_id')===$otherTeam->id ? "selected" : "" }}
                                         value="{{ $otherTeam->id }}">
                                         {{ $otherTeam->name ?? '' }}
                                     </option>
@@ -72,7 +72,7 @@
                                     <option value=""></option>
                                     @if (count($otherTeams) > 0)
                                     @foreach ($otherTeams as $otherTeam)
-                                    <option {{ old('inferior_team_id') === $otherTeam->id ? "selected" : "" }}
+                                    <option {{ old('inferior_team_id')===$otherTeam->id ? "selected" : "" }}
                                         value="{{ $otherTeam->id }}">
                                         {{ $otherTeam->name ?? '' }}
                                     </option>
@@ -95,4 +95,25 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    $(() => {
+        var $name = $('#name'),
+        $shortName = $('#name-short'),
+        $shortNameLabel = $('label[for="' + $shortName.attr('id') + '"]');
+        shortNameLabelValue = $shortNameLabel.text();
+        shortNameLabelSuggestedValue = '';
+
+        $name.change(function() {
+            var nameValue = $name.val();
+
+            if (nameValue && nameValue.length >= 3) {
+                shortNameLabelSuggestedValue = shortNameLabelValue + ' - @lang("messages.for_example") ' + nameValue.substring(0, 3).toUpperCase();
+                $shortNameLabel.text(shortNameLabelSuggestedValue);
+            }
+        });
+    });
+</script>
 @endsection

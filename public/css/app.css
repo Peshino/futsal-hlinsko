@@ -11356,6 +11356,51 @@ html {
   }
 }
 
+.popover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  font-family: "EncodeSans-Regular", sans-serif;
+  background-color: transparent;
+  border: 0;
+  border-radius: 0.6rem;
+}
+.popover .popover-header {
+  padding: 0.6rem 1.25rem;
+  background-color: #00395c;
+  color: #dddddd;
+  border-bottom: 0;
+}
+.popover .popover-body {
+  padding: 0.6rem 1.25rem;
+  background-color: #004974;
+  color: #dddddd;
+}
+
+.bs-popover-left > .arrow::after, .bs-popover-auto[x-placement^=left] > .arrow::after {
+  border-left-color: #005d92;
+}
+
+.bs-popover-top > .arrow::after, .bs-popover-auto[x-placement^=top] > .arrow::after {
+  border-top-color: #005d92;
+}
+
+.bs-popover-right > .arrow::after, .bs-popover-auto[x-placement^=right] > .arrow::after {
+  border-right-color: #005d92;
+}
+
+.bs-popover-bottom > .arrow::after, .bs-popover-auto[x-placement^=bottom] > .arrow::after {
+  border-left-color: #005d92;
+}
+
+.bs-popover-left > .arrow::before, .bs-popover-auto[x-placement^=left] > .arrow::before,
+.bs-popover-top > .arrow::before,
+.bs-popover-auto[x-placement^=top] > .arrow::before,
+.bs-popover-right > .arrow::before,
+.bs-popover-auto[x-placement^=right] > .arrow::before,
+.bs-popover-bottom > .arrow::before,
+.bs-popover-auto[x-placement^=bottom] > .arrow::before {
+  border-width: 0;
+}
+
 footer {
   color: #bbbbbb;
   background: linear-gradient(to right, rgba(33, 33, 33, 0) 0%, rgba(33, 33, 33, 0.75) 35%, rgba(33, 33, 33, 0.75) 65%, rgba(33, 33, 33, 0) 100%);
