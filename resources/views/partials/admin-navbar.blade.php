@@ -27,6 +27,7 @@
                 </li>
                 @endisset
 
+                @isset($competition)
                 @isset($competition->season)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('seasons.show', $competition->season->id) }}">
@@ -34,14 +35,12 @@
                     </a>
                 </li>
                 @endisset
-
-                @isset($competition)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('competitions.admin-show', $competition->id) }}">
                         <span class="align-middle">{{ $competition->name ?? ''}}</span>
                     </a>
                 </li>
-                @endif
+                @endisset
 
                 @if(\Request::is('*/rules/*') && isset($rule))
                 <li class="nav-item">
@@ -57,8 +56,8 @@
                 <li class="nav-item dropdown">
                     <a id="profile-dropdown" class="nav-link dropdown-toggle" href="#" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        <i class="far fa-user align-middle"></i>&nbsp; <span
-                            class="caret align-middle">{{ Auth::user()->firstname }}
+                        <i class="far fa-user align-middle"></i>&nbsp; <span class="caret align-middle">{{
+                            Auth::user()->firstname }}
                             {{ Auth::user()->lastname }}</span>
                     </a>
 

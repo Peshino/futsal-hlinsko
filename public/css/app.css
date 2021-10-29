@@ -10181,6 +10181,13 @@ html {
   width: 4rem;
   transition: color 0.08s ease-in-out, background-color 0.08s ease-in-out, border-color 0.08s ease-in-out, box-shadow 0.08s ease-in-out;
 }
+#introduction .btn-edit {
+  color: #5cc3ff;
+  background: transparent;
+  border: 1px solid #5cc3ff;
+  width: 4rem;
+  transition: color 0.08s ease-in-out, background-color 0.08s ease-in-out, border-color 0.08s ease-in-out, box-shadow 0.08s ease-in-out;
+}
 #introduction .btn:hover {
   color: #bee7ff;
   border: 1px solid #bee7ff;

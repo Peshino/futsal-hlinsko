@@ -63,20 +63,29 @@
                         <a href="{{ route('competitions.show', $competition->id) }}" class="btn btn-lg">
                             {{ $competition->name ?? '' }}
                         </a>
+                        @can('crud_competitions')
+                        <a class="crud-button btn-edit btn btn-lg"
+                            href="{{ route('competitions.edit', [$competition->id, $competition->season]) }}">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        @endcan
                         @endforeach
                         @else
                         -----
                         @endif
-                        @can('crud_competitions')
+                    </div>
+
+                    @can('crud_competitions')
+                    <div class="m-3">
                         <a href="{{ route('competitions.create', $lastSeason->id) }}"
                             class="crud-button btn-plus btn btn-lg">
                             <div class="plus"></div>
                         </a>
-                        @endcan
                     </div>
+                    @endcan
                 </div>
                 @else
-                -----
+                @lang('messages.no_competitions')
                 @endif
 
                 <div class="introduction-bottom text-center">

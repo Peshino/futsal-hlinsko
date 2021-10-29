@@ -86,11 +86,12 @@ class CompetitionController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Competition  $competition
+     * @param  \App\Season  $season
      * @return \Illuminate\Http\Response
      */
-    public function edit(Competition $competition)
+    public function edit(Competition $competition, Season $season)
     {
-        //
+        return view('competitions.edit', compact('competition', 'season'));
     }
 
     /**
@@ -102,7 +103,18 @@ class CompetitionController extends Controller
      */
     public function update(Request $request, Competition $competition)
     {
-        //
+        $attributes = $request->validate([
+            'name' => 'required|min:2|max:100',
+            'season_id' => 'required',
+        ]);
+
+        if ($competition->update($attributes)) {
+            session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
+        } else {
+            session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
+        }
+
+        return redirect()->route('competitions.admin-show', $competition->id);
     }
 
     /**

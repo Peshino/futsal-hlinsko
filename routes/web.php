@@ -14,10 +14,11 @@ Route::resource('users', 'UserController');
 Route::resource('seasons', 'SeasonController');
 
 Route::resource('competitions', 'CompetitionController', ['except' => [
-    'create'
+    'create', 'edit'
 ]]);
 Route::get('competitions/season/{season}', 'CompetitionController@getCompetitionsBySeason')->name('competitions-by-season');
 Route::get('competitions/create/{season}', 'CompetitionController@create')->name('competitions.create');
+Route::get('competitions/{competition}edit/{season}', 'CompetitionController@edit')->name('competitions.edit');
 
 Route::resource('competition-styles', 'CompetitionStyleController');
 
