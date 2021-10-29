@@ -89,23 +89,6 @@
                     </div>
 
                     <div class="row form-group">
-                        <div class="number-of-qualifiers col-md">
-                            <div class="floating-label">
-                                <label for="number-of-qualifiers">@lang('messages.number_of_qualifiers')</label>
-                                <input type="number" class="form-control" id="number-of-qualifiers"
-                                    name="number_of_qualifiers" min="0" value="{{ old('number_of_qualifiers') }}" />
-                            </div>
-                        </div>
-                        <div class="number-of-descending col-md">
-                            <div class="floating-label">
-                                <label for="number-of-descending">@lang('messages.number_of_descending')</label>
-                                <input type="number" class="form-control" id="number-of-descending"
-                                    name="number_of_descending" min="0" value="{{ old('number_of_descending') }}" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
                         <div class="game-duration col-md">
                             <div class="floating-label">
                                 <label for="game-duration">@lang('messages.game_duration')

@@ -23,8 +23,6 @@ class RuleSeeder extends Seeder
                 'apply_mutual_balance' => $object->apply_mutual_balance,
                 'priority' => $object->priority,
                 'number_of_rounds' => $object->number_of_rounds,
-                'number_of_qualifiers' => $object->number_of_qualifiers,
-                'number_of_descending' => $object->number_of_descending,
                 'game_duration' => $object->game_duration,
                 'points_for_win' => $object->points_for_win,
                 'games_day_min' => $object->games_day_min,

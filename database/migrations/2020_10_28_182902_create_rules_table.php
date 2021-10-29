@@ -21,8 +21,6 @@ class CreateRulesTable extends Migration
             $table->boolean('apply_mutual_balance')->default(0);
             $table->integer('priority');
             $table->integer('number_of_rounds')->nullable();
-            $table->integer('number_of_qualifiers')->nullable();
-            $table->integer('number_of_descending')->nullable();
             $table->integer('game_duration');
             $table->integer('points_for_win');
             $table->integer('games_day_min')->nullable();
