@@ -1,0 +1,11 @@
+[
+    {
+        "from_position": "1",
+        "to_position": "8",
+        "phase": "qualification",
+        "to_rule_id": "2",
+        "rule_id": "1",
+        "user_id": "1",
+        "competition_id": "2"
+    }
+]

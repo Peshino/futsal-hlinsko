@@ -27,5 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GoalSeeder::class);
         $this->call(CardSeeder::class);
         $this->call(RuleTeamSeeder::class);
+        $this->call(PhaseSeeder::class);
     }
 }

@@ -75,8 +75,8 @@
                     <div class="web-presentation col-md">
                         <div class="floating-label">
                             <label for="web-presentation">@lang('messages.web_presentation')</label>
-                            <input type="text" class="form-control border-dark" id="web-presentation" name="web_presentation"
-                                value="{{ $team->web_presentation }}" disabled />
+                            <input type="text" class="form-control border-dark" id="web-presentation"
+                                name="web_presentation" value="{{ $team->web_presentation }}" disabled />
                         </div>
                     </div>
                 </div>
@@ -97,10 +97,6 @@
                         </div>
                     </div>
                 </div>
-
-                <h4>
-                    @lang('messages.players')
-                </h4>
             </div>
         </div>
     </div>
