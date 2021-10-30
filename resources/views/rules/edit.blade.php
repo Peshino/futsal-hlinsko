@@ -314,7 +314,7 @@
                         html += '<label for="phase-to-rule-' + blockCount + '">';
                             html += '@lang("messages.to_rule")';
                         html += '</label>';
-                        html += '<select class="form-control" id="phase-to-rule-' + blockCount + '" name="phases[' + blockCount + '][to_rule_id]">';
+                        html += '<select class="form-control" id="phase-to-rule-' + blockCount + '" name="phases[' + blockCount + '][to_rule_id]" required>';
                             html += '<option value="{{ $rule->id }}"></option>';
                             html += '@foreach ($competition->rules as $competitionRule)';
                             html += '@if ($rule->id === $competitionRule->id)';

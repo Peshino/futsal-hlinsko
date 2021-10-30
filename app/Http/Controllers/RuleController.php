@@ -49,6 +49,8 @@ class RuleController extends Controller
      */
     public function store(Competition $competition, Request $request)
     {
+        $flashSuccess = true;
+
         $attributes = $request->validate([
             'name' => 'required|min:2|max:50',
             'type' => 'required|min:2|max:100',
@@ -77,9 +79,43 @@ class RuleController extends Controller
             $attributes['apply_mutual_balance'] = $request->has('apply_mutual_balance');
         }
 
-        $ruleCreated = auth()->user()->addRule($attributes);
+        if ($ruleCreated = auth()->user()->addRule($attributes)) {
+            if ($request->has('phases')) {
+                $phases = $request->input('phases');
 
-        if ($ruleCreated !== null) {
+                foreach ($phases as $key => $phase) {
+                    $validator = Validator::make($phase, [
+                        'from_position' => 'required|numeric|min:1|max:999|lte:to_position',
+                        'to_position' => 'required|numeric|min:1|max:999|gte:from_position',
+                        'to_rule_id' => 'required|numeric|min:1',
+                    ]);
+
+                    if ($validator->fails()) {
+                        return redirect()->back()->withErrors($validator)->withInput();
+                    }
+
+                    $phaseAttributes = [
+                        'from_position' => $phase['from_position'],
+                        'to_position' => $phase['to_position'],
+                        'phase' => $phase['phase'],
+                        'to_rule_id' => $phase['to_rule_id'],
+                        'rule_id' => $ruleCreated->id,
+                        'competition_id' => $competition->id,
+                    ];
+
+                    $phaseCreated = auth()->user()->addPhase($phaseAttributes);
+
+                    if ($phaseCreated !== null) {
+                    } else {
+                        $flashSuccess = false;
+                    }
+                }
+            }
+        } else {
+            $flashSuccess = false;
+        }
+
+        if ($flashSuccess) {
             $ruleCreated->teams()->sync($request->teams);
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
             return redirect()->route('rules.admin-show', ['competition' => $competition->id, 'rule' => $ruleCreated->id]);

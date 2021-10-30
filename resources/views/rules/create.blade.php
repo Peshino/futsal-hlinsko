@@ -34,10 +34,10 @@
                                     @lang('messages.system')
                                 </label>
                                 <select class="form-control" id="system" name="system" required>
-                                    <option {{ old('system') === 'one_rounded' ? "selected" : "" }} value="one_rounded">
+                                    <option {{ old('system')==='one_rounded' ? "selected" : "" }} value="one_rounded">
                                         @lang('messages.one_rounded')
                                     </option>
-                                    <option {{ old('system') === 'two_rounded' ? "selected" : "" }} value="two_rounded">
+                                    <option {{ old('system')==='two_rounded' ? "selected" : "" }} value="two_rounded">
                                         @lang('messages.two_rounded')
                                     </option>
                                 </select>
@@ -49,10 +49,10 @@
                                     @lang('messages.type')
                                 </label>
                                 <select class="form-control" id="display-as" name="type" required>
-                                    <option {{ old('type') === 'table' ? "selected" : "" }} value="table">
+                                    <option {{ old('type')==='table' ? "selected" : "" }} value="table">
                                         @lang('messages.table')
                                     </option>
-                                    <option {{ old('type') === 'brackets' ? "selected" : "" }} value="brackets">
+                                    <option {{ old('type')==='brackets' ? "selected" : "" }} value="brackets">
                                         @lang('messages.brackets')
                                     </option>
                                 </select>
@@ -156,15 +156,14 @@
                                     @lang('messages.case_of_draw')
                                 </label>
                                 <select class="form-control" id="case-of-draw" name="case_of_draw" required>
-                                    <option {{ old('case_of_draw') === 'draw' ? "selected" : "" }} value="draw">
+                                    <option {{ old('case_of_draw')==='draw' ? "selected" : "" }} value="draw">
                                         @lang('messages.draw')
                                     </option>
-                                    <option {{ old('case_of_draw') === 'additional_time' ? "selected" : "" }}
+                                    <option {{ old('case_of_draw')==='additional_time' ? "selected" : "" }}
                                         value="additional_time">
                                         @lang('messages.additional_time')
                                     </option>
-                                    <option {{ old('case_of_draw') === 'penalties' ? "selected" : "" }}
-                                        value="penalties">
+                                    <option {{ old('case_of_draw')==='penalties' ? "selected" : "" }} value="penalties">
                                         @lang('messages.penalties')
                                     </option>
                                 </select>
@@ -216,8 +215,8 @@
                             <div class="form-check col-sm">
                                 @foreach($teamCollection as $team)
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" name="teams[]" value="{{ $team->id }}"
-                                        id="team-{{ $team->id }}">
+                                    <input class="form-check-input" type="checkbox" name="teams[]"
+                                        value="{{ $team->id }}" id="team-{{ $team->id }}">
                                     <label class="form-check-label" for="team-{{ $team->id }}">
                                         {{ $team->name }}
                                     </label>
@@ -225,6 +224,20 @@
                                 @endforeach
                             </div>
                             @endforeach
+                        </div>
+                    </div>
+
+                    <div class="mt-4 mb-2 text-left">
+                        <h3 class="pb-1">
+                            @lang('messages.phases')
+                        </h3>
+
+                        <div class="row form-group">
+                            <div id="phases" class="phases col-lg">
+                                <span class="crud-button phases-add block">
+                                    <div class="plus"></div>
+                                </span>
+                            </div>
                         </div>
                     </div>
 
@@ -240,4 +253,82 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    $(() => {
+        $addElement = $('.phases-add');
+        $addElement.click(function() {
+            var html = '',
+                blockCount = $('.block').length;
+            
+            html += '<div class="row block">';
+                html += '<div class="from-position col-md-2">';
+                    html += '<div class="floating-label">';
+                        html += '<label for="phase-from-position-' + blockCount + '">';
+                            html += '@lang("messages.from_position")';
+                        html += '</label>';
+                        html += '<input type="number" class="form-control" id="phase-from-position-' + blockCount + '" name="phases[' + blockCount + '][from_position]" min="1" max="999" value="" required />';
+                    html += '</div>';
+                html += '</div>';
+
+                html += '<div class="to-position col-md-2">';
+                    html += '<div class="floating-label">';
+                        html += '<label for="phase-to-position-' + blockCount + '">';
+                            html += '@lang("messages.to_position")';
+                        html += '</label>';
+                        html += '<input type="number" class="form-control" id="phase-to-position-' + blockCount + '" name="phases[' + blockCount + '][to_position]" min="1" max="999" value="" required />';
+                    html += '</div>';
+                html += '</div>';
+
+                html += '<div class="phase col-md-2">';
+                    html += '<div class="floating-label">';
+                        html += '<label for="phase-phase-' + blockCount + '">';
+                            html += '@lang("messages.phase")';
+                        html += '</label>';
+                        html += '<select class="form-control" id="phase-phase-' + blockCount + '" name="phases[' + blockCount + '][phase]">';
+                            html += '<option value=""></option>';
+                            html += '<option value="qualification">';
+                                html += '@lang("messages.qualification")';
+                            html += '</option>';
+                            html += '<option value="descent">';
+                                html += '@lang("messages.descent")';
+                            html += '</option>';
+                        html += '</select>';
+                    html += '</div>';
+                html += '</div>';
+
+                html += '<div class="to-rule col-md-5">';
+                    html += '<div class="floating-label">';
+                        html += '<label for="phase-to-rule-' + blockCount + '">';
+                            html += '@lang("messages.to_rule")';
+                        html += '</label>';
+                        html += '<select class="form-control" id="phase-to-rule-' + blockCount + '" name="phases[' + blockCount + '][to_rule_id]" required>';
+                            html += '<option value=""></option>';
+                            html += '@foreach ($competition->rules as $competitionRule)';
+                            html += '<option value="{{ $competitionRule->id }}">';
+                                html += '{{ $competitionRule->name }}';
+                            html += '</option>';
+                            html += '@endforeach';
+                        html += '</select>';
+                    html += '</div>';
+                html += '</div>';
+
+                html += '<div class="delete col-1 pt-2">';
+                    html += '<span class="crud-button">';
+                        html += '<i class="far fa-trash-alt"></i>';
+                    html += '</span>';
+                html += '</div>';
+
+            html += '</div>';
+
+            $('#phases .block:last').before(html);
+        });
+
+        $('#phases').on('click', '.delete', function() {
+            $(this).parent().remove();
+        });
+    });
+</script>
 @endsection
