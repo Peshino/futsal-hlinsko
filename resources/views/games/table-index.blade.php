@@ -68,7 +68,7 @@
     <div class="card-body">
         <div class="content">
             <div class="content-block">
-                <table class="table table-striped table-dark">
+                <table class="table table-hover table-dark">
                     <thead>
                         <tr style="font-size: 0.8rem;">
                             <th scope="col" class="text-center">@lang('messages.position')</th>

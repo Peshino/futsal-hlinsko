@@ -62,16 +62,16 @@
                                 </label>
                                 <select class="form-control" id="position" name="position">
                                     <option value=""></option>
-                                    <option {{ old('position') === 'goalkeeper' ? "selected" : "" }} value="goalkeeper">
+                                    <option {{ old('position')==='goalkeeper' ? "selected" : "" }} value="goalkeeper">
                                         @lang('messages.goalkeeper')
                                     </option>
-                                    <option {{ old('position') === 'defender' ? "selected" : "" }} value="defender">
+                                    <option {{ old('position')==='defender' ? "selected" : "" }} value="defender">
                                         @lang('messages.defender')
                                     </option>
-                                    <option {{ old('position') === 'universal' ? "selected" : "" }} value="universal">
+                                    <option {{ old('position')==='universal' ? "selected" : "" }} value="universal">
                                         @lang('messages.universal')
                                     </option>
-                                    <option {{ old('position') === 'forward' ? "selected" : "" }} value="forward">
+                                    <option {{ old('position')==='forward' ? "selected" : "" }} value="forward">
                                         @lang('messages.forward')
                                     </option>
                                 </select>
@@ -114,7 +114,7 @@
                     <input type="hidden" id="competition-id" name="competition_id" value="{{ $competition->id }}">
 
                     <div class="form-group text-center mt-4">
-                        <button type="submit" class="btn introduction-btn">@lang('messages.create_player')</button>
+                        <button type="submit" class="btn btn-app">@lang('messages.create_player')</button>
                     </div>
 
                     @include('partials.errors')

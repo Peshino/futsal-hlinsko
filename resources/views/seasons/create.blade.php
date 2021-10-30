@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary">@lang('messages.create_season')</button>
+                        <button type="submit" class="btn btn-app">@lang('messages.create_season')</button>
                     </div>
 
                     @include('partials.errors')

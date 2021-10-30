@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="form-group text-center mt-1">
-                    <button type="submit" class="btn btn-primary">@lang('messages.edit_profile')</button>
+                    <button type="submit" class="btn btn-app">@lang('messages.edit_profile')</button>
                 </div>
 
                 @include('partials.errors')

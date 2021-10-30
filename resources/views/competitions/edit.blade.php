@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary">@lang('messages.edit_competition')</button>
+                        <button type="submit" class="btn btn-app">@lang('messages.edit_competition')</button>
                     </div>
 
                     @include('partials.errors')

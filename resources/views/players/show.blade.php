@@ -43,7 +43,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-app">
                                                 @lang('messages.delete')
                                             </button>
                                         </div>

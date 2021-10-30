@@ -17,7 +17,7 @@
     <div class="card-body no-padding">
         <div class="content">
             <div class="mt-2">
-                <div class="row border-bottom border-dark">
+                <div class="row">
                     <div class="col-sm-3">
                         <div class="text-center">
                             <img src="{{ asset('img/logos/test_logo.png') }}" class="avatar img-circle img-thumbnail"
@@ -73,7 +73,7 @@
                 </div>
             </div>
 
-            <div class="mt-2">
+            <div class="mt-2 border-top border-dark">
                 <ul class="nav nav-pills nav-fill">
                     @foreach ($sections as $section)
                     <li class="nav-item">

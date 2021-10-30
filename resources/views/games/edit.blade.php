@@ -258,7 +258,7 @@
                     <input type="hidden" id="competition-id" name="competition_id" value="{{ $game->competition_id }}">
 
                     <div class="form-group text-center mt-4">
-                        <button type="submit" class="btn introduction-btn">@lang('messages.edit_game')</button>
+                        <button type="submit" class="btn btn-app">@lang('messages.edit_game')</button>
                     </div>
 
                     @include('partials.errors')

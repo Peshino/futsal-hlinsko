@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="form-group mt-2">
-                        <button type="submit" class="btn text-center introduction-btn">
+                        <button type="submit" class="btn text-center btn-app">
                             @lang('messages.sign_in_button')
                         </button>
                     </div>

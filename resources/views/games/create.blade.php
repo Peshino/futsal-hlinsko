@@ -49,7 +49,7 @@
                                     <select class="form-control" id="rule-id" name="rule_id" required>
                                         @if (count($competition->rules) > 0)
                                         @foreach ($competition->rules as $competitionRule)
-                                        <option {{ old('rule_id') === $competitionRule->id ? "selected" : "" }}
+                                        <option {{ old('rule_id')===$competitionRule->id ? "selected" : "" }}
                                             value="{{ $competitionRule->id }}">
                                             {{ $competitionRule->name ?? '' }}
                                         </option>
@@ -98,7 +98,7 @@
                                     <select class="form-control" id="home-team-id" name="home_team_id" required>
                                         @if ($teams->isNotEmpty())
                                         @foreach ($teams as $team)
-                                        <option {{ old('home_team_id') === $team->id ? "selected" : "" }}
+                                        <option {{ old('home_team_id')===$team->id ? "selected" : "" }}
                                             value="{{ $team->id }}">
                                             {{ $team->name }}
                                         </option>
@@ -117,7 +117,7 @@
                                     <select class="form-control" id="away-team-id" name="away_team_id" required>
                                         @if ($teams->isNotEmpty())
                                         @foreach ($teams as $team)
-                                        <option {{ old('away_team_id') === $team->id ? "selected" : "" }}
+                                        <option {{ old('away_team_id')===$team->id ? "selected" : "" }}
                                             value="{{ $team->id }}">
                                             {{ $team->name }}
                                         </option>
@@ -171,7 +171,7 @@
                         <input type="hidden" id="competition-id" name="competition_id" value="{{ $competition->id }}">
 
                         <div class="form-group text-center mt-4">
-                            <button type="submit" class="btn introduction-btn">@lang('messages.create_game')</button>
+                            <button type="submit" class="btn btn-app">@lang('messages.create_game')</button>
                         </div>
 
                         @include('partials.errors')

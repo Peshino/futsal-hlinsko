@@ -21,7 +21,7 @@
                     @lang('messages.competitions')
                 </h4>
                 @if (count($season->competitions) > 0)
-                <table class="table table-striped table-dark table-hover">
+                <table class="table table-dark table-hover">
                     <thead>
                         <tr>
                             <th scope="col">@lang('messages.name')</th>
@@ -46,8 +46,8 @@
                 </table>
                 @endif
 
-                <div class="p-3">
-                    <a href="{{ route('competitions.create', $season->id) }}" class="btn btn-primary">
+                <div class="p-3 text-center">
+                    <a href="{{ route('competitions.create', $season->id) }}" class="btn btn-app">
                         @lang('messages.create_competition')
                     </a>
                 </div>

@@ -23,7 +23,7 @@
                             @lang('messages.rules')
                         </h4>
                         @if (count($competition->rules) > 0)
-                        <table class="table table-striped table-dark table-hover">
+                        <table class="table table-dark table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">@lang('messages.name')</th>
@@ -53,7 +53,7 @@
                         @endif
 
                         <div class="mt-3 text-center">
-                            <a href="{{ route('rules.create', $competition->id) }}" class="btn btn-primary">
+                            <a href="{{ route('rules.create', $competition->id) }}" class="btn btn-app">
                                 @lang('messages.create_rules')
                             </a>
                         </div>
@@ -64,7 +64,7 @@
                             @lang('messages.teams')
                         </h4>
                         @if (count($competition->teams) > 0)
-                        <table class="table table-striped table-dark table-hover">
+                        <table class="table table-dark table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">@lang('messages.name')</th>
@@ -86,7 +86,7 @@
                         @endif
 
                         <div class="mt-3 text-center">
-                            <a href="{{ route('teams.create', $competition->id) }}" class="btn btn-primary">
+                            <a href="{{ route('teams.create', $competition->id) }}" class="btn btn-app">
                                 @lang('messages.create_team')
                             </a>
                         </div>

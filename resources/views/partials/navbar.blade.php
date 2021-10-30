@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-icon-top navbar-dark shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-icon-top navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             {{-- <img src="{{ asset('img/logo_small_navbar.png') }}" class="align-middle" alt="logo"> --}}
@@ -79,8 +79,8 @@
                 <li class="nav-item dropdown">
                     <a id="profile-dropdown" class="nav-link dropdown-toggle" href="#" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        <i class="far fa-user align-middle"></i>&nbsp; <span
-                            class="caret align-middle">{{ Auth::user()->firstname }}
+                        <i class="far fa-user align-middle"></i>&nbsp; <span class="caret align-middle">{{
+                            Auth::user()->firstname }}
                             {{ Auth::user()->lastname }}</span>
                     </a>
 

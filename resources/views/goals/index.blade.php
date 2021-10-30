@@ -23,8 +23,8 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 {{-- <a class="dropdown-item" href="">
-                            @lang('messages.all')
-                        </a> --}}
+                                    @lang('messages.all')
+                                </a> --}}
                                 @foreach ($competition->rules as $competitionRule)
                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
                                     href="{{ route('goals.rule-index', [$competition->id, $competitionRule->id, null]) }}">
@@ -53,7 +53,8 @@
                                     @lang('messages.all')
                                 </a>
                                 @foreach ($goalsTeams as $goalsTeam)
-                                <a class="dropdown-item{{ ($team !== null && $goalsTeam->id === $team->id) ? " active" : "" }}"
+                                <a class="dropdown-item{{ ($team !== null && $goalsTeam->id === $team->id) ? " active"
+                                    : "" }}"
                                     href="{{ route('goals.team-index', [$competition->id, $rule->id, $goalsTeam->id]) }}">
                                     {{ $goalsTeam->name ?? '' }}
                                 </a>
@@ -72,7 +73,7 @@
             <div class="content-block container">
                 @if (count($goals) > 0)
                 <div class="list-group">
-                    <table class="table table-striped table-dark table-hover">
+                    <table class="table table-dark table-hover">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -95,7 +96,9 @@
                                         href="{{ route('players.show', [$competition->id, $goal->team->id, $goal->player->id]) }}">
                                         {{ $goal->player->lastname }} {{ $goal->player->firstname }}
                                     </a>
-                                    <small>- @lang('messages.' . $goal->player->position)</small>
+                                    <span class="badge text-light app-bg">
+                                        @lang('messages.' . $goal->player->position)
+                                    </span>
                                 </td>
                                 <td class="text-left">
                                     <a href="{{ route('teams.show', [$competition->id, $goal->team->id]) }}">
