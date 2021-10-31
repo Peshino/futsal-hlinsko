@@ -145,6 +145,14 @@
         background-color: rgba(0, 0, 0, 0.2);
     }
 
+    .current-competition {
+        padding: 0.7rem;
+        background: -moz-linear-gradient(left, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.75) 35%, rgba(5, 10, 25, 0.75) 65%, rgba(5, 10, 25, 0) 100%);
+        background: -webkit-linear-gradient(left, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.75) 35%, rgba(5, 10, 25, 0.75) 65%, rgba(5, 10, 25, 0) 100%);
+        background: linear-gradient(to right, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.75) 35%, rgba(5, 10, 25, 0.75) 65%, rgba(5, 10, 25, 0) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00050a19', endColorstr='#00050a19', GradientType=1);
+    }
+
     .modal-content {
         background-color: #2a2f33;
     }
@@ -549,6 +557,21 @@
         cursor: pointer;
     }
 
+    .table-position {
+        width: 1.3em;
+        display: inline-block;
+    }
+
+    .table-position-difference {
+        position: relative;
+        display: inline-block;
+        margin: 0;
+    }
+
+    .table-position-difference .fa-circle {
+        font-size: 0.45rem;
+    }
+
     .table-dark {
         color: #fff;
         background-color: rgba(5, 10, 25, 0.8);
@@ -807,6 +830,7 @@
         font-size: 1rem;
         margin-right: 0;
         margin-left: 0;
+        border-radius: 0 0 0.25rem 0.25rem;
         background: -moz-linear-gradient(left, rgba(0, 49, 110, 0.95) 0%, rgba(0, 49, 110, 0.95) 50%, rgba(43, 0, 118, 0.95) 50%, rgba(43, 0, 118, 0.95) 100%);
         background: -webkit-linear-gradient(left, rgba(0, 49, 110, 0.95) 0%, rgba(0, 49, 110, 0.95) 50%, rgba(43, 0, 118, 0.95) 50%, rgba(43, 0, 118, 0.95) 100%);
         background: linear-gradient(to right, rgba(0, 49, 110, 0.95) 0%, rgba(0, 49, 110, 0.95) 50%, rgba(43, 0, 118, 0.95) 50%, rgba(43, 0, 118, 0.95) 100%);

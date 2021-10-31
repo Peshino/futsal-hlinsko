@@ -105,28 +105,30 @@
                                 @endphp
 
                                 @if ($tableItem->team_current_position < $tableItem->team_previous_position)
-                                    <span class="text-success">
+                                    <span class="table-position-difference text-success">
                                         @if ($positionDifference < 4) <i class="fas fa-angle-up"></i>
                                             @else
                                             <i class="fas fa-angle-double-up"></i>
                                             @endif
                                     </span>
                                     @elseif ($tableItem->team_current_position > $tableItem->team_previous_position)
-                                    <span class="text-danger">
+                                    <span class="table-position-difference text-danger">
                                         @if ($positionDifference < 4) <i class="fas fa-angle-down"></i>
                                             @else
                                             <i class="fas fa-angle-double-down"></i>
                                             @endif
                                     </span>
                                     @else
-                                    <span class="text-primary" style="font-size: 0.45rem;">
+                                    <span class="table-position-difference text-primary">
                                         <i class="fas fa-circle"></i>
                                     </span>
                                     @endif
                                     &nbsp;
 
                                     @endif
-                                    {{ $tableItem->team_current_position }}
+                                    <span class="table-position">
+                                        {{ $tableItem->team_current_position }}
+                                    </span>
                             </td>
                             <td class="text-left">
                                 <a href="{{ route('teams.show', [$competition->id, $tableItem->team_id]) }}">
