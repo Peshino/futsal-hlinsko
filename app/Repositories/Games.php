@@ -147,6 +147,17 @@ class Games
         return null;
     }
 
+    public function getTeamFirstSchedule(Competition $competition, Team $team, Rule $rule = null)
+    {
+        $results = $this->getGamesFiltered($competition, $rule, $team, 'schedule', null, null, null, 'asc');
+
+        if ($results->isNotEmpty()) {
+            return $results->first();
+        }
+
+        return null;
+    }
+
     private function getTableDataSql(Competition $competition, Rule $rule, $toRound = null, $orderByGoalDifference = false, $orderByGoalsScored = false, $teams = [], $useSimpleTable = false, $isAppliedMutualBalance = false)
     {
         $originalPositionCase = null;

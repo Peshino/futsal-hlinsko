@@ -110,6 +110,7 @@ class TeamController extends Controller
         }
 
         $teamForm = $gamesRepository->getTeamForm($competition, $team);
+        $teamFirstSchedule = $gamesRepository->getTeamFirstSchedule($competition, $team);
 
         if ($teamRules->isNotEmpty()) {
             foreach ($teamRules as $teamRule) {
@@ -118,7 +119,7 @@ class TeamController extends Controller
             }
         }
 
-        return view('teams.show', compact('competition', 'team', 'sections', 'teamForm', 'teamRules', 'teamPlayers', 'teamResults', 'teamSchedule'));
+        return view('teams.show', compact('competition', 'team', 'sections', 'teamForm', 'teamFirstSchedule', 'teamRules', 'teamPlayers', 'teamResults', 'teamSchedule'));
     }
 
     /**

@@ -144,6 +144,12 @@
                             <td class="text-center">{{ $tableItem->team_goals_difference }}</td>
                             <td class="competition-color text-center"><strong>{{ $tableItem->points }}</strong></td>
                             <td class="form text-center">
+                                @if ($tableItem->team_first_schedule !== null)
+                                @php
+                                $teamFirstSchedule = $tableItem->team_first_schedule;
+                                @endphp
+                                @include('partials/team-first-schedule')
+                                @endif
                                 @if ($tableItem->team_form !== null && $tableItem->team_form->isNotEmpty())
                                 <i class="fas fa-chevron-left text-white-50"></i>
                                 @foreach ($tableItem->team_form as $game)

@@ -52,6 +52,7 @@ return [
     'card' => 'Karta',
     'games' => 'Zápasy',
     'game' => 'Zápas',
+    'next_game' => 'Příští zápas',
     'results' => 'Výsledky',
     'schedule' => 'Rozpis',
     'players' => 'Hráči',

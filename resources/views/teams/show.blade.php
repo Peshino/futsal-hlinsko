@@ -60,6 +60,9 @@
                                         @lang('messages.form')
                                     </h5>
                                     <div class="form pt-1">
+                                        @if ($teamFirstSchedule !== null)
+                                        @include('partials/team-first-schedule')
+                                        @endif
                                         <i class="fas fa-chevron-left text-white-50"></i>
                                         @foreach ($teamForm as $game)
                                         @include('partials/team-form')

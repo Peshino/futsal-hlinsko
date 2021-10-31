@@ -135,6 +135,7 @@ class GameController extends Controller
             foreach ($tableData as $tablePosition => $tableItem) {
                 $team = Team::find($tableItem->team_id);
                 $teamForm = $gamesRepository->getTeamForm($competition, $team, $rule, $toRound);
+                $teamFirstSchedule = $gamesRepository->getTeamFirstSchedule($competition, $team, $rule);
 
                 $teamCurrentPosition = $positionsRepository->getTeamCurrentPosition($competition, $rule, $team, $currentRound);
                 $teamPreviousPosition = $positionsRepository->getTeamPreviousPosition($competition, $rule, $team, $currentRound);
@@ -166,6 +167,7 @@ class GameController extends Controller
                 }
 
                 $tableItem->team_form = $teamForm;
+                $tableItem->team_first_schedule = $teamFirstSchedule;
                 $tableItem->team_current_position = $teamCurrentPosition;
                 $tableItem->team_previous_position = $teamPreviousPosition;
             }
@@ -242,6 +244,7 @@ class GameController extends Controller
             $attributes['rule_id'] = $rule->id;
         } else {
             $attributes += $request->validate(['rule_id' => 'required|numeric|min:1']);
+            $rule = Rule::find($attributes['rule_id']);
         }
 
         $attributes['start_datetime'] = date('Y-m-d H:i:s', strtotime($attributes['start_date'] . ' ' . $attributes['start_time']));

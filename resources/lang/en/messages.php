@@ -52,6 +52,7 @@ return [
     'card' => 'Card',
     'games' => 'Games',
     'game' => 'Game',
+    'next_game' => 'Next game',
     'results' => 'Results',
     'schedule' => 'Schedule',
     'players' => 'Players',
