@@ -94,7 +94,7 @@
                             @endphp
                             <tr>
                                 <td>
-                                    {{ $key ?? '' }}
+                                    {{ $key ?? '' }}.
                                 </td>
                                 <td class="text-left">
                                     <a
@@ -111,11 +111,11 @@
                                         {{ $card->team->name }}
                                     </a>
                                 </td>
-                                <td>
-                                    {{ $card->yellow }}
+                                <td class="competition-color">
+                                    <strong>{{ $card->yellow }}</strong>
                                 </td>
-                                <td>
-                                    {{ $card->red }}
+                                <td class="competition-color">
+                                    <strong>{{ $card->red }}</strong>
                                 </td>
                             </tr>
                             @endforeach

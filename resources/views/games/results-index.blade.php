@@ -84,7 +84,7 @@
         </div>
     </div>
 
-    <div class="card-body no-padding">
+    <div class="card-body p-0">
         <div class="content text-center">
             <div class="content-block">
                 @isset($games)

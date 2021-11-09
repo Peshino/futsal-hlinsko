@@ -18,7 +18,7 @@
             </select>
         </div>
     </div>
-    <div class="amount col-3 no-padding">
+    <div class="amount col-3 p-0">
         <div class="floating-label">
             <label for="{{ $teamType }}-team-goal-amount-{{ $key }}">@lang('messages.amount')</label>
             <input type="number" class="form-control" id="{{ $teamType }}-team-goal-amount-{{ $key }}"

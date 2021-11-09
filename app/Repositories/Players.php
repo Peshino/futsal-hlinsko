@@ -28,7 +28,7 @@ class Players
         return null;
     }
 
-    public function getPlayersFiltered(Competition $competition = null, Team $team = null, $order = 'desc')
+    public function getPlayersFiltered(Competition $competition = null, Team $team = null, $order = 'desc', $limit = null)
     {
         $query = Player::query();
 
@@ -40,6 +40,6 @@ class Players
             $query = $query->where('team_id', $team->id);
         }
 
-        return $query->orderBy('lastname', $order)->orderBy('firstname', $order)->get();
+        return $query->orderBy('lastname', $order)->orderBy('firstname', $order)->limit($limit)->get();
     }
 }

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Competition;
 use App\Season;
 use App\Repositories\Competitions;
+use App\Repositories\Games;
+use App\Repositories\Goals;
+use App\Repositories\Cards;
 use Illuminate\Http\Request;
 
 class CompetitionController extends Controller
@@ -68,7 +71,15 @@ class CompetitionController extends Controller
      */
     public function show(Competition $competition)
     {
-        return view('competitions.show', compact('competition'));
+        $gamesRepository = new Games;
+        $goalsRepository = new Goals;
+        $cardsRepository = new Cards;
+
+        $goals = $goalsRepository->getSummedGoalsFiltered($competition, null, null, null, null, 'desc', 5);
+        $yellowCards = $cardsRepository->getSummedCardsFiltered($competition, null, null, null, null, 'desc', 'yellow', 5);
+        $redCards = $cardsRepository->getSummedCardsFiltered($competition, null, null, null, null, 'desc', 'red', 5);
+
+        return view('competitions.show', compact('competition', 'goals', 'yellowCards', 'redCards'));
     }
 
     /**

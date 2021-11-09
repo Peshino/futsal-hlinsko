@@ -79,7 +79,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col" class="text-left">@lang('messages.player')</th>
                                 <th scope="col" class="text-left">@lang('messages.team')</th>
-                                <th scope="col">@lang('messages.goals')</th>
+                                <th scope="col"><i class="far fa-futbol"></i></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -89,7 +89,7 @@
                             @endphp
                             <tr>
                                 <td>
-                                    {{ $key ?? '' }}
+                                    {{ $key ?? '' }}.
                                 </td>
                                 <td class="text-left">
                                     <a
@@ -106,8 +106,8 @@
                                         {{ $goal->team->name }}
                                     </a>
                                 </td>
-                                <td>
-                                    {{ $goal->amount }}
+                                <td class="competition-color">
+                                    <strong>{{ $goal->amount }}</strong>
                                 </td>
                             </tr>
                             @endforeach

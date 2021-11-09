@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="card-body no-padding">
+    <div class="card-body p-0">
         <div class="content">
             <div class="mt-2">
                 <div class="row">

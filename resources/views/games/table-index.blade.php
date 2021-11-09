@@ -123,11 +123,9 @@
                                         <i class="fas fa-circle"></i>
                                     </span>
                                     @endif
-                                    &nbsp;
-
                                     @endif
                                     <span class="table-position">
-                                        {{ $tableItem->team_current_position }}
+                                        {{ $tableItem->team_current_position ?? '' }}.
                                     </span>
                             </td>
                             <td class="text-left">

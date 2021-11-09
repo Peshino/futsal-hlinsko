@@ -64,10 +64,6 @@
         background: rgba(19, 28, 48, 0.8);
     }
 
-    .no-padding {
-        padding: 0;
-    }
-
     .card-body {
         sup {
             top: -0.7em;
@@ -304,6 +300,30 @@
 
     .text-light {
         color: #c5cdd6 !important;
+    }
+
+    .text-secondary {
+        color: #8995a0 !important;
+    }
+
+    .text-secondary:hover,
+    a.text-secondary:focus {
+        color: #a9b7c5 !important;
+    }
+
+    .news {
+        padding: 1rem;
+        border-radius: 0.25rem;
+
+        .news-header {
+            font-weight: bold;
+        }
+
+        .news-body {
+            flex: 1 1 auto;
+            min-height: 1px;
+            padding: 1.25rem;
+        }
     }
 
     .alert {
@@ -557,8 +577,20 @@
         cursor: pointer;
     }
 
+    .selection-box-header {
+        background: -moz-linear-gradient(top, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.8) 100%);
+        background: -webkit-linear-gradient(top, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.8) 100%);
+        background: linear-gradient(to bottom, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.8) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00050a19', endColorstr='#cc050a19', GradientType=0);
+
+        h4 {
+            margin-bottom: -0.8rem;
+            margin-left: 9rem;
+        }
+    }
+
     .table-position {
-        width: 1.3em;
+        width: 1.5em;
         display: inline-block;
     }
 
@@ -750,6 +782,14 @@
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#805e1d91', endColorstr='#007db9e8', GradientType=1);
     }
 
+    .team-name-long {
+        display: block;
+    }
+
+    .team-name-short {
+        display: none;
+    }
+
     .game {
         // background-color: rgba(7, 14, 30, 0.8);
         background: -moz-linear-gradient(left, rgba(208, 228, 247, 0) 0%, rgba(7, 14, 30, 0.9) 24%, rgba(7, 14, 30, 0.9) 50%, rgba(7, 14, 30, 0.9) 79%, rgba(135, 188, 234, 0) 100%);
@@ -767,14 +807,6 @@
             color: #dddddd;
             padding: 0.7rem;
             text-transform: uppercase;
-        }
-
-        .team-name-long {
-            display: block;
-        }
-
-        .team-name-short {
-            display: none;
         }
 
         .game-score {
@@ -1121,17 +1153,17 @@
             font-size: 0.8rem;
         }
 
+        .team-name-long {
+            display: none;
+        }
+
+        .team-name-short {
+            display: block;
+        }
+
         .game {
             .game-team {
                 text-transform: uppercase;
-            }
-
-            .team-name-long {
-                display: none;
-            }
-
-            .team-name-short {
-                display: block;
             }
         }
     }

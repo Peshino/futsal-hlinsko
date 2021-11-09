@@ -17,7 +17,7 @@
     <div class="card-body">
         <div class="content">
             <div class="content-block">
-                <h3>Zde na homepage soutěže by mohlo být:</h3>
+                {{-- <h3>Zde na homepage soutěže by mohlo být:</h3>
                 <ul class="pl-5">
                     <li>důležitá upozornění od administrátora, novinky přidané do aplikace</li>
                     <ul class="pl-5">
@@ -34,7 +34,39 @@
                     <li>gólů celkem v soutěži, průměr gólů na zápas, nejvíce gólový zápas</li>
                     <li>část tabulky nebo playoff</li>
                     <li>základní informace o soutěži (systém, sezona, atd.)</li>
-                </ul>
+                </ul> --}}
+
+                <div class="news alert-warning">
+                    <div class="news-header pb-1 border-bottom border-dark">
+                        <div class="row">
+                            <div class="col-10">
+                                Pozor, změna hracího termínu
+                            </div>
+                            <div class="col-2 text-right">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-body">
+                        <p>
+                            Hrací den se z pátečního večera přesouvá na sobotní dopoledne. Toto platí pro všechny týmy.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        @include('partials/goals-selection')
+                    </div>
+
+                    <div class="col">
+                        @include('partials/yellow-cards-selection')
+                    </div>
+
+                    <div class="col">
+                        @include('partials/red-cards-selection')
+                    </div>
+                </div>
             </div>
         </div>
     </div>

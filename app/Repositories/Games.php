@@ -32,7 +32,7 @@ class Games
         return null;
     }
 
-    public function getGamesFiltered(Competition $competition = null, Rule $rule = null, Team $team = null, $gamesStatus = 'all', $round = null, $toRound = null, $gamesFormCount = null, $order = 'desc')
+    public function getGamesFiltered(Competition $competition = null, Rule $rule = null, Team $team = null, $gamesStatus = 'all', $round = null, $toRound = null, $gamesFormCount = null, $order = 'desc', $limit = null)
     {
         $query = Game::query();
 
@@ -85,7 +85,7 @@ class Games
             $query = $query->take($gamesFormCount);
         }
 
-        return $query->orderBy('start_datetime', $order)->get();
+        return $query->orderBy('start_datetime', $order)->limit($limit)->get();
     }
 
     public function getRoundsFiltered(Competition $competition = null, Rule $rule = null, $gamesStatus = null, $order = 'desc')

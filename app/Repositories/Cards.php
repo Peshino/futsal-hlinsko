@@ -31,7 +31,7 @@ class Cards
         return null;
     }
 
-    public function getCardsFiltered(Competition $competition = null, Rule $rule = null, Game $game = null, Team $team = null, Player $player = null, $order = 'desc')
+    public function getCardsFiltered(Competition $competition = null, Rule $rule = null, Game $game = null, Team $team = null, Player $player = null, $order = 'desc', $limit = null)
     {
         $query = Card::query();
 
@@ -55,13 +55,18 @@ class Cards
             $query = $query->where('player_id', $player->id);
         }
 
-        return $query->get();
+        return $query->limit($limit)->get();
     }
 
-    public function getSummedCardsFiltered(Competition $competition = null, Rule $rule = null, Game $game = null, Team $team = null, Player $player = null, $order = 'desc')
+    public function getSummedCardsFiltered(Competition $competition = null, Rule $rule = null, Game $game = null, Team $team = null, Player $player = null, $order = 'desc', $cardType = null, $limit = null)
     {
         $query = Card::query();
-        $query->selectRaw('sum(yellow) as yellow, sum(red) as red, player_id, team_id');
+
+        if ($cardType !== null) {
+            $query->selectRaw('sum(' . $cardType . ') as ' . $cardType . ', player_id, team_id');
+        } else {
+            $query->selectRaw('sum(yellow) as yellow, sum(red) as red, player_id, team_id');
+        }
 
         if ($competition !== null) {
             $query = $query->where('competition_id', $competition->id);
@@ -83,6 +88,10 @@ class Cards
             $query = $query->where('player_id', $player->id);
         }
 
-        return $query->groupBy('player_id')->groupBy('team_id')->get();
+        if ($cardType !== null) {
+            return $query->groupBy('player_id')->groupBy('team_id')->orderBy($cardType, $order)->limit($limit)->get();
+        } else {
+            return $query->groupBy('player_id')->groupBy('team_id')->limit($limit)->get();
+        }
     }
 }

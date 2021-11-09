@@ -18,19 +18,19 @@
             </select>
         </div>
     </div>
-    <div class="yellow-red col-3 no-padding text-center">
+    <div class="yellow-red col-3 p-0 text-center">
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" id="{{ $teamType }}-team-card-yellow-{{ $key }}"
-                name="{{ $teamType }}_team_cards[{{ $key }}][yellow]" value="1"
-                {{ $teamCard->yellow === 1 ? ' checked' : '' }}>
+                name="{{ $teamType }}_team_cards[{{ $key }}][yellow]" value="1" {{ $teamCard->yellow === 1 ? ' checked'
+            : '' }}>
             <label class="form-check-label" for="{{ $teamType }}-team-card-yellow-{{ $key }}">
                 <div class="card-yellow"></div>
             </label>
         </div>
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" id="{{ $teamType }}-team-card-red-{{ $key }}"
-                name="{{ $teamType }}_team_cards[{{ $key }}][red]" value="1"
-                {{ $teamCard->red === 1 ? ' checked' : '' }}>
+                name="{{ $teamType }}_team_cards[{{ $key }}][red]" value="1" {{ $teamCard->red === 1 ? ' checked' : ''
+            }}>
             <label class="form-check-label" for="{{ $teamType }}-team-card-red-{{ $key }}">
                 <div class="card-red"></div>
             </label>

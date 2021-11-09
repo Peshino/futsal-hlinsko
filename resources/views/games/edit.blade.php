@@ -326,14 +326,14 @@
                         html += '</div>';
 
                         if (statType === 'goal') {
-                            html += '<div class="amount col-3 no-padding">';
+                            html += '<div class="amount col-3 p-0">';
                                 html += '<div class="floating-label">';
                                     html += '<label for="' + teamType + '-team-' + statType + '-amount-' + blockCount + '">@lang("messages.amount")</label>';
                                     html += '<input type="number" class="form-control" id="' + teamType + '-team-' + statType + '-amount-' + blockCount + '" name="' + teamType + '_team_' + statType + 's[' + blockCount + '][amount]" min="1" max="999" value="" required />';
                                 html += '</div>';
                             html += '</div>';
                         } else {
-                            html += '<div class="yellow-red col-3 no-padding text-center">';
+                            html += '<div class="yellow-red col-3 p-0 text-center">';
                                 html += '<div class="form-check form-check-inline">';
                                     html += '<input class="form-check-input" type="checkbox" id="' + teamType + '-team-card-yellow-' + blockCount + '" name="' + teamType + '_team_cards[' + blockCount + '][yellow]" value="1">';
                                     html += '<label class="form-check-label" for="' + teamType + '-team-card-yellow-' + blockCount + '">';

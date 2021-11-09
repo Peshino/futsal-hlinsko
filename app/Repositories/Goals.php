@@ -31,7 +31,7 @@ class Goals
         return null;
     }
 
-    public function getGoalsFiltered(Competition $competition = null, Rule $rule = null, Game $game = null, Team $team = null, Player $player = null, $order = 'desc')
+    public function getGoalsFiltered(Competition $competition = null, Rule $rule = null, Game $game = null, Team $team = null, Player $player = null, $order = 'desc', $limit = null)
     {
         $query = Goal::query();
 
@@ -55,10 +55,10 @@ class Goals
             $query = $query->where('player_id', $player->id);
         }
 
-        return $query->orderBy('amount', $order)->get();
+        return $query->orderBy('amount', $order)->limit($limit)->get();
     }
 
-    public function getSummedGoalsFiltered(Competition $competition = null, Rule $rule = null, Game $game = null, Team $team = null, Player $player = null, $order = 'desc')
+    public function getSummedGoalsFiltered(Competition $competition = null, Rule $rule = null, Game $game = null, Team $team = null, Player $player = null, $order = 'desc', $limit = null)
     {
         $query = Goal::query();
         $query->selectRaw('sum(amount) as amount, player_id, team_id');
@@ -83,6 +83,6 @@ class Goals
             $query = $query->where('player_id', $player->id);
         }
 
-        return $query->groupBy('player_id')->groupBy('team_id')->orderBy('amount', $order)->get();
+        return $query->groupBy('player_id')->groupBy('team_id')->orderBy('amount', $order)->limit($limit)->get();
     }
 }

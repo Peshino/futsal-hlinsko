@@ -31,7 +31,7 @@ class Positions
         return null;
     }
 
-    public function getPositionsFiltered(Competition $competition = null, Rule $rule = null, Team $team = null, $position = null, $round = null, $toRound = null, $order = 'asc')
+    public function getPositionsFiltered(Competition $competition = null, Rule $rule = null, Team $team = null, $position = null, $round = null, $toRound = null, $order = 'asc', $limit = null)
     {
         $result = null;
         $query = Position::query();
@@ -60,7 +60,7 @@ class Positions
             $query = $query->where('round', '<=', $toRound);
         }
 
-        $result = $query->orderBy('position', $order)->get();
+        $result = $query->orderBy('position', $order)->limit($limit)->get();
 
         if (count($result) === 1) {
             return $result[0];

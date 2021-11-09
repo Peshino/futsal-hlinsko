@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <div class="card-body no-padding">
+    <div class="card-body p-0">
         <div class="content">
             <div class="content-block">
                 <div class="pt-4 pb-3 game">
