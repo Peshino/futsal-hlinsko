@@ -31,13 +31,16 @@ class CardController extends Controller
 
         if ($rule !== null) {
             $cards = $cardsRepository->getSummedCardsFiltered($competition, $rule);
+            $yellowCards = $cardsRepository->getSummedCardsFiltered($competition, $rule, null, null, null, 'desc', 'yellow');
+            $redCards = $cardsRepository->getSummedCardsFiltered($competition, $rule, null, null, null, 'desc', 'red');
             $cardsTeams = Team::whereIn('id', $cards->unique('team_id')->pluck('team_id')->toArray())->orderBy('name')->get();
 
             if ($team !== null) {
-                $cards = $cardsRepository->getSummedCardsFiltered($competition, $rule, null, $team);
+                $yellowCards = $cardsRepository->getSummedCardsFiltered($competition, $rule, null, $team, null, 'desc', 'yellow');
+                $redCards = $cardsRepository->getSummedCardsFiltered($competition, $rule, null, $team, null, 'desc', 'red');
             }
 
-            return view('cards.index', compact('competition', 'cards', 'rule', 'cardsTeams', 'team'));
+            return view('cards.index', compact('competition', 'yellowCards', 'redCards', 'rule', 'cardsTeams', 'team'));
         } else {
             return redirect()->route('rules.create', ['competition' => $competition->id]);
         }

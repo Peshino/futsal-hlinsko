@@ -26,7 +26,7 @@ $gameStartDates[] = $gameStartDate;
                 <div class="team-name-long">
                     {{ $game->homeTeam->name }}
                 </div>
-                <div class="team-name-short">
+                <div class="team-name-short" title="{{ $game->homeTeam->name }}">
                     {{ $game->homeTeam->name_short }}
                 </div>
             </span>
@@ -56,7 +56,7 @@ $gameStartDates[] = $gameStartDate;
                 <div class="team-name-long">
                     {{ $game->awayTeam->name }}
                 </div>
-                <div class="team-name-short">
+                <div class="team-name-short" title="{{ $game->awayTeam->name }}">
                     {{ $game->awayTeam->name_short }}
                 </div>
             </span>

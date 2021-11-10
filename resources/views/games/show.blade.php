@@ -87,7 +87,8 @@
                                 </div>
                                 <div class="team-name-short">
                                     <span class="align-middle">
-                                        <a href="{{ route('teams.show', [$competition->id, $game->homeTeam->id]) }}">
+                                        <a href="{{ route('teams.show', [$competition->id, $game->homeTeam->id]) }}"
+                                            title="{{ $game->homeTeam->name }}">
                                             {{ $game->homeTeam->name_short }}
                                         </a>
                                     </span>
@@ -133,7 +134,8 @@
                                 </div>
                                 <div class="team-name-short">
                                     <span class="align-middle">
-                                        <a href="{{ route('teams.show', [$competition->id, $game->awayTeam->id]) }}">
+                                        <a href="{{ route('teams.show', [$competition->id, $game->awayTeam->id]) }}"
+                                            title="{{ $game->awayTeam->name }}">
                                             {{ $game->awayTeam->name_short }}
                                         </a>
                                     </span>

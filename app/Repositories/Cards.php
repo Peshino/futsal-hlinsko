@@ -64,6 +64,7 @@ class Cards
 
         if ($cardType !== null) {
             $query->selectRaw('sum(' . $cardType . ') as ' . $cardType . ', player_id, team_id');
+            $query = $query->where($cardType, '!=', 0);
         } else {
             $query->selectRaw('sum(yellow) as yellow, sum(red) as red, player_id, team_id');
         }

@@ -103,7 +103,12 @@
                                 </td>
                                 <td class="text-left">
                                     <a href="{{ route('teams.show', [$competition->id, $goal->team->id]) }}">
-                                        {{ $goal->team->name }}
+                                        <div class="team-name-long">
+                                            {{ $goal->team->name }}
+                                        </div>
+                                        <div class="team-name-short" title="{{ $goal->team->name }}">
+                                            {{ $goal->team->name_short }}
+                                        </div>
                                     </a>
                                 </td>
                                 <td class="competition-color">

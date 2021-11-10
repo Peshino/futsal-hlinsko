@@ -10962,7 +10962,7 @@ html {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00050a19", endColorstr="#cc050a19", GradientType=0);
 }
 #main .selection-box-header h4 {
-  margin-bottom: -0.8rem;
+  margin-bottom: -0.6rem;
   margin-left: 9rem;
 }
 #main .table-position {
@@ -11191,6 +11191,7 @@ html {
   height: 1.3rem;
   border: 1px solid #fffb00;
   border-radius: 0.1rem;
+  margin-bottom: -0.3rem;
 }
 #main .card-yellow:hover {
   background-color: #6a6811;
@@ -11203,6 +11204,7 @@ html {
   height: 1.3rem;
   border: 1px solid #ff0000;
   border-radius: 0.1rem;
+  margin-bottom: -0.3rem;
 }
 #main .card-red:hover {
   background-color: #d32121;
