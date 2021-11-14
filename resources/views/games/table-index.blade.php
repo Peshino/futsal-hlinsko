@@ -172,16 +172,3 @@
     </div>
 </div>
 @endsection
-
-@section('scripts')
-<script>
-    // $(() => {
-    //     $('[data-toggle="popover"]').popover({
-    //         trigger: 'focus',
-    //         html: true,
-    //         placement: 'top',
-    //         container: '.form-item'
-    //     })
-    // });
-</script>
-@endsection

@@ -2200,7 +2200,6 @@ $(function () {
     $('#cookie-bar').addClass('d-flex').removeClass('d-none');
   }
 
-  $('[data-toggle="tooltip"]').tooltip();
   $('[data-toggle="popover"]').popover({
     trigger: 'hover',
     html: true,
@@ -2245,9 +2244,6 @@ $(function () {
 
   $('footer a#created-by').on('click mouseover', function (event) {
     event.preventDefault();
-    var $title = $('footer #created-by').attr('data-original-title'),
-        newTitle = $title.replace(' at ', '@');
-    $('footer #created-by').attr('data-original-title', newTitle);
   });
   $(document).on('click', '[data-toggle="lightbox"]', function (event) {
     event.preventDefault();

@@ -10127,7 +10127,8 @@ html {
   height: 100vh;
   display: flex;
   box-sizing: content-box;
-  background-image: url("/img/bg_logo.jpg");
+  background-color: rgba(5, 10, 25, 0.8);
+  background-image: url(/img/bg.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -10305,7 +10306,8 @@ html {
 
 .navbar {
   background: rgba(5, 10, 25, 0.8);
-  box-shadow: 5px 5px 4px rgba(14, 14, 30, 0.8);
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid #0b1636;
 }
 .navbar sup {
   top: -0.5em;
@@ -10504,7 +10506,7 @@ html {
 #main {
   min-height: 100vh;
   background-color: rgba(5, 10, 25, 0.8);
-  background-image: url(/img/bg.jpg);
+  background-image: url(/img/bg3.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -10556,7 +10558,8 @@ html {
   background-clip: border-box;
   border: 0px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
-  background: rgba(19, 28, 48, 0.8);
+  background: rgba(19, 28, 48, 0.95);
+  box-shadow: 0 0 3rem rgba(0, 0, 0, 0.6);
 }
 #main .card-body sup {
   top: -0.7em;
@@ -10616,6 +10619,7 @@ html {
 }
 #main .current-competition {
   padding: 0.7rem;
+  border-bottom: 1px solid #0b1636;
   background: linear-gradient(to right, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.75) 35%, rgba(5, 10, 25, 0.75) 65%, rgba(5, 10, 25, 0) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00050a19", endColorstr="#00050a19", GradientType=1);
 }
@@ -10969,6 +10973,9 @@ html {
   margin-bottom: -0.6rem;
   margin-left: 9rem;
 }
+#main .table {
+  border-radius: 0.35rem;
+}
 #main .table-position {
   width: 1.5em;
   display: inline-block;
@@ -11086,6 +11093,9 @@ html {
 }
 #main .competition-color {
   color: #5cc3ff;
+}
+#main .schedule-color {
+  color: #5cffb4;
 }
 #main .qualification-bg-0 {
   background: linear-gradient(to right, rgba(39, 45, 198, 0.5) 0%, rgba(125, 185, 232, 0) 100%);
@@ -11254,116 +11264,6 @@ html {
   vertical-align: middle;
   cursor: pointer;
 }
-#main .item-tooltip {
-  position: relative;
-  display: block;
-  z-index: 1;
-}
-#main .item-tooltip .item-tooltip-box:focus,
-#main .item-tooltip .item-tooltip-box:hover,
-#main .item-tooltip:focus .item-tooltip-box,
-#main .item-tooltip:hover .item-tooltip-box {
-  clip: auto;
-  height: auto;
-  width: auto;
-  opacity: 1;
-}
-#main .item-tooltip-box.tooltip-right {
-  right: -1.75rem;
-  left: auto;
-  transform: translateX(0);
-}
-#main .item-tooltip-box {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-#main .item-tooltip-box {
-  position: absolute;
-  bottom: 1.1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 90;
-  padding: 0 0 1rem;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  color: #ffffff;
-  opacity: 0;
-}
-#main .item-tooltip-box .tooltip-content {
-  position: relative;
-  display: block;
-  transition: all 0.2s;
-}
-#main .item-tooltip-box.tooltip-right .tooltip-content:after {
-  right: 2rem;
-  left: auto;
-}
-#main .item-tooltip-box.tooltip-link .tooltip-content:focus:after,
-#main .item-tooltip-box.tooltip-link .tooltip-content:hover:after {
-  border-top-color: #003351;
-}
-#main .item-tooltip-box .tooltip-content:after {
-  content: "";
-  display: block;
-  border: 10px solid transparent;
-  border-top-color: #003351;
-  border-bottom: 0;
-  position: absolute;
-  bottom: -9px;
-  left: 50%;
-  margin-left: -10px;
-  transition: all 0.2s;
-}
-#main .game-details {
-  background: #003351;
-  background: linear-gradient(to bottom, #003351 0%, #002a42 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#003351", endColorstr="#002a42", GradientType=0);
-  display: block;
-  position: relative;
-  transition: all 0.2s;
-  padding: 1rem;
-}
-#main .game-details:not(.disabled):focus,
-#main .game-details:not(.disabled):hover {
-  background: #00446c;
-  background: linear-gradient(to bottom, #00446c 0%, #003a5c 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00446c", endColorstr="#003a5c", GradientType=0);
-  cursor: pointer;
-}
-#main .game-details:not(.disabled):focus .game-score,
-#main .game-details:not(.disabled):hover .game-score {
-  background: #002841;
-}
-#main .game-details .game-datetime {
-  display: block;
-  color: #cccccc;
-  margin-bottom: 0.6rem;
-  transition: all 0.2s;
-  font-size: small;
-}
-#main .game-team {
-  min-width: 0;
-}
-#main .game-details .game-team {
-  min-width: 3.2rem;
-}
-#main .game-details .game-score {
-  background: #001c2e;
-  padding: 0.3rem 0;
-  min-width: 4.6rem;
-  text-align: center;
-}
-#main .game-details span {
-  display: inline-block;
-  vertical-align: middle;
-}
 @media (max-width: 992px) {
   #main .game .game-team {
     font-size: 1rem;
@@ -11452,38 +11352,43 @@ html {
 }
 
 .popover {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.6) !important;
   font-family: "EncodeSans-Regular", sans-serif;
   background-color: transparent;
   border: 0;
   border-radius: 0.6rem;
+  max-width: 276px;
 }
 .popover .popover-header {
-  padding: 0.6rem 1.25rem;
-  background-color: #00395c;
-  color: #dddddd;
-  border-bottom: 0;
+  padding: 0.8rem 1.5rem;
+  color: #eeeeee;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(to right, #002e66 0%, #28006e 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f2002e66", endColorstr="#f228006e", GradientType=1);
 }
 .popover .popover-body {
-  padding: 0.6rem 1.25rem;
-  background-color: #004974;
+  padding: 0.8rem 1.5rem;
   color: #dddddd;
+  background: linear-gradient(to right, #004191 0%, #39009b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f2004191", endColorstr="#f239009b", GradientType=1);
+  border-bottom-left-radius: calc(0.3rem - 1px);
+  border-bottom-right-radius: calc(0.3rem - 1px);
 }
 
 .bs-popover-left > .arrow::after, .bs-popover-auto[x-placement^=left] > .arrow::after {
-  border-left-color: #005d92;
+  border-left-color: #004191;
 }
 
 .bs-popover-top > .arrow::after, .bs-popover-auto[x-placement^=top] > .arrow::after {
-  border-top-color: #005d92;
+  border-top-color: #004191;
 }
 
 .bs-popover-right > .arrow::after, .bs-popover-auto[x-placement^=right] > .arrow::after {
-  border-right-color: #005d92;
+  border-right-color: #004191;
 }
 
 .bs-popover-bottom > .arrow::after, .bs-popover-auto[x-placement^=bottom] > .arrow::after {
-  border-left-color: #005d92;
+  border-left-color: #004191;
 }
 
 .bs-popover-left > .arrow::before, .bs-popover-auto[x-placement^=left] > .arrow::before,

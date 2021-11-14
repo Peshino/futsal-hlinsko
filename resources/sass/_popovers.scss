@@ -1,38 +1,47 @@
 .popover {
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.6) !important;
     font-family: "EncodeSans-Regular", sans-serif;
     background-color: transparent;
     border: 0;
     border-radius: 0.6rem;
+    max-width: 276px;
 
     .popover-header {
-        padding: 0.6rem 1.25rem;
-        background-color: #00395c;
-        color: #dddddd;
-        border-bottom: 0;
+        padding: 0.8rem 1.5rem;
+        color: #eeeeee;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        background: -moz-linear-gradient(left, rgba(0, 46, 102, 1) 0%, rgba(40, 0, 110, 1) 100%);
+        background: -webkit-linear-gradient(left, rgba(0, 46, 102, 1) 0%, rgba(40, 0, 110, 1) 100%);
+        background: linear-gradient(to right, rgba(0, 46, 102, 1) 0%, rgba(40, 0, 110, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2002e66', endColorstr='#f228006e', GradientType=1);
     }
 
     .popover-body {
-        padding: 0.6rem 1.25rem;
-        background-color: #004974;
+        padding: 0.8rem 1.5rem;
         color: #dddddd;
+        background: -moz-linear-gradient(left, rgba(0, 65, 145, 1) 0%, rgba(57, 0, 155, 1) 100%);
+        background: -webkit-linear-gradient(left, rgba(0, 65, 145, 1) 0%, rgba(57, 0, 155, 1) 100%);
+        background: linear-gradient(to right, rgba(0, 65, 145, 1) 0%, rgba(57, 0, 155, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2004191', endColorstr='#f239009b', GradientType=1);
+        border-bottom-left-radius: calc(0.3rem - 1px);
+        border-bottom-right-radius: calc(0.3rem - 1px);
     }
 }
 
 .bs-popover-left>.arrow::after {
-    border-left-color: #005d92;
+    border-left-color: rgba(0, 65, 145, 1);
 }
 
 .bs-popover-top>.arrow::after {
-    border-top-color: #005d92;
+    border-top-color: rgba(0, 65, 145, 1);
 }
 
 .bs-popover-right>.arrow::after {
-    border-right-color: #005d92;
+    border-right-color: rgba(0, 65, 145, 1);
 }
 
 .bs-popover-bottom>.arrow::after {
-    border-left-color: #005d92;
+    border-left-color: rgba(0, 65, 145, 1);
 }
 
 .bs-popover-left>.arrow::before,

@@ -163,6 +163,7 @@ return [
     'to_rule' => 'Do pravidla',
     'phase' => 'Fáze',
     'phases' => 'Fáze',
+    'halftime' => 'Poločas',
 
     'win' => 'Výhra',
     'draw' => 'Remíza',

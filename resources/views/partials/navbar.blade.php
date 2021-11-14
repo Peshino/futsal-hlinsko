@@ -19,7 +19,7 @@
                 <li class="nav-item{{ (request()->is('*competitions/' . $competition->id)) ? ' active' : '' }}">
                     <a class="nav-link" href="{{ route('competitions.show', $competition->id) }}">
                         <i class="fas fa-home align-middle"></i>&nbsp;
-                        <span class="align-middle">@lang('messages.home')</span>
+                        <span class="align-middle">{{ $competition->name ?? __('messages.home') }}</span>
                     </a>
                 </li>
                 <li

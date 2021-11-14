@@ -1,31 +1,25 @@
-<li class="first-schedule app-bg item-tooltip">
-    <a href="{{ route('games.show', [$competition->id, $teamFirstSchedule->id]) }}"
-        class="item-tooltip-box tooltip-link tooltip-right" role="tooltip">
-        <span class="tooltip-content">
-            <div class="game-details">
-                <div class="text-center pb-1">
-                    <strong>@lang('messages.next_game')</strong>
-                </div>
-                <span class="game-datetime">
-                    @php
-                    $startDateTime = \Carbon\Carbon::parse($teamFirstSchedule->start_datetime);
-                    echo $startDateTime->isoFormat('dddd[,] Do[.] MMMM');
-                    @endphp
-                </span>
-                <span class="game-team">
-                    <span title="{{ $teamFirstSchedule->homeTeam->name }}" class="text-uppercase">
-                        {{ $teamFirstSchedule->homeTeam->name_short }}
-                    </span>
-                </span>
-                <span class="game-score">
-                    {{ $startDateTime->isoFormat('HH:mm') }}
-                </span>
-                <span class="game-team">
-                    <span title="{{ $teamFirstSchedule->awayTeam->name }}" class="text-uppercase">
-                        {{ $teamFirstSchedule->awayTeam->name_short }}
-                    </span>
-                </span>
+@php
+$startDateTime = \Carbon\Carbon::parse($teamFirstSchedule->start_datetime);
+@endphp
+<a href="{{ route('games.show', [$competition->id, $teamFirstSchedule->id]) }}">
+    <li class="first-schedule app-bg" data-toggle="popover"
+        title='
+        <div class="row">
+            <div class="col">
+                {{ $teamFirstSchedule->homeTeam->name_short }}
             </div>
-        </span>
-    </a>
-</li>
+            <div class="col">
+                {{ $startDateTime->isoFormat('HH:mm') }}
+            </div>
+            <div class="col">
+                {{ $teamFirstSchedule->awayTeam->name_short }}
+            </div>
+        </div>
+        ' data-content='
+        <div class="text-center">
+            {{ $teamFirstSchedule->round ?? '' }}. @lang('messages.round')<br />
+            {{ $startDateTime->isoFormat(' dddd[,] Do[.] MMMM') }}
+        </div>
+    '>
+    </li>
+</a>

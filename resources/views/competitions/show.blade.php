@@ -9,7 +9,7 @@
     <div class="card-header app-bg">
         <div class="row">
             <div class="col col-left">
-                @lang('messages.homepage')
+                {{ $competition->name ?? __('messages.homepage') }}
             </div>
         </div>
     </div>
@@ -36,15 +36,13 @@
                     <li>základní informace o soutěži (systém, sezona, atd.)</li>
                 </ul> --}}
 
-                <div class="news alert-warning">
+                {{-- <div class="news alert-warning">
                     <div class="news-header pb-1 border-bottom border-dark">
-                        <div class="row">
-                            <div class="col-10">
-                                Pozor, změna hracího termínu
-                            </div>
-                            <div class="col-2 text-right">
-                                <i class="fas fa-exclamation-triangle"></i>
-                            </div>
+                        <div class="d-inline">
+                            Pozor, změna hracího termínu
+                        </div>
+                        <div class="d-inline float-right">
+                            <i class="fas fa-exclamation-triangle"></i>
                         </div>
                     </div>
                     <div class="news-body">
@@ -52,7 +50,7 @@
                             Hrací den se z pátečního večera přesouvá na sobotní dopoledne. Toto platí pro všechny týmy.
                         </p>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="row">
                     <div class="col">

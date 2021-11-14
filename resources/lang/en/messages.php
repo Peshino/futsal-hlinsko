@@ -163,6 +163,7 @@ return [
     'to_pravidla' => 'To rule',
     'phase' => 'Phase',
     'phases' => 'Phases',
+    'halftime' => 'Halftime',
 
     'win' => 'Win',
     'draw' => 'Draw',

@@ -18,7 +18,7 @@ Route::resource('competitions', 'CompetitionController', ['except' => [
 ]]);
 Route::get('competitions/season/{season}', 'CompetitionController@getCompetitionsBySeason')->name('competitions-by-season');
 Route::get('competitions/create/{season}', 'CompetitionController@create')->name('competitions.create');
-Route::get('competitions/{competition}edit/{season}', 'CompetitionController@edit')->name('competitions.edit');
+Route::get('competitions/{competition}/edit/{season}', 'CompetitionController@edit')->name('competitions.edit');
 
 Route::resource('competition-styles', 'CompetitionStyleController');
 

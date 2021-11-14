@@ -2,7 +2,7 @@
     min-height: 100vh;
     // background-color: #1b1e21;
     background-color: rgba(5, 10, 25, 0.8);
-    background-image: url(/img/bg.jpg);
+    background-image: url(/img/bg3.jpg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -61,7 +61,8 @@
         background-clip: border-box;
         border: 0px solid rgba(0, 0, 0, 0.125);
         border-radius: 0.25rem;
-        background: rgba(19, 28, 48, 0.8);
+        background: rgba(19, 28, 48, 0.95);
+        box-shadow: 0 0 3rem rgb(0, 0, 0, 0.6);
     }
 
     .card-body {
@@ -143,6 +144,7 @@
 
     .current-competition {
         padding: 0.7rem;
+        border-bottom: 1px solid rgb(11, 22, 54);
         background: -moz-linear-gradient(left, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.75) 35%, rgba(5, 10, 25, 0.75) 65%, rgba(5, 10, 25, 0) 100%);
         background: -webkit-linear-gradient(left, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.75) 35%, rgba(5, 10, 25, 0.75) 65%, rgba(5, 10, 25, 0) 100%);
         background: linear-gradient(to right, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.75) 35%, rgba(5, 10, 25, 0.75) 65%, rgba(5, 10, 25, 0) 100%);
@@ -594,6 +596,10 @@
         }
     }
 
+    .table {
+        border-radius: 0.35rem;
+    }
+
     .table-position {
         width: 1.5em;
         display: inline-block;
@@ -729,6 +735,10 @@
 
     .competition-color {
         color: #5cc3ff;
+    }
+
+    .schedule-color {
+        color: #5cffb4;
     }
 
     .qualification-bg-0 {
@@ -966,137 +976,6 @@
         display: inline-block;
         vertical-align: middle;
         cursor: pointer;
-    }
-
-    .item-tooltip {
-        position: relative;
-        display: block;
-        z-index: 1;
-    }
-
-    .item-tooltip .item-tooltip-box:focus,
-    .item-tooltip .item-tooltip-box:hover,
-    .item-tooltip:focus .item-tooltip-box,
-    .item-tooltip:hover .item-tooltip-box {
-        clip: auto;
-        height: auto;
-        width: auto;
-        opacity: 1;
-    }
-
-    .item-tooltip-box.tooltip-right {
-        right: -1.75rem;
-        left: auto;
-        transform: translateX(0);
-    }
-
-    .item-tooltip-box {
-        border: 0;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-    }
-
-    .item-tooltip-box {
-        position: absolute;
-        bottom: 1.1rem;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 90;
-        padding: 0 0 1rem;
-        text-align: center;
-        text-decoration: none;
-        white-space: nowrap;
-        color: #ffffff;
-        opacity: 0;
-        // transition: .2s;
-    }
-
-    .item-tooltip-box .tooltip-content {
-        position: relative;
-        display: block;
-        transition: all .2s;
-    }
-
-    .item-tooltip-box.tooltip-right .tooltip-content:after {
-        right: 2rem;
-        left: auto;
-    }
-
-    .item-tooltip-box.tooltip-link .tooltip-content:focus:after,
-    .item-tooltip-box.tooltip-link .tooltip-content:hover:after {
-        border-top-color: #003351;
-    }
-
-    .item-tooltip-box .tooltip-content:after {
-        content: "";
-        display: block;
-        border: 10px solid transparent;
-        border-top-color: #003351;
-        border-bottom: 0;
-        position: absolute;
-        bottom: -9px;
-        left: 50%;
-        margin-left: -10px;
-        transition: all .2s;
-    }
-
-    .game-details {
-        background: rgb(0, 51, 81);
-        background: -moz-linear-gradient(top, rgba(0, 51, 81, 1) 0%, rgba(0, 42, 66, 1) 100%);
-        background: -webkit-linear-gradient(top, rgba(0, 51, 81, 1) 0%, rgba(0, 42, 66, 1) 100%);
-        background: linear-gradient(to bottom, rgba(0, 51, 81, 1) 0%, rgba(0, 42, 66, 1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#003351', endColorstr='#002a42', GradientType=0);
-        display: block;
-        position: relative;
-        transition: all .2s;
-        padding: 1rem;
-    }
-
-    .game-details:not(.disabled):focus,
-    .game-details:not(.disabled):hover {
-        background: rgb(0, 68, 108);
-        background: -moz-linear-gradient(top, rgba(0, 68, 108, 1) 0%, rgba(0, 58, 92, 1) 100%);
-        background: -webkit-linear-gradient(top, rgba(0, 68, 108, 1) 0%, rgba(0, 58, 92, 1) 100%);
-        background: linear-gradient(to bottom, rgba(0, 68, 108, 1) 0%, rgba(0, 58, 92, 1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00446c', endColorstr='#003a5c', GradientType=0);
-        cursor: pointer;
-
-        .game-score {
-            background: #002841;
-        }
-    }
-
-    .game-details .game-datetime {
-        display: block;
-        color: #cccccc;
-        margin-bottom: .6rem;
-        transition: all .2s;
-        font-size: small;
-    }
-
-    .game-team {
-        min-width: 0;
-    }
-
-    .game-details .game-team {
-        min-width: 3.2rem;
-    }
-
-    .game-details .game-score {
-        background: #001c2e;
-        padding: 0.3rem 0;
-        min-width: 4.6rem;
-        text-align: center;
-    }
-
-    .game-details span {
-        display: inline-block;
-        vertical-align: middle;
     }
 
     @media (max-width: 992px) {
