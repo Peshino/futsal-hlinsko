@@ -180,7 +180,7 @@
                                 @php
                                 $teamGoal = $homeTeamGoal;
                                 @endphp
-                                @include('partials/goals-crud')
+                                @include('partials/goals.crud')
                                 @endforeach
                                 @endif
 
@@ -199,7 +199,7 @@
                                 @php
                                 $teamGoal = $awayTeamGoal;
                                 @endphp
-                                @include('partials/goals-crud')
+                                @include('partials/goals.crud')
                                 @endforeach
                                 @endif
 
@@ -225,7 +225,7 @@
                                 @php
                                 $teamCard = $homeTeamCard;
                                 @endphp
-                                @include('partials/cards-crud')
+                                @include('partials/cards.crud')
                                 @endforeach
                                 @endif
 
@@ -244,7 +244,7 @@
                                 @php
                                 $teamCard = $awayTeamCard;
                                 @endphp
-                                @include('partials/cards-crud')
+                                @include('partials/cards.crud')
                                 @endforeach
                                 @endif
 

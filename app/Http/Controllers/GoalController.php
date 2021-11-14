@@ -20,27 +20,19 @@ class GoalController extends Controller
      * Display a listing of the resource.
      *
      * @param  \App\Competition  $competition
-     * @param  \App\Rule  $rule
+     * @param  mixed  $rule
      * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function index(Competition $competition, Rule $rule = null, Team $team = null)
+    public function index(Competition $competition, $rule = 'all', Team $team = null)
     {
         $goalsRepository = new Goals;
-        $rule = $rule === null ? $competition->getLastRuleByPriority() : $rule;
+        $rule = $rule === 'all' ? null : Rule::find($rule);
 
-        if ($rule !== null) {
-            $goals = $goalsRepository->getSummedGoalsFiltered($competition, $rule);
-            $goalsTeams = Team::whereIn('id', $goals->unique('team_id')->pluck('team_id')->toArray())->orderBy('name')->get();
-
-            if ($team !== null) {
-                $goals = $goalsRepository->getSummedGoalsFiltered($competition, $rule, null, $team);
-            }
-
-            return view('goals.index', compact('competition', 'goals', 'rule', 'goalsTeams', 'team'));
-        } else {
-            return redirect()->route('rules.create', ['competition' => $competition->id]);
-        }
+        $goals = $goalsRepository->getSummedGoalsFiltered($competition, $rule);
+        $goalsTeams = Team::whereIn('id', $goals->unique('team_id')->pluck('team_id')->toArray())->orderBy('name')->get();
+        $goals = $goalsRepository->getSummedGoalsFiltered($competition, $rule, null, $team);
+        return view('goals.index', compact('competition', 'goals', 'rule', 'goalsTeams', 'team'));
     }
 
     /**

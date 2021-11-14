@@ -146,12 +146,12 @@
                                 @php
                                 $teamFirstSchedule = $tableItem->team_first_schedule;
                                 @endphp
-                                @include('partials/team-first-schedule')
+                                @include('partials/teams.first-schedule')
                                 @endif
                                 @if ($tableItem->team_form !== null && $tableItem->team_form->isNotEmpty())
                                 <i class="fas fa-chevron-left text-white-50"></i>
                                 @foreach ($tableItem->team_form as $game)
-                                @include('partials/team-form')
+                                @include('partials/teams.form')
                                 @endforeach
                                 @endif
                             </td>

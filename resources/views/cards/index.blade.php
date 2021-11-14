@@ -19,14 +19,19 @@
                         <div class="dropdown">
                             <button class="control-button dropdown-toggle" type="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
+                                @if ($rule === null)
+                                @lang('messages.rules')
+                                @else
                                 {{ $rule->name ?? '' }}
+                                @endif
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                {{-- <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="{{ route('cards.index', [$competition->id]) }}">
                                     @lang('messages.all')
-                                </a> --}}
+                                </a>
                                 @foreach ($competition->rules as $competitionRule)
-                                <a class="dropdown-item{{ $competitionRule->id === $rule->id ? " active" : "" }}"
+                                <a class="dropdown-item{{ $rule !== null && $competitionRule->id === $rule->id ? "
+                                    active" : "" }}"
                                     href="{{ route('cards.rule-index', [$competition->id, $competitionRule->id, null]) }}">
                                     {{ $competitionRule->name ?? '' }}
                                 </a>
@@ -49,13 +54,13 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item"
-                                    href="{{ route('cards.rule-index', [$competition->id, $rule->id, null]) }}">
+                                    href="{{ route('cards.' . ($rule !== null ? 'rule-' : '') . 'index', [$competition->id, $rule !== null ? $rule->id : 'all', null]) }}">
                                     @lang('messages.all')
                                 </a>
                                 @foreach ($cardsTeams as $cardsTeam)
                                 <a class="dropdown-item{{ ($team !== null && $cardsTeam->id === $team->id) ? " active"
                                     : "" }}"
-                                    href="{{ route('cards.team-index', [$competition->id, $rule->id, $cardsTeam->id]) }}">
+                                    href="{{ route('cards.team-index', [$competition->id, $rule !== null ? $rule->id : 'all', $cardsTeam->id]) }}">
                                     {{ $cardsTeam->name ?? '' }}
                                 </a>
                                 @endforeach
@@ -77,7 +82,7 @@
                         $cards = $yellowCards;
                         $cardType = 'yellow';
                         @endphp
-                        @include('partials/cards-index')
+                        @include('partials/cards.table')
                     </div>
 
                     <div class="col-md">
@@ -85,7 +90,7 @@
                         $cards = $redCards;
                         $cardType = 'red';
                         @endphp
-                        @include('partials/cards-index')
+                        @include('partials/cards.table')
                     </div>
                 </div>
             </div>

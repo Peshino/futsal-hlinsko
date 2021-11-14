@@ -56,15 +56,15 @@
 
                 <div class="row">
                     <div class="col">
-                        @include('partials/goals-selection')
+                        @include('partials/goals.selection')
                     </div>
 
                     <div class="col">
-                        @include('partials/yellow-cards-selection')
+                        @include('partials/cards.yellow-selection')
                     </div>
 
                     <div class="col">
-                        @include('partials/red-cards-selection')
+                        @include('partials/cards.red-selection')
                     </div>
                 </div>
             </div>

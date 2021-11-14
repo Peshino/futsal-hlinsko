@@ -24,29 +24,8 @@
                             autocomplete="off">
                             @csrf
                             @method('DELETE')
-                            <button class="crud-button" type="button" data-toggle="modal"
-                                data-target="#modal-rule-delete"><i class="far fa-trash-alt"></i></button>
 
-                            <div class="modal fade" id="modal-rule-delete" tabindex="-1" role="dialog"
-                                aria-labelledby="modal-rule-delete-title" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modal-rule-delete-title">
-                                                @lang('messages.really_delete')
-                                            </h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-app">
-                                                @lang('messages.delete')
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @include('partials/modals.delete')
                         </form>
                     </li>
                 </ul>
@@ -276,7 +255,7 @@
                         <div id="phases" class="phases col-lg">
                             @if (count($phases) > 0)
                             @foreach ($phases as $key => $phase)
-                            @include('partials/phases-show')
+                            @include('partials/phases.show')
                             @endforeach
                             @endif
                         </div>

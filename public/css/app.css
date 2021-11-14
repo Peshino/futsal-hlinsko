@@ -10625,6 +10625,9 @@ html {
 #main .modal-header {
   border-bottom: none;
 }
+#main .modal-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
 #main footer {
   position: absolute;
   bottom: 0;
@@ -10681,9 +10684,10 @@ html {
   border-radius: 0;
 }
 #main .btn-app {
-  color: #ffffff;
+  color: #dddddd;
   background: #32008a;
   border: 1px solid #5d00ff;
+  border-radius: 0.25rem;
 }
 #main .btn-app:hover {
   color: #ffffff;

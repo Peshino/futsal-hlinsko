@@ -241,7 +241,7 @@
                             <div id="phases" class="phases col-lg">
                                 @if (count($phases) > 0)
                                 @foreach ($phases as $key => $phase)
-                                @include('partials/phases-crud')
+                                @include('partials/phases.crud')
                                 @endforeach
                                 @endif
                                 <span class="crud-button phases-add block">

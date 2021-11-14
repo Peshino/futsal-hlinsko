@@ -68,7 +68,9 @@
     <div class="card-body p-0">
         <div class="content text-center">
             <div class="content-block">
-                pavouk
+                <div class="p-5">
+                    <h3>připravujeme</h3>
+                </div>
             </div>
         </div>
     </div>
