@@ -39,7 +39,7 @@
                                         @if ($teamRule->position !== null)
                                         <div class="row">
                                             <div class="col">
-                                                <span class="text-white-50">
+                                                <span class="text-secondary">
                                                     {{ $teamRule->name ?? '' }}
                                                 </span>
                                                 &nbsp;|&nbsp;
@@ -63,7 +63,7 @@
                                         @if ($teamFirstSchedule !== null)
                                         @include('partials/teams.first-schedule')
                                         @endif
-                                        <i class="fas fa-chevron-left text-white-50"></i>
+                                        <i class="fas fa-chevron-left text-secondary"></i>
                                         @foreach ($teamForm as $game)
                                         @include('partials/teams.form')
                                         @endforeach

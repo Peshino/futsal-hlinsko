@@ -149,7 +149,7 @@
                                 @include('partials/teams.first-schedule')
                                 @endif
                                 @if ($tableItem->team_form !== null && $tableItem->team_form->isNotEmpty())
-                                <i class="fas fa-chevron-left text-white-50"></i>
+                                <i class="fas fa-chevron-left text-secondary"></i>
                                 @foreach ($tableItem->team_form as $game)
                                 @include('partials/teams.form')
                                 @endforeach
