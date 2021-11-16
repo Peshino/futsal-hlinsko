@@ -7,7 +7,6 @@
         </div>
     </div>
 
-
     <div class="selection-box-content">
         <table class="table table-dark table-hover">
             <tbody>
