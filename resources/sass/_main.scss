@@ -546,6 +546,10 @@
         width: 90% !important;
     }
 
+    .w-32 {
+        width: 32% !important;
+    }
+
     .unimportant-text {
         color: #898989;
     }
@@ -584,15 +588,34 @@
         cursor: pointer;
     }
 
-    .selection-box-header {
-        background: -moz-linear-gradient(top, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.8) 100%);
-        background: -webkit-linear-gradient(top, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.8) 100%);
-        background: linear-gradient(to bottom, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.8) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00050a19', endColorstr='#cc050a19', GradientType=0);
+    .selection-box {
+        .selection-box-header {
+            background: -moz-linear-gradient(top, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.8) 100%);
+            background: -webkit-linear-gradient(top, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.8) 100%);
+            background: linear-gradient(to bottom, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.8) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00050a19', endColorstr='#cc050a19', GradientType=0);
 
-        h4 {
-            margin-bottom: -0.6rem;
-            margin-left: 9rem;
+            border-radius: 0 0 0.35rem 0.35rem;
+
+            h4 {
+                margin-bottom: -0.6rem;
+                margin-left: 9rem;
+            }
+        }
+
+        .selection-box-content {
+            .table {
+                margin-bottom: 0.075rem;
+            }
+        }
+
+        .selection-box-footer {
+            background: -moz-linear-gradient(top, rgba(5, 10, 25, 0.8) 0%, rgba(5, 10, 25, 0) 100%);
+            background: -webkit-linear-gradient(top, rgba(5, 10, 25, 0.8) 0%, rgba(5, 10, 25, 0) 100%);
+            background: linear-gradient(to bottom, rgba(5, 10, 25, 0.8) 0%, rgba(5, 10, 25, 0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc050a19', endColorstr='#00050a19', GradientType=0);
+
+            border-radius: 0.35rem 0.35rem 0 0;
         }
     }
 

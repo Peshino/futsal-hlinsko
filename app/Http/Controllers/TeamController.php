@@ -7,6 +7,8 @@ use App\Competition;
 use App\Position;
 use App\Repositories\Players;
 use App\Repositories\Games;
+use App\Repositories\Goals;
+use App\Repositories\Cards;
 use App\Repositories\Positions;
 use Illuminate\Http\Request;
 
@@ -87,12 +89,18 @@ class TeamController extends Controller
     public function show(Competition $competition, Team $team, $section = null)
     {
         $gamesRepository = new Games;
+        $goalsRepository = new Goals;
+        $cardsRepository = new Cards;
         $playersRepository = new Players;
         $positionsRepository = new Positions;
         $teamRules = $team->rules;
         $teamPlayers = $teamResults = $teamSchedule = null;
         $teamPositions = [];
         $sections = ['players', 'results', 'schedule', 'statistics'];
+
+        $goals = $goalsRepository->getSummedGoalsFiltered($competition, null, null, $team, null, 'desc', 3);
+        $yellowCards = $cardsRepository->getSummedCardsFiltered($competition, null, null, $team, null, 'desc', 'yellow', 3);
+        $redCards = $cardsRepository->getSummedCardsFiltered($competition, null, null, $team, null, 'desc', 'red', 3);
 
         switch ($section) {
             case 'players':
@@ -119,7 +127,7 @@ class TeamController extends Controller
             }
         }
 
-        return view('teams.show', compact('competition', 'team', 'sections', 'teamForm', 'teamFirstSchedule', 'teamRules', 'teamPlayers', 'teamResults', 'teamSchedule'));
+        return view('teams.show', compact('competition', 'team', 'sections', 'teamForm', 'teamFirstSchedule', 'teamRules', 'teamPlayers', 'teamResults', 'teamSchedule', 'goals', 'yellowCards', 'redCards'));
     }
 
     /**

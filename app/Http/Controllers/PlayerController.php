@@ -7,6 +7,9 @@ use App\Team;
 use App\Competition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Repositories\Games;
+use App\Repositories\Goals;
+use App\Repositories\Cards;
 
 class PlayerController extends Controller
 {
@@ -89,11 +92,19 @@ class PlayerController extends Controller
     {
         $age = null;
 
+        $gamesRepository = new Games;
+        $goalsRepository = new Goals;
+        $cardsRepository = new Cards;
+
+        $goals = $goalsRepository->getSummedGoalsFiltered($competition, null, null, null, $player, 'desc', 3);
+        $yellowCards = $cardsRepository->getSummedCardsFiltered($competition, null, null, null, $player, 'desc', 'yellow', 3);
+        $redCards = $cardsRepository->getSummedCardsFiltered($competition, null, null, null, $player, 'desc', 'red', 3);
+
         if ($player->birthdate !== null) {
             $age = Carbon::parse($player->birthdate)->age;
         }
 
-        return view('players.show', compact('competition', 'team', 'player', 'age'));
+        return view('players.show', compact('competition', 'team', 'player', 'age', 'goals', 'yellowCards', 'redCards'));
     }
 
     /**

@@ -75,9 +75,9 @@ class CompetitionController extends Controller
         $goalsRepository = new Goals;
         $cardsRepository = new Cards;
 
-        $goals = $goalsRepository->getSummedGoalsFiltered($competition, null, null, null, null, 'desc', 5);
-        $yellowCards = $cardsRepository->getSummedCardsFiltered($competition, null, null, null, null, 'desc', 'yellow', 5);
-        $redCards = $cardsRepository->getSummedCardsFiltered($competition, null, null, null, null, 'desc', 'red', 5);
+        $goals = $goalsRepository->getSummedGoalsFiltered($competition, null, null, null, null, 'desc', 3);
+        $yellowCards = $cardsRepository->getSummedCardsFiltered($competition, null, null, null, null, 'desc', 'yellow', 3);
+        $redCards = $cardsRepository->getSummedCardsFiltered($competition, null, null, null, null, 'desc', 'red', 3);
 
         return view('competitions.show', compact('competition', 'goals', 'yellowCards', 'redCards'));
     }

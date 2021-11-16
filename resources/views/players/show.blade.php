@@ -60,6 +60,26 @@
                         </h5>
                     </div>
                 </div>
+
+                <div class="my-4 row justify-content-center">
+                    @if (isset($goals) && $goals->isNotEmpty())
+                    <div class="col-lg-4">
+                        @include('partials/goals.selection')
+                    </div>
+                    @endif
+
+                    @if (isset($yellowCards) && $yellowCards->isNotEmpty())
+                    <div class="col-lg-4">
+                        @include('partials/cards.yellow-selection')
+                    </div>
+                    @endif
+
+                    @if (isset($redCards) && $redCards->isNotEmpty())
+                    <div class="col-lg-4">
+                        @include('partials/cards.red-selection')
+                    </div>
+                    @endif
+                </div>
             </div>
         </div>
     </div>

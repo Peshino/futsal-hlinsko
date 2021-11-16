@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="card-body p-0">
+    <div class="card-body">
         <div class="content">
             <div class="mt-2">
                 <div class="row">
@@ -74,6 +74,26 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="my-4 row justify-content-center">
+                @if (isset($goals) && $goals->isNotEmpty())
+                <div class="col-lg-4">
+                    @include('partials/goals.selection')
+                </div>
+                @endif
+
+                @if (isset($yellowCards) && $yellowCards->isNotEmpty())
+                <div class="col-lg-4">
+                    @include('partials/cards.yellow-selection')
+                </div>
+                @endif
+
+                @if (isset($redCards) && $redCards->isNotEmpty())
+                <div class="col-lg-4">
+                    @include('partials/cards.red-selection')
+                </div>
+                @endif
             </div>
 
             <div class="mt-2 border-top border-dark">
