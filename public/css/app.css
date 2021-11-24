@@ -11003,6 +11003,11 @@ html {
   color: #fff;
   background-color: rgba(5, 10, 25, 0.8);
 }
+#main .table-hover tbody tr:hover,
+#main .table-dark.table-hover tbody tr:hover {
+  color: #fff;
+  background-color: rgba(8, 18, 46, 0.8);
+}
 #main .table-dark th,
 #main .table-dark td,
 #main .table-dark thead th {

@@ -642,6 +642,12 @@
         background-color: rgba(5, 10, 25, 0.8);
     }
 
+    .table-hover tbody tr:hover,
+    .table-dark.table-hover tbody tr:hover {
+        color: #fff;
+        background-color: rgba(8, 18, 46, 0.8);
+    }
+
     .table-dark th,
     .table-dark td,
     .table-dark thead th {
