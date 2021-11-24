@@ -36,7 +36,7 @@
                             </a>
                         </small>
                     </td>
-                    <td class="competition-color align-middle text-center">
+                    <td class="competition-color align-middle text-center font-size-large">
                         <strong>{{ $card->red }}</strong>
                     </td>
                 </tr>

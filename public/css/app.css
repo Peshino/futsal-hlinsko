@@ -11167,6 +11167,7 @@ html {
   font-size: 1.7rem;
   color: #5cc3ff;
   padding: 0.7rem;
+  font-family: "easports", sans-serif;
 }
 #main .game .game-score .game-score-home,
 #main .game .game-score .game-halftime-score-home {
@@ -11278,6 +11279,19 @@ html {
   vertical-align: middle;
   cursor: pointer;
 }
+#main .rule-teams a {
+  background-color: rgba(5, 10, 25, 0.8);
+  border-radius: 0.25rem;
+}
+#main .rule-teams a:hover {
+  background-color: rgba(5, 10, 25, 0.4);
+}
+#main .rule-teams h4 span:hover {
+  cursor: help;
+}
+#main .font-size-large {
+  font-size: large;
+}
 @media (max-width: 992px) {
   #main .game .game-team {
     font-size: 1rem;
@@ -11375,7 +11389,7 @@ html {
 }
 .popover .popover-header {
   padding: 0.8rem 1.5rem;
-  color: #eeeeee;
+  color: #5cffb4;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   background: linear-gradient(to right, #002e66 0%, #28006e 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f2002e66", endColorstr="#f228006e", GradientType=1);
@@ -11402,7 +11416,7 @@ html {
 }
 
 .bs-popover-bottom > .arrow::after, .bs-popover-auto[x-placement^=bottom] > .arrow::after {
-  border-left-color: #004191;
+  border-bottom-color: #004191;
 }
 
 .bs-popover-left > .arrow::before, .bs-popover-auto[x-placement^=left] > .arrow::before,
@@ -11413,6 +11427,11 @@ html {
 .bs-popover-bottom > .arrow::before,
 .bs-popover-auto[x-placement^=bottom] > .arrow::before {
   border-width: 0;
+}
+
+.bs-popover-bottom .popover-header::before,
+.bs-popover-auto[x-placement^=bottom] .popover-header::before {
+  border-bottom: 0;
 }
 
 footer {

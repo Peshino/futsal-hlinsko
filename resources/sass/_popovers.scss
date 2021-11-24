@@ -8,7 +8,7 @@
 
     .popover-header {
         padding: 0.8rem 1.5rem;
-        color: #eeeeee;
+        color: #5cffb4;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         background: -moz-linear-gradient(left, rgba(0, 46, 102, 1) 0%, rgba(40, 0, 110, 1) 100%);
         background: -webkit-linear-gradient(left, rgba(0, 46, 102, 1) 0%, rgba(40, 0, 110, 1) 100%);
@@ -41,7 +41,7 @@
 }
 
 .bs-popover-bottom>.arrow::after {
-    border-left-color: rgba(0, 65, 145, 1);
+    border-bottom-color: rgba(0, 65, 145, 1);
 }
 
 .bs-popover-left>.arrow::before,
@@ -49,4 +49,9 @@
 .bs-popover-right>.arrow::before,
 .bs-popover-bottom>.arrow::before {
     border-width: 0;
+}
+
+.bs-popover-bottom .popover-header::before,
+.bs-popover-auto[x-placement^=bottom] .popover-header::before {
+    border-bottom: 0;
 }

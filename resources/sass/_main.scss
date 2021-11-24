@@ -854,6 +854,7 @@
             font-size: 1.7rem;
             color: #5cc3ff;
             padding: 0.7rem;
+            font-family: "easports", sans-serif;
 
             .game-score-home,
             .game-halftime-score-home {
@@ -1002,6 +1003,25 @@
         display: inline-block;
         vertical-align: middle;
         cursor: pointer;
+    }
+
+    .rule-teams {
+        a {
+            background-color: rgba(5, 10, 25, 0.8);
+            border-radius: 0.25rem;
+        }
+
+        a:hover {
+            background-color: rgba(5, 10, 25, 0.4);
+        }
+
+        h4 span:hover {
+            cursor: help;
+        }
+    }
+
+    .font-size-large {
+        font-size: large;
     }
 
     @media (max-width: 992px) {

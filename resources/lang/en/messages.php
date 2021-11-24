@@ -104,6 +104,8 @@ return [
     'two_rounded' => 'Two-rounded',
     'apply_mutual_balance' => 'Apply mutual balance',
     'apply_mutual_balance_info' => 'In case of equality of points after the mutual matches, the mutual balance decides.',
+    'mutual_balance_applied' => 'Mutual balance applied',
+    'mutual_balance_not_applied' => 'Mutual balance not applied',
     'priority' => 'Priority',
     'number_of_rounds' => 'Number of rounds',
     'number_of_qualifiers' => 'Number of qualifiers',

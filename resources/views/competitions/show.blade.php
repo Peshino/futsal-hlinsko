@@ -36,7 +36,7 @@
                     <li>základní informace o soutěži (systém, sezona, atd.)</li>
                 </ul> --}}
 
-                {{-- <div class="news alert-warning">
+                <div class="news alert-warning">
                     <div class="news-header pb-1 border-bottom border-dark">
                         <div class="d-inline">
                             Pozor, změna hracího termínu
@@ -50,7 +50,7 @@
                             Hrací den se z pátečního večera přesouvá na sobotní dopoledne. Toto platí pro všechny týmy.
                         </p>
                     </div>
-                </div> --}}
+                </div>
 
                 <div class="my-4 row justify-content-center">
                     @if (isset($goals) && $goals->isNotEmpty())
@@ -71,6 +71,42 @@
                     </div>
                     @endif
                 </div>
+
+                @if ($competition->rules->isNotEmpty())
+                <div class="my-3 rule-teams text-center">
+                    @foreach ($competition->rules as $rule)
+                    @if ($rule->teams->isNotEmpty())
+                    <div class="my-3 border-top border-dark py-2">
+                        <h4>
+                            <span data-toggle="popover"
+                                title="@lang('messages.rules') <strong>{{ $rule->name ?? ''}}</strong>" data-content="
+                                @lang('messages.number_of_rounds') <strong>{{ $rule->number_of_rounds ?? '' }}</strong><br />
+                                @lang('messages.system') <strong>@lang('messages.' . $rule->system ?? '' . '')</strong><br />
+                                @lang('messages.game_duration') <strong>{{ $rule->game_duration ?? '' }} [@lang('messages.minutes')]</strong><br />
+                                @lang('messages.case_of_draw') <strong>@lang('messages.' . $rule->case_of_draw ?? '' . '')</strong><br />
+                                @lang('messages.type') <strong>@lang('messages.' . $rule->type ?? '' . '')</strong><br />
+                                <strong>{{ $rule->isAppliedMutualBalance() ? __('messages.mutual_balance_applied') : __('messages.mutual_balance_not_applied') }}</strong><br />
+                                ">
+                                <i class="fas fa-info-circle text-info"></i>&nbsp;&nbsp;{{ $rule->name ?? '' }}
+                            </span>
+                        </h4>
+                        @foreach ($rule->teams as $team)
+                        <div class=" d-inline-flex flex-wrap">
+                            <a href="{{ route('teams.show', [$competition->id, $team->id]) }}" class="px-5 py-3 m-2">
+                                <div class="team-name-long">
+                                    {{ $team->name }}
+                                </div>
+                                <div class="team-name-short" title="{{ $team->name }}">
+                                    {{ $team->name_short }}
+                                </div>
+                            </a>
+                        </div>
+                        @endforeach
+                    </div>
+                    @endif
+                    @endforeach
+                </div>
+                @endif
             </div>
         </div>
     </div>
