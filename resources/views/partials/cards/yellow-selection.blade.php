@@ -1,9 +1,9 @@
 <div class="selection-box">
     <div class="row text-center m-0">
-        <div class="col selection-box-header p-1">
-            <h4>
+        <div class="col selection-box-header">
+            <div class="icons float-right">
                 <div class="d-inline-flex card-yellow"></div>
-            </h4>
+            </div>
         </div>
     </div>
 
@@ -46,11 +46,9 @@
     </div>
 
     <div class="row text-center m-0">
-        <div class="col selection-box-footer p-1">
+        <div class="col selection-box-footer">
             <a href="{{ route('cards.index', $competition->id) }}">
-                <h4>
-                    <i class="fas fa-ellipsis-h"></i>
-                </h4>
+                <i class="fas fa-ellipsis-h px-4 py-2"></i>
             </a>
         </div>
     </div>

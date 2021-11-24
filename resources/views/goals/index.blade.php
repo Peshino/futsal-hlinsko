@@ -84,7 +84,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col" class="text-left">@lang('messages.player')</th>
                                 <th scope="col" class="text-left">@lang('messages.team')</th>
-                                <th scope="col"><i class="far fa-futbol"></i></th>
+                                <th scope="col"><i class="far fa-futbol ball"></i></th>
                             </tr>
                         </thead>
                         <tbody>
