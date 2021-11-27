@@ -26,19 +26,17 @@
     </div>
 
     <div class="card-body">
-        <div class="content text-center">
-            <div class="content-block container">
-                @if (count($competition->teams) > 0)
-                <div class="list-group">
-                    @foreach ($competition->teams as $team)
-                    <a href="{{ route('teams.show', [$competition->id, $team->id]) }}"
-                        class="list-group-item list-group-item-action text-uppercase">
-                        {{ $team->name ?? '' }}
-                    </a>
-                    @endforeach
-                </div>
-                @endif
+        <div class="content">
+            @if (count($competition->teams) > 0)
+            <div class="d-inline-flex flex-wrap justify-content-center">
+                @foreach ($competition->teams as $team)
+                <a href="{{ route('teams.show', [$competition->id, $team->id]) }}"
+                    class="px-4 py-25 m-1 text-uppercase">
+                    {{ $team->name ?? '' }}
+                </a>
+                @endforeach
             </div>
+            @endif
         </div>
     </div>
 </div>

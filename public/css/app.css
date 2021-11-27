@@ -10553,6 +10553,12 @@ html {
   background: linear-gradient(to right, rgba(0, 65, 145, 0.95) 0%, rgba(57, 0, 155, 0.95) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f2004191", endColorstr="#f239009b", GradientType=1);
 }
+#main .app-border-color {
+  border-color: #0056c4 !important;
+}
+#main .border-dark {
+  border-color: #2d3945 !important;
+}
 #main .card {
   color: #dddddd;
   background-clip: border-box;
@@ -10742,7 +10748,8 @@ html {
 #main .nav-pills .show > .nav-link {
   color: #ffffff;
   text-decoration: none;
-  background-color: #414c53;
+  background: linear-gradient(to right, #004191 0%, #39009b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f2004191", endColorstr="#f239009b", GradientType=1);
 }
 #main .nav-pills .nav-link:focus,
 #main .nav-pills .nav-link:hover {
@@ -11284,11 +11291,27 @@ html {
   vertical-align: middle;
   cursor: pointer;
 }
-#main .rule-teams a {
+#main .pl-25,
+#main .px-25 {
+  padding-left: 0.75rem !important;
+}
+#main .pr-25,
+#main .px-25 {
+  padding-right: 0.75rem !important;
+}
+#main .pb-25,
+#main .py-25 {
+  padding-bottom: 0.75rem !important;
+}
+#main .pt-25,
+#main .py-25 {
+  padding-top: 0.75rem !important;
+}
+#main .d-inline-flex.flex-wrap a {
   background-color: rgba(5, 10, 25, 0.8);
   border-radius: 0.25rem;
 }
-#main .rule-teams a:hover {
+#main .d-inline-flex.flex-wrap a:hover {
   background-color: rgba(5, 10, 25, 0.4);
 }
 #main .rule-teams h4 span:hover {

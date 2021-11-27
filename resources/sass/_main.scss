@@ -55,6 +55,14 @@
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2004191', endColorstr='#f239009b', GradientType=1);
     }
 
+    .app-border-color {
+        border-color: #0056c4 !important;
+    }
+
+    .border-dark {
+        border-color: #2d3945 !important;
+    }
+
     .card {
         color: #dddddd;
         // background-color: #2a2f33;
@@ -286,7 +294,10 @@
     .nav-pills .show>.nav-link {
         color: #ffffff;
         text-decoration: none;
-        background-color: #414c53;
+        background: -moz-linear-gradient(left, rgba(0, 65, 145, 1) 0%, rgba(57, 0, 155, 1) 100%);
+        background: -webkit-linear-gradient(left, rgba(0, 65, 145, 1) 0%, rgba(57, 0, 155, 1) 100%);
+        background: linear-gradient(to right, rgba(0, 65, 145, 1) 0%, rgba(57, 0, 155, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2004191', endColorstr='#f239009b', GradientType=1);
     }
 
     .nav-pills .nav-link:focus,
@@ -1011,7 +1022,27 @@
         cursor: pointer;
     }
 
-    .rule-teams {
+    .pl-25,
+    .px-25 {
+        padding-left: 0.75rem !important;
+    }
+
+    .pr-25,
+    .px-25 {
+        padding-right: 0.75rem !important;
+    }
+
+    .pb-25,
+    .py-25 {
+        padding-bottom: 0.75rem !important;
+    }
+
+    .pt-25,
+    .py-25 {
+        padding-top: 0.75rem !important;
+    }
+
+    .d-inline-flex.flex-wrap {
         a {
             background-color: rgba(5, 10, 25, 0.8);
             border-radius: 0.25rem;
@@ -1020,7 +1051,9 @@
         a:hover {
             background-color: rgba(5, 10, 25, 0.4);
         }
+    }
 
+    .rule-teams {
         h4 span:hover {
             cursor: help;
         }

@@ -1,8 +1,8 @@
 @if (count($players) > 0)
-<div class="list-group">
+<div class="d-inline-flex flex-wrap">
     @foreach ($players as $player)
     <a href="{{ route('players.show', [$competition->id, $team->id, $player->id]) }}"
-        class="list-group-item list-group-item-action text-uppercase">
+        class="px-4 py-25 m-1 text-uppercase">
         {{ $player->firstname ?? '' }} {{ $player->lastname ?? '' }}
     </a>
     @endforeach
@@ -10,13 +10,11 @@
 @endif
 
 @can('crud_players')
-<div class="col">
-    <ul class="list-inline justify-content-end">
-        <li class="list-inline-item">
-            <a class="crud-button" href="{{ route('players.create', [$competition->id, $team->id]) }}">
-                <div class="plus"></div>
-            </a>
-        </li>
-    </ul>
-</div>
+<ul class="list-inline justify-content-center">
+    <li class="list-inline-item">
+        <a class="crud-button" href="{{ route('players.create', [$competition->id, $team->id]) }}">
+            <div class="plus"></div>
+        </a>
+    </li>
+</ul>
 @endcan

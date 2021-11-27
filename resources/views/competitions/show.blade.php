@@ -91,8 +91,8 @@
                             </span>
                         </h4>
                         @foreach ($rule->teams as $team)
-                        <div class=" d-inline-flex flex-wrap">
-                            <a href="{{ route('teams.show', [$competition->id, $team->id]) }}" class="px-5 py-3 m-2">
+                        <div class="d-inline-flex flex-wrap">
+                            <a href="{{ route('teams.show', [$competition->id, $team->id]) }}" class="px-4 py-25 m-1">
                                 <div class="team-name-long">
                                     {{ $team->name }}
                                 </div>

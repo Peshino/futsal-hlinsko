@@ -96,7 +96,7 @@ class TeamController extends Controller
         $teamRules = $team->rules;
         $teamPlayers = $teamResults = $teamSchedule = null;
         $teamPositions = [];
-        $sections = ['players', 'results', 'schedule', 'statistics'];
+        $sections = ['players', 'results', 'schedule']; // + 'statistics'
 
         $goals = $goalsRepository->getSummedGoalsFiltered($competition, null, null, $team, null, 'desc', 3);
         $yellowCards = $cardsRepository->getSummedCardsFiltered($competition, null, null, $team, null, 'desc', 'yellow', 3);

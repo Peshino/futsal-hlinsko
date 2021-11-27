@@ -30,7 +30,7 @@
                         <div class="p-4">
                             <div class="row">
                                 @if ($teamRules->isNotEmpty())
-                                <div class="col border-left border-dark">
+                                <div class="col border-left app-border-color">
                                     <h5>
                                         @lang('messages.position')
                                     </h5>
@@ -55,7 +55,7 @@
                                 @endif
 
                                 @if ($teamForm !== null)
-                                <div class="col border-left border-dark">
+                                <div class="col border-left app-border-color">
                                     <h5>
                                         @lang('messages.form')
                                     </h5>
@@ -96,7 +96,7 @@
                 @endif
             </div>
 
-            <div class="mt-2 border-top border-dark">
+            <div class="mt-2 border-top app-border-color">
                 <ul class="nav nav-pills nav-fill">
                     @foreach ($sections as $section)
                     <li class="nav-item">
