@@ -8,5 +8,10 @@
         "firstname": "Máša",
         "lastname": "Drahošová",
         "email": "masa@test.cz"
+    },
+    {
+        "firstname": "Seeder",
+        "lastname": "Seeder",
+        "email": "seeder@test.cz"
     }
 ]

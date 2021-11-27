@@ -13,7 +13,9 @@ class CompetitionSeeder extends Seeder
      */
     public function run()
     {
-        $json = File::get('database/data/competitions.json');
+        $seedFromOldDb = config('app.seed_from_old_db');
+
+        $json = File::get('database/data/' . ($seedFromOldDb ? 'oldDB/' : '') . 'competitions.json');
         $objects = json_decode($json);
         foreach ($objects as $object) {
             Competition::create([

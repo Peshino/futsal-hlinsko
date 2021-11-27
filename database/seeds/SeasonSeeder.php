@@ -13,7 +13,9 @@ class SeasonSeeder extends Seeder
      */
     public function run()
     {
-        $json = File::get('database/data/seasons.json');
+        $seedFromOldDb = config('app.seed_from_old_db');
+
+        $json = File::get('database/data/' . ($seedFromOldDb ? 'oldDB/' : '') . 'seasons.json');
         $objects = json_decode($json);
         foreach ($objects as $object) {
             Season::create([

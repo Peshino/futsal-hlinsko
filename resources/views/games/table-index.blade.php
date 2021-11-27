@@ -84,6 +84,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if ($tableData !== null)
                         @foreach ($tableData as $tableItem)
                         @php
                         // $qualifications =
@@ -157,6 +158,7 @@
                             </td>
                         </tr>
                         @endforeach
+                        @endif
                     </tbody>
                 </table>
 

@@ -1,0 +1,100 @@
+[
+    {
+        "name": "I. třída",
+        "status": "finished",
+        "user_id": "3",
+        "season_id": "1",
+        "competition_style_id": "1"
+    },
+    {
+        "name": "II. třída",
+        "status": "finished",
+        "user_id": "3",
+        "season_id": "1",
+        "competition_style_id": "1"
+    },
+    {
+        "name": "I. třída",
+        "status": "finished",
+        "user_id": "3",
+        "season_id": "2",
+        "competition_style_id": "1"
+    },
+    {
+        "name": "II. třída",
+        "status": "finished",
+        "user_id": "3",
+        "season_id": "2",
+        "competition_style_id": "1"
+    },
+    {
+        "name": "I. třída",
+        "status": "finished",
+        "user_id": "3",
+        "season_id": "3",
+        "competition_style_id": "1"
+    },
+    {
+        "name": "II. třída",
+        "status": "finished",
+        "user_id": "3",
+        "season_id": "3",
+        "competition_style_id": "1"
+    },
+    {
+        "name": "I. třída",
+        "status": "finished",
+        "user_id": "3",
+        "season_id": "4",
+        "competition_style_id": "1"
+    },
+    {
+        "name": "II. třída",
+        "status": "finished",
+        "user_id": "3",
+        "season_id": "4",
+        "competition_style_id": "1"
+    },
+    {
+        "name": "I. třída",
+        "status": "finished",
+        "user_id": "3",
+        "season_id": "5",
+        "competition_style_id": "1"
+    },
+    {
+        "name": "II. třída",
+        "status": "finished",
+        "user_id": "3",
+        "season_id": "5",
+        "competition_style_id": "1"
+    },
+    {
+        "name": "I. třída",
+        "status": "finished",
+        "user_id": "3",
+        "season_id": "6",
+        "competition_style_id": "1"
+    },
+    {
+        "name": "II. třída",
+        "status": "finished",
+        "user_id": "3",
+        "season_id": "6",
+        "competition_style_id": "1"
+    },
+    {
+        "name": "I. třída",
+        "status": "finished",
+        "user_id": "3",
+        "season_id": "7",
+        "competition_style_id": "1"
+    },
+    {
+        "name": "I. třída",
+        "status": "in_progress",
+        "user_id": "3",
+        "season_id": "8",
+        "competition_style_id": "1"
+    }
+]

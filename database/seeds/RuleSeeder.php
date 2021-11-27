@@ -13,7 +13,9 @@ class RuleSeeder extends Seeder
      */
     public function run()
     {
-        $json = File::get('database/data/rules.json');
+        $seedFromOldDb = config('app.seed_from_old_db');
+
+        $json = File::get('database/data/' . ($seedFromOldDb ? 'oldDB/' : '') . 'rules.json');
         $objects = json_decode($json);
         foreach ($objects as $object) {
             Rule::create([
