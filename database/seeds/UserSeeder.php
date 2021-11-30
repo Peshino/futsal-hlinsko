@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 'lastname' => $object->lastname,
                 'email' => $object->email,
                 'email_verified_at' => Carbon::now(),
-                'password' => bcrypt('test'),
+                'password' => bcrypt($object->password),
                 'remember_token' => Str::random(10)
             ]);
         }

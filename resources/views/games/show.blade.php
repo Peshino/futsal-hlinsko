@@ -50,8 +50,14 @@
                         <h5>
                             @php
                             $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
-                            echo $startDateTime->isoFormat('dddd[,] Do[.] MMMM[, ] HH:mm');
+                            $startTime = $startDateTime->toTimeString();
                             @endphp
+
+                            @if ($startTime === '00:00:00')
+                            {{ $startDateTime->isoFormat('dddd[,] Do[.] MMMM') }}
+                            @else
+                            {{ $startDateTime->isoFormat('dddd[,] Do[.] MMMM[, ] HH:mm') }}
+                            @endif
                         </h5>
                     </div>
                     <div class="mt-4 row">

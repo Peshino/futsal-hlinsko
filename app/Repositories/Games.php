@@ -82,6 +82,7 @@ class Games
         }
 
         if ($gamesFormCount !== null) {
+            $limit = $gamesFormCount;
             $query = $query->take($gamesFormCount);
         }
 
@@ -162,6 +163,10 @@ class Games
     {
         $originalPositionCase = null;
         $implodedTeams = null;
+
+        if ($toRound !== null) {
+            $toRound = (int) $toRound;
+        }
 
         if (!empty($teams) && is_array($teams)) {
             $originalPositionCase = 'CASE team_id';

@@ -1,17 +1,20 @@
 [
     {
-        "firstname": "Jiří",
-        "lastname": "Pešek",
-        "email": "test@test.cz"
+        "firstname": "Admin",
+        "lastname": "Admin",
+        "email": "admin@futsalhlinsko.cz",
+        "password": "futsal_admin"
     },
     {
-        "firstname": "Máša",
-        "lastname": "Drahošová",
-        "email": "masa@test.cz"
+        "firstname": "Moderator",
+        "lastname": "Moderator",
+        "email": "Moderator@futsalhlinsko.cz",
+        "password": "futsal_moderator"
     },
     {
         "firstname": "Seeder",
         "lastname": "Seeder",
-        "email": "seeder@test.cz"
+        "email": "seeder@futsalhlinsko.cz",
+        "password": "futsal_seeder"
     }
 ]

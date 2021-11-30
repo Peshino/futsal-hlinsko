@@ -67,7 +67,7 @@ class PlayerController extends Controller
         ]);
 
         // history_code - vytvořit nový jen pokud nepřebírám od historického týmu (pro zachování kódu týmu)
-        $attributes['history_code'] = time() . '_' . random_int(10000, 99999);
+        $attributes['history_code'] = bin2hex(random_bytes(8));
 
         $playerCreated = auth()->user()->addPlayer($attributes);
 
@@ -160,7 +160,7 @@ class PlayerController extends Controller
 
         // history_code - vytvořit nový jen pokud nepřebírám od historického týmu (pro zachování kódu týmu)
         if ($player->history_code === null) {
-            $attributes['history_code'] = time() . '_' . random_int(10000, 99999);
+            $attributes['history_code'] = bin2hex(random_bytes(8));
         }
 
         if ($player->update($attributes)) {

@@ -65,7 +65,7 @@ class TeamController extends Controller
 
         $attributes['name_short'] = strtoupper($attributes['name_short']);
         // history_code - vytvořit nový jen pokud nepřebírám od historického týmu (pro zachování kódu týmu)
-        $attributes['history_code'] = time() . '_' . random_int(10000, 99999);
+        $attributes['history_code'] = bin2hex(random_bytes(8));
 
         $teamCreated = auth()->user()->addTeam($attributes);
 
@@ -181,7 +181,7 @@ class TeamController extends Controller
 
         // history_code - vytvořit nový jen pokud nepřebírám od historického týmu (pro zachování kódu týmu)
         if ($team->history_code === null) {
-            $attributes['history_code'] = time() . '_' . random_int(10000, 99999);
+            $attributes['history_code'] = bin2hex(random_bytes(8));
         }
 
         if ($team->update($attributes)) {

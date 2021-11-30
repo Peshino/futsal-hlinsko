@@ -19,7 +19,7 @@ class PlayerSeeder extends Seeder
             Player::create([
                 'firstname' => $object->firstname,
                 'lastname' => $object->lastname,
-                'history_code' => time() . '_' . random_int(10000, 99999),
+                'history_code' => bin2hex(random_bytes(8)),
                 'jersey_number' => $object->jersey_number,
                 'birthdate' => $object->birthdate,
                 'position' => $object->position,

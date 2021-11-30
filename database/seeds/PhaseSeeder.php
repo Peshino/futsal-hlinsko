@@ -13,7 +13,9 @@ class PhaseSeeder extends Seeder
      */
     public function run()
     {
-        $json = File::get('database/data/phases.json');
+        $seedFromOldDb = config('app.seed_from_old_db');
+
+        $json = File::get('database/data/' . ($seedFromOldDb ? 'oldDB/' : '') . 'phases.json');
         $objects = json_decode($json);
         foreach ($objects as $object) {
             Phase::create([

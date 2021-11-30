@@ -72,13 +72,15 @@ return [
             ]) : [],
         ],
 
-        'mysql2' => [
-            'driver' => env('DB_CONNECTION_SECOND', 'mysql'),
-            'host' => env('DB_HOST_SECOND', '127.0.0.1'),
-            'port' => env('DB_PORT_SECOND', '3306'),
-            'database' => env('DB_DATABASE_SECOND', 'forge'),
-            'username' => env('DB_USERNAME_SECOND', 'forge'),
-            'password' => env('DB_PASSWORD_SECOND', ''),
+        'mysql_old_db' => [
+            'driver' => env('DB_CONNECTION_OLD_DB', 'mysql'),
+            'host' => env('DB_HOST_OLD_DB', '127.0.0.1'),
+            'port' => env('DB_PORT_OLD_DB', '3306'),
+            'database' => env('DB_DATABASE_OLD_DB', 'forge'),
+            'username' => env('DB_USERNAME_OLD_DB', 'forge'),
+            'password' => env('DB_PASSWORD_OLD_DB', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
         ],
 
         'pgsql' => [
