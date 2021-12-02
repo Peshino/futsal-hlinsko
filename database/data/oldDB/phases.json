@@ -118,7 +118,7 @@
     },
     {
         "from_position": "1",
-        "to_position": "1",
+        "to_position": "2",
         "phase": "qualification",
         "to_rule_id": "11",
         "rule_id": "11",

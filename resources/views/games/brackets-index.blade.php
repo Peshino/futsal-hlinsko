@@ -69,7 +69,7 @@
         <div class="content text-center">
             <div class="content-block">
                 <div class="p-5">
-                    <h3>připravujeme</h3>
+                    <h3>stránka je ve výrobě</h3>
                 </div>
             </div>
         </div>

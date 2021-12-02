@@ -25,9 +25,11 @@
                                 {{ $goal->player->lastname }} {{ $goal->player->firstname }}
                             </a>
                         </strong>
+                        @if ($goal->player->position !== null)
                         <span class="badge text-light app-bg" title="@lang('messages.' . $goal->player->position)">
                             @lang('messages.' . $goal->player->position . '_short')
                         </span>
+                        @endif
                         <br />
                         <small>
                             <a href="{{ route('teams.show', [$competition->id, $goal->team->id]) }}"

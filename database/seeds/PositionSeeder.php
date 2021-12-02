@@ -21,11 +21,11 @@ class PositionSeeder extends Seeder
             $competitions = Competition::all();
 
             if ($competitions->isNotEmpty()) {
-                foreach ($competitions as $key => $competition) {
+                foreach ($competitions as $competition) {
                     $competitionRules = $competition->rules;
 
                     if ($competitionRules->isNotEmpty()) {
-                        foreach ($competitionRules as $key => $rule) {
+                        foreach ($competitionRules as $rule) {
                             $positionsRepository->synchronize($competition, $rule);
                         }
                     }

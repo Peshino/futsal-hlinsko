@@ -101,10 +101,12 @@
                                         href="{{ route('players.show', [$competition->id, $goal->team->id, $goal->player->id]) }}">
                                         {{ $goal->player->lastname }} {{ $goal->player->firstname }}
                                     </a>
+                                    @if ($goal->player->position !== null)
                                     <span class="badge text-light app-bg"
                                         title="@lang('messages.' . $goal->player->position)">
                                         @lang('messages.' . $goal->player->position . '_short')
                                     </span>
+                                    @endif
                                 </td>
                                 <td class="text-left">
                                     <a href="{{ route('teams.show', [$competition->id, $goal->team->id]) }}">

@@ -63,7 +63,7 @@ class TeamSeeder extends Seeder
                     $competitionId = 14;
                 } else {
                     $competitions = $competitionsRepository->getCompetitionsBySeason($archive);
-                    foreach ($competitions as $key => $competition) {
+                    foreach ($competitions as $competition) {
                         if (((int) $competition->id) % 2 === 0) {
                             $competitionIdEven = $competition->id;
                         } else {
