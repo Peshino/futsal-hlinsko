@@ -22,7 +22,8 @@
                         <strong>
                             <a
                                 href="{{ route('players.show', [$competition->id, $card->team->id, $card->player->id]) }}">
-                                {{ $card->player->lastname }} {{ $card->player->firstname }}
+                                {{ ucwords(mb_strtolower($card->player->firstname)) }} {{
+                                ucwords(mb_strtolower($card->player->lastname)) }}
                             </a>
                         </strong>
                         @if ($card->player->position !== null)

@@ -10,8 +10,8 @@
                 @if (count($players) > 0)
                 @foreach ($players as $player)
                 <option {{ $player->id === $teamGoal->player->id ? "selected" : "" }} value="{{ $player->id }}">
-                    {{ $player->lastname }}
                     {{ $player->firstname }}
+                    {{ $player->lastname }}
                 </option>
                 @endforeach
                 @endif

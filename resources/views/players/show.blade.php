@@ -40,7 +40,10 @@
     <div class="card-body">
         <div class="content">
             <div class="content-block">
-                <h1>{{ $player->firstname }} {{$player->lastname}} {{ $player->jersey_number }}</h1>
+                <h1>
+                    {{ ucwords(mb_strtolower($player->firstname)) }} {{
+                    ucwords(mb_strtolower($player->lastname)) }} {{ $player->jersey_number }}
+                </h1>
 
                 <div class="row mt-5">
                     <div class="col">

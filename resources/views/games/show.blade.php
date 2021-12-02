@@ -143,7 +143,8 @@
                                     <div class="col-8 text-left">
                                         <a
                                             href="{{ route('players.show', [$competition->id, $game->homeTeam->id, $homeTeamGoal->player->id]) }}">
-                                            {{ $homeTeamGoal->player->lastname }} {{ $homeTeamGoal->player->firstname }}
+                                            {{ ucwords(mb_strtolower($homeTeamGoal->player->firstname)) }} {{
+                                            ucwords(mb_strtolower($homeTeamGoal->player->lastname)) }}
                                         </a>
                                     </div>
                                     @endforeach
@@ -164,7 +165,8 @@
                                     <div class="col-8 text-left">
                                         <a
                                             href="{{ route('players.show', [$competition->id, $game->homeTeam->id, $homeTeamCard->player->id]) }}">
-                                            {{ $homeTeamCard->player->lastname }} {{ $homeTeamCard->player->firstname }}
+                                            {{ ucwords(mb_strtolower($homeTeamGoal->player->firstname)) }} {{
+                                            ucwords(mb_strtolower($homeTeamGoal->player->lastname)) }}
                                         </a>
                                     </div>
                                     @endforeach
@@ -186,7 +188,8 @@
                                     <div class="col-8 text-left">
                                         <a
                                             href="{{ route('players.show', [$competition->id, $game->awayTeam->id, $awayTeamGoal->player->id]) }}">
-                                            {{ $awayTeamGoal->player->lastname }} {{ $awayTeamGoal->player->firstname }}
+                                            {{ ucwords(mb_strtolower($awayTeamGoal->player->firstname)) }} {{
+                                            ucwords(mb_strtolower($awayTeamGoal->player->lastname)) }}
                                         </a>
                                     </div>
                                     @endforeach
@@ -207,7 +210,8 @@
                                     <div class="col-8 text-left">
                                         <a
                                             href="{{ route('players.show', [$competition->id, $game->awayTeam->id, $awayTeamCard->player->id]) }}">
-                                            {{ $awayTeamCard->player->lastname }} {{ $awayTeamCard->player->firstname }}
+                                            {{ ucwords(mb_strtolower($awayTeamGoal->player->firstname)) }} {{
+                                            ucwords(mb_strtolower($awayTeamGoal->player->lastname)) }}
                                         </a>
                                     </div>
                                     @endforeach
