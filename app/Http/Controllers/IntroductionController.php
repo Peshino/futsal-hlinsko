@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Seasons;
+use App\Season;
 
 class IntroductionController extends Controller
 {
@@ -15,11 +16,12 @@ class IntroductionController extends Controller
     /**
      * Display an introduction.
      *
-     * @param  \App\Repositories\Seasons  $seasonsRepository
      * @return \Illuminate\Http\Response
      */
-    public function index(Seasons $seasonsRepository)
+    public function index()
     {
+        $seasonsRepository = new Seasons;
+
         $seasons = $seasonsRepository->getSeasons();
         $lastSeason = $seasonsRepository->getLastRecord();
 

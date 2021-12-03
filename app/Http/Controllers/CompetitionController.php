@@ -156,7 +156,6 @@ class CompetitionController extends Controller
      * Get the specified resource by id.
      *
      * @param  $seasonId
-     * @param  \App\Repositories\Competitions  $competitionsRepository
      * @return \Illuminate\Http\Response
      */
     public function getCompetitionsBySeason($seasonId = null)
