@@ -159,8 +159,10 @@ class CompetitionController extends Controller
      * @param  \App\Repositories\Competitions  $competitionsRepository
      * @return \Illuminate\Http\Response
      */
-    public function getCompetitionsBySeason($seasonId = null, Competitions $competitionsRepository)
+    public function getCompetitionsBySeason($seasonId = null)
     {
+        $competitionsRepository = new Competitions;
+
         if ($seasonId !== null) {
             $competitionsBySeason = $competitionsRepository->getCompetitionsBySeason($seasonId);
         } else {
