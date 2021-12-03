@@ -32,7 +32,7 @@ class Games
         return null;
     }
 
-    public function getGamesFiltered(Competition $competition = null, Rule $rule = null, Team $team = null, $gamesStatus = 'all', $round = null, $toRound = null, $gamesFormCount = null, $order = 'desc', $limit = null)
+    public function getGamesFiltered(Competition $competition = null, Rule $rule = null, Team $team = null, $gamesStatus = 'all', $round = null, $toRound = null, $gamesFormCount = null, $order = 'asc', $limit = null)
     {
         $query = Game::query();
 
