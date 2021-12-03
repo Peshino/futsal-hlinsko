@@ -76,8 +76,8 @@ class CompetitionController extends Controller
         $cardsRepository = new Cards;
         $gameCurrentlyBeingPlayed = null;
 
-        $lastResult = $competition->games()->whereRaw('DATE_ADD(`start_datetime`, INTERVAL 36 MINUTE) <= NOW()')->latest()->first();
-        $firstSchedule = $competition->games()->whereRaw('DATE_ADD(`start_datetime`, INTERVAL 36 MINUTE) > NOW()')->first();
+        $lastResult = $gamesRepository->getGamesFiltered($competition, null, null, 'results', null, null, null, 'desc', 1)->first();
+        $firstSchedule = $gamesRepository->getGamesFiltered($competition, null, null, 'schedule', null, null, null, 'asc', 1)->first();
 
         if ($competition->games->isNotEmpty()) {
             foreach ($competition->games as $game) {
