@@ -5,12 +5,12 @@ $gameStartDates = [];
 @foreach ($games as $game)
 @php
 $gameStartDate = \Carbon\Carbon::parse($game->start_datetime)->toDateString();
+$startDateTime = \Carbon\Carbon::parse($game->start_datetime);
 @endphp
 @if (!in_array($gameStartDate, $gameStartDates))
 <div class="mt-4">
     <h5>
         @php
-        $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
         echo $startDateTime->isoFormat('dddd[,] Do[.] MMMM');
         @endphp
     </h5>

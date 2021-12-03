@@ -39,15 +39,26 @@
                 <div class="news alert-warning">
                     <div class="news-header pb-1 border-bottom border-dark">
                         <div class="d-inline">
-                            Pozor, změna hracího termínu
+                            Soutěž Hlinsko 2021 / 2022
                         </div>
                         <div class="d-inline float-right">
                             <i class="fas fa-exclamation-triangle"></i>
                         </div>
                     </div>
                     <div class="news-body">
-                        <p>
-                            Hrací den se z pátečního večera přesouvá na sobotní dopoledne. Toto platí pro všechny týmy.
+                        <p>hrát se bude jednokolově každý s každým</p>
+                        <p>do play-off postoupí prvních 8 týmů</p>
+                        <p>hrací doba 2 x 16 min</p>
+                        <p>play-off 2 x 18 min</p>
+                        <p>semifinále odehraje nejvýše nasazený tým s nejhůře nasazeným</p>
+                        <p>podmínkou účasti je očkovaní proti covid-19 nebo potvrzení o prodělání nemoci v posledních
+                            180
+                            dní</p>
+                        <p>porušení pravidel o očkování nebo testování znamená vyloučení mužstva bez náhrady startovného
+                        </p>
+                        <p>startovné zaslat na účet 159392317/0600 - částka 8 500,- Kč do 14. 11. 2021, poznámka: název
+                            týmu</p>
+                        <p>případné dotazy zasílejte na mates.real@seznam.cz nebo volejte 777 201 963 - Vlastimil Mataj
                         </p>
                     </div>
                 </div>
