@@ -1,34 +1,23 @@
-@if (count($games) > 0)
 @php
-$gameStartDates = [];
-@endphp
-@foreach ($games as $game)
-@php
-$gameStartDate = \Carbon\Carbon::parse($game->start_datetime)->toDateString();
 $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
 @endphp
-@if (!in_array($gameStartDate, $gameStartDates))
-<div class="mt-4">
-    <h5>
-        @php
-        echo $startDateTime->isoFormat('dddd[,] Do[.] MMMM');
-        @endphp
-    </h5>
-</div>
-@php
-$gameStartDates[] = $gameStartDate;
-@endphp
-@endif
+
 <div class="game mb-3 clickable-row" data-url="{{ route('games.show', [$competition->id, $game->id]) }}">
     <div class="row">
         <div class="game-team col-4 d-flex flex-row-reverse">
             <span class="justify-content-center align-self-center">
+                @if ($bothGames)
+                <div title="{{ $game->homeTeam->name }}">
+                    {{ $game->homeTeam->name_short }}
+                </div>
+                @else
                 <div class="team-name-long">
                     {{ $game->homeTeam->name }}
                 </div>
                 <div class="team-name-short" title="{{ $game->homeTeam->name }}">
                     {{ $game->homeTeam->name_short }}
                 </div>
+                @endif
             </span>
         </div>
         @if ($game->hasScore())
@@ -54,23 +43,22 @@ $gameStartDates[] = $gameStartDate;
         @endif
         <div class="game-team col-4 d-flex">
             <span class="justify-content-center align-self-center">
+                @if ($bothGames)
+                <div title="{{ $game->awayTeam->name }}">
+                    {{ $game->awayTeam->name_short }}
+                </div>
+                @else
                 <div class="team-name-long">
                     {{ $game->awayTeam->name }}
                 </div>
                 <div class="team-name-short" title="{{ $game->awayTeam->name }}">
                     {{ $game->awayTeam->name_short }}
                 </div>
+                @endif
             </span>
         </div>
     </div>
-    @if ($game->isCurrentlyBeingPlayed())
-    <div class="text-center text-game-currently-being-played game">
-        <small class="blinking"><i class="fas fa-circle"></i> @lang('messages.game_currently_being_played')</small>
-    </div>
-    @endif
 </div>
-@endforeach
-@endif
 
 @section('scripts')
 <script>

@@ -74,12 +74,25 @@ class CompetitionController extends Controller
         $gamesRepository = new Games;
         $goalsRepository = new Goals;
         $cardsRepository = new Cards;
+        $gameCurrentlyBeingPlayed = null;
+
+        $lastResult = $competition->games()->whereRaw('DATE_ADD(`start_datetime`, INTERVAL 36 MINUTE) <= NOW()')->latest()->first();
+        $firstSchedule = $competition->games()->whereRaw('DATE_ADD(`start_datetime`, INTERVAL 36 MINUTE) > NOW()')->first();
+
+        if ($competition->games->isNotEmpty()) {
+            foreach ($competition->games as $game) {
+                if ($game->isCurrentlyBeingPlayed()) {
+                    $gameCurrentlyBeingPlayed = $game;
+                    break;
+                }
+            }
+        }
 
         $goals = $goalsRepository->getSummedGoalsFiltered($competition, null, null, null, null, 'desc', 3);
         $yellowCards = $cardsRepository->getSummedCardsFiltered($competition, null, null, null, null, 'desc', 'yellow', 3);
         $redCards = $cardsRepository->getSummedCardsFiltered($competition, null, null, null, null, 'desc', 'red', 3);
 
-        return view('competitions.show', compact('competition', 'goals', 'yellowCards', 'redCards'));
+        return view('competitions.show', compact('competition', 'goals', 'yellowCards', 'redCards', 'gameCurrentlyBeingPlayed', 'lastResult', 'firstSchedule'));
     }
 
     /**

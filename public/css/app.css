@@ -10774,6 +10774,9 @@ html {
 #main a.text-secondary:focus {
   color: #a9b7c5 !important;
 }
+#main .text-game-currently-being-played {
+  color: #b991ff !important;
+}
 #main .news {
   padding: 1rem;
   border-radius: 0.25rem;
@@ -11195,9 +11198,10 @@ html {
   color: #5cffb4;
   padding: 0.7rem;
 }
-#main .game-currently-being-played {
-  color: #ecffa8;
-  letter-spacing: 1px;
+#main .game .game-currently-being-played {
+  font-size: 1.7rem;
+  color: #b991ff;
+  padding: 0.7rem;
 }
 #main .clickable-row.game:hover {
   cursor: pointer;
@@ -11212,6 +11216,9 @@ html {
 }
 #main .clickable-row.game:hover .game-schedule {
   color: #88fdc6;
+}
+#main .clickable-row.game:hover .game-currently-being-played {
+  color: #c5a3ff;
 }
 #main .goals-cards {
   font-size: 1rem;
@@ -11324,10 +11331,9 @@ html {
   #main .game .game-team {
     font-size: 1rem;
   }
-  #main .game .game-score {
-    font-size: 1.1rem;
-  }
-  #main .game .game-schedule {
+  #main .game .game-score,
+#main .game .game-currently-being-played,
+#main .game .game-schedule {
     font-size: 1.1rem;
   }
 }
@@ -11344,10 +11350,9 @@ html {
     font-size: 0.9rem;
     text-transform: none;
   }
-  #main .game .game-score {
-    font-size: 1rem;
-  }
-  #main .game .game-schedule {
+  #main .game .game-score,
+#main .game .game-currently-being-played,
+#main .game .game-schedule {
     font-size: 1rem;
   }
   #main .goals-cards {

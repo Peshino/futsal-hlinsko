@@ -329,6 +329,10 @@
         color: #a9b7c5 !important;
     }
 
+    .text-game-currently-being-played {
+        color: #b991ff !important;
+    }
+
     .news {
         padding: 1rem;
         border-radius: 0.25rem;
@@ -890,11 +894,12 @@
             color: #5cffb4;
             padding: 0.7rem;
         }
-    }
 
-    .game-currently-being-played {
-        color: #ecffa8;
-        letter-spacing: 1px;
+        .game-currently-being-played {
+            font-size: 1.7rem;
+            color: #b991ff;
+            padding: 0.7rem;
+        }
     }
 
     .clickable-row.game:hover {
@@ -914,6 +919,10 @@
 
         .game-schedule {
             color: #88fdc6;
+        }
+
+        .game-currently-being-played {
+            color: #c5a3ff;
         }
     }
 
@@ -1069,10 +1078,8 @@
                 font-size: 1rem;
             }
 
-            .game-score {
-                font-size: 1.1rem;
-            }
-
+            .game-score,
+            .game-currently-being-played,
             .game-schedule {
                 font-size: 1.1rem;
             }
@@ -1097,10 +1104,8 @@
                 text-transform: none;
             }
 
-            .game-score {
-                font-size: 1rem;
-            }
-
+            .game-score,
+            .game-currently-being-played,
             .game-schedule {
                 font-size: 1rem;
             }

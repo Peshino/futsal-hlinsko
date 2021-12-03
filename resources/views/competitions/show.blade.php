@@ -36,31 +36,89 @@
                     <li>základní informace o soutěži (systém, sezona, atd.)</li>
                 </ul> --}}
 
-                <div class="news alert-warning">
+                <div class="news">
                     <div class="news-header pb-1 border-bottom border-dark">
-                        <div class="d-inline">
+                        <h4>
                             Soutěž Hlinsko 2021 / 2022
-                        </div>
-                        <div class="d-inline float-right">
-                            <i class="fas fa-exclamation-triangle"></i>
-                        </div>
+                        </h4>
                     </div>
                     <div class="news-body">
-                        <p>hrát se bude jednokolově každý s každým</p>
-                        <p>do play-off postoupí prvních 8 týmů</p>
-                        <p>hrací doba 2 x 16 min</p>
-                        <p>play-off 2 x 18 min</p>
-                        <p>semifinále odehraje nejvýše nasazený tým s nejhůře nasazeným</p>
-                        <p>podmínkou účasti je očkovaní proti covid-19 nebo potvrzení o prodělání nemoci v posledních
-                            180
-                            dní</p>
-                        <p>porušení pravidel o očkování nebo testování znamená vyloučení mužstva bez náhrady startovného
-                        </p>
-                        <p>startovné zaslat na účet 159392317/0600 - částka 8 500,- Kč do 14. 11. 2021, poznámka: název
-                            týmu</p>
-                        <p>případné dotazy zasílejte na mates.real@seznam.cz nebo volejte 777 201 963 - Vlastimil Mataj
-                        </p>
+                        <div class="row">
+                            <div class="col-md">
+                                <p>- hrát se bude jednokolově každý s každým</p>
+                                <p>- do play-off postoupí prvních 8 týmů</p>
+                                <p>- hrací doba 2 x 16 min</p>
+                                <p>- play-off 2 x 18 min</p>
+                                <p>- semifinále odehraje nejvýše nasazený tým s nejhůře nasazeným</p>
+                                <p>- podmínkou účasti je očkovaní proti covid-19 nebo potvrzení o prodělání nemoci v
+                                    posledních 180 dní</p>
+                            </div>
+                            <div class="col-md">
+                                <p>- porušení pravidel o očkování nebo testování znamená vyloučení mužstva bez náhrady
+                                    startovného
+                                </p>
+                                <p>- startovné zaslat na účet 159392317/0600 - částka 8 500,- Kč do 14. 11. 2021,
+                                    poznámka: název
+                                    týmu</p>
+                                <p>- případné dotazy zasílejte na <a
+                                        href="mailto:mates.real@seznam.cz">mates.real@seznam.cz</a> nebo volejte
+                                    777&nbsp;201&nbsp;963&nbsp;-&nbsp;Vlastimil Mataj
+                                </p>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                @php
+                $bothGames = false;
+                @endphp
+
+                @if ($gameCurrentlyBeingPlayed !== null)
+                @php
+                $game = $gameCurrentlyBeingPlayed;
+                @endphp
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center text-game-currently-being-played blinking">
+                            <i class="fas fa-circle"></i>
+                            @lang('messages.game_currently_being_played')
+                        </div>
+                        @include('partials/game')
+                    </div>
+                </div>
+                @endif
+
+                @php
+                // $lastResult = null;
+                $bothGames = ($lastResult !== null && $firstSchedule !== null) ? true : false;
+                @endphp
+
+                <div class="{{ $bothGames ? 'my-4 row ' : '' }}justify-content-center">
+                    @if ($lastResult !== null)
+                    @php
+                    $game = $lastResult;
+                    $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
+                    @endphp
+                    <div class="col-md">
+                        <div class="text-center competition-color">
+                            Poslední výsledek | <small>{{ $startDateTime->isoFormat('Do[.] MMMM') }}</small>
+                        </div>
+                        @include('partials/game')
+                    </div>
+                    @endif
+
+                    @if ($firstSchedule !== null)
+                    @php
+                    $game = $firstSchedule;
+                    $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
+                    @endphp
+                    <div class="col-md">
+                        <div class="text-center schedule-color">
+                            Příští zápas | <small>{{ $startDateTime->isoFormat('Do[.] MMMM') }}</small>
+                        </div>
+                        @include('partials/game')
+                    </div>
+                    @endif
                 </div>
 
                 <div class="my-4 row justify-content-center">
