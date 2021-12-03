@@ -11230,7 +11230,7 @@ html {
 }
 #main .clickable-row.game:hover {
   cursor: pointer;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 49, 110, 0.95) 24%, rgba(43, 0, 118, 0.95) 50%, rgba(43, 0, 118, 0.95) 79%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 49, 110, 0.95) 24%, rgba(43, 0, 118, 0.95) 55%, rgba(43, 0, 118, 0.95) 79%, rgba(0, 0, 0, 0) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00000000", endColorstr="#00000000", GradientType=1);
 }
 #main .clickable-row.game:hover .game-team {
