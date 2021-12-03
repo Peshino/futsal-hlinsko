@@ -134,7 +134,7 @@
                         <div class="row">
                             <div class="col-md goals-home mb-2">
                                 <div class="row">
-                                    @if (count($homeTeamGoals) > 0)
+                                    @if ($homeTeamGoals->isNotEmpty())
                                     @foreach ($homeTeamGoals as $homeTeamGoal)
                                     <div class="col-4 text-right">
                                         {{ $homeTeamGoal->amount > 1 ? $homeTeamGoal->amount . ' x' : '' }} <i
@@ -153,7 +153,7 @@
                             </div>
                             <div class="col-md cards-home">
                                 <div class="row">
-                                    @if (count($homeTeamCards) > 0)
+                                    @if ($homeTeamCards->isNotEmpty())
                                     @foreach ($homeTeamCards as $homeTeamCard)
                                     <div class="col-4 text-right">
                                         {!! $homeTeamCard->yellow > 0 ? '<div class="d-inline-flex card-yellow"></div>'
@@ -165,8 +165,8 @@
                                     <div class="col-8 text-left">
                                         <a
                                             href="{{ route('players.show', [$competition->id, $game->homeTeam->id, $homeTeamCard->player->id]) }}">
-                                            {{ ucwords(mb_strtolower($homeTeamGoal->player->firstname)) }} {{
-                                            ucwords(mb_strtolower($homeTeamGoal->player->lastname)) }}
+                                            {{ ucwords(mb_strtolower($homeTeamCard->player->firstname)) }} {{
+                                            ucwords(mb_strtolower($homeTeamCard->player->lastname)) }}
                                         </a>
                                     </div>
                                     @endforeach
@@ -179,7 +179,7 @@
                         <div class="row">
                             <div class="col-md goals-away mb-2">
                                 <div class="row">
-                                    @if (count($awayTeamGoals) > 0)
+                                    @if ($awayTeamGoals->isNotEmpty())
                                     @foreach ($awayTeamGoals as $awayTeamGoal)
                                     <div class="col-4 text-right">
                                         {{ $awayTeamGoal->amount > 1 ? $awayTeamGoal->amount . ' x' : '' }} <i
@@ -198,7 +198,7 @@
                             </div>
                             <div class="col-md cards-away">
                                 <div class="row">
-                                    @if (count($awayTeamCards) > 0)
+                                    @if ($awayTeamCards->isNotEmpty())
                                     @foreach ($awayTeamCards as $awayTeamCard)
                                     <div class="col-4 text-right">
                                         {!! $awayTeamCard->yellow > 0 ? '<div class="d-inline-flex card-yellow"></div>'
@@ -210,8 +210,8 @@
                                     <div class="col-8 text-left">
                                         <a
                                             href="{{ route('players.show', [$competition->id, $game->awayTeam->id, $awayTeamCard->player->id]) }}">
-                                            {{ ucwords(mb_strtolower($awayTeamGoal->player->firstname)) }} {{
-                                            ucwords(mb_strtolower($awayTeamGoal->player->lastname)) }}
+                                            {{ ucwords(mb_strtolower($awayTeamCard->player->firstname)) }} {{
+                                            ucwords(mb_strtolower($awayTeamCard->player->lastname)) }}
                                         </a>
                                     </div>
                                     @endforeach
