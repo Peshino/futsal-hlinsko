@@ -121,9 +121,9 @@ class Games
         return $tableData;
     }
 
-    public function getTeamForm(Competition $competition, Team $team, Rule $rule = null, $toRound = null, $gamesFormCount = 5)
+    public function getTeamForm(Competition $competition, Team $team, Rule $rule = null, $toRound = null, $gamesFormCount = 5, $order = 'desc')
     {
-        $teamForm = $this->getGamesFiltered($competition, $rule, $team, 'results', null, $toRound, $gamesFormCount);
+        $teamForm = $this->getGamesFiltered($competition, $rule, $team, 'results', null, $toRound, $gamesFormCount, $order);
 
         if (count($teamForm) > 0) {
             foreach ($teamForm as $game) {
