@@ -178,6 +178,8 @@ class Games
             $implodedTeams = implode(', ', $teams);
         }
 
+        $toRound = $toRound === null ? 'NULL' : $toRound;
+
         $tableData = DB::select(
             'SELECT
                     b.team_id AS team_id,
@@ -202,7 +204,7 @@ class Games
                     COALESCE(SUM(home_team_score), 0) AS team_goals_scored,
                     COALESCE(SUM(away_team_score), 0) AS team_goals_received,
                     COALESCE(SUM(home_team_score) - SUM(away_team_score), 0) AS team_goals_difference,
-                    COALESCE(SUM(CASE WHEN home_team_score > away_team_score THEN ? ELSE 0 END + CASE WHEN home_team_score = away_team_score THEN 1 ELSE 0 END), 0) AS points
+                    COALESCE(SUM(CASE WHEN home_team_score > away_team_score THEN ' . $rule->points_for_win . ' ELSE 0 END + CASE WHEN home_team_score = away_team_score THEN 1 ELSE 0 END), 0) AS points
                     ' . ($originalPositionCase !== null ? ', ' . $originalPositionCase : ($useSimpleTable === false ? ', NULL AS original_position' : '')) . '
                 FROM
                 (
@@ -213,7 +215,7 @@ class Games
                     FROM
                         games
                     WHERE
-                        competition_id = ? AND rule_id = ? AND round <= ? AND start_datetime <= NOW() AND home_team_score IS NOT NULL AND away_team_score IS NOT NULL
+                    competition_id = ' . $competition->id . ' AND rule_id = ' . $rule->id . ' AND round <= ' . $toRound . ' AND start_datetime <= NOW() AND home_team_score IS NOT NULL AND away_team_score IS NOT NULL
                         ' . ($implodedTeams !== null ? ' AND home_team_id IN (' . $implodedTeams . ') AND away_team_id IN (' . $implodedTeams . ')' : '') . '
                     UNION ALL
                     SELECT
@@ -223,10 +225,10 @@ class Games
                     FROM
                         games
                     WHERE
-                        competition_id = ? AND rule_id = ? AND round <= ? AND start_datetime <= NOW() AND away_team_score IS NOT NULL AND home_team_score IS NOT NULL
+                        competition_id = ' . $competition->id . ' AND rule_id = ' . $rule->id . ' AND round <= ' . $toRound . ' AND start_datetime <= NOW() AND away_team_score IS NOT NULL AND home_team_score IS NOT NULL
                         ' . ($implodedTeams !== null ? ' AND away_team_id IN (' . $implodedTeams . ') AND home_team_id IN (' . $implodedTeams . ')' : '') . '
                 ) a
-                ' . ($isAppliedMutualBalance ? 'INNER JOIN teams ON teams.id = a.team_id' : 'RIGHT JOIN teams ON teams.id = a.team_id WHERE teams.id IN (SELECT team_id FROM rule_team WHERE rule_id = ?)') . '
+                ' . ($isAppliedMutualBalance ? 'INNER JOIN teams ON teams.id = a.team_id' : 'RIGHT JOIN teams ON teams.id = a.team_id WHERE teams.id IN (SELECT team_id FROM rule_team WHERE rule_id = ' . $rule->id . ')') . '
                 GROUP BY
                     team_id,
                     team_name
@@ -237,8 +239,7 @@ class Games
                     ' . ($originalPositionCase !== null ? ', original_position ASC' : '') . '
                     , team_name
                 ) b
-            ;',
-            array($rule->points_for_win, $competition->id, $rule->id, $toRound, $competition->id, $rule->id, $toRound, $rule->id)
+            ;'
         );
 
         return $tableData;
