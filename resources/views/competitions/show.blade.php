@@ -99,7 +99,7 @@
                     $game = $lastResult;
                     $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
                     @endphp
-                    <div class="col-md">
+                    <div class="col-md no-padding">
                         <div class="text-center competition-color">
                             Poslední výsledek | <small>{{ $startDateTime->isoFormat('Do[.] MMMM') }}</small>
                         </div>
@@ -112,7 +112,7 @@
                     $game = $firstSchedule;
                     $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
                     @endphp
-                    <div class="col-md">
+                    <div class="col-md no-padding">
                         <div class="text-center schedule-color">
                             Příští zápas | <small>{{ $startDateTime->isoFormat('Do[.] MMMM') }}</small>
                         </div>

@@ -11055,6 +11055,13 @@ html {
 #main tr.clickable-row {
   cursor: pointer;
 }
+#main .col.no-padding,
+#main .col-sm.no-padding,
+#main .col-md.no-padding,
+#main .col-lg.no-padding {
+  padding-right: 0;
+  padding-left: 0;
+}
 @-webkit-keyframes fade {
   0%, 50% {
     opacity: 0;

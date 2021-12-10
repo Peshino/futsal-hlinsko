@@ -678,6 +678,14 @@
         cursor: pointer;
     }
 
+    .col.no-padding,
+    .col-sm.no-padding,
+    .col-md.no-padding,
+    .col-lg.no-padding {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
     .color-radio-buttons {
         @keyframes fade {
 
