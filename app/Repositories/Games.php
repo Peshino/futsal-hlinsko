@@ -60,6 +60,8 @@ class Games
 
         switch ($gamesStatus) {
             case 'results':
+                $order = 'desc';
+
                 if ($rule !== null) {
                     $query = $query->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $rule->game_duration . ' MINUTE) <= NOW()');
                 } else {
