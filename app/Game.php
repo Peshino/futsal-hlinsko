@@ -55,7 +55,7 @@ class Game extends Model
             if ($this->home_team_score > $this->away_team_score) {
                 return 'win';
             } elseif ($this->home_team_score < $this->away_team_score) {
-                return 'lost';
+                return 'loss';
             } else {
                 return 'draw';
             }
@@ -63,7 +63,7 @@ class Game extends Model
 
         if ($this->away_team_id === $teamId) {
             if ($this->home_team_score > $this->away_team_score) {
-                return 'lost';
+                return 'loss';
             } elseif ($this->home_team_score < $this->away_team_score) {
                 return 'win';
             } else {

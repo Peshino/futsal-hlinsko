@@ -11309,12 +11309,12 @@ html {
 #main .draw:hover {
   background: #ebebeb;
 }
-#main .lost {
+#main .loss {
   background: #b40e13;
   background: linear-gradient(to bottom, #b40e13 0%, #77090b 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b40e13", endColorstr="#77090b", GradientType=0);
 }
-#main .lost:hover {
+#main .loss:hover {
   background: #c30f15;
 }
 #main .form {
@@ -11360,7 +11360,13 @@ html {
 #main .font-size-large {
   font-size: large;
 }
+#main .th-short {
+  display: none;
+}
 @media (max-width: 992px) {
+  #main .hide-large {
+    display: none;
+  }
   #main .game .game-team {
     font-size: 1rem;
   }
@@ -11371,6 +11377,21 @@ html {
   }
 }
 @media (max-width: 768px) {
+  #main .hide-medium {
+    display: none;
+  }
+  #main .th-full {
+    display: none;
+  }
+  #main .th-short {
+    display: block;
+  }
+  #main .table-index .team-name-long {
+    display: none;
+  }
+  #main .table-index .team-name-short {
+    display: block;
+  }
   #main h3,
 #main .h3 {
     font-size: 1.1rem;
@@ -11393,6 +11414,9 @@ html {
   }
 }
 @media (max-width: 576px) {
+  #main .hide-small {
+    display: none;
+  }
   #main .card-header {
     font-size: 0.8rem;
   }

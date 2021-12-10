@@ -184,10 +184,11 @@ class Games
             'SELECT
                     b.team_id AS team_id,
                     b.team_name AS team_name,
-                    ' . ($useSimpleTable === false ? '(b.wins + b.draws + b.losts) AS games_count,' : '') . '
+                    b.team_name_short AS team_name_short,
+                    ' . ($useSimpleTable === false ? '(b.wins + b.draws + b.losses) AS games_count,' : '') . '
                     ' . ($useSimpleTable === false ? 'b.wins AS wins,' : '') . '
                     ' . ($useSimpleTable === false ? 'b.draws AS draws,' : '') . '
-                    ' . ($useSimpleTable === false ? 'b.losts AS losts,' : '') . '
+                    ' . ($useSimpleTable === false ? 'b.losses AS losses,' : '') . '
                     b.team_goals_scored AS team_goals_scored,
                     b.team_goals_received AS team_goals_received,
                     b.team_goals_difference AS team_goals_difference,
@@ -198,9 +199,10 @@ class Games
                     SELECT
                     teams.id AS team_id,
                     teams.name AS team_name,
+                    teams.name_short AS team_name_short,
                     ' . ($useSimpleTable === false ? 'COALESCE(COUNT(CASE WHEN home_team_score > away_team_score THEN 1 END), 0) AS wins,' : '') . '
                     ' . ($useSimpleTable === false ? 'COALESCE(COUNT(CASE WHEN home_team_score = away_team_score THEN 1 END), 0) AS draws,' : '') . '
-                    ' . ($useSimpleTable === false ? 'COALESCE(COUNT(CASE WHEN away_team_score > home_team_score THEN 1 END), 0) AS losts,' : '') . '
+                    ' . ($useSimpleTable === false ? 'COALESCE(COUNT(CASE WHEN away_team_score > home_team_score THEN 1 END), 0) AS losses,' : '') . '
                     COALESCE(SUM(home_team_score), 0) AS team_goals_scored,
                     COALESCE(SUM(away_team_score), 0) AS team_goals_received,
                     COALESCE(SUM(home_team_score) - SUM(away_team_score), 0) AS team_goals_difference,
@@ -209,7 +211,7 @@ class Games
                 FROM
                 (
                     SELECT
-                        home_team_id team_id,
+                        home_team_id AS team_id,
                         home_team_score,
                         away_team_score
                     FROM

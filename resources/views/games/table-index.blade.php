@@ -68,19 +68,76 @@
     <div class="card-body">
         <div class="content">
             <div class="content-block">
-                <table class="table table-hover table-dark">
+                <table class="table table-hover table-dark table-index">
                     <thead>
                         <tr style="font-size: 0.8rem;">
-                            <th scope="col" class="text-center">@lang('messages.position')</th>
-                            <th scope="col" class="text-left">@lang('messages.team')</th>
-                            <th scope="col" class="text-center">@lang('messages.games')</th>
-                            <th scope="col" class="text-center">Výhry</th>
-                            <th scope="col" class="text-center">Remízy</th>
-                            <th scope="col" class="text-center">Prohry</th>
-                            <th scope="col" class="text-center">Skóre</th>
-                            <th scope="col" class="text-center">GR</th>
-                            <th scope="col" class="text-center">Body</th>
-                            <th scope="col" class="text-center">Forma <i class="fas fa-long-arrow-alt-left"></i></th>
+                            <th scope="col" class="text-center">
+                                <div class="th-full">
+                                    @lang('messages.position')
+                                </div>
+                                <div class="th-short" title="@lang('messages.position')">
+                                    @lang('messages.position_short')
+                                </div>
+                            </th>
+                            <th scope="col" class="text-left">
+                                @lang('messages.team')
+                            </th>
+                            <th scope="col" class="text-center">
+                                <div class="th-full">
+                                    @lang('messages.games')
+                                </div>
+                                <div class="th-short" title="@lang('messages.games')">
+                                    @lang('messages.games_short')
+                                </div>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <div class="th-full">
+                                    @lang('messages.wins')
+                                </div>
+                                <div class="th-short" title="@lang('messages.wins')">
+                                    @lang('messages.wins_short')
+                                </div>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <div class="th-full">
+                                    @lang('messages.draws')
+                                </div>
+                                <div class="th-short" title="@lang('messages.draws')">
+                                    @lang('messages.draws_short')
+                                </div>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <div class="th-full">
+                                    @lang('messages.losses')
+                                </div>
+                                <div class="th-short" title="@lang('messages.losses')">
+                                    @lang('messages.losses_short')
+                                </div>
+                            </th>
+                            <th scope="col" class="text-center hide-medium">
+                                <div class="th-full">
+                                    @lang('messages.score')
+                                </div>
+                                <div class="th-short" title="@lang('messages.score')">
+                                    @lang('messages.score_short')
+                                </div>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <div title="@lang('messages.goal_difference')">
+                                    @lang('messages.goal_difference_short')
+                                </div>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <div class="th-full">
+                                    @lang('messages.points')
+                                </div>
+                                <div class="th-short" title="@lang('messages.points')">
+                                    @lang('messages.points_short')
+                                </div>
+                            </th>
+                            <th scope="col" class="text-center hide-large">
+                                @lang('messages.form') <i class="fas fa-long-arrow-alt-left"></i>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -131,18 +188,23 @@
                             </td>
                             <td class="text-left">
                                 <a href="{{ route('teams.show', [$competition->id, $tableItem->team_id]) }}">
-                                    {{ $tableItem->team_name }}
+                                    <div class="team-name-long">
+                                        {{ $tableItem->team_name }}
+                                    </div>
+                                    <div class="team-name-short" title="{{ $tableItem->team_name }}">
+                                        {{ $tableItem->team_name_short }}
+                                    </div>
                                 </a>
                             </td>
                             <td class="text-center">{{ $tableItem->games_count }}</td>
                             <td class="text-center">{{ $tableItem->wins }}</td>
                             <td class="text-center">{{ $tableItem->draws }}</td>
-                            <td class="text-center">{{ $tableItem->losts }}</td>
-                            <td class="text-center">{{ $tableItem->team_goals_scored }}&nbsp;:&nbsp;{{
+                            <td class="text-center">{{ $tableItem->losses }}</td>
+                            <td class="text-center hide-medium">{{ $tableItem->team_goals_scored }}&nbsp;:&nbsp;{{
                                 $tableItem->team_goals_received }}
                             <td class="text-center">{{ $tableItem->team_goals_difference }}</td>
                             <td class="competition-color text-center"><strong>{{ $tableItem->points }}</strong></td>
-                            <td class="form text-center">
+                            <td class="form text-center hide-large">
                                 @if ($tableItem->team_first_schedule !== null)
                                 @php
                                 $teamFirstSchedule = $tableItem->team_first_schedule;

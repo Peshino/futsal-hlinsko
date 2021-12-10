@@ -1013,7 +1013,7 @@
         background: #ebebeb;
     }
 
-    .lost {
+    .loss {
         background: rgb(180, 14, 19);
         background: -moz-linear-gradient(top, rgba(180, 14, 19, 1) 0%, rgba(119, 9, 11, 1) 100%);
         background: -webkit-linear-gradient(top, rgba(180, 14, 19, 1) 0%, rgba(119, 9, 11, 1) 100%);
@@ -1021,7 +1021,7 @@
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b40e13', endColorstr='#77090b', GradientType=0);
     }
 
-    .lost:hover {
+    .loss:hover {
         background: #c30f15;
     }
 
@@ -1082,7 +1082,15 @@
         font-size: large;
     }
 
+    .th-short {
+        display: none;
+    }
+
     @media (max-width: 992px) {
+        .hide-large {
+            display: none;
+        }
+
         .game {
             .game-team {
                 font-size: 1rem;
@@ -1097,6 +1105,27 @@
     }
 
     @media (max-width: 768px) {
+        .hide-medium {
+            display: none;
+        }
+
+        .th-full {
+            display: none;
+        }
+
+        .th-short {
+            display: block;
+        }
+
+        .table-index {
+            .team-name-long {
+                display: none;
+            }
+
+            .team-name-short {
+                display: block;
+            }
+        }
 
         h3,
         .h3 {
@@ -1127,6 +1156,10 @@
     }
 
     @media (max-width: 576px) {
+        .hide-small {
+            display: none;
+        }
+
         .card-header {
             font-size: 0.8rem;
         }
