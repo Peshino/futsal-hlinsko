@@ -70,8 +70,12 @@ class Games
                     $query = $query->where('start_datetime', '<=', Carbon::now());
                 }
 
-                $query = $query->whereNotNull('home_team_score');
-                $query = $query->whereNotNull('away_team_score');
+                if (auth()->user() !== null && auth()->user()->can('crud_games')) {
+                } else {
+                    $query = $query->whereNotNull('home_team_score');
+                    $query = $query->whereNotNull('away_team_score');
+                }
+
                 break;
             case 'schedule':
                 if ($order === null) {

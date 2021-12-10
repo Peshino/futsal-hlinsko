@@ -52,7 +52,11 @@ class Rule extends Model
 
     public function results()
     {
-        return $this->hasMany(Game::class)->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $this->game_duration . ' MINUTE) <= NOW()');
+        if (auth()->user() !== null && auth()->user()->can('crud_games')) {
+            return $this->hasMany(Game::class)->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $this->game_duration . ' MINUTE) <= NOW()');
+        } else {
+            return $this->hasMany(Game::class)->whereNotNull('home_team_score')->whereNotNull('away_team_score')->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $this->game_duration . ' MINUTE) <= NOW()');
+        }
     }
 
     public function getLastResultByRound()
