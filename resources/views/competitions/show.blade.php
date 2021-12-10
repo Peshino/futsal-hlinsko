@@ -78,7 +78,7 @@
                 $game = $gameCurrentlyBeingPlayed;
                 @endphp
                 <div class="row">
-                    <div class="col">
+                    <div class="col no-padding">
                         <div class="text-center text-game-currently-being-played blinking">
                             <i class="fas fa-circle"></i>
                             @lang('messages.game_currently_being_played')
