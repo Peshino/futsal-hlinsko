@@ -32,7 +32,7 @@ class Games
         return null;
     }
 
-    public function getGamesFiltered(Competition $competition = null, Rule $rule = null, Team $team = null, $gamesStatus = 'all', $round = null, $toRound = null, $gamesFormCount = null, $order = 'asc', $limit = null)
+    public function getGamesFiltered(Competition $competition = null, Rule $rule = null, Team $team = null, $gamesStatus = 'all', $round = null, $toRound = null, $gamesFormCount = null, $order = null, $limit = null)
     {
         $query = Game::query();
 
@@ -60,7 +60,9 @@ class Games
 
         switch ($gamesStatus) {
             case 'results':
-                $order = 'desc';
+                if ($order === null) {
+                    $order = 'desc';
+                }
 
                 if ($rule !== null) {
                     $query = $query->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $rule->game_duration . ' MINUTE) <= NOW()');
@@ -72,6 +74,10 @@ class Games
                 $query = $query->whereNotNull('away_team_score');
                 break;
             case 'schedule':
+                if ($order === null) {
+                    $order = 'asc';
+                }
+
                 if ($rule !== null) {
                     $query = $query->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $rule->game_duration . ' MINUTE) > NOW()');
                 } else {
@@ -79,8 +85,15 @@ class Games
                 }
                 break;
             case 'all':
+                if ($order === null) {
+                    $order = 'asc';
+                }
+
                 break;
             default:
+                if ($order === null) {
+                    $order = 'asc';
+                }
         }
 
         if ($gamesFormCount !== null) {
