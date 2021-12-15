@@ -50,16 +50,13 @@
                                 <p>- hrací doba 2 x 16 min</p>
                                 <p>- play-off 2 x 18 min</p>
                                 <p>- semifinále odehraje nejvýše nasazený tým s nejhůře nasazeným</p>
-                                <p>- podmínkou účasti je očkovaní proti covid-19 nebo potvrzení o prodělání nemoci v
-                                    posledních 180 dní</p>
                             </div>
                             <div class="col-md">
                                 <p>- porušení pravidel o očkování nebo testování znamená vyloučení mužstva bez náhrady
                                     startovného
                                 </p>
-                                <p>- startovné zaslat na účet 159392317/0600 - částka 8 500,- Kč do 14. 11. 2021,
-                                    poznámka: název
-                                    týmu</p>
+                                <p>- podmínkou účasti je očkovaní proti covid-19 nebo potvrzení o prodělání nemoci v
+                                    posledních 180 dní</p>
                                 <p>- případné dotazy zasílejte na <a
                                         href="mailto:mates.real@seznam.cz">mates.real@seznam.cz</a> nebo volejte
                                     777&nbsp;201&nbsp;963&nbsp;-&nbsp;Vlastimil Mataj
