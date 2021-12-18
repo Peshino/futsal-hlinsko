@@ -11404,6 +11404,7 @@ html {
 #main .game .game-live,
 #main .game .game-schedule {
     font-size: 1rem;
+    padding: 0.7rem;
   }
   #main .goals-cards {
     font-size: 0.8rem;
