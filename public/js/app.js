@@ -2520,7 +2520,7 @@ $(function () {
           gameDuration = $gameDuration.html(),
           currentDateTime = new Date(),
           gameCurrentDateTime = new Date(currentDateTime - startDateTime),
-          gameCurrentMinute = gameCurrentDateTime.getMinutes() + 15,
+          gameCurrentMinute = gameCurrentDateTime.getMinutes(),
           $halftime = $('.halftime'),
           $firstHalf = $('.first-half'),
           $secondHalf = $('.second-half'),
