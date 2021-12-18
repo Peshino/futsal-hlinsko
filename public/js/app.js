@@ -2520,7 +2520,7 @@ $(function () {
           gameDuration = $gameDuration.html(),
           currentDateTime = new Date(),
           gameCurrentDateTime = new Date(currentDateTime - startDateTime),
-          gameCurrentMinute = gameCurrentDateTime.getMinutes(),
+          gameCurrentMinute = gameCurrentDateTime.getMinutes() + 15,
           $halftime = $('.halftime'),
           $firstHalf = $('.first-half'),
           $secondHalf = $('.second-half'),
@@ -2528,7 +2528,6 @@ $(function () {
           $gameCurrentMinute = $('.game-current-minute'),
           $finished = $('.finished'),
           gameCurrentMinuteText;
-      console.log($startDateTime.html());
 
       if (gameCurrentMinute >= gameDuration) {
         $halftime.hide();
@@ -2539,6 +2538,7 @@ $(function () {
       }
 
       if (gameCurrentMinute >= gameDuration / 2) {
+        $firstHalf.addClass('d-none');
         $secondHalf.removeClass('d-none');
       } else {
         $firstHalf.removeClass('d-none');
