@@ -150,6 +150,7 @@ $(() => {
                 $gameCurrentMinute = $('.game-current-minute'),
                 $finished = $('.finished'),
                 gameCurrentMinuteText;
+            console.log($startDateTime.html());
 
             if (gameCurrentMinute >= gameDuration) {
                 $halftime.hide();

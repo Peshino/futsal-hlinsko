@@ -2,7 +2,8 @@
 $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
 @endphp
 
-<span class="d-none" id="start-date-time">{{ $startDateTime }}</span>
+{{-- format for mobile browsers (Apple) --}}
+<span class="d-none" id="start-date-time">{{ $startDateTime->format('Y/m/d H:i:s') }}</span>
 <span class="d-none" id="game-duration">{{ $game->rule->game_duration }}</span>
 
 @if ($game->isCurrentlyBeingPlayed())
