@@ -10799,9 +10799,6 @@ html {
 #main a.text-secondary:focus {
   color: #a9b7c5 !important;
 }
-#main .text-game-currently-being-played {
-  color: #b991ff !important;
-}
 #main .news {
   padding: 1rem;
   border-radius: 0.25rem;
@@ -11154,10 +11151,13 @@ html {
   color: #ffffff !important;
 }
 #main .competition-color {
-  color: #5cc3ff;
+  color: #5cc3ff !important;
 }
 #main .schedule-color {
-  color: #5cffb4;
+  color: #5cffb4 !important;
+}
+#main .live-color {
+  color: #ff198c !important;
 }
 #main .qualification-bg-0 {
   background: linear-gradient(to right, rgba(39, 45, 198, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
@@ -11211,10 +11211,14 @@ html {
   padding: 0.7rem;
   text-transform: uppercase;
 }
+#main .game .game-score,
+#main .game .game-live,
+#main .game .game-schedule {
+  font-size: 1.6rem;
+  padding: 0.4rem 0.7rem;
+}
 #main .game .game-score {
-  font-size: 1.7rem;
   color: #5cc3ff;
-  padding: 0.7rem;
   font-family: "easports", sans-serif;
 }
 #main .game .game-score .game-score-home,
@@ -11227,14 +11231,7 @@ html {
   color: #cccccc;
 }
 #main .game .game-schedule {
-  font-size: 1.7rem;
   color: #5cffb4;
-  padding: 0.7rem;
-}
-#main .game .game-currently-being-played {
-  font-size: 1.7rem;
-  color: #b991ff;
-  padding: 0.7rem;
 }
 #main .clickable-row.game:hover {
   cursor: pointer;
@@ -11250,8 +11247,8 @@ html {
 #main .clickable-row.game:hover .game-schedule {
   color: #88fdc6;
 }
-#main .clickable-row.game:hover .game-currently-being-played {
-  color: #c5a3ff;
+#main .clickable-row.game:hover .live-color {
+  color: #ff5cad;
 }
 #main .goals-cards {
   font-size: 1rem;
@@ -11370,7 +11367,7 @@ html {
     font-size: 1rem;
   }
   #main .game .game-score,
-#main .game .game-currently-being-played,
+#main .game .game-live,
 #main .game .game-schedule {
     font-size: 1.1rem;
   }
@@ -11404,7 +11401,7 @@ html {
     text-transform: none;
   }
   #main .game .game-score,
-#main .game .game-currently-being-played,
+#main .game .game-live,
 #main .game .game-schedule {
     font-size: 1rem;
   }

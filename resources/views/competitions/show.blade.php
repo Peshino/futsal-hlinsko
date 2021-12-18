@@ -76,10 +76,6 @@
                 @endphp
                 <div class="row">
                     <div class="col no-padding">
-                        <div class="text-center text-game-currently-being-played blinking">
-                            <i class="fas fa-circle"></i>
-                            @lang('messages.game_currently_being_played')
-                        </div>
                         @include('partials/game')
                     </div>
                 </div>
@@ -98,7 +94,7 @@
                     @endphp
                     <div class="col-md no-padding">
                         <div class="text-center competition-color">
-                            Poslední výsledek | <small>{{ $startDateTime->isoFormat('Do[.] MMMM') }}</small>
+                            @lang('messages.last_result') | <small>{{ $startDateTime->isoFormat('Do[.] MMMM') }}</small>
                         </div>
                         @include('partials/game')
                     </div>
@@ -111,7 +107,8 @@
                     @endphp
                     <div class="col-md no-padding">
                         <div class="text-center schedule-color">
-                            Příští zápas | <small>{{ $startDateTime->isoFormat('Do[.] MMMM') }}</small>
+                            @lang('messages.next_schedule') | <small>{{ $startDateTime->isoFormat('Do[.] MMMM')
+                                }}</small>
                         </div>
                         @include('partials/game')
                     </div>

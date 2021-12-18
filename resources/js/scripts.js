@@ -133,4 +133,42 @@ $(() => {
     }
 
     $('.toast').toast('show');
+
+    if ($('.currently-being-played').length) {
+        function showGameCurrentMinute() {
+            var $startDateTime = $('#start-date-time'),
+                $gameDuration = $('#game-duration'),
+                startDateTime = new Date($startDateTime.html()),
+                gameDuration = $gameDuration.html(),
+                currentDateTime = new Date(),
+                gameCurrentDateTime = new Date(currentDateTime - startDateTime),
+                gameCurrentMinute = gameCurrentDateTime.getMinutes(),
+                $halftime = $('.halftime'),
+                $firstHalf = $('.first-half'),
+                $secondHalf = $('.second-half'),
+                $showGameCurrentMinute = $('.show-game-current-minute'),
+                $gameCurrentMinute = $('.game-current-minute'),
+                $finished = $('.finished'),
+                gameCurrentMinuteText;
+
+            if (gameCurrentMinute >= gameDuration) {
+                $halftime.hide();
+                $gameCurrentMinute.hide();
+                $finished.removeClass('d-none');
+            } else {
+                gameCurrentMinuteText = gameCurrentMinute + 1;
+            }
+
+            if (gameCurrentMinute >= (gameDuration / 2)) {
+                $secondHalf.removeClass('d-none');
+            } else {
+                $firstHalf.removeClass('d-none');
+            }
+
+            $showGameCurrentMinute.text(gameCurrentMinuteText);
+        }
+
+        showGameCurrentMinute();
+        setInterval(showGameCurrentMinute, 1000);
+    }
 });

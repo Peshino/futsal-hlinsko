@@ -53,7 +53,6 @@ return [
     'games' => 'Games',
     'games_short' => 'G',
     'game' => 'Game',
-    'next_game' => 'Next game',
     'results' => 'Results',
     'schedule' => 'Schedule',
     'players' => 'Players',
@@ -168,6 +167,10 @@ return [
     'phase' => 'Phase',
     'phases' => 'Phases',
     'halftime' => 'Halftime',
+    'first_half' => '1st Half',
+    'second_half' => '2nd Half',
+    'last_result' => 'Last result',
+    'next_schedule' => 'Next game',
 
     'win' => 'Win',
     'draw' => 'Draw',

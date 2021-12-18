@@ -329,10 +329,6 @@
         color: #a9b7c5 !important;
     }
 
-    .text-game-currently-being-played {
-        color: #b991ff !important;
-    }
-
     .news {
         padding: 1rem;
         border-radius: 0.25rem;
@@ -790,11 +786,15 @@
     }
 
     .competition-color {
-        color: #5cc3ff;
+        color: #5cc3ff !important;
     }
 
     .schedule-color {
-        color: #5cffb4;
+        color: #5cffb4 !important;
+    }
+
+    .live-color {
+        color: #ff198c !important;
     }
 
     .qualification-bg-0 {
@@ -880,10 +880,15 @@
             text-transform: uppercase;
         }
 
+        .game-score,
+        .game-live,
+        .game-schedule {
+            font-size: 1.6rem;
+            padding: 0.4rem 0.7rem;
+        }
+
         .game-score {
-            font-size: 1.7rem;
             color: #5cc3ff;
-            padding: 0.7rem;
             font-family: "easports", sans-serif;
 
             .game-score-home,
@@ -899,15 +904,7 @@
         }
 
         .game-schedule {
-            font-size: 1.7rem;
             color: #5cffb4;
-            padding: 0.7rem;
-        }
-
-        .game-currently-being-played {
-            font-size: 1.7rem;
-            color: #b991ff;
-            padding: 0.7rem;
         }
     }
 
@@ -931,8 +928,8 @@
             color: #88fdc6;
         }
 
-        .game-currently-being-played {
-            color: #c5a3ff;
+        .live-color {
+            color: #ff5cad;
         }
     }
 
@@ -1096,7 +1093,7 @@
             }
 
             .game-score,
-            .game-currently-being-played,
+            .game-live,
             .game-schedule {
                 font-size: 1.1rem;
             }
@@ -1143,7 +1140,7 @@
             }
 
             .game-score,
-            .game-currently-being-played,
+            .game-live,
             .game-schedule {
                 font-size: 1rem;
             }

@@ -2,11 +2,23 @@
 $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
 @endphp
 
+<span class="d-none" id="start-date-time">{{ $startDateTime }}</span>
+<span class="d-none" id="game-duration">{{ $game->rule->game_duration }}</span>
+
+@if ($game->isCurrentlyBeingPlayed())
+<div class="currently-being-played text-center halftime live-color">
+    <i class="fas fa-circle blinking"></i>
+    <strong>
+        <span class="d-none first-half">@lang('messages.first_half')</span>
+        <span class="d-none second-half">@lang('messages.second_half')</span>
+    </strong>
+</div>
+@endif
 <div class="game mb-3 clickable-row" data-url="{{ route('games.show', [$competition->id, $game->id]) }}">
     <div class="row">
         <div class="game-team col-4 d-flex flex-row-reverse">
             <span class="justify-content-center align-self-center">
-                @if ($bothGames)
+                @if (isset($bothGames) && $bothGames === true)
                 <div title="{{ $game->homeTeam->name }}">
                     {{ $game->homeTeam->name_short }}
                 </div>
@@ -34,16 +46,26 @@ $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
             </span>
         </div>
         @else
-        <div
-            class="{{ $game->isCurrentlyBeingPlayed() ? 'game-currently-being-played ' : 'game-schedule '}}col-4 text-center">
+        @if ($game->isCurrentlyBeingPlayed())
+        <div class="currently-being-played game-live col-4 text-center">
+            <span class="game-current-minute live-color">
+                <span class="show-game-current-minute"></span><strong><span class="blinking">'</span></strong>
+            </span>
+            <span class="finished d-none text-secondary">
+                @lang('messages.finished')
+            </span>
+        </div>
+        @else
+        <div class="game-schedule col-4 text-center">
             <span class="justify-content-center align-self-center">
                 {{ $startDateTime->format('H:i') }}
             </span>
         </div>
         @endif
+        @endif
         <div class="game-team col-4 d-flex">
             <span class="justify-content-center align-self-center">
-                @if ($bothGames)
+                @if (isset($bothGames) && $bothGames === true)
                 <div title="{{ $game->awayTeam->name }}">
                     {{ $game->awayTeam->name_short }}
                 </div>

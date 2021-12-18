@@ -53,7 +53,6 @@ return [
     'games' => 'Zápasy',
     'games_short' => 'Z',
     'game' => 'Zápas',
-    'next_game' => 'Příští zápas',
     'results' => 'Výsledky',
     'schedule' => 'Rozpis',
     'players' => 'Hráči',
@@ -168,6 +167,10 @@ return [
     'phase' => 'Fáze',
     'phases' => 'Fáze',
     'halftime' => 'Poločas',
+    'first_half' => '1. poločas',
+    'second_half' => '2. poločas',
+    'last_result' => 'Poslední výsledek',
+    'next_schedule' => 'Příští zápas',
 
     'win' => 'Výhra',
     'draw' => 'Remíza',
@@ -190,9 +193,9 @@ return [
     '_short' => '',
 
     'status' => 'Status',
-    'not_started' => 'nezahájena',
+    'not_started' => 'nezahájeno',
     'in_progress' => 'probíhá',
-    'finished' => 'ukončena',
+    'finished' => 'konec',
 
     'squad' => 'Kádr',
     'name_short' => 'Krátký název',
