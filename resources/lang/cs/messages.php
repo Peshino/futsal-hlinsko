@@ -68,6 +68,7 @@ return [
     'your_comment' => 'Tvůj komentář',
     'add_comment' => 'Přidej komentář',
     'for_example' => 'např.',
+    'show_more' => 'Zobraz více',
 
     'post' => 'Článek',
     'create_post' => 'Vytvořit článek',

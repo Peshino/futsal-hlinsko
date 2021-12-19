@@ -63,36 +63,38 @@ class Cards
         $query = Card::query();
 
         if ($cardType !== null) {
-            $query->selectRaw('sum(' . $cardType . ') as ' . $cardType . ', player_id, team_id');
+            $query->selectRaw('sum(' . $cardType . ') as ' . $cardType . ', cards.player_id AS player_id, cards.team_id AS team_id, players.lastname AS lastname, players.firstname AS firstname');
             $query = $query->where($cardType, '!=', 0);
         } else {
-            $query->selectRaw('sum(yellow) as yellow, sum(red) as red, player_id, team_id');
+            $query->selectRaw('sum(yellow) as yellow, sum(red) as red, cards.player_id AS player_id, cards.team_id AS team_id, players.lastname AS lastname, players.firstname AS firstname');
         }
 
         if ($competition !== null) {
-            $query = $query->where('competition_id', $competition->id);
+            $query = $query->where('cards.competition_id', $competition->id);
         }
 
         if ($rule !== null) {
-            $query = $query->where('rule_id', $rule->id);
+            $query = $query->where('cards.rule_id', $rule->id);
         }
 
         if ($game !== null) {
-            $query = $query->where('game_id', $game->id);
+            $query = $query->where('cards.game_id', $game->id);
         }
 
         if ($team !== null) {
-            $query = $query->where('team_id', $team->id);
+            $query = $query->where('cards.team_id', $team->id);
         }
 
         if ($player !== null) {
-            $query = $query->where('player_id', $player->id);
+            $query = $query->where('cards.player_id', $player->id);
         }
 
+        $query->join('players', 'players.id', '=', 'cards.player_id');
+
         if ($cardType !== null) {
-            return $query->groupBy('player_id')->groupBy('team_id')->orderBy($cardType, $order)->limit($limit)->get();
+            return $query->groupBy('player_id')->groupBy('team_id')->orderBy($cardType, $order)->orderBy('firstname', 'asc')->orderBy('lastname', 'asc')->limit($limit)->get();
         } else {
-            return $query->groupBy('player_id')->groupBy('team_id')->limit($limit)->get();
+            return $query->groupBy('player_id')->groupBy('team_id')->orderBy('firstname', 'asc')->orderBy('lastname', 'asc')->limit($limit)->get();
         }
     }
 }

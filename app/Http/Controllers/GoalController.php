@@ -32,7 +32,9 @@ class GoalController extends Controller
         $goals = $goalsRepository->getSummedGoalsFiltered($competition, $rule);
         $goalsTeams = Team::whereIn('id', $goals->unique('team_id')->pluck('team_id')->toArray())->orderBy('name')->get();
         $goals = $goalsRepository->getSummedGoalsFiltered($competition, $rule, null, $team);
-        return view('goals.index', compact('competition', 'goals', 'rule', 'goalsTeams', 'team'));
+        $showMore = count($goals) > 50;
+
+        return view('goals.index', compact('competition', 'goals', 'rule', 'goalsTeams', 'team', 'showMore'));
     }
 
     /**

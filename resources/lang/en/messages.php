@@ -68,6 +68,7 @@ return [
     'your_comment' => 'Your comment',
     'add_comment' => 'Add comment',
     'for_example' => 'e.g.',
+    'show_more' => 'Show more',
 
     'post' => 'Post',
     'create_post' => 'Create post',

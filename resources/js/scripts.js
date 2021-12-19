@@ -172,4 +172,12 @@ $(() => {
         showGameCurrentMinute();
         setInterval(showGameCurrentMinute, 1000);
     }
+
+    if ($('.show-more').length) {
+        $('.show-more').on('click', function (event) {
+            event.preventDefault();
+            $('.to-show-more').removeClass('d-none');
+            $(this).hide();
+        });
+    }
 });
