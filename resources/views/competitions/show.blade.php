@@ -45,6 +45,7 @@
                     <div class="news-body">
                         <div class="row">
                             <div class="col-md">
+                                <p>- den 31. 12. 2021 je poslední na dopsání soupisek pro letošní sezónu</p>
                                 <p>- hrát se bude jednokolově každý s každým</p>
                                 <p>- do play-off postoupí prvních 8 týmů</p>
                                 <p>- hrací doba 2 x 16 min</p>
