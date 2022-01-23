@@ -33,7 +33,7 @@ class GameController extends Controller
     public function index(Competition $competition, $section = 'results', Rule $rule = null)
     {
         if ($rule === null) {
-            $rule = $competition->getRuleJustPlayedByPriority();
+            $rule = $competition->getRuleJustPlayedByPriority($section);
         }
 
         if ($rule !== null) {
@@ -190,11 +190,44 @@ class GameController extends Controller
      */
     public function bracketsParamsIndex(Competition $competition, Rule $rule, $toRound = null)
     {
-        $gamesRepository = new Games;
+        $brackets = [];
+        $ruleNumberOfRounds = $rule->number_of_rounds;
+        $teamsCount = count($rule->teams);
+        $games = $rule->games;
+        $isThirdPlaceGame = $teamsCount !== (int) (2 ** $ruleNumberOfRounds);
 
-        $rounds = $gamesRepository->getRoundsFiltered($competition, $rule, 'results');
+        for ($i = 0; $i < $ruleNumberOfRounds; $i++) {
+            $round = $ruleNumberOfRounds - $i;
+            $gamesOfRound = $games->where('round', $round);
+            $gamesOfRoundCount = count($gamesOfRound);
 
-        return view('games.brackets-index', compact('competition', 'rule', 'toRound', 'rounds'));
+            if ($i === 0) {
+                if ($gamesOfRound->isEmpty()) {
+                    $gamesOfRound->push(null);
+                }
+
+                $brackets['final'] = $gamesOfRound;
+            } elseif ($i === 1 && $isThirdPlaceGame) {
+                if ($gamesOfRound->isEmpty()) {
+                    $gamesOfRound->push(null);
+                }
+
+                $brackets['third_place_game'] = $gamesOfRound;
+            } else {
+                $subtractor = $isThirdPlaceGame ? 1 : 0;
+                $numberOfNullGamesToPush = (int) (2 ** ($i - $subtractor) - $gamesOfRoundCount);
+
+                for ($x = 0; $x < $numberOfNullGamesToPush; $x++) {
+                    $gamesOfRound->push(null);
+                }
+
+                $brackets['stage_' . ($i - $subtractor)] = $gamesOfRound;
+            }
+        }
+
+        $brackets = array_reverse($brackets);
+
+        return view('games.brackets-index', compact('competition', 'rule', 'toRound', 'brackets'));
     }
 
     /**
@@ -252,6 +285,7 @@ class GameController extends Controller
         unset($attributes['start_time']);
 
         $gameCreated = auth()->user()->addGame($attributes);
+        // Pozor! Při vytváření zápasu do playoff dojde k chybě, protože fce synchronize nemá data v $tableData
         $positionsSynchronized = $positionsRepository->synchronize($competition, $rule);
 
         if ($gameCreated !== null && $positionsSynchronized) {

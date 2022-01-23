@@ -89,7 +89,7 @@ class Game extends Model
         $startDateTimeCarbon = Carbon::parse($this->start_datetime);
         $endDateTime = $startDateTimeCarbon->addMinutes($this->rule->game_duration);
 
-        if ($startDateTime->lte(Carbon::now()) && $endDateTime->gte(Carbon::now())) {
+        if ($startDateTime->lte(Carbon::now()) && $endDateTime->gte(Carbon::now()) && !$this->hasScore()) {
             return true;
         }
 

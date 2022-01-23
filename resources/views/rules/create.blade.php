@@ -83,7 +83,7 @@
                             <div class="floating-label">
                                 <label for="number-of-rounds">@lang('messages.number_of_rounds')</label>
                                 <input type="number" class="form-control" id="number-of-rounds" name="number_of_rounds"
-                                    min="0" value="{{ old('number_of_rounds') }}" />
+                                    min="0" value="{{ old('number_of_rounds') }}" required />
                             </div>
                         </div>
                     </div>

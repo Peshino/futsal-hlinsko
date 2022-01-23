@@ -41,35 +41,86 @@
                         </div>
                     </div>
                     @endif
-
-                    @if (count($rounds) > 0)
-                    <div class="col-auto pr-1">
-                        <div class="dropdown">
-                            <button class="control-button dropdown-toggle" type="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                @lang('messages.to') {{ $toRound }}. @lang('messages.to_n_round')
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                @foreach ($rounds as $round)
-                                <a class="dropdown-item{{ $round === $toRound ? " active" : "" }}"
-                                    href="{{ route($rule->type . '.params-index', [$competition->id, $rule->id, $round]) }}">
-                                    @lang('messages.to') {{ $round ?? '' }}. @lang('messages.to_n_round')
-                                </a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    @endif
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="card-body p-0">
+    <div class="card-body">
         <div class="content text-center">
             <div class="content-block">
-                <div class="p-5">
-                    <h3>stránka je ve výrobě</h3>
+                {{-- https://codepen.io/jimmyhayek/pen/yJkdEB --}}
+                {{-- https://www.commoninja.com/brackets/editor/styles/ --}}
+
+                <div class="brackets">
+                    @forelse ($brackets as $stage => $bracket)
+                    <div class="bracket-round">
+                        <h5 class="bracket-round-title">
+                            @lang('messages.' . $stage)
+                        </h5>
+                        <ul class="bracket-list">
+                            @foreach ($bracket as $game)
+                            <li class="bracket-item">
+                                @php
+                                if ($game !== null) {
+                                $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
+                                $startTime = $startDateTime->toTimeString();
+
+                                if ($startTime === '00:00:00') {
+                                $startDateTimeIsoFormat = $startDateTime->isoFormat('dddd[,] Do[.] MMMM');
+                                } else {
+                                $startDateTimeIsoFormat = $startDateTime->isoFormat('dddd[,] Do[.] MMMM[, ] HH:mm');
+                                }
+                                } else {
+                                $startDateTimeIsoFormat = null;
+                                }
+                                @endphp
+                                <div class="row w-100 text-center">
+                                    <div class="col">
+                                        <div class="schedule-color">
+                                            <small>
+                                                {{ $startDateTimeIsoFormat }}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bracket-match">
+                                    <div class="row pb-2 border-bottom border-dark">
+                                        <div class="col col-10 no-padding text-left">
+                                            <div class="team-name-long">
+                                                {{ $game->homeTeam->name ?? '-' }}
+                                            </div>
+                                            <div class="team-name-short" title="{{ $game->homeTeam->name ?? '-' }}">
+                                                {{ $game->homeTeam->name_short ?? '-' }}
+                                            </div>
+                                        </div>
+                                        <div class="col col-2 no-padding text-right">
+                                            {{ $game->home_team_score ?? '-' }}
+                                        </div>
+                                    </div>
+                                    <div class="row pt-2">
+                                        <div class="col col-10 no-padding text-left">
+                                            <div class="team-name-long">
+                                                {{ $game->awayTeam->name ?? '-' }}
+                                            </div>
+                                            <div class="team-name-short" title="{{ $game->awayTeam->name ?? '-' }}">
+                                                {{ $game->awayTeam->name_short ?? '-' }}
+                                            </div>
+                                        </div>
+                                        <div class="col col-2 no-padding text-right">
+                                            {{ $game->away_team_score ?? '-' }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @empty
+                    <h3>
+                        žádné zápasy zadané pro playoff
+                    </h3>
+                    @endforelse
                 </div>
             </div>
         </div>

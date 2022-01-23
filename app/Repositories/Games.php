@@ -64,13 +64,12 @@ class Games
                     $order = 'desc';
                 }
 
-                if ($rule !== null) {
-                    $query = $query->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $rule->game_duration . ' MINUTE) <= NOW()');
-                } else {
-                    $query = $query->where('start_datetime', '<=', Carbon::now());
-                }
-
                 if (auth()->user() !== null && auth()->user()->can('crud_games')) {
+                    if ($rule !== null) {
+                        $query = $query->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $rule->game_duration . ' MINUTE) <= NOW()');
+                    } else {
+                        $query = $query->where('start_datetime', '<=', Carbon::now());
+                    }
                 } else {
                     $query = $query->whereNotNull('home_team_score');
                     $query = $query->whereNotNull('away_team_score');
@@ -78,6 +77,9 @@ class Games
 
                 break;
             case 'schedule':
+                $query = $query->whereNull('home_team_score');
+                $query = $query->whereNull('away_team_score');
+
                 if ($order === null) {
                     $order = 'asc';
                 }

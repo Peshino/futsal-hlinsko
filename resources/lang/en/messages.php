@@ -205,6 +205,18 @@ return [
     'inferior_team' => 'Inferior team',
     'statistics' => 'Statistics',
 
+    'final' => 'Final',
+    'third_place_game' => '3rd Place Game',
+    'stage_1' => 'Semifinals',
+    'stage_2' => 'Quarterfinals',
+    'stage_3' => 'Round of 16',
+    'stage_4' => 'Round of 32',
+    'stage_5' => 'Round of 64',
+    'stage_6' => 'Round of 128',
+    'stage_7' => 'Round of 256',
+    'stage_8' => 'Round of 512',
+    'stage_9' => 'Round of 1024',
+
     'to' => 'To',
     'new' => 'New',
     'all' => 'All',

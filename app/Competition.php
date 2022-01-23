@@ -58,14 +58,32 @@ class Competition extends Model
         return $this->rules()->latest('priority')->first();
     }
 
-    public function getRuleJustPlayedByPriority()
+    public function getRuleJustPlayedByPriority($section = null)
     {
         $rulesOrderedByPriority = $this->rules()->orderBy('priority', 'desc')->get();
 
         if ($rulesOrderedByPriority->isNotEmpty()) {
             foreach ($rulesOrderedByPriority as $rule) {
-                if ($rule->games()->exists()) {
-                    return $rule;
+                if ($section !== null) {
+                    if ($section === 'results') {
+                        if ($rule->results()->exists()) {
+                            return $rule;
+                        }
+
+                        continue;
+                    }
+
+                    if ($section === 'schedule') {
+                        if ($rule->schedule()->exists()) {
+                            return $rule;
+                        }
+
+                        continue;
+                    }
+                } else {
+                    if ($rule->games()->exists()) {
+                        return $rule;
+                    }
                 }
             }
         }

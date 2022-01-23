@@ -205,6 +205,18 @@ return [
     'inferior_team' => 'Podřazený tým',
     'statistics' => 'Statistiky',
 
+    'final' => 'Finále',
+    'third_place_game' => 'o 3. místo',
+    'stage_1' => 'Semifinále',
+    'stage_2' => 'Čtvrtfinále',
+    'stage_3' => 'Osmifinále',
+    'stage_4' => 'Kolo 32',
+    'stage_5' => 'Kolo 64',
+    'stage_6' => 'Kolo 128',
+    'stage_7' => 'Kolo 256',
+    'stage_8' => 'Kolo 512',
+    'stage_9' => 'Kolo 1024',
+
     'to' => 'do',
     'new' => 'nový',
     'all' => 'Vše',

@@ -11521,6 +11521,108 @@ html {
   border-bottom: 0;
 }
 
+.brackets {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  padding-bottom: 1.25rem;
+}
+@media (min-width: 768px) {
+  .brackets {
+    flex-direction: row;
+    font-size: 14px;
+  }
+}
+@media (min-width: 992px) {
+  .brackets {
+    font-size: 15px;
+  }
+}
+@media (min-width: 1200px) {
+  .brackets {
+    font-size: 16px;
+  }
+}
+.brackets .bracket-round {
+  display: block;
+  margin-left: -3px;
+  flex: 1;
+}
+.brackets .bracket-round-title {
+  color: #5cc3ff;
+}
+.brackets .bracket-list {
+  display: flex;
+  flex-direction: column;
+  flex-flow: row wrap;
+  justify-content: center;
+  height: 100%;
+  min-height: 100%;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  transition: padding 0.2s ease-in-out, margin 0.2s ease-in-out;
+}
+@media (max-width: 576px) {
+  .brackets .bracket-list {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+@media (min-width: 768px) {
+  .brackets .bracket-list {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-right: 0px dashed #e5e5e5;
+    border-bottom: 0;
+  }
+}
+.brackets .bracket-item {
+  display: flex;
+  flex: 0 1 auto;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  padding: 1% 0;
+  width: 49%;
+  transition: padding 0.2s linear;
+}
+.brackets .bracket-item .row {
+  margin-right: 0;
+  margin-left: 0;
+}
+@media (max-width: 576px) {
+  .brackets .bracket-item {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .brackets .bracket-item {
+    padding: 0.5rem 1rem;
+    width: 100%;
+  }
+}
+@media (min-width: 1200px) {
+  .brackets .bracket-item {
+    padding: 0.5rem 1rem;
+  }
+}
+.brackets .bracket-match {
+  width: 100%;
+  background-color: rgba(5, 10, 25, 0.8);
+  padding: 1rem;
+  border: 0px solid transparent;
+  border-radius: 0.1rem;
+  outline: none;
+  cursor: pointer;
+  transition: padding 0.2s ease-in-out, border 0.2s linear;
+}
+@media (max-width: 576px) {
+  .brackets .bracket-match {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
 footer {
   color: #bbbbbb;
   background: linear-gradient(to right, rgba(5, 10, 25, 0) 0%, rgba(5, 10, 25, 0.75) 35%, rgba(5, 10, 25, 0.75) 65%, rgba(5, 10, 25, 0) 100%);
