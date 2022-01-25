@@ -3,7 +3,7 @@ $breakpoint-sm: 768px;
 $breakpoint-md: 992px;
 $breakpoint-lg: 1200px;
 
-.brackets {
+#brackets {
     display: flex;
     flex-direction: column;
     font-size: 15px;
@@ -26,10 +26,15 @@ $breakpoint-lg: 1200px;
         display: block;
         margin-left: -3px;
         flex: 1;
+
+        @media (max-width: $breakpoint-sm) {
+            border-right: 0px solid #dee2e6 !important;
+            border-color: #2d3945 !important;
+        }
     }
 
     .bracket-round-title {
-        color: #5cc3ff;
+        color: #dddddd;
     }
 
     .bracket-list {
@@ -39,8 +44,8 @@ $breakpoint-lg: 1200px;
         justify-content: center;
         height: 100%;
         min-height: 100%;
-        padding-bottom: 2rem;
-        margin-bottom: 2rem;
+        padding-bottom: 1.25rem;
+        margin-bottom: 1.25rem;
         transition: padding 0.2s ease-in-out, margin 0.2s ease-in-out;
 
         @media (max-width: $breakpoint-xs) {
@@ -63,8 +68,8 @@ $breakpoint-lg: 1200px;
         flex-direction: column;
         align-items: flex-start;
         position: relative;
-        padding: 1% 0;
-        width: 49%;
+        padding: 2%;
+        width: 50%;
         transition: padding 0.2s linear;
 
         .row {
@@ -92,13 +97,54 @@ $breakpoint-lg: 1200px;
         background-color: rgba(5, 10, 25, 0.8);
         padding: 1rem;
         border: 0px solid transparent;
-        border-radius: 0.1rem;
+        border-radius: calc(0.3rem - 1px);
         outline: none;
         cursor: pointer;
         transition: padding 0.2s ease-in-out, border 0.2s linear;
+    }
 
-        @media (max-width: $breakpoint-xs) {
-            padding: 0.75rem 0.5rem;
+    .third-place-game {
+        border-left: 1px solid rgb(205, 127, 50);
+    }
+
+    .final {
+        border-left: 1px solid rgb(204, 164, 61);
+    }
+
+    .clickable.bracket-match:hover {
+        color: #dddddd;
+        background: -moz-linear-gradient(left, rgba(0, 65, 145, 1) 0%, rgba(57, 0, 155, 1) 100%);
+        background: -webkit-linear-gradient(left, rgba(0, 65, 145, 1) 0%, rgba(57, 0, 155, 1) 100%);
+        background: linear-gradient(to right, rgba(0, 65, 145, 1) 0%, rgba(57, 0, 155, 1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2004191', endColorstr='#f239009b', GradientType=1);
+    }
+
+    .score {
+        color: #5cc3ff;
+        font-family: "easports", sans-serif;
+    }
+
+    small {
+        font-size: 70%;
+    }
+
+    @media (max-width: $breakpoint-xs) {
+        .team-name-long {
+            display: block;
+        }
+
+        .team-name-short {
+            display: none;
+        }
+    }
+
+    @media (min-width: $breakpoint-sm) and (max-width: $breakpoint-lg) {
+        .team-name-long {
+            display: none;
+        }
+
+        .team-name-short {
+            display: block;
         }
     }
 }

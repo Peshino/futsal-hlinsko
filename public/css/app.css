@@ -11521,105 +11521,140 @@ html {
   border-bottom: 0;
 }
 
-.brackets {
+#brackets {
   display: flex;
   flex-direction: column;
   font-size: 15px;
   padding-bottom: 1.25rem;
 }
 @media (min-width: 768px) {
-  .brackets {
+  #brackets {
     flex-direction: row;
     font-size: 14px;
   }
 }
 @media (min-width: 992px) {
-  .brackets {
+  #brackets {
     font-size: 15px;
   }
 }
 @media (min-width: 1200px) {
-  .brackets {
+  #brackets {
     font-size: 16px;
   }
 }
-.brackets .bracket-round {
+#brackets .bracket-round {
   display: block;
   margin-left: -3px;
   flex: 1;
 }
-.brackets .bracket-round-title {
-  color: #5cc3ff;
+@media (max-width: 768px) {
+  #brackets .bracket-round {
+    border-right: 0px solid #dee2e6 !important;
+    border-color: #2d3945 !important;
+  }
 }
-.brackets .bracket-list {
+#brackets .bracket-round-title {
+  color: #dddddd;
+}
+#brackets .bracket-list {
   display: flex;
   flex-direction: column;
   flex-flow: row wrap;
   justify-content: center;
   height: 100%;
   min-height: 100%;
-  padding-bottom: 2rem;
-  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
   transition: padding 0.2s ease-in-out, margin 0.2s ease-in-out;
 }
 @media (max-width: 576px) {
-  .brackets .bracket-list {
+  #brackets .bracket-list {
     padding-bottom: 1rem;
     margin-bottom: 1rem;
   }
 }
 @media (min-width: 768px) {
-  .brackets .bracket-list {
+  #brackets .bracket-list {
     margin-bottom: 0;
     padding-bottom: 0;
     border-right: 0px dashed #e5e5e5;
     border-bottom: 0;
   }
 }
-.brackets .bracket-item {
+#brackets .bracket-item {
   display: flex;
   flex: 0 1 auto;
   justify-content: center;
   flex-direction: column;
   align-items: flex-start;
   position: relative;
-  padding: 1% 0;
-  width: 49%;
+  padding: 2%;
+  width: 50%;
   transition: padding 0.2s linear;
 }
-.brackets .bracket-item .row {
+#brackets .bracket-item .row {
   margin-right: 0;
   margin-left: 0;
 }
 @media (max-width: 576px) {
-  .brackets .bracket-item {
+  #brackets .bracket-item {
     width: 100%;
   }
 }
 @media (min-width: 768px) {
-  .brackets .bracket-item {
+  #brackets .bracket-item {
     padding: 0.5rem 1rem;
     width: 100%;
   }
 }
 @media (min-width: 1200px) {
-  .brackets .bracket-item {
+  #brackets .bracket-item {
     padding: 0.5rem 1rem;
   }
 }
-.brackets .bracket-match {
+#brackets .bracket-match {
   width: 100%;
   background-color: rgba(5, 10, 25, 0.8);
   padding: 1rem;
   border: 0px solid transparent;
-  border-radius: 0.1rem;
+  border-radius: calc(0.3rem - 1px);
   outline: none;
   cursor: pointer;
   transition: padding 0.2s ease-in-out, border 0.2s linear;
 }
+#brackets .third-place-game {
+  border-left: 1px solid #cd7f32;
+}
+#brackets .final {
+  border-left: 1px solid #cca43d;
+}
+#brackets .clickable.bracket-match:hover {
+  color: #dddddd;
+  background: linear-gradient(to right, #004191 0%, #39009b 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f2004191", endColorstr="#f239009b", GradientType=1);
+}
+#brackets .score {
+  color: #5cc3ff;
+  font-family: "easports", sans-serif;
+}
+#brackets small {
+  font-size: 70%;
+}
 @media (max-width: 576px) {
-  .brackets .bracket-match {
-    padding: 0.75rem 0.5rem;
+  #brackets .team-name-long {
+    display: block;
+  }
+  #brackets .team-name-short {
+    display: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 1200px) {
+  #brackets .team-name-long {
+    display: none;
+  }
+  #brackets .team-name-short {
+    display: block;
   }
 }
 

@@ -52,9 +52,9 @@
                 {{-- https://codepen.io/jimmyhayek/pen/yJkdEB --}}
                 {{-- https://www.commoninja.com/brackets/editor/styles/ --}}
 
-                <div class="brackets">
+                <div id="brackets">
                     @forelse ($brackets as $stage => $bracket)
-                    <div class="bracket-round">
+                    <div class="bracket-round{{ $stage !== 'final' ? ' border-right border-dark' : ''}}">
                         <h5 class="bracket-round-title">
                             @lang('messages.' . $stage)
                         </h5>
@@ -84,8 +84,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bracket-match">
-                                    <div class="row pb-2 border-bottom border-dark">
+                                <div class="bracket-match{{ $stage === 'final' ? ' final' : ''}}{{ $stage === 'third_place_game' ? ' third-place-game' : ''}}{{ $game !== null ? ' clickable' : ''}}"
+                                    @if ($game !==null)
+                                    data-url="{{ route('games.show', [$competition->id, $game->id]) }}" @endif>
+                                    <div class=" row pb-2 border-bottom border-dark">
                                         <div class="col col-10 no-padding text-left">
                                             <div class="team-name-long">
                                                 {{ $game->homeTeam->name ?? '-' }}
@@ -94,8 +96,8 @@
                                                 {{ $game->homeTeam->name_short ?? '-' }}
                                             </div>
                                         </div>
-                                        <div class="col col-2 no-padding text-right">
-                                            {{ $game->home_team_score ?? '-' }}
+                                        <div class="col col-2 no-padding text-right score">
+                                            {{ $game->home_team_score ?? '' }}
                                         </div>
                                     </div>
                                     <div class="row pt-2">
@@ -107,8 +109,8 @@
                                                 {{ $game->awayTeam->name_short ?? '-' }}
                                             </div>
                                         </div>
-                                        <div class="col col-2 no-padding text-right">
-                                            {{ $game->away_team_score ?? '-' }}
+                                        <div class="col col-2 no-padding text-right score">
+                                            {{ $game->away_team_score ?? '' }}
                                         </div>
                                     </div>
                                 </div>
@@ -130,13 +132,12 @@
 
 @section('scripts')
 <script>
-    // $(() => {
-    //     $('[data-toggle="popover"]').popover({
-    //         trigger: 'focus',
-    //         html: true,
-    //         placement: 'top',
-    //         container: '.form-item'
-    //     })
-    // });
+    $(() => {
+        $('.clickable').click(function () {
+            var url = $(this).data('url');
+
+            window.location.href = url;
+        });
+    });
 </script>
 @endsection
