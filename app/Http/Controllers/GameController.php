@@ -57,7 +57,7 @@ class GameController extends Controller
                 // return redirect()->route('games.create', ['competition' => $competition->id]);
             }
         } else {
-            return redirect()->route('rules.create', ['competition' => $competition->id]);
+            return redirect()->route('games.create', ['competition' => $competition->id]);
         }
     }
 
