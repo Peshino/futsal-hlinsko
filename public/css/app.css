@@ -11530,17 +11530,17 @@ html {
 @media (min-width: 768px) {
   #brackets {
     flex-direction: row;
-    font-size: 14px;
+    font-size: 0.75rem;
   }
 }
 @media (min-width: 992px) {
   #brackets {
-    font-size: 15px;
+    font-size: 0.75rem;
   }
 }
 @media (min-width: 1200px) {
   #brackets {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 #brackets .bracket-round {
@@ -11649,7 +11649,7 @@ html {
     display: none;
   }
 }
-@media (min-width: 768px) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 992px) {
   #brackets .team-name-long {
     display: none;
   }
