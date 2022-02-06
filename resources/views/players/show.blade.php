@@ -41,8 +41,8 @@
         <div class="content">
             <div class="content-block">
                 <h1>
-                    {{ ucwords(mb_strtolower($player->firstname)) }} {{
-                    ucwords(mb_strtolower($player->lastname)) }} {{ $player->jersey_number }}
+                    {{ mb_convert_case($player->firstname, MB_CASE_TITLE, 'UTF-8') }} {{
+                    mb_convert_case($player->lastname, MB_CASE_TITLE, 'UTF-8') }} {{ $player->jersey_number }}
                 </h1>
 
                 <div class="row mt-5">

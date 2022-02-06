@@ -22,8 +22,8 @@
                         <strong>
                             <a
                                 href="{{ route('players.show', [$competition->id, $card->team->id, $card->player->id]) }}">
-                                {{ ucwords(mb_strtolower($card->player->firstname)) }} {{
-                                ucwords(mb_strtolower($card->player->lastname)) }}
+                                {{ mb_convert_case($card->player->firstname, MB_CASE_TITLE, 'UTF-8') }} {{
+                                mb_convert_case($card->player->lastname, MB_CASE_TITLE, 'UTF-8') }}
                             </a>
                         </strong>
                         @if ($card->player->position !== null)

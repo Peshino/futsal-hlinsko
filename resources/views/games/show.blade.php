@@ -143,8 +143,9 @@
                                     <div class="col-8 text-left">
                                         <a
                                             href="{{ route('players.show', [$competition->id, $game->homeTeam->id, $homeTeamGoal->player->id]) }}">
-                                            {{ ucwords(mb_strtolower($homeTeamGoal->player->firstname)) }} {{
-                                            ucwords(mb_strtolower($homeTeamGoal->player->lastname)) }}
+                                            {{ mb_convert_case($homeTeamGoal->player->firstname, MB_CASE_TITLE, 'UTF-8')
+                                            }} {{
+                                            mb_convert_case($homeTeamGoal->player->lastname, MB_CASE_TITLE, 'UTF-8') }}
                                         </a>
                                     </div>
                                     @endforeach
@@ -166,8 +167,9 @@
                                     <div class="col-8 text-left">
                                         <a
                                             href="{{ route('players.show', [$competition->id, $game->homeTeam->id, $homeTeamCard->player->id]) }}">
-                                            {{ ucwords(mb_strtolower($homeTeamCard->player->firstname)) }} {{
-                                            ucwords(mb_strtolower($homeTeamCard->player->lastname)) }}
+                                            {{ mb_convert_case($homeTeamCard->player->firstname, MB_CASE_TITLE, 'UTF-8')
+                                            }} {{
+                                            mb_convert_case($homeTeamCard->player->lastname, MB_CASE_TITLE, 'UTF-8') }}
                                         </a>
                                     </div>
                                     @endforeach
@@ -189,8 +191,9 @@
                                     <div class="col-8 text-left">
                                         <a
                                             href="{{ route('players.show', [$competition->id, $game->awayTeam->id, $awayTeamGoal->player->id]) }}">
-                                            {{ ucwords(mb_strtolower($awayTeamGoal->player->firstname)) }} {{
-                                            ucwords(mb_strtolower($awayTeamGoal->player->lastname)) }}
+                                            {{ mb_convert_case($awayTeamGoal->player->firstname, MB_CASE_TITLE, 'UTF-8')
+                                            }} {{
+                                            mb_convert_case($awayTeamGoal->player->lastname, MB_CASE_TITLE, 'UTF-8') }}
                                         </a>
                                     </div>
                                     @endforeach
@@ -212,8 +215,9 @@
                                     <div class="col-8 text-left">
                                         <a
                                             href="{{ route('players.show', [$competition->id, $game->awayTeam->id, $awayTeamCard->player->id]) }}">
-                                            {{ ucwords(mb_strtolower($awayTeamCard->player->firstname)) }} {{
-                                            ucwords(mb_strtolower($awayTeamCard->player->lastname)) }}
+                                            {{ mb_convert_case($awayTeamCard->player->firstname, MB_CASE_TITLE, 'UTF-8')
+                                            }} {{
+                                            mb_convert_case($awayTeamCard->player->lastname, MB_CASE_TITLE, 'UTF-8') }}
                                         </a>
                                     </div>
                                     @endforeach

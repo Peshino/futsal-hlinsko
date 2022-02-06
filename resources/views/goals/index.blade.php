@@ -98,8 +98,8 @@
                             <td class="text-left">
                                 <a
                                     href="{{ route('players.show', [$competition->id, $goal->team->id, $goal->player->id]) }}">
-                                    {{ ucwords(mb_strtolower($goal->player->firstname)) }} {{
-                                    ucwords(mb_strtolower($goal->player->lastname)) }}
+                                    {{ mb_convert_case($goal->player->firstname, MB_CASE_TITLE, 'UTF-8') }} {{
+                                    mb_convert_case($goal->player->lastname, MB_CASE_TITLE, 'UTF-8') }}
                                 </a>
                                 @if ($goal->player->position !== null)
                                 <span class="badge text-light app-bg"
