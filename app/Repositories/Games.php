@@ -158,6 +158,17 @@ class Games
         return null;
     }
 
+    public function getLastPlayedRound(Competition $competition, Rule $rule)
+    {
+        $results = $this->getGamesFiltered($competition, $rule, null, 'results');
+
+        if ($results->isNotEmpty()) {
+            return $results->max('round');
+        }
+
+        return null;
+    }
+
     public function getTeamLastPlayedRound(Competition $competition, Rule $rule, Team $team)
     {
         $results = $this->getGamesFiltered($competition, $rule, $team, 'results');

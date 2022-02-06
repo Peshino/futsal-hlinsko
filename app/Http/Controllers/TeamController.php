@@ -122,7 +122,7 @@ class TeamController extends Controller
 
         if ($teamRules->isNotEmpty()) {
             foreach ($teamRules as $teamRule) {
-                $lastPlayedRound = $gamesRepository->getTeamLastPlayedRound($competition, $teamRule, $team);
+                $lastPlayedRound = $gamesRepository->getLastPlayedRound($competition, $teamRule);
                 $teamRule->position = $positionsRepository->getTeamCurrentPosition($competition, $teamRule, $team, $lastPlayedRound);
             }
         }
