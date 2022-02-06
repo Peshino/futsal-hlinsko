@@ -51,21 +51,21 @@
                         <div class="pt-2 pb-2 first-place text-center">
                             <h3>
                                 <a href="{{ route('teams.show', [$competition->id, 142]) }}">
-                                    1. místo - Bison Steak Hlinsko
+                                    <i class="fas fa-medal"></i> Bison Steak Hlinsko
                                 </a>
                             </h3>
                         </div>
                         <div class="pt-2 pb-2 second-place text-center">
                             <h4>
                                 <a href="{{ route('teams.show', [$competition->id, 154]) }}">
-                                    2. místo - Srníčko
+                                    <i class="fas fa-medal"></i> Srníčko
                                 </a>
                             </h4>
                         </div>
                         <div class="pt-2 pb-2 third-place text-center">
                             <h5>
                                 <a href="{{ route('teams.show', [$competition->id, 147]) }}">
-                                    3. místo - Hattrick Svratka
+                                    <i class="fas fa-medal"></i> Hattrick Svratka
                                 </a>
                             </h5>
                         </div>
