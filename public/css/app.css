@@ -11359,6 +11359,24 @@ html {
 #main .th-short {
   display: none;
 }
+#main .third-place a {
+  color: #cd7f32;
+}
+#main .third-place a:hover {
+  color: #f7993b;
+}
+#main .second-place a {
+  color: silver;
+}
+#main .second-place a:hover {
+  color: #e9e9e9;
+}
+#main .first-place a {
+  color: #cca43d;
+}
+#main .first-place a:hover {
+  color: #f5c449;
+}
 @media (max-width: 992px) {
   #main .hide-large {
     display: none;
@@ -11625,6 +11643,9 @@ html {
 }
 #brackets .third-place-game {
   border-left: 1px solid #cd7f32;
+}
+#brackets .silver {
+  border-left: 1px solid silver;
 }
 #brackets .final {
   border-left: 1px solid #cca43d;

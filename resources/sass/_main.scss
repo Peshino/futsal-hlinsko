@@ -1082,6 +1082,30 @@
         display: none;
     }
 
+    .third-place a {
+        color: rgb(205, 127, 50);
+    }
+
+    .third-place a:hover {
+        color: rgb(247, 153, 59);
+    }
+
+    .second-place a {
+        color: rgb(192, 192, 192);
+    }
+
+    .second-place a:hover {
+        color: rgb(233, 233, 233);
+    }
+
+    .first-place a {
+        color: rgb(204, 164, 61);
+    }
+
+    .first-place a:hover {
+        color: rgb(245, 196, 73);
+    }
+
     @media (max-width: 992px) {
         .hide-large {
             display: none;
