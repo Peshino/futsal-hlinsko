@@ -156,6 +156,7 @@
                                     @if ($homeTeamCards->isNotEmpty())
                                     @foreach ($homeTeamCards as $homeTeamCard)
                                     <div class="col-4 text-right">
+                                        {{-- tento způsob výpisu není bezpečný {!! !!} --}}
                                         {!! $homeTeamCard->yellow > 0 ? '<div class="d-inline-flex card-yellow"></div>'
                                         : ''
                                         !!}
@@ -201,6 +202,7 @@
                                     @if ($awayTeamCards->isNotEmpty())
                                     @foreach ($awayTeamCards as $awayTeamCard)
                                     <div class="col-4 text-right">
+                                        {{-- tento způsob výpisu není bezpečný {!! !!} --}}
                                         {!! $awayTeamCard->yellow > 0 ? '<div class="d-inline-flex card-yellow"></div>'
                                         : ''
                                         !!}

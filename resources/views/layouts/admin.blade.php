@@ -47,7 +47,7 @@
             @include('partials/footer')
         </div>
 
-        {{-- @include('partials/cookie-bar') --}}
+        @include('partials/cookie-bar')
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
