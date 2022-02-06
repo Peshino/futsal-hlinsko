@@ -43,7 +43,27 @@
                         </h4>
                     </div>
                     {{-- <div class="news-body">
-
+                        <div class="row">
+                            <div class="col-md">
+                                <p>- den 31. 12. 2021 je poslední na dopsání soupisek pro letošní sezónu</p>
+                                <p>- hrát se bude jednokolově každý s každým</p>
+                                <p>- do play-off postoupí prvních 8 týmů</p>
+                                <p>- hrací doba 2 x 16 min</p>
+                                <p>- play-off 2 x 18 min</p>
+                                <p>- semifinále odehraje nejvýše nasazený tým s nejhůře nasazeným</p>
+                            </div>
+                            <div class="col-md">
+                                <p>- porušení pravidel o očkování nebo testování znamená vyloučení mužstva bez náhrady
+                                    startovného
+                                </p>
+                                <p>- podmínkou účasti je očkovaní proti covid-19 nebo potvrzení o prodělání nemoci v
+                                    posledních 180 dní</p>
+                                <p>- případné dotazy zasílejte na <a
+                                        href="mailto:mates.real@seznam.cz">mates.real@seznam.cz</a> nebo volejte
+                                    777&nbsp;201&nbsp;963&nbsp;-&nbsp;Vlastimil Mataj
+                                </p>
+                            </div>
+                        </div>
                     </div> --}}
                 </div>
                 <div class="row mb-4 game">
