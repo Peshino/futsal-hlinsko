@@ -6,7 +6,10 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQC6J4MVRL"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
 
         gtag('config', 'G-FQC6J4MVRL');
@@ -19,7 +22,7 @@
     <meta name="keywords" content="futsal, hlinsko, futsal Hlinsko" />
     <meta name="description" content="futsal Hlinsko - výsledky, statistiky, rozlosování" />
 
-    <title>@yield('title')</title>
+    <title>@yield('title'){{ \Illuminate\Support\Facades\App::environment('local') ? ' | test' : '' }}</title>
 
     <link href="{{ asset('img/favicon.png') }}" rel="shortcut icon">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
