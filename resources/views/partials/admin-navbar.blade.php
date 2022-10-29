@@ -21,7 +21,7 @@
                 $competition = null;
                 @endphp
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('seasons.show', $season->id) }}">
+                    <a class="nav-link" href="{{ route('seasons.admin-show', $season->id) }}">
                         <span class="align-middle">{{ $season->name ?? '' }}</span>
                     </a>
                 </li>
@@ -30,7 +30,7 @@
                 @isset($competition)
                 @isset($competition->season)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('seasons.show', $competition->season->id) }}">
+                    <a class="nav-link" href="{{ route('seasons.admin-show', $competition->season->id) }}">
                         <span class="align-middle">{{ $competition->season->name ?? ''}}</span>
                     </a>
                 </li>

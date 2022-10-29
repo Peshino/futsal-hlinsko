@@ -48,7 +48,7 @@ class SeasonController extends Controller
 
         if ($seasonCreated !== null) {
             session()->flash('flash_message_success', '<i class="fas fa-check"></i>');
-            return redirect()->route('seasons.show', ['season' => $seasonCreated->id]);
+            return redirect()->route('seasons.admin-show', ['season' => $seasonCreated->id]);
         } else {
             session()->flash('flash_message_danger', '<i class="fas fa-times"></i>');
             return redirect()->back();
