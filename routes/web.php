@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\IntroductionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SeasonController;
@@ -77,5 +78,14 @@ Route::prefix('admin')->middleware('can:manage_admin_routes')->group(function ()
         Route::prefix('teams/{team}')->group(function () {
             Route::get('players/{player}', [PlayerController::class, 'adminShow'])->name('players.admin-show');
         });
+    });
+
+    Route::get('/clear-all-cache', function () {
+        Artisan::call('cache:clear');
+        Artisan::call('route:cache');
+        Artisan::call('config:cache');
+        Artisan::call('view:cache');
+
+        return redirect('/');
     });
 });
