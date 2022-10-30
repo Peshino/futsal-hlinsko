@@ -40,6 +40,6 @@ class Players
             $query = $query->where('team_id', $team->id);
         }
 
-        return $query->orderBy('firstname', $order)->orderBy('lastname', $order)->limit($limit)->get();
+        return $query->orderBy('lastname', $order)->orderBy('firstname', $order)->limit($limit)->get();
     }
 }

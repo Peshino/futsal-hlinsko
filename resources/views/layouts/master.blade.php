@@ -33,7 +33,7 @@
 
 <body>
     <div id="app">
-        <div id="main" class="text-white bg-dark">
+        <div id="main" class="text-white">
             @include('partials/navbar')
 
             @include('partials/flash-messages')

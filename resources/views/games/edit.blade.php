@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<div class="card mb-4">
+<div class="card">
     <div class="card-header app-bg">
         <div class="row">
             <div class="col col-left">

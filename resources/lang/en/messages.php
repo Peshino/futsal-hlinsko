@@ -172,6 +172,8 @@ return [
     'second_half' => '2nd Half',
     'last_result' => 'Last result',
     'next_schedule' => 'Next game',
+    'teams_playing_the' => 'Teams playing the',
+    'player_statistics' => 'Player statistics',
 
     'win' => 'Win',
     'draw' => 'Draw',

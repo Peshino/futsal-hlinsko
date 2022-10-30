@@ -96,7 +96,8 @@ class TeamController extends Controller
         $teamRules = $team->rules;
         $teamPlayers = $teamResults = $teamSchedule = null;
         $teamPositions = [];
-        $sections = ['players', 'results', 'schedule']; // + 'statistics'
+        $showTeamStatistics = false;
+        $sections = ['players', 'results', 'schedule', 'statistics'];
 
         $goals = $goalsRepository->getSummedGoalsFiltered($competition, null, null, $team, null, 'desc', 3);
         $yellowCards = $cardsRepository->getSummedCardsFiltered($competition, null, null, $team, null, 'desc', 'yellow', 3);
@@ -113,6 +114,7 @@ class TeamController extends Controller
                 $teamSchedule = $gamesRepository->getGamesFiltered($competition, null, $team, 'schedule');
                 break;
             case 'statistics':
+                $showTeamStatistics = true;
                 break;
             default:
         }
@@ -127,7 +129,7 @@ class TeamController extends Controller
             }
         }
 
-        return view('teams.show', compact('competition', 'team', 'sections', 'teamForm', 'teamFirstSchedule', 'teamRules', 'teamPlayers', 'teamResults', 'teamSchedule', 'goals', 'yellowCards', 'redCards'));
+        return view('teams.show', compact('competition', 'team', 'sections', 'teamForm', 'teamFirstSchedule', 'teamRules', 'teamPlayers', 'teamResults', 'teamSchedule', 'showTeamStatistics', 'goals', 'yellowCards', 'redCards'));
     }
 
     /**

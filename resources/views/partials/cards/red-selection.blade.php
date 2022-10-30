@@ -11,38 +11,36 @@
         <table class="table table-dark table-hover">
             <tbody>
                 @foreach ($redCards as $key => $card)
-                @php
-                $key += 1;
-                @endphp
-                <tr>
-                    <td class="align-middle text-center">
-                        {{ $key ?? '' }}.
-                    </td>
-                    <td class="align-middle text-left">
-                        <strong>
+                    @php
+                        $key += 1;
+                    @endphp
+                    <tr>
+                        <td class="align-middle text-center">
+                            {{ $key ?? '' }}.
+                        </td>
+                        <td class="align-middle text-left">
                             <a
                                 href="{{ route('players.show', [$competition->id, $card->team->id, $card->player->id]) }}">
-                                {{ mb_convert_case($card->player->firstname, MB_CASE_TITLE, 'UTF-8') }} {{
-                                mb_convert_case($card->player->lastname, MB_CASE_TITLE, 'UTF-8') }}
+                                {{ mb_convert_case($card->player->firstname, MB_CASE_TITLE, 'UTF-8') }}
+                                {{ mb_convert_case($card->player->lastname, MB_CASE_TITLE, 'UTF-8') }}
                             </a>
-                        </strong>
-                        @if ($card->player->position !== null)
-                        <span class="badge text-light app-bg" title="@lang('messages.' . $card->player->position)">
-                            @lang('messages.' . $card->player->position . '_short')
-                        </span>
-                        @endif
-                        <br />
-                        <small>
-                            <a href="{{ route('teams.show', [$competition->id, $card->team->id]) }}"
-                                class="text-secondary">
-                                {{ $card->team->name }}
-                            </a>
-                        </small>
-                    </td>
-                    <td class="competition-color align-middle text-center font-size-large">
-                        <strong>{{ $card->red }}</strong>
-                    </td>
-                </tr>
+                            @if ($card->player->position !== null)
+                                <span class="badge text-light app-bg" title="@lang('messages.' . $card->player->position)">
+                                    @lang('messages.' . $card->player->position . '_short')
+                                </span>
+                            @endif
+                            <br />
+                            <small>
+                                <a href="{{ route('teams.show', [$competition->id, $card->team->id]) }}"
+                                    class="text-secondary">
+                                    {{ $card->team->name }}
+                                </a>
+                            </small>
+                        </td>
+                        <td class="competition-color align-middle text-center font-size-large">
+                            <strong>{{ $card->red }}</strong>
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

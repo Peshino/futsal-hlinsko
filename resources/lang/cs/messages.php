@@ -172,6 +172,8 @@ return [
     'second_half' => '2. poločas',
     'last_result' => 'Poslední výsledek',
     'next_schedule' => 'Příští zápas',
+    'teams_playing_the' => 'Týmy hrající',
+    'player_statistics' => 'Statistiky hráčů',
 
     'win' => 'Výhra',
     'draw' => 'Remíza',

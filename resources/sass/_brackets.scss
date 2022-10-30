@@ -117,10 +117,10 @@ $breakpoint-lg: 1200px;
 
     .clickable.bracket-match:hover {
         color: #dddddd;
-        background: -moz-linear-gradient(left, rgba(0, 65, 145, 1) 0%, rgba(57, 0, 155, 1) 100%);
-        background: -webkit-linear-gradient(left, rgba(0, 65, 145, 1) 0%, rgba(57, 0, 155, 1) 100%);
-        background: linear-gradient(to right, rgba(0, 65, 145, 1) 0%, rgba(57, 0, 155, 1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2004191', endColorstr='#f239009b', GradientType=1);
+        background: -moz-linear-gradient(-45deg, rgba(0, 84, 186, 0.95) 0%, rgba(74, 0, 202, 0.95) 100%);
+        background: -webkit-linear-gradient(-45deg, rgba(0, 84, 186, 0.95) 0%, rgba(74, 0, 202, 0.95) 100%);
+        background: linear-gradient(135deg, rgba(0, 84, 186, 0.95) 0%, rgba(74, 0, 202, 0.95) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f20054ba', endColorstr='#f24a00ca', GradientType=1);
     }
 
     .score {

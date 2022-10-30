@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="card mb-4">
+<div class="card">
     <div class="card-body">
         <div class="content">
         </div>

@@ -1,23 +1,23 @@
 @extends('layouts.master')
 
 @section('title')
-{{ $competition->name ?? '' }} | @lang('messages.app_name')
+    {{ $competition->name ?? '' }} | @lang('messages.app_name')
 @endsection
 
 @section('content')
-<div class="card mb-4">
-    <div class="card-header app-bg">
-        <div class="row">
-            <div class="col col-left">
-                {{ $competition->name ?? __('messages.homepage') }}
+    <div class="card">
+        <div class="card-header app-bg">
+            <div class="row">
+                <div class="col col-left">
+                    {{ $competition->name ?? __('messages.homepage') }}
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="card-body">
-        <div class="content">
-            <div class="content-block">
-                {{-- <h3>Zde na homepage soutěže by mohlo být:</h3>
+        <div class="card-body">
+            <div class="content">
+                <div class="content-block">
+                    {{-- <h3>Zde na homepage soutěže by mohlo být:</h3>
                 <ul class="pl-5">
                     <li>důležitá upozornění od administrátora, novinky přidané do aplikace</li>
                     <ul class="pl-5">
@@ -36,13 +36,13 @@
                     <li>základní informace o soutěži (systém, sezona, atd.)</li>
                 </ul> --}}
 
-                <div class="news">
+                    {{-- <div class="news">
                     <div class="news-header pb-1 border-bottom border-dark">
-                        <h4>
+                        <h5>
                             Soutěž Hlinsko 2021 / 2022
-                        </h4>
+                        </h5>
                     </div>
-                    {{-- <div class="news-body">
+                    <div class="news-body">
                         <div class="row">
                             <div class="col-md">
                                 <p>- den 31. 12. 2021 je poslední na dopsání soupisek pro letošní sezónu</p>
@@ -64,9 +64,9 @@
                                 </p>
                             </div>
                         </div>
-                    </div> --}}
-                </div>
-                <div class="row mb-4 game">
+                    </div>
+                </div> --}}
+                    {{-- <div class="row mb-4 game">
                     <div class="col no-padding">
                         <div class="pt-2 pb-2 first-place text-center">
                             <h3>
@@ -76,11 +76,11 @@
                             </h3>
                         </div>
                         <div class="pt-2 pb-2 second-place text-center">
-                            <h4>
+                            <h5>
                                 <a href="{{ route('teams.show', [$competition->id, 154]) }}">
                                     <i class="fas fa-medal"></i> Srníčko
                                 </a>
-                            </h4>
+                            </h5>
                         </div>
                         <div class="pt-2 pb-2 third-place text-center">
                             <h5>
@@ -90,85 +90,90 @@
                             </h5>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
-                @php
-                $bothGames = false;
-                @endphp
-
-                @if ($gameCurrentlyBeingPlayed !== null)
-                @php
-                $game = $gameCurrentlyBeingPlayed;
-                @endphp
-                <div class="row">
-                    <div class="col no-padding">
-                        @include('partials/game')
-                    </div>
-                </div>
-                @endif
-
-                @php
-                // $lastResult = null;
-                $bothGames = ($lastResult !== null && $firstSchedule !== null) ? true : false;
-                @endphp
-
-                <div class="{{ $bothGames ? 'my-4 row ' : '' }}justify-content-center">
-                    @if ($lastResult !== null)
                     @php
-                    $game = $lastResult;
-                    $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
+                        $bothGames = false;
                     @endphp
-                    <div class="col-md no-padding">
-                        <div class="text-center competition-color">
-                            @lang('messages.last_result') | <small>{{ $startDateTime->isoFormat('Do[.] MMMM') }}</small>
+
+                    @if ($gameCurrentlyBeingPlayed !== null)
+                        @php
+                            $game = $gameCurrentlyBeingPlayed;
+                        @endphp
+                        <div class="row">
+                            <div class="col no-padding">
+                                @include('partials/game')
+                            </div>
                         </div>
-                        @include('partials/game')
-                    </div>
                     @endif
 
-                    @if ($firstSchedule !== null)
                     @php
-                    $game = $firstSchedule;
-                    $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
+                        // $lastResult = null;
+                        $bothGames = $lastResult !== null && $firstSchedule !== null ? true : false;
                     @endphp
-                    <div class="col-md no-padding">
-                        <div class="text-center schedule-color">
-                            @lang('messages.next_schedule') | <small>{{ $startDateTime->isoFormat('Do[.] MMMM')
-                                }}</small>
-                        </div>
-                        @include('partials/game')
-                    </div>
-                    @endif
-                </div>
 
-                <div class="my-4 row justify-content-center">
-                    @if (isset($goals) && $goals->isNotEmpty())
-                    <div class="col-lg-4">
-                        @include('partials/goals.selection')
-                    </div>
-                    @endif
+                    <div
+                        class="{{ $bothGames ? 'my-4 row ' : '' }}justify-content-center border-bottom border-dark mb-2 pb-3">
+                        @if ($lastResult !== null)
+                            @php
+                                $game = $lastResult;
+                                $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
+                            @endphp
+                            <div class="col-md no-padding">
+                                <div class="text-center competition-color">
+                                    @lang('messages.last_result') | <small>{{ $startDateTime->isoFormat('Do[.] MMMM') }}</small>
+                                </div>
+                                @include('partials/game')
+                            </div>
+                        @endif
 
-                    @if (isset($yellowCards) && $yellowCards->isNotEmpty())
-                    <div class="col-lg-4">
-                        @include('partials/cards.yellow-selection')
+                        @if ($firstSchedule !== null)
+                            @php
+                                $game = $firstSchedule;
+                                $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
+                            @endphp
+                            <div class="col-md no-padding">
+                                <div class="text-center schedule-color">
+                                    @lang('messages.next_schedule') | <small>{{ $startDateTime->isoFormat('Do[.] MMMM') }}</small>
+                                </div>
+                                @include('partials/game')
+                            </div>
+                        @endif
                     </div>
-                    @endif
 
-                    @if (isset($redCards) && $redCards->isNotEmpty())
-                    <div class="col-lg-4">
-                        @include('partials/cards.red-selection')
+                    <h5 class="text-center competition-second-color">
+                        <span class="text-lowercase">@lang('messages.player_statistics')</span>
+                    </h5>
+                    <div class="my-2 row justify-content-center">
+                        @if (isset($goals) && $goals->isNotEmpty())
+                            <div class="col-lg-4">
+                                @include('partials/goals.selection')
+                            </div>
+                        @endif
+
+                        @if (isset($yellowCards) && $yellowCards->isNotEmpty())
+                            <div class="col-lg-4">
+                                @include('partials/cards.yellow-selection')
+                            </div>
+                        @endif
+
+                        @if (isset($redCards) && $redCards->isNotEmpty())
+                            <div class="col-lg-4">
+                                @include('partials/cards.red-selection')
+                            </div>
+                        @endif
                     </div>
-                    @endif
-                </div>
 
-                @if ($competition->rules->isNotEmpty())
-                <div class="my-3 rule-teams text-center">
-                    @foreach ($competition->rules as $rule)
-                    @if ($rule->teams->isNotEmpty())
-                    <div class="my-3 border-top border-dark py-2">
-                        <h4>
-                            <span data-toggle="popover"
-                                title="@lang('messages.rules') <strong>{{ $rule->name ?? ''}}</strong>" data-content="
+                    @if ($competition->rules->isNotEmpty())
+                        <div class="my-3 rule-teams">
+                            @foreach ($competition->rules as $rule)
+                                @if ($rule->teams->isNotEmpty())
+                                    <div class="my-3 border-top border-dark py-2">
+
+                                        <h5 class="text-center competition-second-color">
+                                            <span data-toggle="popover"
+                                                title="@lang('messages.rules') <strong>{{ $rule->name ?? '' }}</strong>"
+                                                data-content="
                                 @lang('messages.number_of_rounds') <strong>{{ $rule->number_of_rounds ?? '' }}</strong><br />
                                 @lang('messages.system') <strong>@lang('messages.' . $rule->system ?? '' . '')</strong><br />
                                 @lang('messages.game_duration') <strong>{{ $rule->game_duration ?? '' }} [@lang('messages.minutes')]</strong><br />
@@ -176,28 +181,43 @@
                                 @lang('messages.type') <strong>@lang('messages.' . $rule->type ?? '' . '')</strong><br />
                                 <strong>{{ $rule->isAppliedMutualBalance() ? __('messages.mutual_balance_applied') : __('messages.mutual_balance_not_applied') }}</strong><br />
                                 ">
-                                <i class="fas fa-info-circle text-info"></i>&nbsp;&nbsp;{{ $rule->name ?? '' }}
-                            </span>
-                        </h4>
-                        @foreach ($rule->teams as $team)
-                        <div class="d-inline-flex flex-wrap">
-                            <a href="{{ route('teams.show', [$competition->id, $team->id]) }}" class="px-4 py-25 m-1">
-                                <div class="team-name-long">
-                                    {{ $team->name }}
-                                </div>
-                                <div class="team-name-short" title="{{ $team->name }}">
-                                    {{ $team->name_short }}
-                                </div>
-                            </a>
+                                                <span class="text-lowercase">@lang('messages.teams_playing_the')
+                                                    {{ $rule->name ?? '' }}</span>&nbsp;&nbsp;<i
+                                                    class="fas fa-info-circle text-info"></i>
+                                            </span>
+                                        </h5>
+
+                                        <div class="mx-3">
+                                            <div class="row d-flex justify-content-center">
+                                                @foreach ($rule->teams as $team)
+                                                    <a href="{{ route('teams.show', [$competition->id, $team->id]) }}"
+                                                        class="col-12 col-sm-5 col-md-5 col-lg-3 col-xl-2 py-3 m-2 bg-dark rounded">
+                                                        {{ $team->name ?? '' }} <br />
+                                                        <span class="text-secondary">{{ $team->name_short }}</span>
+                                                    </a>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        {{-- @foreach ($rule->teams as $team)
+                                            <div class="d-inline-flex flex-wrap">
+                                                <a href="{{ route('teams.show', [$competition->id, $team->id]) }}"
+                                                    class="px-4 py-25 m-1">
+                                                    <div class="team-name-long">
+                                                        {{ $team->name }}
+                                                    </div>
+                                                    <div class="team-name-short" title="{{ $team->name }}">
+                                                        {{ $team->name_short }}
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        @endforeach --}}
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
-                        @endforeach
-                    </div>
                     @endif
-                    @endforeach
                 </div>
-                @endif
             </div>
         </div>
     </div>
-</div>
 @endsection
