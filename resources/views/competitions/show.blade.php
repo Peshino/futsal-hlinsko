@@ -141,7 +141,9 @@
                         @endif
                     </div>
 
-                    @if (isset($goals) || isset($yellowCards) || isset($redCards))
+                    @if ((isset($goals) && $goals->isNotEmpty()) ||
+                        (isset($yellowCards) && $yellowCards->isNotEmpty()) ||
+                        (isset($redCards) && $redCards->isNotEmpty()))
                         <h5 class="text-center competition-second-color">
                             <span class="text-lowercase">@lang('messages.player_statistics')</span>
                         </h5>
