@@ -141,9 +141,12 @@
                         @endif
                     </div>
 
-                    <h5 class="text-center competition-second-color">
-                        <span class="text-lowercase">@lang('messages.player_statistics')</span>
-                    </h5>
+                    @if (isset($goals) || isset($yellowCards) || isset($redCards))
+                        <h5 class="text-center competition-second-color">
+                            <span class="text-lowercase">@lang('messages.player_statistics')</span>
+                        </h5>
+                    @endif
+
                     <div class="my-2 row justify-content-center">
                         @if (isset($goals) && $goals->isNotEmpty())
                             <div class="col-lg-4">
