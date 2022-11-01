@@ -46,7 +46,7 @@
                                 @lang('messages.round')
                             </h3>
                         </div>
-                        <div class="mt-4 text-center">
+                        <div class="mt-4 text-center competition-second-color">
                             <h5>
                                 @php
                                     $startDateTime = \Carbon\Carbon::parse($game->start_datetime);

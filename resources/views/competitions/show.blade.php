@@ -145,7 +145,7 @@
                         (isset($yellowCards) && $yellowCards->isNotEmpty()) ||
                         (isset($redCards) && $redCards->isNotEmpty()))
                         <h5 class="text-center competition-second-color">
-                            <span class="text-lowercase">@lang('messages.player_statistics')</span>
+                            @lang('messages.player_statistics')
                         </h5>
                     @endif
 
@@ -174,8 +174,8 @@
                             @foreach ($competition->rules as $rule)
                                 @if ($rule->teams->isNotEmpty())
                                     <div class="my-3 border-top border-dark py-2">
-
                                         <h5 class="text-center competition-second-color">
+                                            @lang('messages.teams_playing_the')
                                             <span data-toggle="popover"
                                                 title="@lang('messages.rules') <strong>{{ $rule->name ?? '' }}</strong>"
                                                 data-content="
@@ -186,9 +186,7 @@
                                 @lang('messages.type') <strong>@lang('messages.' . $rule->type ?? '' . '')</strong><br />
                                 <strong>{{ $rule->isAppliedMutualBalance() ? __('messages.mutual_balance_applied') : __('messages.mutual_balance_not_applied') }}</strong><br />
                                 ">
-                                                <span class="text-lowercase">@lang('messages.teams_playing_the')
-                                                    {{ $rule->name ?? '' }}</span>&nbsp;&nbsp;<i
-                                                    class="fas fa-info-circle text-info"></i>
+                                                <abbr title="">{{ $rule->name ?? '' }}</abbr>
                                             </span>
                                         </h5>
 
