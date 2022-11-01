@@ -116,7 +116,7 @@ class Games
         $games = $this->getGamesFiltered($competition, $rule, null, $gamesStatus, null, null, null, $order);
 
         if ($games !== null) {
-            $gamesRounds = collect($games)->unique('round')->values();
+            $gamesRounds = collect($games)->unique('round')->sortDesc()->values();
 
             if ($gamesRounds !== null) {
                 foreach ($gamesRounds as $gamesRound) {
