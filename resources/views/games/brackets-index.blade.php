@@ -55,7 +55,7 @@
                     <div id="brackets">
                         @forelse ($brackets as $stage => $bracket)
                             <div class="bracket-round{{ $stage !== 'final' ? ' border-right border-dark' : '' }}">
-                                <h5 class="bracket-round-title">
+                                <h5 class="bracket-round-title competition-second-color">
                                     @lang('messages.' . $stage)
                                 </h5>
                                 <ul class="bracket-list">
