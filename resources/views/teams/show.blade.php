@@ -36,16 +36,31 @@
                                 <div class="row">
                                     @if ($teamRules->isNotEmpty())
                                         <div class="col-md border-left border-dark mb-4">
-                                            <h5>
+                                            <h5 class="competition-second-color">
                                                 @lang('messages.position')
                                             </h5>
                                             <div class="pt-1">
                                                 @foreach ($teamRules as $teamRule)
                                                     @if ($teamRule->position !== null)
-                                                        <div class="row">
+                                                        <div class="row mb-1">
                                                             <div class="col">
-                                                                <span class="text-secondary">
+                                                                {{-- <span class="text-secondary">
                                                                     {{ $teamRule->name ?? '' }}
+                                                                </span> --}}
+                                                                <span class="text-center text-secondary">
+                                                                    <span data-toggle="popover"
+                                                                        title="@lang('messages.rules') <strong>{{ $teamRule->name ?? '' }}</strong>"
+                                                                        data-content="
+                                                        @lang('messages.number_of_rounds') <strong>{{ $teamRule->number_of_rounds ?? '' }}</strong><br />
+                                                        @lang('messages.system') <strong>@lang('messages.' . $teamRule->system ?? '' . '')</strong><br />
+                                                        @lang('messages.game_duration') <strong>{{ $teamRule->game_duration ?? '' }} [@lang('messages.minutes')]</strong><br />
+                                                        @lang('messages.case_of_draw') <strong>@lang('messages.' . $teamRule->case_of_draw ?? '' . '')</strong><br />
+                                                        @lang('messages.type') <strong>@lang('messages.' . $teamRule->type ?? '' . '')</strong><br />
+                                                        <strong>{{ $teamRule->isAppliedMutualBalance() ? __('messages.mutual_balance_applied') : __('messages.mutual_balance_not_applied') }}</strong><br />
+                                                        ">
+                                                                        <abbr
+                                                                            title="">{{ $teamRule->name ?? '' }}</abbr>
+                                                                    </span>
                                                                 </span>
                                                                 &nbsp;|&nbsp;
                                                                 <span class="competition-color">
@@ -61,7 +76,7 @@
 
                                     @if ($teamForm !== null)
                                         <div class="col-md border-left border-dark mb-4">
-                                            <h5>
+                                            <h5 class="competition-second-color">
                                                 @lang('messages.form')
                                             </h5>
                                             <div class="form pt-1">
