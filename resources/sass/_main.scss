@@ -1171,6 +1171,13 @@
         color: rgb(245, 196, 73);
     }
 
+    @media (min-width: 1200px) {
+        .col-xl-23percent {
+            flex: 0 0 23%;
+            max-width: 23%;
+        }
+    }
+
     @media (max-width: 992px) {
         .hide-large {
             display: none;

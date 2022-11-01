@@ -194,7 +194,7 @@
                                             <div class="row d-flex justify-content-center">
                                                 @foreach ($rule->teams as $team)
                                                     <a href="{{ route('teams.show', [$competition->id, $team->id]) }}"
-                                                        class="col-12 col-sm-5 col-md-5 col-lg-3 col-xl-2 py-3 m-2 bg-dark rounded">
+                                                        class="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-23percent py-3 m-2 bg-dark rounded">
                                                         {{ $team->name ?? '' }} <br />
                                                         <span class="text-secondary">{{ $team->name_short }}</span>
                                                     </a>
