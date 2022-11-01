@@ -58,8 +58,8 @@
                                                         @lang('messages.type') <strong>@lang('messages.' . $teamRule->type ?? '' . '')</strong><br />
                                                         <strong>{{ $teamRule->isAppliedMutualBalance() ? __('messages.mutual_balance_applied') : __('messages.mutual_balance_not_applied') }}</strong><br />
                                                         ">
-                                                                        <abbr
-                                                                            title="">{{ $teamRule->name ?? '' }}</abbr>
+                                                                        <span
+                                                                            class="anchor">{{ $teamRule->name ?? '' }}</span>
                                                                     </span>
                                                                 </span>
                                                                 &nbsp;|&nbsp;

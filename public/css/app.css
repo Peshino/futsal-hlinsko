@@ -9838,6 +9838,25 @@ html {
   border-radius: 0.2rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+#main .anchor {
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+}
+#main .anchor:after {
+  content: "";
+  height: 5px;
+  width: 100%;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  background-image: radial-gradient(circle, #8995a0 1px, transparent 1.5px);
+  background-repeat: repeat-x;
+  background-size: 6px 4px;
+}
+#main .anchor:hover {
+  cursor: help;
+}
 #main .active {
   color: #ffffff;
 }

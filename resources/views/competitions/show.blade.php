@@ -186,7 +186,7 @@
                                 @lang('messages.type') <strong>@lang('messages.' . $rule->type ?? '' . '')</strong><br />
                                 <strong>{{ $rule->isAppliedMutualBalance() ? __('messages.mutual_balance_applied') : __('messages.mutual_balance_not_applied') }}</strong><br />
                                 ">
-                                                <abbr title="">{{ $rule->name ?? '' }}</abbr>
+                                                <span class="anchor">{{ $rule->name ?? '' }}</span>
                                             </span>
                                         </h5>
 

@@ -132,6 +132,28 @@
         // }
     }
 
+    .anchor {
+        text-decoration: none;
+        position: relative;
+        display: inline-block;
+    }
+
+    .anchor:after {
+        content: "";
+        height: 5px;
+        width: 100%;
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        background-image: radial-gradient(circle, #8995a0 1px, transparent 1.5px);
+        background-repeat: repeat-x;
+        background-size: 6px 4px;
+    }
+
+    .anchor:hover {
+        cursor: help;
+    }
+
     .active {
         color: #ffffff;
     }
@@ -908,9 +930,9 @@
     .game {
         // background-color: rgba(7, 14, 30, 0.8);
         background: -moz-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(7, 14, 30, 0.9) 24%, rgba(7, 14, 30, 0.9) 79%, rgba(0, 0, 0, 0) 100%);
-background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(7, 14, 30, 0.9) 24%, rgba(7, 14, 30, 0.9) 79%, rgba(0, 0, 0, 0) 100%);
-background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(7, 14, 30, 0.9) 24%, rgba(7, 14, 30, 0.9) 79%, rgba(0, 0, 0, 0) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#00000000', GradientType=1);
+        background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(7, 14, 30, 0.9) 24%, rgba(7, 14, 30, 0.9) 79%, rgba(0, 0, 0, 0) 100%);
+        background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(7, 14, 30, 0.9) 24%, rgba(7, 14, 30, 0.9) 79%, rgba(0, 0, 0, 0) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#00000000', GradientType=1);
 
         .row {
             margin-right: 0;
