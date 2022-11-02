@@ -1182,6 +1182,12 @@
         }
     }
 
+    @media (max-width: 1200px) {
+        .goals-cards {
+            font-size: 0.8rem;
+        }
+    }
+
     @media (max-width: 992px) {
         .hide-large {
             display: none;
@@ -1248,7 +1254,7 @@
         }
 
         .goals-cards {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
         }
     }
 

@@ -10629,6 +10629,11 @@ html {
     max-width: 23%;
   }
 }
+@media (max-width: 1200px) {
+  #main .goals-cards {
+    font-size: 0.8rem;
+  }
+}
 @media (max-width: 992px) {
   #main .hide-large {
     display: none;
@@ -10677,7 +10682,7 @@ html {
     padding: 0.7rem;
   }
   #main .goals-cards {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 }
 @media (max-width: 576px) {
