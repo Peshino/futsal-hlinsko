@@ -219,7 +219,7 @@ class GameController extends Controller
             'competition_id' => 'required|numeric|min:1',
         ]);
 
-        if ($rule !== null) {
+        if ($rule !== null && $rule->id !== null) {
             $attributes['rule_id'] = $rule->id;
         } else {
             $attributes += $request->validate(['rule_id' => 'required|numeric|min:1']);

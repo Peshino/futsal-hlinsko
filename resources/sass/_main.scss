@@ -90,6 +90,10 @@
         box-shadow: 0 0 2rem rgb(41 55 84);
     }
 
+    .card-body-x-padding {
+        padding: 0 1.25rem;
+    }
+
     .card-body.no-x-padding {
         padding: 1.25rem 0;
     }
@@ -143,11 +147,11 @@
         height: 5px;
         width: 100%;
         position: absolute;
-        bottom: -3px;
+        bottom: -6px;
         left: 0;
         background-image: radial-gradient(circle, #8995a0 1px, transparent 1.5px);
         background-repeat: repeat-x;
-        background-size: 6px 4px;
+        background-size: 4px 4px;
     }
 
     .anchor:hover {

@@ -20,7 +20,8 @@
     <meta name="author" content="Jiří Pešek" />
     <meta name="copyright" content="futsal Hlinsko" />
     <meta name="keywords" content="futsal, hlinsko, futsal Hlinsko" />
-    <meta name="description" content="futsal Hlinsko - výsledky, statistiky, rozlosování" />
+    <meta name="description"
+        content="Oficiální web hlineckých futsalových soutěží. Výsledky, statistiky, rozlosování a další." />
 
     <title>@yield('title'){{ \Illuminate\Support\Facades\App::environment('local') ? ' | test' : '' }}</title>
 

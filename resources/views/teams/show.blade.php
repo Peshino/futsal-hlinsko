@@ -14,10 +14,10 @@
             </div>
         </div>
 
-        <div class="card-body">
+        <div class="card-body no-x-padding">
             <div class="content">
                 <div class="mt-2">
-                    <div class="row">
+                    <div class="row card-body-x-padding">
                         <div class="col-sm-3">
                             <div class="text-center">
                                 <img src="{{ asset('img/logos/test_logo.png') }}" class="avatar img-circle img-thumbnail"
