@@ -136,11 +136,11 @@
                                     <div class="row">
                                         @if ($homeTeamGoals->isNotEmpty())
                                             @foreach ($homeTeamGoals as $homeTeamGoal)
-                                                <div class="col-3 text-right my-1">
+                                                <div class="col-4 text-right my-1">
                                                     {{ $homeTeamGoal->amount > 1 ? $homeTeamGoal->amount . ' x' : '' }} <i
                                                         class="far fa-futbol"></i>
                                                 </div>
-                                                <div class="col-9 text-left my-1">
+                                                <div class="col-8 text-left my-1">
                                                     <a
                                                         href="{{ route('players.show', [$competition->id, $game->homeTeam->id, $homeTeamGoal->player->id]) }}">
                                                         {{ mb_convert_case($homeTeamGoal->player->firstname, MB_CASE_TITLE, 'UTF-8') }}
@@ -155,12 +155,12 @@
                                     <div class="row">
                                         @if ($homeTeamCards->isNotEmpty())
                                             @foreach ($homeTeamCards as $homeTeamCard)
-                                                <div class="col-3 text-right my-1">
+                                                <div class="col-4 text-right my-1">
                                                     {{-- tento způsob výpisu není bezpečný {!! !!} --}}
                                                     {!! $homeTeamCard->yellow > 0 ? '<div class="d-inline-flex card-yellow"></div>' : '' !!}
                                                     {!! $homeTeamCard->red > 0 ? '<div class="d-inline-flex card-red"></div>' : '' !!}
                                                 </div>
-                                                <div class="col-9 text-left my-1">
+                                                <div class="col-8 text-left my-1">
                                                     <a
                                                         href="{{ route('players.show', [$competition->id, $game->homeTeam->id, $homeTeamCard->player->id]) }}">
                                                         {{ mb_convert_case($homeTeamCard->player->firstname, MB_CASE_TITLE, 'UTF-8') }}
@@ -179,11 +179,11 @@
                                     <div class="row">
                                         @if ($awayTeamGoals->isNotEmpty())
                                             @foreach ($awayTeamGoals as $awayTeamGoal)
-                                                <div class="col-3 text-right my-1">
+                                                <div class="col-4 text-right my-1">
                                                     {{ $awayTeamGoal->amount > 1 ? $awayTeamGoal->amount . ' x' : '' }} <i
                                                         class="far fa-futbol"></i>
                                                 </div>
-                                                <div class="col-9 text-left my-1">
+                                                <div class="col-8 text-left my-1">
                                                     <a
                                                         href="{{ route('players.show', [$competition->id, $game->awayTeam->id, $awayTeamGoal->player->id]) }}">
                                                         {{ mb_convert_case($awayTeamGoal->player->firstname, MB_CASE_TITLE, 'UTF-8') }}
@@ -198,12 +198,12 @@
                                     <div class="row">
                                         @if ($awayTeamCards->isNotEmpty())
                                             @foreach ($awayTeamCards as $awayTeamCard)
-                                                <div class="col-3 text-right my-1">
+                                                <div class="col-4 text-right my-1">
                                                     {{-- tento způsob výpisu není bezpečný {!! !!} --}}
                                                     {!! $awayTeamCard->yellow > 0 ? '<div class="d-inline-flex card-yellow"></div>' : '' !!}
                                                     {!! $awayTeamCard->red > 0 ? '<div class="d-inline-flex card-red"></div>' : '' !!}
                                                 </div>
-                                                <div class="col-9 text-left my-1">
+                                                <div class="col-8 text-left my-1">
                                                     <a
                                                         href="{{ route('players.show', [$competition->id, $game->awayTeam->id, $awayTeamCard->player->id]) }}">
                                                         {{ mb_convert_case($awayTeamCard->player->firstname, MB_CASE_TITLE, 'UTF-8') }}
