@@ -2,7 +2,8 @@
 
 @section('title')
     {{ $game->homeTeam->name_short }} {{ $game->home_team_score }}:{{ $game->away_team_score }}
-    {{ $game->awayTeam->name_short }} | @lang('messages.app_name')
+    {{ $game->awayTeam->name_short }} | {{ $competition->name }} | {{ $competition->season->name_short ?? '' }} |
+    @lang('messages.app_name')
 @endsection
 
 @section('content')

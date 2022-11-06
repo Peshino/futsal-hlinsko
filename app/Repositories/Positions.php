@@ -74,6 +74,7 @@ class Positions
         $gamesRepository = new Games;
 
         $rounds = $gamesRepository->getRoundsFiltered($competition, $rule, 'results', 'asc');
+
         if (!empty($rounds)) {
             foreach ($rounds as $round) {
                 $toRound = $round;
@@ -104,11 +105,9 @@ class Positions
                     return false;
                 }
             }
-
-            return true;
         }
 
-        return false;
+        return true;
     }
 
     public function getTeamCurrentPosition(Competition $competition, Rule $rule, Team $team, $round)

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    @lang('messages.goals') | @lang('messages.app_name')
+    @lang('messages.goals') | {{ $competition->name }} | {{ $competition->season->name_short ?? '' }} | @lang('messages.app_name')
 @endsection
 
 @section('content')
@@ -32,7 +32,7 @@
                                         @foreach ($competition->rules as $competitionRule)
                                             <a class="dropdown-item{{ $rule !== null && $competitionRule->id === $rule->id
                                                 ? "
-                                                                                active"
+                                                                                                                            active"
                                                 : '' }}"
                                                 href="{{ route('goals.rule-index', [$competition->id, $competitionRule->id, null]) }}">
                                                 {{ $competitionRule->name ?? '' }}

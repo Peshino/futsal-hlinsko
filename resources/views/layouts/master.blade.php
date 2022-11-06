@@ -23,7 +23,10 @@
     <meta name="description"
         content="Oficiální web hlineckých futsalových soutěží. Výsledky, statistiky, rozlosování a další." />
 
-    <title>@yield('title'){{ \Illuminate\Support\Facades\App::environment('local') ? ' | test' : '' }}</title>
+    <title>
+        @yield('title')
+        {{ \Illuminate\Support\Facades\App::environment('local') ? ' | test' : '' }}
+    </title>
 
     <link href="{{ asset('img/favicon.png') }}" rel="shortcut icon">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

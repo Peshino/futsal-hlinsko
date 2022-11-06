@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    {{ $team->name ?? '' }} | @lang('messages.app_name')
+    {{ $team->name ?? '' }} | {{ $competition->name }} | {{ $competition->season->name_short ?? '' }} | @lang('messages.app_name')
 @endsection
 
 @section('content')
