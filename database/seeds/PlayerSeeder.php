@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Player;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Seeder;
@@ -19,7 +21,9 @@ class PlayerSeeder extends Seeder
         $seedFromOldDb = config('app.seed_from_old_db');
 
         if ($seedFromOldDb) {
-            $data = DB::connection('mysql_old_db')->select('SELECT * FROM `players`');
+            $seedFromOldDbWithOneArchive = config('app.seed_from_old_db_with_one_archive');
+
+            $data = DB::connection('mysql_old_db')->select('SELECT * FROM `players`' . ($seedFromOldDbWithOneArchive !== null ? ' WHERE `archive` = ' . $seedFromOldDbWithOneArchive : ''));
             $historyCodes = [];
             $competitionsRepository = new Competitions;
 
@@ -35,6 +39,8 @@ class PlayerSeeder extends Seeder
 
                 if ($archive === 8) {
                     $competitionId = 14;
+                } elseif ($archive === 9) {
+                    $competitionId = 15;
                 } else {
                     $competitions = $competitionsRepository->getCompetitionsBySeason($archive);
                     foreach ($competitions as $competition) {
@@ -133,6 +139,13 @@ class PlayerSeeder extends Seeder
                 }
 
                 $jmenoTym = $lastname . ' ' . $firstname . '-' . $tym;
+
+                $teamByName = Team::where('name', $tym)->first();
+                $player = Player::query()->where(['firstname' => $firstname, 'lastname' => $lastname, 'team_id' => $teamByName->id])->first();
+
+                if ($player !== null) {
+                    $historyCodes[$jmenoTym] = $player->history_code;
+                }
 
                 if (array_key_exists($jmenoTym, $historyCodes)) {
                     $historyCode = $historyCodes[$jmenoTym];

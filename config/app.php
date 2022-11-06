@@ -134,6 +134,8 @@ return [
 
     'seed_from_old_db' => env('SEED_FROM_OLD_DB', true),
 
+    'seed_from_old_db_with_one_archive' => env('SEED_FROM_OLD_DB_WITH_ONE_ARCHIVE', null),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

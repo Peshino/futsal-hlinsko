@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Team;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Seeder;
@@ -19,7 +21,9 @@ class TeamSeeder extends Seeder
         $seedFromOldDb = config('app.seed_from_old_db');
 
         if ($seedFromOldDb) {
-            $data = DB::connection('mysql_old_db')->select('SELECT * FROM `teams`');
+            $seedFromOldDbWithOneArchive = config('app.seed_from_old_db_with_one_archive');
+
+            $data = DB::connection('mysql_old_db')->select('SELECT * FROM `teams`' . ($seedFromOldDbWithOneArchive !== null ? ' WHERE `archive` = ' . $seedFromOldDbWithOneArchive : ''));
             $historyCodes = [];
             $namesShort = [];
             $competitionsRepository = new Competitions;
@@ -51,6 +55,12 @@ class TeamSeeder extends Seeder
                     $namesShort[$name] = $nameShort;
                 }
 
+                $team = Team::query()->where('name', $name)->first();
+
+                if ($team !== null) {
+                    $historyCodes[$name] = $team->history_code;
+                }
+
                 if (array_key_exists($name, $historyCodes)) {
                     $historyCode = $historyCodes[$name];
                 } else {
@@ -61,6 +71,8 @@ class TeamSeeder extends Seeder
 
                 if ($archive === 8) {
                     $competitionId = 14;
+                } elseif ($archive === 9) {
+                    $competitionId = 15;
                 } else {
                     $competitions = $competitionsRepository->getCompetitionsBySeason($archive);
                     foreach ($competitions as $competition) {
