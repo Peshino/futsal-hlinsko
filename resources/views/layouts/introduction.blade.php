@@ -2,18 +2,21 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQC6J4MVRL"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+    @if (\Illuminate\Support\Facades\App::environment('production'))
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQC6J4MVRL"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
 
-        gtag('config', 'G-FQC6J4MVRL');
-    </script>
+            gtag('config', 'G-FQC6J4MVRL');
+        </script>
+    @endif
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -23,7 +26,13 @@
     <meta name="description"
         content="Oficiální web hlineckých futsalových soutěží. Výsledky, statistiky, rozlosování a další." />
 
-    <title>@lang('messages.app_name'){{ \Illuminate\Support\Facades\App::environment('local') ? ' | test' : '' }}</title>
+    <title>
+        @lang('messages.app_name')
+
+        @if (\Illuminate\Support\Facades\App::environment('local'))
+            | test
+        @endif
+    </title>
 
     <link href="{{ asset('img/favicon.png') }}" rel="shortcut icon">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
