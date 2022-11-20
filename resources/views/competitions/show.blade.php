@@ -92,51 +92,55 @@
                     </div>
                 </div> --}}
 
-                    @php
-                        $bothGames = false;
-                    @endphp
-
-                    @if ($gameCurrentlyBeingPlayed !== null)
+                    <div class="justify-content-center border-bottom border-dark mb-2 pb-3">
                         @php
-                            $game = $gameCurrentlyBeingPlayed;
+                            $bothGames = false;
                         @endphp
-                        <div class="row">
-                            <div class="col no-padding">
-                                @include('partials/game')
-                            </div>
-                        </div>
-                    @endif
 
-                    @php
-                        // $lastResult = null;
-                        $bothGames = $lastResult !== null && $firstSchedule !== null ? true : false;
-                    @endphp
-
-                    <div
-                        class="{{ $bothGames ? 'my-4 row ' : '' }}justify-content-center border-bottom border-dark mb-2 pb-3">
-                        @if ($lastResult !== null)
+                        @if ($gameCurrentlyBeingPlayed !== null)
                             @php
-                                $game = $lastResult;
-                                $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
+                                $game = $gameCurrentlyBeingPlayed;
                             @endphp
-                            <div class="col-md no-padding">
-                                <div class="text-center competition-color">
-                                    @lang('messages.last_result') | <small>{{ $startDateTime->isoFormat('Do[.] MMMM') }}</small>
+                            <div class="row">
+                                <div class="col no-padding">
+                                    @include('partials/game')
                                 </div>
-                                @include('partials/game')
                             </div>
                         @endif
+
+                        @php
+                            // $lastResult = null;
+                            // $bothGames = $lastResult !== null && $firstSchedule !== null ? true : false;
+                            $bothGames = false;
+                        @endphp
 
                         @if ($firstSchedule !== null)
                             @php
                                 $game = $firstSchedule;
                                 $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
                             @endphp
-                            <div class="col-md no-padding">
-                                <div class="text-center schedule-color">
-                                    @lang('messages.next_schedule') | <small>{{ $startDateTime->isoFormat('Do[.] MMMM') }}</small>
+                            <div class="row">
+                                <div class="col no-padding">
+                                    <div class="text-center schedule-color">
+                                        @lang('messages.next_schedule') | <small>{{ $startDateTime->isoFormat('Do[.] MMMM') }}</small>
+                                    </div>
+                                    @include('partials/game')
                                 </div>
-                                @include('partials/game')
+                            </div>
+                        @endif
+
+                        @if ($lastResult !== null)
+                            @php
+                                $game = $lastResult;
+                                $startDateTime = \Carbon\Carbon::parse($game->start_datetime);
+                            @endphp
+                            <div class="row">
+                                <div class="col no-padding">
+                                    <div class="text-center competition-color">
+                                        @lang('messages.last_result') | <small>{{ $startDateTime->isoFormat('Do[.] MMMM') }}</small>
+                                    </div>
+                                    @include('partials/game')
+                                </div>
                             </div>
                         @endif
                     </div>

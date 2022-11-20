@@ -1,11 +1,10 @@
 <footer class="page-footer font-small">
     <div class="footer-copyright text-center py-1">
         <small>
-            Copyright &copy; 2021{{ now()->year === 2021 ? '' : '-' . now()->year }}
+            &copy; 2021{{ now()->year === 2021 ? '' : '-' . now()->year }}
             <a href="{{ url('/') }}">
                 @lang('messages.app_name')
             </a>
-            | @lang('messages.footer_rights')
             | @lang('messages.created_by') <a id="created-by" href="mailto:pesek.jirka@centrum.cz" data-toggle="popover"
                 title="Jiří Pešek"
                 data-content='

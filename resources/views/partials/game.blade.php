@@ -8,11 +8,18 @@
 
 @if ($game->isCurrentlyBeingPlayed())
     <div class="currently-being-played text-center halftime live-color">
-        <i class="fas fa-circle blinking"></i>
         <strong>
-            <span class="d-none first-half">@lang('messages.first_half')</span>
-            <span class="d-none second-half">@lang('messages.second_half')</span>
+            <span class="blinking">
+                @lang('messages.live')
+            </span>
         </strong>
+        |
+        <span class="d-none first-half">
+            @lang('messages.first_half')
+        </span>
+        <span class="d-none second-half">
+            @lang('messages.second_half')
+        </span>
     </div>
 @endif
 <div class="game mb-3 clickable-row" data-url="{{ route('games.show', [$competition->id, $game->id]) }}">
