@@ -32,6 +32,14 @@
                                 </h1>
                             </div>
 
+                            @if ($team->web_presentation !== null)
+                                <div class="mt-2 ml-sm-1 d-flex justify-content-center justify-content-md-start">
+                                    <a href="{{ $team->web_presentation }}" target="_blank">
+                                        {{ 'www.' . parse_url($team->web_presentation)['host'] }}
+                                    </a>
+                                </div>
+                            @endif
+
                             <div class="p-4">
                                 <div class="row">
                                     @if ($teamRules->isNotEmpty())
