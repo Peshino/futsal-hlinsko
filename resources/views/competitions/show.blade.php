@@ -18,79 +18,79 @@
             <div class="content">
                 <div class="content-block">
                     {{-- <h3>Zde na homepage soutěže by mohlo být:</h3>
-                <ul class="pl-5">
-                    <li>důležitá upozornění od administrátora, novinky přidané do aplikace</li>
                     <ul class="pl-5">
-                        <li>toto by mohlo být komentovatelné a likovatelné přihlášenými osobami, případně vytvořit
-                            možnost přihlášení skrze facebook?</li>
-                        <li>cílem je aplikaci více socializovat, udělat věci, které by zde registrovaní mohli dělat -
-                            větší návštěvnost a sledovanost</li>
-                    </ul>
-                    <li>seznam týmů</li>
-                    <li>první tým postupové skupiny, první tým sestupové skupiny (případně aktuálně postupující a
-                        aktuálně sestupující tým)</li>
-                    <li>poslední a nadcházející zápasy (hodnocení atraktivity zápasů?)</li>
-                    <li>statistiky - nejlepší střelec soutěže, nejvíc žlutých, nejvíc červených karet (+ 3 další)</li>
-                    <li>gólů celkem v soutěži, průměr gólů na zápas, nejvíce gólový zápas</li>
-                    <li>část tabulky nebo playoff</li>
-                    <li>základní informace o soutěži (systém, sezona, atd.)</li>
-                </ul> --}}
+                        <li>důležitá upozornění od administrátora, novinky přidané do aplikace</li>
+                        <ul class="pl-5">
+                            <li>toto by mohlo být komentovatelné a likovatelné přihlášenými osobami, případně vytvořit
+                                možnost přihlášení skrze facebook?</li>
+                            <li>cílem je aplikaci více socializovat, udělat věci, které by zde registrovaní mohli dělat -
+                                větší návštěvnost a sledovanost</li>
+                        </ul>
+                        <li>seznam týmů</li>
+                        <li>první tým postupové skupiny, první tým sestupové skupiny (případně aktuálně postupující a
+                            aktuálně sestupující tým)</li>
+                        <li>poslední a nadcházející zápasy (hodnocení atraktivity zápasů?)</li>
+                        <li>statistiky - nejlepší střelec soutěže, nejvíc žlutých, nejvíc červených karet (+ 3 další)</li>
+                        <li>gólů celkem v soutěži, průměr gólů na zápas, nejvíce gólový zápas</li>
+                        <li>část tabulky nebo playoff</li>
+                        <li>základní informace o soutěži (systém, sezona, atd.)</li>
+                    </ul> --}}
 
-                    {{-- <div class="news">
-                    <div class="news-header pb-1 border-bottom border-dark">
-                        <h5>
-                            Soutěž Hlinsko 2021 / 2022
-                        </h5>
-                    </div>
-                    <div class="news-body">
-                        <div class="row">
-                            <div class="col-md">
-                                <p>- den 31. 12. 2021 je poslední na dopsání soupisek pro letošní sezónu</p>
-                                <p>- hrát se bude jednokolově každý s každým</p>
-                                <p>- do play-off postoupí prvních 8 týmů</p>
-                                <p>- hrací doba 2 x 16 min</p>
-                                <p>- play-off 2 x 18 min</p>
-                                <p>- semifinále odehraje nejvýše nasazený tým s nejhůře nasazeným</p>
-                            </div>
-                            <div class="col-md">
-                                <p>- porušení pravidel o očkování nebo testování znamená vyloučení mužstva bez náhrady
-                                    startovného
-                                </p>
-                                <p>- podmínkou účasti je očkovaní proti covid-19 nebo potvrzení o prodělání nemoci v
-                                    posledních 180 dní</p>
-                                <p>- případné dotazy zasílejte na <a
-                                        href="mailto:mates.real@seznam.cz">mates.real@seznam.cz</a> nebo volejte
-                                    777&nbsp;201&nbsp;963&nbsp;-&nbsp;Vlastimil Mataj
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                    {{-- <div class="row mb-4 game">
-                    <div class="col no-padding">
-                        <div class="pt-2 pb-2 first-place text-center">
-                            <h3>
-                                <a href="{{ route('teams.show', [$competition->id, 142]) }}">
-                                    <i class="fas fa-medal"></i> Bison Steak Hlinsko
-                                </a>
-                            </h3>
-                        </div>
-                        <div class="pt-2 pb-2 second-place text-center">
-                            <h5>
-                                <a href="{{ route('teams.show', [$competition->id, 154]) }}">
-                                    <i class="fas fa-medal"></i> Srníčko
-                                </a>
+                    <div class="news">
+                        <div class="news-header pb-1 border-bottom border-dark">
+                            <h5 class="text-center">
+                                Soutěž Hlinsko 2022 / 2023
                             </h5>
                         </div>
-                        <div class="pt-2 pb-2 third-place text-center">
-                            <h5>
-                                <a href="{{ route('teams.show', [$competition->id, 147]) }}">
-                                    <i class="fas fa-medal"></i> Hattrick Svratka
-                                </a>
-                            </h5>
+                        {{-- <div class="news-body">
+                            <div class="row">
+                                <div class="col-md">
+                                    <p>- den 31. 12. 2021 je poslední na dopsání soupisek pro letošní sezónu</p>
+                                    <p>- hrát se bude jednokolově každý s každým</p>
+                                    <p>- do play-off postoupí prvních 8 týmů</p>
+                                    <p>- hrací doba 2 x 16 min</p>
+                                    <p>- play-off 2 x 18 min</p>
+                                    <p>- semifinále odehraje nejvýše nasazený tým s nejhůře nasazeným</p>
+                                </div>
+                                <div class="col-md">
+                                    <p>- porušení pravidel o očkování nebo testování znamená vyloučení mužstva bez náhrady
+                                        startovného
+                                    </p>
+                                    <p>- podmínkou účasti je očkovaní proti covid-19 nebo potvrzení o prodělání nemoci v
+                                        posledních 180 dní</p>
+                                    <p>- případné dotazy zasílejte na <a
+                                            href="mailto:mates.real@seznam.cz">mates.real@seznam.cz</a> nebo volejte
+                                        777&nbsp;201&nbsp;963&nbsp;-&nbsp;Vlastimil Mataj
+                                    </p>
+                                </div>
+                            </div>
+                        </div> --}}
+                    </div>
+                    <div class="row mb-4 game">
+                        <div class="col no-padding">
+                            <div class="pt-2 pb-2 first-place text-center">
+                                <h3>
+                                    <a href="{{ route('teams.show', [$competition->id, 172]) }}">
+                                        <i class="fas fa-medal"></i> Forza Hlinsko
+                                    </a>
+                                </h3>
+                            </div>
+                            <div class="pt-2 pb-2 second-place text-center">
+                                <h5>
+                                    <a href="{{ route('teams.show', [$competition->id, 165]) }}">
+                                        <i class="fas fa-medal"></i> STS Rotor Hlinsko
+                                    </a>
+                                </h5>
+                            </div>
+                            <div class="pt-2 pb-2 third-place text-center">
+                                <h5>
+                                    <a href="{{ route('teams.show', [$competition->id, 156]) }}">
+                                        <i class="fas fa-medal"></i> Tatra tým Bison
+                                    </a>
+                                </h5>
+                            </div>
                         </div>
                     </div>
-                </div> --}}
 
                     <div class="justify-content-center border-bottom border-dark mb-2 pb-3">
                         @php
@@ -146,9 +146,10 @@
                     </div>
 
                     <div class="card-body-x-padding">
-                        @if ((isset($goals) && $goals->isNotEmpty()) ||
-                            (isset($yellowCards) && $yellowCards->isNotEmpty()) ||
-                            (isset($redCards) && $redCards->isNotEmpty()))
+                        @if (
+                            (isset($goals) && $goals->isNotEmpty()) ||
+                                (isset($yellowCards) && $yellowCards->isNotEmpty()) ||
+                                (isset($redCards) && $redCards->isNotEmpty()))
                             <h5 class="text-center competition-second-color">
                                 @lang('messages.player_statistics')
                             </h5>
