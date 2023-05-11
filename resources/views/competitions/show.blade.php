@@ -37,6 +37,9 @@
                     </ul> --}}
 
                     <div class="news">
+                        <div class="text-center mb-3">
+                            <img src="{{ url('storage/mongolia_cup_2023.JPG') }}" alt="Mongolia Cup 2023" width="300">
+                        </div>
                         <div class="news-header pb-1 border-bottom border-dark">
                             <h5 class="text-center">
                                 Soutěž Hlinsko 2022 / 2023
