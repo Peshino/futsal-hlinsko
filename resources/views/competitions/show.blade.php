@@ -37,10 +37,21 @@
                     </ul> --}}
 
                     <div class="news">
-                        <div class="text-center mb-3">
-                            <img src="{{ url('storage/app/public/mongolia_cup_2023.JPG') }}" alt="Mongolia Cup 2023"
-                                width="300">
+                        <div class="text-center mb-5">
+                            <div class="row">
+                                <div class="col-md mb-2 text-md-right">
+                                    <img src="{{ asset('storage/mongolia_cup_2023.JPG') }}" alt="Mongolia Cup 2023"
+                                        width="400" class="img-fluid" />
+                                </div>
+                                <div class="col-md mb-2 text-md-left">
+                                    <a href="https://www.dobrusskypohar.cz/novinky" target="_blank">
+                                        <img src="{{ asset('storage/dobrussky_pohar.jpg') }}" alt="Dobrušský pohár 2023"
+                                            width="400" class="img-fluid" />
+                                    </a>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="news-header pb-1 border-bottom border-dark">
                             <h5 class="text-center">
                                 Soutěž Hlinsko 2022 / 2023
