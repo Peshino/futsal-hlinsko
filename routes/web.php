@@ -88,4 +88,10 @@ Route::prefix('admin')->middleware('can:manage_admin_routes')->group(function ()
 
         return redirect('/');
     });
+
+    Route::get('/make-storage-link', function () {
+        Artisan::call('storage:link');
+
+        return redirect('/');
+    });
 });
