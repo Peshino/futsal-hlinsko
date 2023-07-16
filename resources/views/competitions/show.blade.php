@@ -37,17 +37,6 @@
                     </ul> --}}
 
                     <div class="news">
-                        <div class="text-center mb-5">
-                            <div class="row">
-                                <div class="col-md mb-2 text-center">
-                                    <a href="https://www.dobrusskypohar.cz/novinky" target="_blank">
-                                        <img src="{{ asset('storage/dobrussky_pohar.jpg') }}" alt="Dobrušský pohár 2023"
-                                            width="400" class="img-fluid" />
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="news-header pb-1 border-bottom border-dark">
                             <h5 class="text-center">
                                 Soutěž Hlinsko 2022 / 2023
