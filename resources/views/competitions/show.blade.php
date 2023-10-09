@@ -36,13 +36,13 @@
                         <li>základní informace o soutěži (systém, sezona, atd.)</li>
                     </ul> --}}
 
-                    <div class="news">
+                    {{-- <div class="news">
                         <div class="news-header pb-1 border-bottom border-dark">
                             <h5 class="text-center">
                                 Soutěž Hlinsko 2022 / 2023
                             </h5>
                         </div>
-                        {{-- <div class="news-body">
+                        <div class="news-body">
                             <div class="row">
                                 <div class="col-md">
                                     <p>- den 31. 12. 2021 je poslední na dopsání soupisek pro letošní sezónu</p>
@@ -64,9 +64,10 @@
                                     </p>
                                 </div>
                             </div>
-                        </div> --}}
-                    </div>
-                    <div class="row mb-4 game">
+                        </div>
+                    </div> --}}
+
+                    {{-- <div class="row mb-4 game">
                         <div class="col no-padding">
                             <div class="pt-2 pb-2 first-place text-center">
                                 <h3>
@@ -90,7 +91,7 @@
                                 </h5>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="justify-content-center border-bottom border-dark mb-2 pb-3">
                         @php
