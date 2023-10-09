@@ -148,7 +148,8 @@
                                     @endphp
                                     <tr>
                                         <td class="text-center{{ isset($tableItem->team_phase) ? ' ' . $tableItem->team_phase->phase . '-bg-' . $tableItem->team_phase->order : '' }}"
-                                            data-toggle="popover" title="{{ $tableItem->team_name }}"
+                                            data-toggle="{{ $tableItem->team_previous_position !== null || isset($tableItem->team_phase) ? 'popover' : '' }}"
+                                            title="{{ $tableItem->team_name }}"
                                             data-content="
                                     @if ($tableItem->team_previous_position !== null) @lang('messages.previous_position') <strong>{{ $tableItem->team_previous_position }}</strong><br /> @endif
                                     @isset($tableItem->team_phase)
