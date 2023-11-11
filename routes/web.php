@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\GameRegistrationTemplateController;
 use App\Http\Controllers\IntroductionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SeasonController;
@@ -80,7 +81,9 @@ Route::prefix('admin')->middleware('can:manage_admin_routes')->group(function ()
         });
     });
 
-    Route::get('/clear-all-cache', function () {
+    Route::get('competitions/{competition}/game-registration-template', [GameRegistrationTemplateController::class, 'index'])->name('game-registration-template');
+
+    Route::get('clear-all-cache', function () {
         Artisan::call('cache:clear');
         Artisan::call('route:cache');
         Artisan::call('config:cache');
@@ -89,7 +92,7 @@ Route::prefix('admin')->middleware('can:manage_admin_routes')->group(function ()
         return redirect('/');
     });
 
-    Route::get('/make-storage-link', function () {
+    Route::get('make-storage-link', function () {
         Artisan::call('storage:link');
 
         return redirect('/');
