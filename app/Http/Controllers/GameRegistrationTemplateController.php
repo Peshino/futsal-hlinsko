@@ -11,6 +11,8 @@ class GameRegistrationTemplateController extends Controller
 {
     public function index(Competition $competition)
     {
+        // + navýšen memory_limit v php.ini
+        set_time_limit(3000);
         $gamesRepository = new Games;
         $games = $gamesRepository->getGamesFiltered($competition, null, null, 'schedule');
 
@@ -20,7 +22,8 @@ class GameRegistrationTemplateController extends Controller
         ]);
 
         // return view('game-registration-template', compact('games', 'competition'));
-        return $pdf->stream('zapasovy-zapis.pdf');
+        // return $pdf->stream('zapasovy-zapis.pdf');
+        return $pdf->download('zapasovy-zapis.pdf');
     }
 
 }
