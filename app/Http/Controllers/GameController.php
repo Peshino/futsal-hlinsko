@@ -136,42 +136,7 @@ class GameController extends Controller
      */
     public function bracketsParamsIndex(Competition $competition, Rule $rule, $toRound = null)
     {
-        $brackets = [];
-        $ruleNumberOfRounds = $rule->number_of_rounds;
-        $teamsCount = count($rule->teams);
-        $games = $rule->games;
-        $isThirdPlaceGame = $teamsCount !== (int) (2 ** $ruleNumberOfRounds);
-
-        for ($i = 0; $i < $ruleNumberOfRounds; $i++) {
-            $round = $ruleNumberOfRounds - $i;
-            $gamesOfRound = $games->where('round', $round);
-            $gamesOfRoundCount = count($gamesOfRound);
-
-            if ($i === 0) {
-                if ($gamesOfRound->isEmpty()) {
-                    $gamesOfRound->push(null);
-                }
-
-                $brackets['final'] = $gamesOfRound;
-            } elseif ($i === 1 && $isThirdPlaceGame) {
-                if ($gamesOfRound->isEmpty()) {
-                    $gamesOfRound->push(null);
-                }
-
-                $brackets['third_place_game'] = $gamesOfRound;
-            } else {
-                $subtractor = $isThirdPlaceGame ? 1 : 0;
-                $numberOfNullGamesToPush = (int) (2 ** ($i - $subtractor) - $gamesOfRoundCount);
-
-                for ($x = 0; $x < $numberOfNullGamesToPush; $x++) {
-                    $gamesOfRound->push(null);
-                }
-
-                $brackets['stage_' . ($i - $subtractor)] = $gamesOfRound;
-            }
-        }
-
-        $brackets = array_reverse($brackets);
+        $brackets = $rule->getBrackets();
 
         return view('games.brackets-index', compact('competition', 'rule', 'toRound', 'brackets'));
     }
@@ -210,8 +175,8 @@ class GameController extends Controller
             'round' => 'required|numeric|min:1',
             'start_date' => 'required|date_format:Y-m-d',
             'start_time' => 'required|date_format:H:i',
-            'home_team_id' => 'required|numeric|min:1',
-            'away_team_id' => 'required|numeric|min:1',
+            'home_team_id' => 'nullable|numeric|min:1',
+            'away_team_id' => 'nullable|numeric|min:1',
             'home_team_score' => 'nullable|numeric',
             'away_team_score' => 'nullable|numeric',
             'home_team_halftime_score' => 'nullable|numeric',
@@ -313,7 +278,7 @@ class GameController extends Controller
             $teamCardsFiltered = $cardsRepository->getCardsFiltered($competition, null, $game, $game->{$teamType . 'Team'});
 
             if ($teamGoalsFiltered->isEmpty() && $teamCardsFiltered->isEmpty() && $game->{$teamType . '_team_id'} !== null) {
-                $attributes += $request->validate([$teamType . '_team_id' => 'required|numeric|min:1']);
+                $attributes += $request->validate([$teamType . '_team_id' => 'nullable|numeric|min:1']);
             } else {
                 $attributes[$teamType . '_team_id'] = $game->{$teamType . '_team_id'};
             }

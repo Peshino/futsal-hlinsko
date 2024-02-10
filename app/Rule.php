@@ -108,4 +108,49 @@ class Rule extends Model
     {
         return $this->apply_mutual_balance === 1 ? true : false;
     }
+
+    public function getBrackets(): array
+    {
+        $brackets = [];
+
+        if ($this->type === 'brackets') {
+            $ruleNumberOfRounds = $this->number_of_rounds;
+            $teamsCount = count($this->teams);
+            $games = $this->games;
+            $isThirdPlaceGame = $teamsCount !== (int) (2 ** $ruleNumberOfRounds);
+
+            for ($i = 0; $i < $ruleNumberOfRounds; $i++) {
+                $round = $ruleNumberOfRounds - $i;
+                $gamesOfRound = $games->where('round', $round);
+                $gamesOfRoundCount = count($gamesOfRound);
+
+                if ($i === 0) {
+                    if ($gamesOfRound->isEmpty()) {
+                        $gamesOfRound->push(null);
+                    }
+
+                    $brackets['final'] = $gamesOfRound;
+                } elseif ($i === 1 && $isThirdPlaceGame) {
+                    if ($gamesOfRound->isEmpty()) {
+                        $gamesOfRound->push(null);
+                    }
+
+                    $brackets['third_place_game'] = $gamesOfRound;
+                } else {
+                    $subtractor = $isThirdPlaceGame ? 1 : 0;
+                    $numberOfNullGamesToPush = (int) (2 ** ($i - $subtractor) - $gamesOfRoundCount);
+
+                    for ($x = 0; $x < $numberOfNullGamesToPush; $x++) {
+                        $gamesOfRound->push(null);
+                    }
+
+                    $brackets['stage_' . ($i - $subtractor)] = $gamesOfRound;
+                }
+            }
+
+            $brackets = array_reverse($brackets);
+        }
+
+        return $brackets;
+    }
 }

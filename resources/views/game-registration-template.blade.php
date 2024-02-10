@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    @if ($games->isNotEmpty())
+    @if (!empty($games))
         @php
             $gameDateStrings = [];
             $gameNumberInRound = 1;
@@ -37,8 +37,13 @@
             <div class="header">
                 <div class="game-round lowercase">
                     <p>
-                        {{ $game->rule->name ?? 'soutěž' }} | {{ $game->round ?? '' }}. @lang('messages.round') |
-                        {{ $gameNumberInRound }}. @lang('messages.game')
+                        {{ $game->rule->name ?? 'soutěž' }} |
+                        @if (isset($game->stage) && !empty($game->stage))
+                            @lang('messages.' . $game->stage)
+                        @else
+                            {{ $game->round ?? '' }}. @lang('messages.round') |
+                            {{ $gameNumberInRound }}. @lang('messages.game')
+                        @endif
                     </p>
                 </div>
                 <div class="season">
@@ -62,12 +67,12 @@
             <div class="team-names">
                 <div class="team-box">
                     <p>
-                        {{ $game->homeTeam->name }}
+                        {!! $game->homeTeam->name ?? '&nbsp;' !!}
                     </p>
                 </div>
                 <div class="team-box">
                     <p>
-                        {{ $game->awayTeam->name }}
+                        {!! $game->awayTeam->name ?? '&nbsp;' !!}
                     </p>
                 </div>
 
@@ -85,20 +90,45 @@
                 @php
                     $maxRowsCount = 26;
                     $maxTeamPlayersCount = $maxRowsCount - 3;
-                    $homeTeamTableEmptyRowsCount = $maxRowsCount - count($game->homeTeam->players);
-                    $awayTeamTableEmptyRowsCount = $maxRowsCount - count($game->awayTeam->players);
+                    // Hráči týmů vyfiltrovaní od těch, co přichází obvykle z A-týmů (mají jména zapsaná pouze velkými písmeny)
+                    // Zároveň se kontrolují jen 3 písmena po 1. písmenu kvůli výjimkám, kde hráči mají ve jméně 2 slova nebo římské číslice
+                    $homeTeamPlayersWithoutCapitalLetters = $filteredPlayers = isset($game->homeTeam->players)
+                        ? $game->homeTeam->players->filter(function ($player) {
+                            $lastnameCapitalsCheck = substr($player->lastname, 1, 4);
+                            return $lastnameCapitalsCheck !== strtoupper($lastnameCapitalsCheck);
+                        })
+                        : collect();
+                    $awayTeamPlayersWithoutCapitalLetters = $filteredPlayers = isset($game->awayTeam->players)
+                        ? $game->awayTeam->players->filter(function ($player) use ($game) {
+                            // TODO: Orel Kameničky mají skoro všechny hráče velkými písmeny - pořešit
+                            if ($game->awayTeam->id === 178) {
+                                return true;
+                            }
+
+                            $lastnameCapitalsCheck = substr($player->lastname, 1, 4);
+                            return $lastnameCapitalsCheck !== strtoupper($lastnameCapitalsCheck);
+                        })
+                        : collect();
+                    $homeTeamTableEmptyRowsCount = $maxRowsCount - count($homeTeamPlayersWithoutCapitalLetters);
+                    $awayTeamTableEmptyRowsCount = $maxRowsCount - count($awayTeamPlayersWithoutCapitalLetters);
                 @endphp
 
                 <table class="team-table">
                     <tr>
                         <th>číslo</th>
-                        <th>jméno</th>
+                        <th>příjmení a jméno</th>
                         <th>branky</th>
                         <th>ŽK</th>
                         <th>ČK</th>
                     </tr>
-                    @if ($game->homeTeam->players->isNotEmpty() && count($game->homeTeam->players) <= $maxTeamPlayersCount)
-                        @foreach ($game->homeTeam->players as $player)
+                    @if (
+                        $homeTeamPlayersWithoutCapitalLetters->isNotEmpty() &&
+                            count($homeTeamPlayersWithoutCapitalLetters) <= $maxTeamPlayersCount)
+                        @foreach ($homeTeamPlayersWithoutCapitalLetters as $player)
+                            @if ($player->lastname === strtoupper($player->lastname))
+                                @continue
+                            @endif
+
                             <tr>
                                 <td>
                                     {!! $loop->iteration <= $maxTeamPlayersCount ? $player->jersey_number ?? '' : '&nbsp;' !!}
@@ -153,13 +183,15 @@
                 <table class="team-table">
                     <tr>
                         <th>číslo</th>
-                        <th>jméno</th>
+                        <th>příjmení a jméno</th>
                         <th>branky</th>
                         <th>ŽK</th>
                         <th>ČK</th>
                     </tr>
-                    @if ($game->awayTeam->players->isNotEmpty() && count($game->awayTeam->players) <= $maxTeamPlayersCount)
-                        @foreach ($game->awayTeam->players as $player)
+                    @if (
+                        $awayTeamPlayersWithoutCapitalLetters->isNotEmpty() &&
+                            count($awayTeamPlayersWithoutCapitalLetters) <= $maxTeamPlayersCount)
+                        @foreach ($awayTeamPlayersWithoutCapitalLetters as $player)
                             <tr>
                                 <td>
                                     {!! $loop->iteration <= $maxTeamPlayersCount ? $player->jersey_number ?? '' : '&nbsp;' !!}

@@ -81,7 +81,7 @@ Route::prefix('admin')->middleware('can:manage_admin_routes')->group(function ()
         });
     });
 
-    Route::get('competitions/{competition}/game-registration-template', [GameRegistrationTemplateController::class, 'index'])->name('game-registration-template');
+    Route::get('game-registration-template/competitions/{competition}/rules/{rule?}', [GameRegistrationTemplateController::class, 'index'])->name('game-registration-template');
 
     Route::get('clear-all-cache', function () {
         Artisan::call('cache:clear');

@@ -71,4 +71,9 @@ class Team extends Model
     {
         return $this->rules()->latest('priority')->first();
     }
+
+    public function getLastPosition()
+    {
+        return $this->positions()->latest('round')->first();
+    }
 }

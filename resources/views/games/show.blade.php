@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 @section('title')
-    {{ $game->homeTeam->name_short }} {{ $game->home_team_score }}:{{ $game->away_team_score }}
-    {{ $game->awayTeam->name_short }} | {{ $competition->name }} | {{ $competition->season->name_short ?? '' }} |
+    {{ $game->homeTeam->name_short ?? '' }} {{ $game->home_team_score }}:{{ $game->away_team_score }}
+    {{ $game->awayTeam->name_short ?? '' }} | {{ $competition->name }} | {{ $competition->season->name_short ?? '' }} |
     @lang('messages.app_name')
 @endsection
 
@@ -63,23 +63,25 @@
                         </div>
                         <div class="mt-4 row">
                             <div class="game-team col-4 d-flex flex-row-reverse">
-                                <span class="justify-content-center align-self-center">
-                                    <div class="team-name-long">
-                                        <span class="align-middle">
-                                            <a href="{{ route('teams.show', [$competition->id, $game->homeTeam->id]) }}">
-                                                {{ $game->homeTeam->name }}
-                                            </a>
-                                        </span>
-                                    </div>
-                                    <div class="team-name-short">
-                                        <span class="align-middle">
-                                            <a href="{{ route('teams.show', [$competition->id, $game->homeTeam->id]) }}"
-                                                title="{{ $game->homeTeam->name }}">
-                                                {{ $game->homeTeam->name_short }}
-                                            </a>
-                                        </span>
-                                    </div>
-                                </span>
+                                @isset($game->homeTeam)
+                                    <span class="justify-content-center align-self-center">
+                                        <div class="team-name-long">
+                                            <span class="align-middle">
+                                                <a href="{{ route('teams.show', [$competition->id, $game->homeTeam->id]) }}">
+                                                    {{ $game->homeTeam->name }}
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <div class="team-name-short">
+                                            <span class="align-middle">
+                                                <a href="{{ route('teams.show', [$competition->id, $game->homeTeam->id]) }}"
+                                                    title="{{ $game->homeTeam->name }}">
+                                                    {{ $game->homeTeam->name_short }}
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </span>
+                                @endisset
                             </div>
                             @if ($game->hasScore())
                                 <div class="game-score col-4 text-center">
@@ -110,23 +112,25 @@
                                 </div>
                             @endif
                             <div class="game-team col-4 d-flex">
-                                <span class="justify-content-center align-self-center">
-                                    <div class="team-name-long">
-                                        <span class="align-middle">
-                                            <a href="{{ route('teams.show', [$competition->id, $game->awayTeam->id]) }}">
-                                                {{ $game->awayTeam->name }}
-                                            </a>
-                                        </span>
-                                    </div>
-                                    <div class="team-name-short">
-                                        <span class="align-middle">
-                                            <a href="{{ route('teams.show', [$competition->id, $game->awayTeam->id]) }}"
-                                                title="{{ $game->awayTeam->name }}">
-                                                {{ $game->awayTeam->name_short }}
-                                            </a>
-                                        </span>
-                                    </div>
-                                </span>
+                                @isset($game->awayTeam)
+                                    <span class="justify-content-center align-self-center">
+                                        <div class="team-name-long">
+                                            <span class="align-middle">
+                                                <a href="{{ route('teams.show', [$competition->id, $game->awayTeam->id]) }}">
+                                                    {{ $game->awayTeam->name }}
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <div class="team-name-short">
+                                            <span class="align-middle">
+                                                <a href="{{ route('teams.show', [$competition->id, $game->awayTeam->id]) }}"
+                                                    title="{{ $game->awayTeam->name }}">
+                                                    {{ $game->awayTeam->name_short }}
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </span>
+                                @endisset
                             </div>
                         </div>
                     </div>
