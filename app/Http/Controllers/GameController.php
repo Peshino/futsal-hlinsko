@@ -58,7 +58,11 @@ class GameController extends Controller
                 // return redirect()->route('games.create', ['competition' => $competition->id]);
             }
         } else {
-            return redirect()->route('games.create', ['competition' => $competition->id]);
+            if (auth()->user() !== null && auth()->user()->can('crud_games')) {
+                return redirect()->route('games.create', ['competition' => $competition->id]);
+            }
+
+            return view('games.no-game', compact('competition'));
         }
     }
 

@@ -53,6 +53,7 @@ return [
     'games' => 'Zápasy',
     'games_short' => 'Z',
     'game' => 'Zápas',
+    'no_games' => 'Žádné zápasy',
     'results' => 'Výsledky',
     'schedule' => 'Rozpis',
     'players' => 'Hráči',
