@@ -25,20 +25,22 @@
 <div class="game mb-3 clickable-row" data-url="{{ route('games.show', [$competition->id, $game->id]) }}">
     <div class="row">
         <div class="game-team col-4 col-sm-5 d-flex flex-row-reverse">
-            <span class="justify-content-center align-self-center">
-                @if (isset($bothGames) && $bothGames === true)
-                    <div title="{{ $game->homeTeam->name }}">
-                        {{ $game->homeTeam->name_short }}
-                    </div>
-                @else
-                    <div class="team-name-long">
-                        {{ $game->homeTeam->name }}
-                    </div>
-                    <div class="team-name-short" title="{{ $game->homeTeam->name }}">
-                        {{ $game->homeTeam->name_short }}
-                    </div>
-                @endif
-            </span>
+            @isset($game->homeTeam)
+                <span class="justify-content-center align-self-center">
+                    @if (isset($bothGames) && $bothGames === true)
+                        <div title="{{ $game->homeTeam->name }}">
+                            {{ $game->homeTeam->name_short }}
+                        </div>
+                    @else
+                        <div class="team-name-long">
+                            {{ $game->homeTeam->name }}
+                        </div>
+                        <div class="team-name-short" title="{{ $game->homeTeam->name }}">
+                            {{ $game->homeTeam->name_short }}
+                        </div>
+                    @endif
+                </span>
+            @endisset
         </div>
         @if ($game->hasScore())
             <div class="game-score col-4 col-sm-2 text-center">
@@ -72,20 +74,22 @@
             @endif
         @endif
         <div class="game-team col-4 col-sm-5 d-flex">
-            <span class="justify-content-center align-self-center">
-                @if (isset($bothGames) && $bothGames === true)
-                    <div title="{{ $game->awayTeam->name }}">
-                        {{ $game->awayTeam->name_short }}
-                    </div>
-                @else
-                    <div class="team-name-long">
-                        {{ $game->awayTeam->name }}
-                    </div>
-                    <div class="team-name-short" title="{{ $game->awayTeam->name }}">
-                        {{ $game->awayTeam->name_short }}
-                    </div>
-                @endif
-            </span>
+            @isset($game->awayTeam)
+                <span class="justify-content-center align-self-center">
+                    @if (isset($bothGames) && $bothGames === true)
+                        <div title="{{ $game->awayTeam->name }}">
+                            {{ $game->awayTeam->name_short }}
+                        </div>
+                    @else
+                        <div class="team-name-long">
+                            {{ $game->awayTeam->name }}
+                        </div>
+                        <div class="team-name-short" title="{{ $game->awayTeam->name }}">
+                            {{ $game->awayTeam->name_short }}
+                        </div>
+                    @endif
+                </span>
+            @endisset
         </div>
     </div>
 </div>
