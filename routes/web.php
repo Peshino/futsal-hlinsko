@@ -19,7 +19,7 @@ use App\Http\Controllers\GameController;
 
 Auth::routes();
 
-Route::get('/', [IntroductionController::class, 'index']);
+Route::get('/', [IntroductionController::class, 'index'])->name('introduction');
 
 Route::get('home', [HomeController::class, 'index'])->name('home');
 

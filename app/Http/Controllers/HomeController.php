@@ -23,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (!isset($competition)) {
+            return redirect()->route('introduction');
+        }
+
         return view('home');
     }
 }
