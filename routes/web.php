@@ -88,6 +88,7 @@ Route::prefix('admin')->middleware('can:manage_admin_routes')->group(function ()
     Route::get('clear-all-cache', function () {
         Artisan::call('cache:clear');
         Artisan::call('route:cache');
+        Artisan::call('config:clear');
         Artisan::call('config:cache');
         Artisan::call('view:cache');
 
