@@ -95,6 +95,8 @@ return [
     'create_player' => 'Vytvořit hráče',
     'edit_players' => 'Upravit hráče',
     'edit_player' => 'Upravit hráče',
+    'synchronization_players' => 'Synchronizace hráčů',
+    'synchronize_players' => 'Synchronizovat hráče',
 
     'system' => 'Systém',
     'type' => 'Typ',

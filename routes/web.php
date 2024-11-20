@@ -79,6 +79,8 @@ Route::prefix('admin')->middleware('can:manage_admin_routes')->group(function ()
         Route::prefix('teams/{team}')->group(function () {
             Route::get('players/{player}', [PlayerController::class, 'adminShow'])->name('players.admin-show');
         });
+
+        Route::post('players-synchronize', [PlayerController::class, 'sync'])->name('players-synchronize');
     });
 
     Route::get('game-registration-template/competitions/{competition}/rules/{rule?}', [GameRegistrationTemplateController::class, 'index'])->name('game-registration-template');

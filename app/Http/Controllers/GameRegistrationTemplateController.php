@@ -12,8 +12,12 @@ class GameRegistrationTemplateController extends Controller
 {
     public function index(Competition $competition, Rule $rule = null)
     {
-        // + navýšen memory_limit v php.ini
-        set_time_limit(3000);
+        set_time_limit(10000);
+        ini_set('post_max_size', '32M');
+        ini_set('upload_max_filesize', '32M');
+        ini_set('max_execution_time', '10000');
+        ini_set('max_input_time', '10000');
+        ini_set('memory_limit', '-1');
         $gamesRepository = new Games;
         $games = $gamesRepository->getGamesFiltered($competition, $rule, null, 'schedule');
         $brackets = $rule !== null && $rule->type === 'brackets' ? $rule->getBrackets() : [];

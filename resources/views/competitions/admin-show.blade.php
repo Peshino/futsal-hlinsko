@@ -96,6 +96,37 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md">
+                            <div class="col-md mb-3 pt-3 border-top border-dark">
+                                <h4>
+                                    @lang('messages.synchronization_players')
+                                </h4>
+                            </div>
+
+                            <form method="POST" action="{{ route('players-synchronize', [$competition->id]) }}">
+                                @csrf
+
+                                <div class="archive col-md">
+                                    <div class="floating-label">
+                                        <label for="archive">Archive</label>
+                                        <input type="number" min="0" max="9999" class="form-control"
+                                            id="archive" name="archive" value="{{ old('archive') }}" />
+                                    </div>
+                                </div>
+
+                                <input type="hidden" id="competition-id" name="competition_id"
+                                    value="{{ $competition->id }}">
+
+                                <div class="form-group text-center mt-3">
+                                    <button type="submit" class="btn btn-app">@lang('messages.synchronize_players')</button>
+                                </div>
+
+                                @include('partials.errors')
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
