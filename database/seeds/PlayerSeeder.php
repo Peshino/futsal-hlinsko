@@ -37,6 +37,10 @@ class PlayerSeeder extends Seeder
                 $firstname = trim($name[1]);
                 $lastname = trim($name[0]);
 
+                if (isset($name[2]) && trim($name[2]) !== '') {
+                    $lastname = $lastname . ' ' . trim($name[2]);
+                }
+
                 if ($archive === 8) {
                     $competitionId = 14;
                 } elseif ($archive === 9) {

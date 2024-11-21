@@ -211,6 +211,10 @@ class PlayerController extends Controller
             $firstname = trim($name[1]);
             $lastname = trim($name[0]);
 
+            if (isset($name[2]) && trim($name[2]) !== '') {
+                $lastname = $lastname . ' ' . trim($name[2]);
+            }
+
             if ($tym === 'DTJ Juventus Hlinsko B') {
                 $tym = 'DTJ Juventus Hlinsko';
             }
