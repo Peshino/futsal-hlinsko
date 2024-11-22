@@ -31,8 +31,28 @@
                     <div class="mx-3">
                         <div class="row d-flex justify-content-center">
                             @foreach ($competition->teams as $team)
+                                @php
+                                    if ($team->primary_color_id !== null && $team->secondary_color_id === null) {
+                                        $style =
+                                            'border-left: 5px solid ' .
+                                            $team->primaryColor->hex_code .
+                                            ' ; background: linear-gradient(to right, rgba(13,22,37,1) 0%, rgba(' .
+                                            $team->primaryColor->rgb_code .
+                                            ',0.65) 100%)';
+                                    } elseif ($team->primary_color_id !== null && $team->secondary_color_id !== null) {
+                                        $style =
+                                            'border-left: 5px solid ' .
+                                            $team->secondaryColor->hex_code .
+                                            ' ; background: linear-gradient(to right, rgba(13,22,37,1) 0%, rgba(' .
+                                            $team->primaryColor->rgb_code .
+                                            ',0.65) 100%)';
+                                    } else {
+                                        $style = '';
+                                    }
+                                @endphp
                                 <a href="{{ route('teams.show', [$competition->id, $team->id]) }}"
-                                    class="col-12 col-sm-5 col-md-5 col-lg-3 col-xl-23percent py-3 m-2 bg-dark rounded">
+                                    class="col-12 col-sm-5 col-md-5 col-lg-3 col-xl-23percent py-3 m-2 bg-dark rounded"
+                                    style="{{ $style }}">
                                     {{ $team->name ?? '' }} <br />
                                     <span class="text-secondary">{{ $team->name_short }}</span>
                                 </a>
