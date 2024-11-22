@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Color;
 use App\Competition;
 use App\Rule;
 
@@ -40,6 +41,16 @@ class Team extends Model
     public function awayGames()
     {
         return $this->hasMany(Game::class, 'away_team_id');
+    }
+
+    public function primaryColor()
+    {
+        return $this->belongsTo(Color::class);
+    }
+
+    public function secondaryColor()
+    {
+        return $this->belongsTo(Color::class);
     }
 
     public function superiorTeam()
