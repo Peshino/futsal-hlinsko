@@ -748,6 +748,11 @@
         padding-left: 0;
     }
 
+    .row.no-margin {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
     .color-radio-buttons {
         @keyframes fade {
 
