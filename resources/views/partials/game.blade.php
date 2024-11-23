@@ -27,11 +27,11 @@
     <div class="row">
         <div class="game-team col-4 col-sm-5 d-flex flex-row-reverse">
             @isset($game->homeTeam)
-                                                                                                                                                                                                                                                                        <span class="justify-content-center align-self-center">
+                                                                                                                                                                                                                                                                            <span class="justify-content-center align-self-center">
 
 
 
-                                                                         @if (isset($bothGames) && $bothGames === true)
+                                                                              @if (isset($bothGames) && $bothGames === true)
         <div title="{{ $game->homeTeam->name }}">
             {{ $game->homeTeam->name_short }}
         </div>
@@ -75,7 +75,10 @@
                 {{ $startDateTime->format('H:i') }}
             </span>
 
-            @if ($game->homeTeam->primary_color_id === $game->awayTeam->primary_color_id)
+            @if (
+                $game->homeTeam->primary_color_id !== null &&
+                    $game->awayTeam->primary_color_id !== null &&
+                    $game->homeTeam->primary_color_id === $game->awayTeam->primary_color_id)
                 <div class="position-absolute z-50" style="color: orange; top: -24px; right: 0; left: -6px;">
                     <div class="">
                         <style>
