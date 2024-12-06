@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    @lang('messages.results') | {{ $competition->name }} | {{ $competition->season->name_short ?? '' }} | @lang('messages.app_name')
+    @lang('messages.prediction_competition') | @lang('messages.app_name')
 @endsection
 
 @section('content')
@@ -9,44 +9,10 @@
         <div class="card-header app-bg">
             <div class="row">
                 <div class="col-4 col-left">
-                    @lang('messages.results')
+                    @lang('messages.schedule')
                 </div>
                 <div class="col-8 col-right d-flex flex-row-reverse">
                     <div class="row">
-                        @can('crud_games')
-                            <div class="col-auto pr-1">
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        @if ($rule !== null)
-                                            <a class="crud-button"
-                                                href="{{ route('games-rule.create', [$competition->id, $rule->id]) }}">
-                                                <div class="plus"></div>
-                                            </a>
-                                        @else
-                                            <a class="crud-button" href="{{ route('games.create', $competition->id) }}">
-                                                <div class="plus"></div>
-                                            </a>
-                                        @endif
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="col-auto pr-1">
-                                <div class="dropdown">
-                                    <button class="control-button dropdown-toggle" type="button" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        @lang('messages.prediction_competition')
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item"
-                                            href="{{ route('admin.recalculate-leaderboard', [$competition->id, $competitionRule->getLastResultByRound()->round]) }}">
-                                            {{ $competitionRule->name ?? '' }}
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endcan
-
                         @if (count($competition->rules) > 0)
                             <div class="col-auto pr-1">
                                 <div class="dropdown">
@@ -59,9 +25,9 @@
                                     @lang('messages.all')
                                 </a> --}}
                                         @foreach ($competition->rules as $competitionRule)
-                                            @if ($competitionRule->getLastResultByRound() !== null)
+                                            @if ($competitionRule->getFirstSchedule() !== null)
                                                 <a class="dropdown-item{{ $competitionRule->id === $rule->id ? ' active' : '' }}"
-                                                    href="{{ route('results.params-index', [$competition->id, $competitionRule->id, $competitionRule->getLastResultByRound()->round]) }}">
+                                                    href="{{ route('schedule.params-index', [$competition->id, $competitionRule->id, $competitionRule->getFirstSchedule()->round]) }}">
                                                     {{ $competitionRule->name ?? '' }}
                                                 </a>
                                             @else
@@ -86,7 +52,7 @@
                                 </a> --}}
                                         @foreach ($rounds as $round)
                                             <a class="dropdown-item{{ $round === $currentRound ? ' active' : '' }}"
-                                                href="{{ route('results.params-index', [$competition->id, $rule->id, $round]) }}">
+                                                href="{{ route('schedule.params-index', [$competition->id, $rule->id, $round]) }}">
                                                 {{ $round ?? '' }}. @lang('messages.round')
                                             </a>
                                         @endforeach
@@ -104,7 +70,18 @@
                 <div class="content-block">
                     @isset($games)
                         <div class="mt-2 text-center">
-                            @include('partials/games')
+                            <form method="POST" action="{{ route('predictions.store', [$competition->id]) }}">
+                                @csrf
+
+                                <select name="tip" required>
+                                    <option value="home">Domácí</option>
+                                    <option value="draw">Remíza</option>
+                                    <option value="away">Hosté</option>
+                                </select>
+                                <input type="hidden" name="match_id" value="">
+                                <button type="submit">Odeslat tip</button>
+
+                            </form>
                         </div>
                     @endisset
                 </div>

@@ -87,7 +87,7 @@ class Games
                 }
 
                 if ($rule !== null) {
-                    $query = $query->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $rule->game_duration . ' MINUTE) > NOW()');
+                    $query = $query->whereRaw('DATE_ADD(`start_datetime`, INTERVAL 36 MINUTE) > NOW()');
                 } else {
                     $query = $query->where('start_datetime', '>', Carbon::now());
                 }

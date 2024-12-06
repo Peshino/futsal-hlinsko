@@ -57,6 +57,9 @@ return [
     'schedule' => 'Schedule',
     'players' => 'Players',
     'player' => 'Player',
+    'prediction' => 'Prediction',
+    'predictions' => 'Predictions',
+    'prediction_competition' => 'Prediction competition',
 
     'title' => 'Title',
     'name' => 'Name',
@@ -64,6 +67,7 @@ return [
     'create' => 'Create',
     'edit' => 'Edit',
     'delete' => 'Delete',
+    'refresh' => 'Refresh',
     'really_delete' => 'Really delete?',
     'your_comment' => 'Your comment',
     'add_comment' => 'Add comment',

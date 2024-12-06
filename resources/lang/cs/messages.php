@@ -58,6 +58,9 @@ return [
     'schedule' => 'Rozpis',
     'players' => 'Hráči',
     'player' => 'Hráč',
+    'prediction' => 'Tip',
+    'predictions' => 'Tipy',
+    'prediction_competition' => 'Tipovačka',
 
     'title' => 'Titulek',
     'name' => 'Název',
@@ -65,6 +68,7 @@ return [
     'create' => 'Vytvořit',
     'edit' => 'Upravit',
     'delete' => 'Smazat',
+    'refresh' => 'Obnovit',
     'really_delete' => 'Opravdu smazat?',
     'your_comment' => 'Tvůj komentář',
     'add_comment' => 'Přidej komentář',
