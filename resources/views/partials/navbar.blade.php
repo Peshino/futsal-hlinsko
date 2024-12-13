@@ -70,13 +70,6 @@
                         <span class="align-middle">@lang('messages.cards')</span>
                     </a>
                 </li>
-                <li
-                    class="nav-item{{ request()->is('*competitions/' . $competition->id . '/predictions*') ? ' active' : '' }}">
-                    <a class="nav-link" href="{{ route('predictions.index', $competition->id) }}">
-                        <i class="fas fa-clone align-middle"></i>&nbsp;
-                        <span class="align-middle">@lang('messages.prediction_competition')</span>
-                    </a>
-                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -127,3 +120,24 @@
         </div>
     </div>
 </nav>
+
+<div class="predictions m-auto text-center">
+    <div class="container">
+        <ul class="navbar-nav d-flex flex-row w-100">
+            <li class="w-50 text-center">
+                <a href="{{ route('predictions.index', [$competition->id, $rule->id]) }}" class="d-block py-2">
+                    <span class="align-middle">
+                        @lang('messages.prediction_competition')
+                    </span>
+                </a>
+            </li>
+            <li class="w-50 text-center">
+                <a href="{{ route('leaderboard.global', $competition->id) }}" class="d-block py-2">
+                    <span class="align-middle">
+                        @lang('messages.leaderboards')
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

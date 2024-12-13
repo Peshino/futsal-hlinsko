@@ -59,7 +59,10 @@ return [
     'player' => 'Player',
     'prediction' => 'Prediction',
     'predictions' => 'Predictions',
+    'save_predictions' => 'Save predictions',
     'prediction_competition' => 'Prediction competition',
+    'leaderboard' => 'Leaderboard',
+    'leaderboards' => 'Leaderboards',
 
     'title' => 'Title',
     'name' => 'Name',

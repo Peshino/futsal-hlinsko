@@ -9,6 +9,10 @@ class Prediction extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'tip', 'points', 'user_id', 'game_id'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

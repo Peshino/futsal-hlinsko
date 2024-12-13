@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Competition;
 use App\Rule;
+use App\User;
 use Illuminate\Http\Request;
 
 class LeaderboardController extends Controller
@@ -15,7 +16,7 @@ class LeaderboardController extends Controller
                     ->take(10)
                     ->get();
 
-        return view('leaderboards.index', compact('users'));
+        return view('leaderboards.global', compact('users'));
     }
 
     public function weekly()
@@ -27,7 +28,7 @@ class LeaderboardController extends Controller
                     ->take(10)
                     ->get();
 
-        return view('leaderboard.global', compact('users'));
+        return view('leaderboard.weekly', compact('users'));
     }
 
     public function monthly()
@@ -39,7 +40,7 @@ class LeaderboardController extends Controller
                     ->take(10)
                     ->get();
 
-        return view('leaderboard.global', compact('users'));
+        return view('leaderboard.weekly', compact('users'));
     }
 
     public function recalculate(Competition $competition, $roundId)

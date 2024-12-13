@@ -60,7 +60,10 @@ return [
     'player' => 'Hráč',
     'prediction' => 'Tip',
     'predictions' => 'Tipy',
+    'save_predictions' => 'Uložit tipy',
     'prediction_competition' => 'Tipovačka',
+    'leaderboard' => 'Žebříček',
+    'leaderboards' => 'Žebříčky',
 
     'title' => 'Titulek',
     'name' => 'Název',

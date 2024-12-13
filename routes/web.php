@@ -58,7 +58,7 @@ Route::prefix('competitions/{competition}')->group(function () {
     ]]);
 
     Route::middleware(['auth'])->group(function () {
-        Route::get('/predictions', [PredictionController::class, 'index'])->name('predictions.index');
+        Route::get('/predictions/rules/{rule}/rounds/{round?}', [PredictionController::class, 'index'])->name('predictions.index');
         Route::post('/predictions', [PredictionController::class, 'store'])->name('predictions.store');
     });
 
