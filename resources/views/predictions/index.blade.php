@@ -137,9 +137,22 @@
         $(() => {
             $('.clickable-row').click(function() {
                 var url = $(this).data('url');
-
                 window.location.href = url;
             });
+
+            function checkGameTimes() {
+                const now = Math.floor(Date.now() / 1000);
+                $('.predictions-games .game-schedule-color').each(function() {
+                    const gameDiv = $(this).closest('.mt-3.mb-3');
+                    const startDateTime = parseInt(gameDiv.find('input[name^="startDateTime"]').val());
+
+                    if (startDateTime < now) {
+                        gameDiv.remove();
+                    }
+                });
+            }
+
+            setInterval(checkGameTimes, 10000);
         });
     </script>
 @endsection
