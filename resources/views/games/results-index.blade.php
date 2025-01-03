@@ -39,7 +39,7 @@
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item"
-                                            href="{{ route('admin.recalculate-leaderboard', [$competition->id, $currentRound]) }}">
+                                            href="{{ route('admin.recalculate-leaderboard', [$competition->id, $rule->id, $currentRound]) }}">
                                             @lang('messages.recalculate')
                                         </a>
                                     </div>

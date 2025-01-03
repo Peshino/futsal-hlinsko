@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Competition;
+use App\Prediction;
 use App\Rule;
 use App\User;
 use App\Repositories\Games;
@@ -71,20 +72,32 @@ class LeaderboardController extends Controller
         return view('leaderboards.monthly', compact('users'));
     }
 
-    public function recalculate(Competition $competition, $gameIds)
+    public function recalculate(Competition $competition, Rule $rule, $currentRound)
     {
         $gamesRepository = new Games;
         $games = $gamesRepository->getGamesFiltered($competition, $rule, null, 'results', $currentRound);
-        $predictions = Prediction::whereIn('game_id', $games->pluck('id'))->get();
-        $usersPoints = [];
+        $gameIds = $games->pluck('id')->toArray();
+        $predictions = Prediction::whereIn('game_id', $gameIds)->get();
 
-        foreach ($predictions as $prediction) {
-            $usersPoints[$prediction->user_id] = ($usersPoints[$prediction->user_id] ?? 0) + $prediction->points;
+        $predictions->each(function ($prediction) {
+            $prediction->points = $this->calculatePoints($prediction);
+            $prediction->save();
+        });
+
+        return redirect()->back()->with('flash_message_success', '<i class="fas fa-check"></i> Body byly úspěšně přepočítány.');
+    }
+
+    private function calculatePoints($prediction)
+    {
+        if ($prediction->tip === $prediction->game->getResult()) {
+            if ($prediction->tip === 'draw' && $prediction->game->getResult() === 'draw') {
+                return 2;
+            }
+
+            return 1;
         }
 
-        dd($usersPoints);
-
-        return redirect()->back()->with('success', 'Body byly úspěšně přepočítány.');
+        return 0;
     }
 
 }

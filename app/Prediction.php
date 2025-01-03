@@ -18,7 +18,7 @@ class Prediction extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function match()
+    public function game()
     {
         return $this->belongsTo(Game::class);
     }

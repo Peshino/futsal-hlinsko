@@ -79,6 +79,19 @@ class Game extends Model
         return null;
     }
 
+    public function getResult()
+    {
+        if ($this->home_team_score > $this->away_team_score) {
+            return 'home';
+        } elseif ($this->home_team_score < $this->away_team_score) {
+            return 'away';
+        } else {
+            return 'draw';
+        }
+
+        return null;
+    }
+
     public function hasScore()
     {
         if ($this->home_team_score !== null && $this->away_team_score !== null) {
