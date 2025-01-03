@@ -30,21 +30,6 @@
                                     </li>
                                 </ul>
                             </div>
-
-                            <div class="col-auto pr-1">
-                                <div class="dropdown">
-                                    <button class="control-button dropdown-toggle" type="button" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        @lang('messages.prediction_competition')
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item"
-                                            href="{{ route('admin.recalculate-leaderboard', [$competition->id, $currentRound]) }}">
-                                            @lang('messages.recalculate')
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
                         @endcan
 
                         @if (count($competition->rules) > 0)

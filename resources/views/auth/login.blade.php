@@ -56,12 +56,6 @@
                                 @lang('messages.sign_in_button')
                             </button>
                         </div>
-                        <div class="mt-4 mb-2">
-                            <a href="{{ route('register') }}">
-                                <i class="fas fa-user-plus"></i>
-                                <span class="align-middle">&nbsp;@lang('messages.sign_up')</span>
-                            </a>
-                        </div>
                     </form>
                 </div>
             </div>

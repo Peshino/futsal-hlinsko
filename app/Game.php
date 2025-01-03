@@ -47,11 +47,6 @@ class Game extends Model
         return $this->hasMany(Card::class);
     }
 
-    public function predictions()
-    {
-        return $this->hasMany(Prediction::class);
-    }
-
     public function getResultByTeamId($teamId)
     {
         $teamId = (int) $teamId;

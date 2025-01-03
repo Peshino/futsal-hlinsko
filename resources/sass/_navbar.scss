@@ -164,27 +164,6 @@
     transform: rotate(0);
 }
 
-.predictions {
-    background: rgba(5, 10, 25, 0.8);
-}
-
-.predictions li {
-    padding: .3rem 0 .3rem 0;
-}
-
-.predictions a {
-    text-transform: uppercase;
-    color: #eeeeee;
-    letter-spacing: .2rem;
-}
-
-.predictions a:hover {
-    text-transform: uppercase;
-    color: #ffffff;
-    text-decoration: none;
-    background: rgba(10, 22, 58, 0.8);
-}
-
 @media (max-width: 992px) {
     .navbar-dark .navbar-nav .nav-link {
         border-top: 0px solid rgba(5, 10, 25, 1);
