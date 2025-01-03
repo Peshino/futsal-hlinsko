@@ -48,7 +48,7 @@
 
             @include('partials/flash-messages')
 
-            <main class="py-4">
+            <main class="pb-4">
                 <div class="container content">
                     @yield('content')
 

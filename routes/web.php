@@ -16,6 +16,8 @@ use App\Http\Controllers\GoalController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\PredictionController;
+use App\Http\Controllers\LeaderboardController;
 
 Auth::routes();
 
@@ -55,6 +57,15 @@ Route::prefix('competitions/{competition}')->group(function () {
         'index'
     ]]);
 
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/predictions/rules/{rule}/rounds/{round?}', [PredictionController::class, 'index'])->name('predictions.index');
+        Route::post('/predictions', [PredictionController::class, 'store'])->name('predictions.store');
+    });
+
+    Route::get('/leaderboard/index', [LeaderboardController::class, 'index'])->name('leaderboard.index');
+    Route::get('/leaderboard/weekly', [LeaderboardController::class, 'weekly'])->name('leaderboard.weekly');
+    Route::get('/leaderboard/monthly', [LeaderboardController::class, 'monthly'])->name('leaderboard.monthly');
+
     Route::get('games/create/rules/{rule}', [GameController::class, 'create'])->name('games-rule.create');
     Route::post('games/store/rules/{rule}', [GameController::class, 'store'])->name('games-rule.store');
     Route::get('results/rules/{rule}/rounds/{round?}', [GameController::class, 'resultsParamsIndex'])->name('results.params-index');
@@ -84,6 +95,8 @@ Route::prefix('admin')->middleware('can:manage_admin_routes')->group(function ()
     });
 
     Route::get('game-registration-template/competitions/{competition}/rules/{rule?}', [GameRegistrationTemplateController::class, 'index'])->name('game-registration-template');
+
+    Route::get('recalculate-leaderboard/{round}', [LeaderboardController::class, 'recalculate'])->name('admin.recalculate-leaderboard');
 
     Route::get('clear-all-cache', function () {
         Artisan::call('cache:clear');

@@ -120,3 +120,24 @@
         </div>
     </div>
 </nav>
+
+<div class="predictions m-auto text-center">
+    <div class="container">
+        <ul class="navbar-nav d-flex flex-row w-100">
+            <li class="w-50 text-center">
+                <a href="{{ route('predictions.index', [$competition->id, $rule->id]) }}" class="d-block py-2">
+                    <span class="align-middle">
+                        <i class="fas fa-bullseye"></i> @lang('messages.prediction_competition')
+                    </span>
+                </a>
+            </li>
+            <li class="w-50 text-center">
+                <a href="{{ route('leaderboard.index', $competition->id) }}" class="d-block py-2">
+                    <span class="align-middle">
+                        <i class="fas fa-trophy"></i> @lang('messages.leaderboard')
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
