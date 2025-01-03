@@ -84,11 +84,6 @@ class User extends Authenticatable
         return $this->hasMany(Phase::class);
     }
 
-    public function predictions()
-    {
-        return $this->hasMany(Prediction::class);
-    }
-
     public function addCompetition($competition)
     {
         return $this->competitions()->create($competition);
