@@ -1181,6 +1181,48 @@
         color: rgb(245, 196, 73);
     }
 
+    .predictions {
+        background: rgba(5, 12, 31, 0.8);
+    }
+
+    .predictions-label {
+        color: #dddddd;
+        border: 1px solid #1e3152;
+    }
+
+    .predictions-label-home {
+        width: 40%;
+        text-align: right;
+    }
+
+    .predictions-label-draw {
+        width: 20%;
+        text-align: center;
+    }
+
+    .predictions-label-away {
+        width: 40%;
+        text-align: left;
+    }
+
+    .predictions-label:hover {
+        color: #ffffff;
+        border: 1px solid #4777c9;
+    }
+
+    .predictions-label.active {
+        border: 1px solid #6da3ff;
+    }
+
+    .predictions-label.focus {
+        outline: 0px !important;
+        box-shadow: none !important;
+    }
+
+    .game-schedule-color {
+        color: #5cffb4;
+    }
+
     @media (min-width: 1200px) {
         .col-xl-23percent {
             flex: 0 0 23%;

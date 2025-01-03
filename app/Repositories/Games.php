@@ -92,6 +92,16 @@ class Games
                     $query = $query->where('start_datetime', '>', Carbon::now());
                 }
                 break;
+            case 'schedule-from-now':
+                $query = $query->whereNull('home_team_score');
+                $query = $query->whereNull('away_team_score');
+
+                if ($order === null) {
+                    $order = 'asc';
+                }
+
+                $query = $query->where('start_datetime', '>', Carbon::now());
+                break;
             case 'all':
                 if ($order === null) {
                     $order = 'asc';

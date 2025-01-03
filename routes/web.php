@@ -62,7 +62,7 @@ Route::prefix('competitions/{competition}')->group(function () {
         Route::post('/predictions', [PredictionController::class, 'store'])->name('predictions.store');
     });
 
-    Route::get('/leaderboard/global', [LeaderboardController::class, 'global'])->name('leaderboard.global');
+    Route::get('/leaderboard/index', [LeaderboardController::class, 'index'])->name('leaderboard.index');
     Route::get('/leaderboard/weekly', [LeaderboardController::class, 'weekly'])->name('leaderboard.weekly');
     Route::get('/leaderboard/monthly', [LeaderboardController::class, 'monthly'])->name('leaderboard.monthly');
 
@@ -96,7 +96,7 @@ Route::prefix('admin')->middleware('can:manage_admin_routes')->group(function ()
 
     Route::get('game-registration-template/competitions/{competition}/rules/{rule?}', [GameRegistrationTemplateController::class, 'index'])->name('game-registration-template');
 
-    Route::get('recalculate-leaderboard/{round}', [LeaderboardController::class, 'recalculate'])->middleware('auth', 'admin')->name('admin.recalculate-leaderboard');
+    Route::get('recalculate-leaderboard/{round}', [LeaderboardController::class, 'recalculate'])->name('admin.recalculate-leaderboard');
 
     Route::get('clear-all-cache', function () {
         Artisan::call('cache:clear');

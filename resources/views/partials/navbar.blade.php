@@ -127,14 +127,14 @@
             <li class="w-50 text-center">
                 <a href="{{ route('predictions.index', [$competition->id, $rule->id]) }}" class="d-block py-2">
                     <span class="align-middle">
-                        @lang('messages.prediction_competition')
+                        <i class="fas fa-bullseye"></i> @lang('messages.prediction_competition')
                     </span>
                 </a>
             </li>
             <li class="w-50 text-center">
-                <a href="{{ route('leaderboard.global', $competition->id) }}" class="d-block py-2">
+                <a href="{{ route('leaderboard.index', $competition->id) }}" class="d-block py-2">
                     <span class="align-middle">
-                        @lang('messages.leaderboards')
+                        <i class="fas fa-trophy"></i> @lang('messages.leaderboard')
                     </span>
                 </a>
             </li>
