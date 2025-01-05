@@ -80,15 +80,25 @@ class LeaderboardController extends Controller
         $predictions = Prediction::whereIn('game_id', $gameIds)->get();
 
         $predictions->each(function ($prediction) {
-            $prediction->points = $this->calculatePoints($prediction);
+            $calculatedPoints = $this->calculatePoints($prediction);
+
+            if ($calculatedPoints === null) {
+                return;
+            }
+
+            $prediction->points = $calculatedPoints;
             $prediction->save();
         });
 
         return redirect()->back()->with('flash_message_success', '<i class="fas fa-check"></i> Body byly úspěšně přepočítány.');
     }
 
-    private function calculatePoints($prediction)
+    private function calculatePoints($prediction): ?int
     {
+        if ($prediction->game->getResult() === null) {
+            return null;
+        }
+
         if ($prediction->tip === $prediction->game->getResult()) {
             if ($prediction->tip === 'draw' && $prediction->game->getResult() === 'draw') {
                 return 2;

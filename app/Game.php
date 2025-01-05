@@ -56,23 +56,25 @@ class Game extends Model
     {
         $teamId = (int) $teamId;
 
-        if ($this->home_team_id === $teamId) {
-            if ($this->home_team_score > $this->away_team_score) {
-                return 'win';
-            } elseif ($this->home_team_score < $this->away_team_score) {
-                return 'loss';
-            } else {
-                return 'draw';
+        if ($this->home_team_score !== null && $this->away_team_score !== null) {
+            if ($this->home_team_id === $teamId) {
+                if ($this->home_team_score > $this->away_team_score) {
+                    return 'win';
+                } elseif ($this->home_team_score < $this->away_team_score) {
+                    return 'loss';
+                } else {
+                    return 'draw';
+                }
             }
-        }
 
-        if ($this->away_team_id === $teamId) {
-            if ($this->home_team_score > $this->away_team_score) {
-                return 'loss';
-            } elseif ($this->home_team_score < $this->away_team_score) {
-                return 'win';
-            } else {
-                return 'draw';
+            if ($this->away_team_id === $teamId) {
+                if ($this->home_team_score > $this->away_team_score) {
+                    return 'loss';
+                } elseif ($this->home_team_score < $this->away_team_score) {
+                    return 'win';
+                } else {
+                    return 'draw';
+                }
             }
         }
 
@@ -81,12 +83,14 @@ class Game extends Model
 
     public function getResult()
     {
-        if ($this->home_team_score > $this->away_team_score) {
-            return 'home';
-        } elseif ($this->home_team_score < $this->away_team_score) {
-            return 'away';
-        } else {
-            return 'draw';
+        if ($this->home_team_score !== null && $this->away_team_score !== null) {
+            if ($this->home_team_score > $this->away_team_score) {
+                return 'home';
+            } elseif ($this->home_team_score < $this->away_team_score) {
+                return 'away';
+            } else {
+                return 'draw';
+            }
         }
 
         return null;
