@@ -51,6 +51,10 @@ class PredictionController extends Controller
         $options = $request->input('options');
         $startDateTimes = $request->input('startDateTime');
 
+        if ($options === null) {
+            return redirect()->back()->with('flash_message_warning', '<i class="fas fa-exclamation-triangle"></i> Nebyly vybrány žádné tipy.');
+        }
+
         foreach ($options as $gameId => $tip) {
             $startDateTime = $startDateTimes[$gameId] ?? null;
 
