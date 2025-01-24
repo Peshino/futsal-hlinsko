@@ -36,7 +36,7 @@
                                             {{ $key ?? '' }}.
                                         </td>
                                         <td class="text-left">
-                                            {{ $item['firstname'] }} {{ substr($item['lastname'], 0, 2) }}.
+                                            {{ $item['firstname'] }} {{ mb_substr($item['lastname'], 0, 2) }}.
                                         </td>
                                         <td class="competition-color">
                                             <strong>{{ $item['points'] }}</strong>
