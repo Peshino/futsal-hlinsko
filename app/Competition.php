@@ -74,14 +74,14 @@ class Competition extends Model
                     }
 
                     if ($section === 'schedule') {
-                        if ($rule->schedule()->exists()) {
+                        if ($rule->scheduleWithTeamsFilled()->exists()) {
                             return $rule;
                         }
 
                         continue;
                     }
                 } else {
-                    if ($rule->games()->exists()) {
+                    if ($rule->gamesWithTeamsFilled()->exists()) {
                         return $rule;
                     }
                 }

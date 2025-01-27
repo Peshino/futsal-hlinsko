@@ -40,6 +40,11 @@ class Rule extends Model
         return $this->hasMany(Game::class);
     }
 
+    public function gamesWithTeamsFilled()
+    {
+        return $this->hasMany(Game::class)->whereNotNull('home_team_id')->whereNotNull('away_team_id');
+    }
+
     public function positions()
     {
         return $this->hasMany(Position::class);
@@ -67,6 +72,11 @@ class Rule extends Model
     public function schedule()
     {
         return $this->hasMany(Game::class)->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $this->game_duration . ' MINUTE) > NOW()');
+    }
+
+    public function scheduleWithTeamsFilled()
+    {
+        return $this->hasMany(Game::class)->whereRaw('DATE_ADD(`start_datetime`, INTERVAL ' . $this->game_duration . ' MINUTE) > NOW()')->whereNotNull('home_team_id')->whereNotNull('away_team_id');
     }
 
     public function phases()
