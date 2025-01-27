@@ -23,7 +23,7 @@
     </div>
 @endif
 <div class="game mb-3 clickable-row" data-url="{{ route('games.show', [$competition->id, $game->id]) }}"
-    @if ($game->homeTeam->primary_color_id !== null && $game->awayTeam->primary_color_id !== null) style="background: linear-gradient(to right, rgba(7,14,30,0.65) 0%, rgba({{ $game->homeTeam?->primaryColor?->rgb_code }},0.65) 10%, rgba(7,14,30,0.65) 37%, rgba(7,14,30,0.65) 63%, rgba({{ $game->awayTeam?->primaryColor?->rgb_code }},0.65) 90%, rgba(7,14,30,0.65) 100%);" @endif>
+    @if ($game->homeTeam?->primary_color_id !== null && $game->awayTeam?->primary_color_id !== null) style="background: linear-gradient(to right, rgba(7,14,30,0.65) 0%, rgba({{ $game->homeTeam?->primaryColor?->rgb_code }},0.65) 10%, rgba(7,14,30,0.65) 37%, rgba(7,14,30,0.65) 63%, rgba({{ $game->awayTeam?->primaryColor?->rgb_code }},0.65) 90%, rgba(7,14,30,0.65) 100%);" @endif>
     <div class="row">
         <div class="game-team col-4 col-sm-5 d-flex flex-row-reverse">
             @isset($game->homeTeam)
@@ -76,9 +76,9 @@
                     </span>
 
                     @if (
-                        $game->homeTeam->primary_color_id !== null &&
-                            $game->awayTeam->primary_color_id !== null &&
-                            $game->homeTeam->primary_color_id === $game->awayTeam->primary_color_id)
+                        $game->homeTeam?->primary_color_id !== null &&
+                            $game->awayTeam?->primary_color_id !== null &&
+                            $game->homeTeam?->primary_color_id === $game->awayTeam?->primary_color_id)
                         <div class="position-absolute z-50" style="color: orange; top: -24px; right: 0; left: -6px;">
                             <div class="">
                                 <style>

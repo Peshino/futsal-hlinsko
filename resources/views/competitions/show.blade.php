@@ -229,8 +229,8 @@
                                                     @foreach ($rule->teams as $team)
                                                         @php
                                                             if (
-                                                                $team->primary_color_id !== null &&
-                                                                $team->secondary_color_id === null
+                                                                $team?->primary_color_id !== null &&
+                                                                $team?->secondary_color_id === null
                                                             ) {
                                                                 $style =
                                                                     'border-left: 5px solid ' .
@@ -239,14 +239,14 @@
                                                                     $team->primaryColor->rgb_code .
                                                                     ',0.65) 100%)';
                                                             } elseif (
-                                                                $team->primary_color_id !== null &&
-                                                                $team->secondary_color_id !== null
+                                                                $team?->primary_color_id !== null &&
+                                                                $team?->secondary_color_id !== null
                                                             ) {
                                                                 $style =
                                                                     'border-left: 5px solid ' .
-                                                                    $team->secondaryColor->hex_code .
+                                                                    $team?->secondaryColor->hex_code .
                                                                     ' ; background: linear-gradient(to right, rgba(13,22,37,1) 0%, rgba(' .
-                                                                    $team->primaryColor->rgb_code .
+                                                                    $team?->primaryColor->rgb_code .
                                                                     ',0.65) 100%)';
                                                             } else {
                                                                 $style = '';

@@ -32,14 +32,17 @@
                         <div class="row d-flex justify-content-center">
                             @foreach ($competition->teams as $team)
                                 @php
-                                    if ($team->primary_color_id !== null && $team->secondary_color_id === null) {
+                                    if ($team?->primary_color_id !== null && $team?->secondary_color_id === null) {
                                         $style =
                                             'border-left: 5px solid ' .
                                             $team->primaryColor->hex_code .
                                             ' ; background: linear-gradient(to right, rgba(13,22,37,1) 0%, rgba(' .
                                             $team->primaryColor->rgb_code .
                                             ',0.65) 100%)';
-                                    } elseif ($team->primary_color_id !== null && $team->secondary_color_id !== null) {
+                                    } elseif (
+                                        $team?->primary_color_id !== null &&
+                                        $team?->secondary_color_id !== null
+                                    ) {
                                         $style =
                                             'border-left: 5px solid ' .
                                             $team->secondaryColor->hex_code .

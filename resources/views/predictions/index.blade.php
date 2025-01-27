@@ -63,7 +63,7 @@
                                             </span>
                                         </div>
                                         <div class="btn-group btn-group-toggle w-100" data-toggle="buttons"
-                                            @if ($game->homeTeam->primary_color_id !== null && $game->awayTeam->primary_color_id !== null) style="background: linear-gradient(to right, rgba(7,14,30,0.65) 0%, rgba({{ $game->homeTeam?->primaryColor?->rgb_code }},0.65) 10%, rgba(7,14,30,0.65) 37%, rgba(7,14,30,0.65) 63%, rgba({{ $game->awayTeam?->primaryColor?->rgb_code }},0.65) 90%, rgba(7,14,30,0.65) 100%);" @endif>
+                                            @if ($game->homeTeam?->primary_color_id !== null && $game->awayTeam?->primary_color_id !== null) style="background: linear-gradient(to right, rgba(7,14,30,0.65) 0%, rgba({{ $game->homeTeam?->primaryColor?->rgb_code }},0.65) 10%, rgba(7,14,30,0.65) 37%, rgba(7,14,30,0.65) 63%, rgba({{ $game->awayTeam?->primaryColor?->rgb_code }},0.65) 90%, rgba(7,14,30,0.65) 100%);" @endif>
                                             <label class="btn predictions-label predictions-label-home pt-4 pb-5">
                                                 <input type="radio" name="options[{{ $game->id }}]" value="home"
                                                     autocomplete="off">
