@@ -78,7 +78,7 @@ class CompetitionController extends Controller
         $rule = $competition->getRuleJustPlayedByPriority('schedule');
 
         $lastResult = $gamesRepository->getGamesFiltered($competition, null, null, 'results', null, null, null, 'desc', 1)->first();
-        $firstSchedule = $gamesRepository->getGamesFiltered($competition, $rule, null, 'schedule', null, null, null, 'asc', 1)->first();
+        $firstSchedule = $gamesRepository->getGamesFiltered($competition, null, null, 'schedule', null, null, null, 'asc', 1)->first();
 
         if ($competition->games->isNotEmpty()) {
             foreach ($competition->games as $game) {
