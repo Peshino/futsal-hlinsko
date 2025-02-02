@@ -284,7 +284,14 @@ class GameController extends Controller
             if ($teamGoalsFiltered->isEmpty() && $teamCardsFiltered->isEmpty() && $game->{$teamType . '_team_id'} !== null) {
                 $attributes += $request->validate([$teamType . '_team_id' => 'nullable|numeric|min:1']);
             } else {
-                $attributes[$teamType . '_team_id'] = $game->{$teamType . '_team_id'};
+                if ($game->{$teamType . '_team_id'} === null) {
+                    $attributes += $request->validate([
+                        'home_team_id' => 'nullable|numeric|min:1',
+                        'away_team_id' => 'nullable|numeric|min:1',
+                    ]);
+                } else {
+                    $attributes[$teamType . '_team_id'] = $game->{$teamType . '_team_id'};
+                }
             }
         }
 
