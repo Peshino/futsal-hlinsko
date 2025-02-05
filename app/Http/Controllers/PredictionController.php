@@ -17,6 +17,7 @@ class PredictionController extends Controller
 
     public function index(Competition $competition, Rule $rule, $currentRound = null)
     {
+        $games = collect();
         $gamesRepository = new Games;
         $userId = auth()->id();
 
