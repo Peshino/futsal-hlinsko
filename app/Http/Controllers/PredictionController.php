@@ -20,6 +20,11 @@ class PredictionController extends Controller
         $games = collect();
         $gamesRepository = new Games;
         $userId = auth()->id();
+        $lastRule = $competition->getLastRuleByPriority();
+
+        if ($lastRule->gamesWithTeamsFilled()->exists()) {
+            $rule = $lastRule;
+        }
 
         if ($currentRound !== null) {
             $currentRound = (int) $currentRound;
