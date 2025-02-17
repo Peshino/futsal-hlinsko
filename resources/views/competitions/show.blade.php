@@ -67,57 +67,61 @@
                         </div>
                     </div> --}}
 
-                    @if ($competition->id === 20)
-                        <div class="row mb-4 game">
-                            <div class="col no-padding">
-                                <div class="pt-2 pb-2 first-place text-center">
-                                    <h3>
-                                        @if ($competition->id === 19)
-                                            <a href="{{ route('teams.show', [$competition->id, 186]) }}">
-                                                <i class="fas fa-medal"></i> Forza Hlinsko
-                                            </a>
-                                        @endif
+                    <div class="row mb-4 game">
+                        <div class="col no-padding">
+                            <div class="pt-2 pb-2 first-place text-center">
+                                <h3>
+                                    @if ($competition->id === 19)
+                                        <a href="{{ route('teams.show', [$competition->id, 206]) }}">
+                                            <i class="fas fa-medal"></i> Forza Hlinsko
+                                        </a>
+                                    @endif
 
-                                        @if ($competition->id === 20)
-                                            <a href="{{ route('teams.show', [$competition->id, 212]) }}">
-                                                <i class="fas fa-medal"></i> FC Předhradí Rychmburk
-                                            </a>
-                                        @endif
-                                    </h3>
-                                </div>
-                                <div class="pt-2 pb-2 second-place text-center">
-                                    <h5>
-                                        @if ($competition->id === 19)
-                                            <a href="{{ route('teams.show', [$competition->id, 189]) }}">
-                                                <i class="fas fa-medal"></i> Tatra tým Hlinsko
-                                            </a>
-                                        @endif
+                                    @if ($competition->id === 20)
+                                        <a href="{{ route('teams.show', [$competition->id, 212]) }}">
+                                            <i class="fas fa-medal"></i> FC Předhradí Rychmburk
+                                        </a>
+                                    @endif
+                                </h3>
+                            </div>
+                            <div class="pt-2 pb-2 second-place text-center">
+                                <h5>
+                                    @if ($competition->id === 19)
+                                        <a href="{{ route('teams.show', [$competition->id, 209]) }}">
+                                            <i class="fas fa-medal"></i> Tatra tým Hlinsko
+                                        </a>
+                                    @endif
 
-                                        @if ($competition->id === 20)
-                                            <a href="{{ route('teams.show', [$competition->id, 207]) }}">
-                                                <i class="fas fa-medal"></i> Tatranky
-                                            </a>
-                                        @endif
-                                    </h5>
-                                </div>
-                                <div class="pt-2 pb-2 third-place text-center">
-                                    <h5>
-                                        @if ($competition->id === 19)
-                                            <a href="{{ route('teams.show', [$competition->id, 184]) }}">
-                                                <i class="fas fa-medal"></i> AC Hlinsko
-                                            </a>
-                                        @endif
+                                    @if ($competition->id === 20)
+                                        <a href="{{ route('teams.show', [$competition->id, 207]) }}">
+                                            <i class="fas fa-medal"></i> Tatranky
+                                        </a>
+                                    @endif
+                                </h5>
+                            </div>
+                            <div class="pt-2 pb-2 third-place text-center">
+                                <h5>
+                                    @if ($competition->id === 19)
+                                        <a href="{{ route('teams.show', [$competition->id, 196]) }}">
+                                            <i class="fas fa-medal"></i> AC Hlinsko
+                                        </a>
+                                    @endif
 
-                                        @if ($competition->id === 20)
-                                            <a href="{{ route('teams.show', [$competition->id, 198]) }}">
-                                                <i class="fas fa-medal"></i> Norwich Hlinsko
-                                            </a>
-                                        @endif
-                                    </h5>
-                                </div>
+                                    @if ($competition->id === 20)
+                                        <a href="{{ route('teams.show', [$competition->id, 198]) }}">
+                                            <i class="fas fa-medal"></i> Norwich Hlinsko
+                                        </a>
+                                    @endif
+                                </h5>
+                            </div>
+                            <div class="pt-2 pb-2 text-center">
+                                <h5>
+                                    Vítězem <span class="game-schedule-color">TIPOVAČKY</span> je <span
+                                        class="game-score-color">Matouš Myška</span>.
+                                </h5>
                             </div>
                         </div>
-                    @endif
+                    </div>
 
                     @if ($gameCurrentlyBeingPlayed !== null || $firstSchedule !== null || $lastResult !== null)
                         <div class="justify-content-center border-bottom border-dark mb-2 pb-3">
