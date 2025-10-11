@@ -67,7 +67,7 @@
                         </div>
                     </div> --}}
 
-                    <div class="row mb-4 game">
+                    {{-- <div class="row mb-4 game">
                         <div class="col no-padding">
                             <div class="pt-2 pb-2 first-place text-center">
                                 <h3>
@@ -121,7 +121,7 @@
                                 </h5>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     @if ($gameCurrentlyBeingPlayed !== null || $firstSchedule !== null || $lastResult !== null)
                         <div class="justify-content-center border-bottom border-dark mb-2 pb-3">

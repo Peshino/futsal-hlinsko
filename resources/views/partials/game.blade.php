@@ -40,7 +40,7 @@
                             {{ $game->homeTeam->name }}
                         </div>
                         <div class="team-name-short" title="{{ $game->homeTeam->name }}">
-                            {{ $game->homeTeam->name_short }}
+                            {{ $game->homeTeam->name }}
                         </div>
                     @endif
                 </span>
@@ -50,10 +50,12 @@
             <div class="game-score col-4 col-sm-2 text-center">
                 <span class="justify-content-center align-self-center">
                     <div class="row">
-                        <div class="col-6 game-score-home d-flex flex-row-reverse">
+                        <div class="col-6 game-score-home d-flex flex-row-reverse
+                            @if ($game->home_team_score > $game->away_team_score) home-winner-score @endif">
                             {{ $game->home_team_score }}
                         </div>
-                        <div class="col-6 game-score-away d-flex">
+                        <div class="col-6 game-score-away d-flex
+                            @if ($game->away_team_score > $game->home_team_score) away-winner-score @endif">
                             {{ $game->away_team_score }}
                         </div>
                     </div>
@@ -111,7 +113,7 @@
                             {{ $game->awayTeam->name }}
                         </div>
                         <div class="team-name-short" title="{{ $game->awayTeam->name }}">
-                            {{ $game->awayTeam->name_short }}
+                            {{ $game->awayTeam->name }}
                         </div>
                     @endif
                 </span>

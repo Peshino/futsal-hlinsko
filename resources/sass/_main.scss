@@ -1,12 +1,12 @@
 #main {
     min-height: 100vh;
     // background-color: #1b1e21;
-    background-color: rgb(30 41 59);
-    background-image: url(/img/app_bg.jpg);
+    background-color: rgb(4 14 35);
+    /* background-image: url(/img/app_bg.jpg);
     background-repeat: no-repeat;
     background-position: top center;
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed; */
     position: relative;
 
     :focus {
@@ -85,10 +85,15 @@
         // background-color: #2a2f33;
         background-clip: border-box;
         border: 0px solid rgb(0 9 164);
+        /* border-left: 1px solid rgba(7, 16, 172, 0.6);
+        border-right: 1px solid rgba(7, 16, 172, 0.6); */
         border-bottom: 1px solid rgb(64 137 255);
         border-radius: 0.25rem;
-        background: #121e32;
+        background: #061124;
         // box-shadow: 0 0 2rem rgb(41 55 84);
+        /* -webkit-box-shadow:0px 0px 42px 0px rgba(11,17,135,0.6);
+        -moz-box-shadow: 0px 0px 42px 0px rgba(11,17,135,0.6);
+        box-shadow: 0px 0px 42px 0px rgba(11,17,135,0.6); */
     }
 
     .card-body-x-padding {
@@ -101,6 +106,9 @@
 
     .card-body {
         padding: 1.25rem;
+        -webkit-box-shadow:0px 0px 100px 15px rgba(11,17,135,0.55);
+        -moz-box-shadow: 0px 0px 100px 15px rgba(11,17,135,0.55);
+        box-shadow: 0px 0px 100px 15px rgba(48, 11, 135, 0.55);
 
         sup {
             top: -0.7em;
@@ -953,6 +961,7 @@
             font-size: 1.2rem;
             color: #dddddd;
             padding: 0.7rem;
+            text-shadow: 1px 1px 2px #000000, 0 0 1em #000000, 0 0 0.2em #000000;
         }
 
         .game-score,
@@ -975,6 +984,14 @@
             .game-halftime-score-away {
                 font-size: 1rem;
                 color: #cccccc;
+            }
+
+            .home-winner-score {
+                background: linear-gradient(to right,  rgba(180,223,91,0) 0%,rgba(91,2,245,0.5) 100%);
+            }
+
+            .away-winner-score {
+                background: linear-gradient(to right,  rgba(91,2,245,0.5) 0%,rgba(180,223,91,0) 100%);
             }
         }
 
@@ -1333,13 +1350,14 @@
 
         .team-name-short {
             display: block;
+            font-size: 0.7rem;
         }
 
-        .game {
+        /* .game {
             .game-team {
                 text-transform: uppercase;
             }
-        }
+        } */
     }
 
     @media (max-width: 460px) {
