@@ -121,6 +121,7 @@
     </div>
 </nav>
 
+@isset($competition->id, $rule->id)
 <div class="predictions m-auto text-center">
     <div class="container">
         <ul class="navbar-nav d-flex flex-row w-100">
@@ -141,3 +142,4 @@
         </ul>
     </div>
 </div>
+@endisset
