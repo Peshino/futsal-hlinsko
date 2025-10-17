@@ -14,7 +14,11 @@ class LeaderboardController extends Controller
     public function index(Competition $competition)
     {
         $data = User::select('firstname', 'lastname')
-                    ->withSum('predictions', 'points')
+                    ->withSum(['predictions' => function ($query) use ($competition) {
+                        $query->whereHas('game', function ($q) use ($competition) {
+                            $q->where('competition_id', $competition->id);
+                        });
+                    }], 'points')
                     ->having('predictions_sum_points', '>', 0)
                     ->orderBy('predictions_sum_points', 'desc')
                     ->get()
@@ -30,11 +34,13 @@ class LeaderboardController extends Controller
         return view('leaderboards.index', compact('data', 'competition'));
     }
 
-    public function weekly()
+    public function weekly(Competition $competition)
     {
         $users = User::select('firstname', 'lastname')
-                    ->withSum(['predictions' => function ($query) {
-                        $query->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
+                    ->withSum(['predictions' => function ($query) use ($competition) {
+                        $query->whereHas('game', function ($q) use ($competition) {
+                            $q->where('competition_id', $competition->id);
+                        })->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
                     }], 'points')
                     ->having('predictions_sum_points', '>', 0)
                     ->orderBy('predictions_sum_points', 'desc')
@@ -48,14 +54,16 @@ class LeaderboardController extends Controller
                     })
                     ->toArray();
 
-        return view('leaderboards.weekly', compact('users'));
+        return view('leaderboards.weekly', compact('users', 'competition'));
     }
 
-    public function monthly()
+    public function monthly(Competition $competition)
     {
         $users = User::select('firstname', 'lastname')
-                    ->withSum(['predictions' => function ($query) {
-                        $query->whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()]);
+                    ->withSum(['predictions' => function ($query) use ($competition) {
+                        $query->whereHas('game', function ($q) use ($competition) {
+                            $q->where('competition_id', $competition->id);
+                        })->whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()]);
                     }], 'points')
                     ->having('predictions_sum_points', '>', 0)
                     ->orderBy('predictions_sum_points', 'desc')
@@ -69,7 +77,7 @@ class LeaderboardController extends Controller
                     })
                     ->toArray();
 
-        return view('leaderboards.monthly', compact('users'));
+        return view('leaderboards.monthly', compact('users', 'competition'));
     }
 
     public function recalculate(Competition $competition, Rule $rule, $currentRound)
