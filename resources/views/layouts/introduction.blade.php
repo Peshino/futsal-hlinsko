@@ -107,7 +107,7 @@
                         @endcan
 
                         <div class="mt-5">
-                            <p class="text-gray">Hrajte TIPOVAČKU a vyhrajte 1000 Kč!</p>
+                            <p style="color: #5cffb4;"><small>vítěz TIPOVAČKY získá 1000 Kč</small></p>
                         </div>
                     </div>
                 @else
