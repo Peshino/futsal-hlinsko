@@ -218,4 +218,10 @@
         color: #000000;
         background: #ffffff;
     }
+
+    @media (max-width: 768px) {
+        .padding-for-wrapped-buttons {
+            padding: 0 0.5rem 0 0.5rem;
+        }
+    }
 }

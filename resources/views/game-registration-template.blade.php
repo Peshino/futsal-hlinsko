@@ -93,19 +93,16 @@
                     // Hráči týmů vyfiltrovaní od těch, co přichází obvykle z A-týmů (mají jména zapsaná pouze velkými písmeny)
                     // Zároveň se kontrolují jen 3 písmena po 1. písmenu kvůli výjimkám, kde hráči mají ve jméně 2 slova nebo římské číslice
                     $homeTeamPlayersWithoutCapitalLetters = $filteredPlayers = isset($game->homeTeam->players)
-                        ? $game->homeTeam->players->filter(function ($player) {
+                        ? $game->homeTeam->players->filter(function ($player) use ($game) {
                             $lastnameCapitalsCheck = substr($player->lastname, 1, 4);
+                            
                             return $lastnameCapitalsCheck !== strtoupper($lastnameCapitalsCheck);
                         })
                         : collect();
                     $awayTeamPlayersWithoutCapitalLetters = $filteredPlayers = isset($game->awayTeam->players)
                         ? $game->awayTeam->players->filter(function ($player) use ($game) {
-                            // TODO: Orel Kameničky mají skoro všechny hráče velkými písmeny - pořešit
-                            if ($game->awayTeam->id === 178) {
-                                return true;
-                            }
-
                             $lastnameCapitalsCheck = substr($player->lastname, 1, 4);
+
                             return $lastnameCapitalsCheck !== strtoupper($lastnameCapitalsCheck);
                         })
                         : collect();
@@ -125,10 +122,6 @@
                         $homeTeamPlayersWithoutCapitalLetters->isNotEmpty() &&
                             count($homeTeamPlayersWithoutCapitalLetters) <= $maxTeamPlayersCount)
                         @foreach ($homeTeamPlayersWithoutCapitalLetters as $player)
-                            @if ($player->lastname === strtoupper($player->lastname))
-                                @continue
-                            @endif
-
                             <tr>
                                 <td>
                                     {!! $loop->iteration <= $maxTeamPlayersCount ? $player->jersey_number ?? '' : '&nbsp;' !!}

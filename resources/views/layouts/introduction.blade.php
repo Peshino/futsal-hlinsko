@@ -79,7 +79,7 @@
                     </div>
 
                     <div class="introduction-middle text-center">
-                        <div id="competitions" class="btn-group flex-wrap show">
+                        <div id="competitions" class="btn-group flex-wrap show padding-for-wrapped-buttons">
                             @if (count($lastSeason->competitions) > 0)
                                 @foreach ($lastSeason->competitions as $competition)
                                     <a href="{{ route('competitions.show', $competition->id) }}" class="btn btn-lg">
@@ -105,6 +105,10 @@
                                 </a>
                             </div>
                         @endcan
+
+                        <div class="mt-5">
+                            <p class="text-gray">Hrajte TIPOVAČKU a vyhrajte 1000 Kč!</p>
+                        </div>
                     </div>
                 @else
                     @lang('messages.no_competitions')
