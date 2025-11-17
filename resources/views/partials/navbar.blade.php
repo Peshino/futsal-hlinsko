@@ -128,7 +128,7 @@
             <li class="w-50 text-center">
                 <a href="{{ route('predictions.index', [$competition->id, $rule->id]) }}" class="d-block py-2">
                     <span class="align-middle game-schedule-color">
-                        <i class="fas fa-bullseye"></i> @lang('messages.prediction_competition')
+                        <i class="fas fa-bullseye"></i> @lang('messages.prediction_competition') <small>o</small> <strong>1000</strong> K<small>č</small>
                     </span>
                 </a>
             </li>
