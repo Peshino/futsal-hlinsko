@@ -27,7 +27,7 @@ class CardSeeder extends Seeder
             foreach ($data as $key => $item) {
                 $class = (int) $item->class;
                 $archive = (int) $item->archive;
-                $jmeno = trim(str_replace('  ', ' ', $item->jmeno));
+                $jmeno = trim(preg_replace('/\s+/u', ' ', $item->jmeno));
                 $tym = trim($item->tym);
                 $yellow = (int) $item->zlute;
                 $red = (int) $item->cervene;

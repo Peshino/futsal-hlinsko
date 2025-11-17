@@ -27,7 +27,7 @@ class GoalSeeder extends Seeder
             foreach ($data as $key => $item) {
                 $class = (int) $item->class;
                 $archive = (int) $item->archive;
-                $jmeno = trim(str_replace('  ', ' ', $item->jmeno));
+                $jmeno = trim(preg_replace('/\s+/u', ' ', $item->jmeno));
                 $tym = trim($item->tym);
                 $amount = (int) $item->pocet;
                 $kolo = (int) $item->kolo;
