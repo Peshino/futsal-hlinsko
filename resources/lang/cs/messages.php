@@ -203,6 +203,8 @@ return [
     'score' => 'Skóre',
     'goal_difference' => 'Rozdíl skóre',
     'points' => 'Body',
+    'points_competition' => 'Body za soutěž',
+    'points_total' => 'Body celkem',
     'wins_short' => 'V',
     'draws_short' => 'R',
     'losses_short' => 'P',

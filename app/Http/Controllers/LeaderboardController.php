@@ -14,25 +14,28 @@ class LeaderboardController extends Controller
     public function index(Competition $competition)
     {
         $data = User::select('firstname', 'lastname')
-                    ->withSum(['predictions' => function ($query) use ($competition) {
-                        $query->whereHas('game', function ($q) use ($competition) {
-                            $q->where('competition_id', $competition->id);
-                        });
-                    }], 'points')
-                    ->having('predictions_sum_points', '>', 0)
-                    ->orderBy('predictions_sum_points', 'desc')
-                    ->get()
-                    ->map(function ($user) {
-                        return [
-                            'firstname' => $user->firstname,
-                            'lastname' => $user->lastname,
-                            'points' => $user->predictions_sum_points,
-                        ];
-                    })
-                    ->toArray();
+            ->withSum('predictions as points_total', 'points')
+            ->withSum(['predictions as points_competition' => function ($query) use ($competition) {
+                $query->whereHas('game', function ($q) use ($competition) {
+                    $q->where('competition_id', $competition->id);
+                });
+            }], 'points')
+            ->having('points_total', '>', 0)
+            ->orderByDesc('points_total')
+            ->get()
+            ->map(function ($user) {
+                return [
+                    'firstname' => $user->firstname,
+                    'lastname' => $user->lastname,
+                    'points_total' => $user->points_total,
+                    'points_competition' => $user->points_competition,
+                ];
+            })
+            ->toArray();
 
-        return view('leaderboards.index', compact('data', 'competition'));
-    }
+    return view('leaderboards.index', compact('data', 'competition'));
+}
+
 
     public function weekly(Competition $competition)
     {

@@ -23,7 +23,8 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col" class="text-left">@lang('messages.predictioner')</th>
-                                    <th scope="col">@lang('messages.points')</th>
+                                    <th scope="col">@lang('messages.points_competition')</th>
+                                    <th scope="col">@lang('messages.points_total')</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,7 +40,10 @@
                                             {{ $item['firstname'] }} {{ mb_substr($item['lastname'], 0, 2) }}.
                                         </td>
                                         <td class="competition-color">
-                                            <strong>{{ $item['points'] }}</strong>
+                                            <strong>{{ $item['points_competition'] }}</strong>
+                                        </td>
+                                        <td class="competition-color">
+                                            <strong>{{ $item['points_total'] }}</strong>
                                         </td>
                                     </tr>
                                 @endforeach
