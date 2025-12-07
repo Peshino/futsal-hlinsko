@@ -13,15 +13,26 @@ class LeaderboardController extends Controller
 {
     public function index(Competition $competition)
     {
+        $seasonId = $competition->season_id;
+
         $data = User::select('firstname', 'lastname')
-            ->withSum('predictions as points_total', 'points')
+
+            ->withSum(['predictions as points_total' => function ($query) use ($seasonId) {
+                $query->whereHas('game.competition', function ($q) use ($seasonId) {
+                    $q->where('season_id', $seasonId);
+                });
+            }], 'points')
+
             ->withSum(['predictions as points_competition' => function ($query) use ($competition) {
                 $query->whereHas('game', function ($q) use ($competition) {
                     $q->where('competition_id', $competition->id);
                 });
             }], 'points')
+
             ->having('points_total', '>', 0)
-            ->orderByDesc('points_total')
+
+            ->orderByDesc('points_competition')
+
             ->get()
             ->map(function ($user) {
                 return [
@@ -33,9 +44,8 @@ class LeaderboardController extends Controller
             })
             ->toArray();
 
-    return view('leaderboards.index', compact('data', 'competition'));
-}
-
+        return view('leaderboards.index', compact('data', 'competition'));
+    }
 
     public function weekly(Competition $competition)
     {
