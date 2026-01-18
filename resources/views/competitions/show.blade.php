@@ -68,7 +68,7 @@
                     </div> --}}
 
                     @php
-                        $deadline = \Carbon\Carbon::create(2025, 12, 13, 16, 0);
+                        $deadline = \Carbon\Carbon::create(2026, 01, 24, 13, 0);
                     @endphp
 
                     @if ($competition->id === 21 && now()->lessThan($deadline))
@@ -76,10 +76,7 @@
                         <div class="col">
                             <div class="pt-2 pb-2 pl-4 text-left">
                                 <div class="mb-2">
-                                    <div class="d-inline-flex card-red"></div> - STOP NA 2 ZÁPASY: Novák Petr<br />
-                                </div>
-                                <div>
-                                    <div class="d-inline-flex card-red"></div> - STOP NA 1 ZÁPAS: Cepl Radek, Drahoš Petr, Dostál Zdeněk, Bouška Tomáš
+                                    <div class="d-inline-flex card-red"></div> - STOP NA 2 ZÁPASY: Martin Nevole<br />
                                 </div>
                             </div>
                         </div>
