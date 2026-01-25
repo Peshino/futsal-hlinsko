@@ -95,6 +95,10 @@
                     $homeTeamPlayersWithoutCapitalLetters = $filteredPlayers = isset($game->homeTeam->players)
                         ? $game->homeTeam->players->filter(function ($player) use ($game) {
                             $lastnameCapitalsCheck = substr($player->lastname, 1, 4);
+
+                            /* if ($player->id === 5061) {
+                                return false;
+                            } */
                             
                             return $lastnameCapitalsCheck !== strtoupper($lastnameCapitalsCheck);
                         })
@@ -102,6 +106,10 @@
                     $awayTeamPlayersWithoutCapitalLetters = $filteredPlayers = isset($game->awayTeam->players)
                         ? $game->awayTeam->players->filter(function ($player) use ($game) {
                             $lastnameCapitalsCheck = substr($player->lastname, 1, 4);
+
+                            /* if ($player->id === 5061) {
+                                return false;
+                            } */
 
                             return $lastnameCapitalsCheck !== strtoupper($lastnameCapitalsCheck);
                         })
