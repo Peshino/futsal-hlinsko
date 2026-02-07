@@ -68,19 +68,20 @@
                     </div> --}}
 
                     @php
-                        $deadline = \Carbon\Carbon::create(2026, 01, 24, 13, 0);
+                        $deadline = \Carbon\Carbon::create(2026, 02, 14, 10, 0);
+                        $deadline2 = \Carbon\Carbon::create(2026, 02, 14, 16, 0);
                     @endphp
 
                     @if ($competition->id === 21 && now()->lessThan($deadline))
-                    <div class="row mb-4 game">
-                        <div class="col">
-                            <div class="pt-2 pb-2 pl-4 text-left">
-                                <div class="mb-2">
-                                    <div class="d-inline-flex card-red"></div> - STOP NA 2 ZÁPASY: Martin Nevole<br />
-                                </div>
-                            </div>
+                        <div class="pt-2 pb-2 pl-4 text-left">
+                            <div class="d-inline-flex card-red"></div> - STOP NA 1 ZÁPASY: Ondřej Kyncl<br />
                         </div>
-                    </div>
+                    @endif
+
+                    @if ($competition->id === 21 && now()->lessThan($deadline2))
+                        <div class="pt-2 pb-2 pl-4 text-left">
+                            Časy začátků zápasů v Playoff jsou pouze orientační. Hrací doba v play-off je 2 x 10 minut čistého času.
+                        </div>
                     @endif
 
                     {{-- <div class="row mb-4 game">
