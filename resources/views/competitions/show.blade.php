@@ -74,13 +74,13 @@
 
                     @if ($competition->id === 21 && now()->lessThan($deadline))
                         <div class="pt-2 pb-2 pl-4 text-left">
-                            <div class="d-inline-flex card-red"></div> - STOP NA 1 ZÁPASY: Ondřej Kyncl<br />
+                            <div class="d-inline-flex card-red"></div> &nbsp; STOP NA 1 ZÁPAS: Ondřej Kyncl<br />
                         </div>
                     @endif
 
                     @if ($competition->id === 21 && now()->lessThan($deadline2))
-                        <div class="pt-2 pb-2 pl-4 text-left">
-                            Časy začátků zápasů v Playoff jsou pouze orientační. Hrací doba v play-off je 2 x 10 minut čistého času.
+                        <div class="pt-2 pb-2 pl-4 text-center">
+                            <span class="text-warning">Časy začátků zápasů v Playoff jsou pouze orientační. Hrací doba v play-off je 2 x 10 minut čistého času. Týmy jsou nasazeny podle umístění v základní části.</span>
                         </div>
                     @endif
 
