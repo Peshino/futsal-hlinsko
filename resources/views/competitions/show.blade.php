@@ -88,11 +88,11 @@
                         <div class="col no-padding">
                             <div class="pt-2 pb-2 first-place text-center">
                                 <h3>
-                                    {{-- @if ($competition->id === 21)
-                                        <a href="{{ route('teams.show', [$competition->id, 206]) }}">
-                                            <i class="fas fa-medal"></i> Forza Hlinsko
-                                        </a>
-                                    @endif --}}
+                                    @if ($competition->id === 21)
+                                        {{-- <a href="{{ route('teams.show', [$competition->id, 206]) }}"> --}}
+                                            <i class="fas fa-medal"></i>
+                                        {{-- </a> --}}
+                                    @endif
 
                                     @if ($competition->id === 22)
                                         <a href="{{ route('teams.show', [$competition->id, 225]) }}">
@@ -103,11 +103,11 @@
                             </div>
                             <div class="pt-2 pb-2 second-place text-center">
                                 <h5>
-                                    {{-- @if ($competition->id === 21)
-                                        <a href="{{ route('teams.show', [$competition->id, 209]) }}">
-                                            <i class="fas fa-medal"></i> Tatra tým Hlinsko
-                                        </a>
-                                    @endif --}}
+                                    @if ($competition->id === 21)
+                                        {{-- <a href="{{ route('teams.show', [$competition->id, 209]) }}"> --}}
+                                            <i class="fas fa-medal"></i>
+                                        {{-- </a> --}}
+                                    @endif
 
                                     @if ($competition->id === 22)
                                         <a href="{{ route('teams.show', [$competition->id, 234]) }}">
@@ -118,11 +118,11 @@
                             </div>
                             <div class="pt-2 pb-2 third-place text-center">
                                 <h5>
-                                    {{-- @if ($competition->id === 21)
-                                        <a href="{{ route('teams.show', [$competition->id, 196]) }}">
-                                            <i class="fas fa-medal"></i> AC Hlinsko
-                                        </a>
-                                    @endif --}}
+                                    @if ($competition->id === 21)
+                                        {{-- <a href="{{ route('teams.show', [$competition->id, 196]) }}"> --}}
+                                            <i class="fas fa-medal"></i>
+                                        {{-- </a> --}}
+                                    @endif
 
                                     @if ($competition->id === 22)
                                         <a href="{{ route('teams.show', [$competition->id, 218]) }}">
@@ -133,8 +133,8 @@
                             </div>
                             <div class="pt-2 pb-2 text-center">
                                 <h5>
-                                    Vítězem <span class="game-schedule-color">TIPOVAČKY</span> je <span
-                                        class="game-score-color">Matouš Myška</span>.
+                                    Vítězem <span class="game-schedule-color">TIPOVAČKY o 1000 Kč</span> je <span
+                                        class="game-score-color">???</span>.
                                 </h5>
                             </div>
                         </div>
