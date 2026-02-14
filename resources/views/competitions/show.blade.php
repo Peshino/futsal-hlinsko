@@ -67,7 +67,7 @@
                         </div>
                     </div> --}}
 
-                    @php
+                    {{-- @php
                         $deadline = \Carbon\Carbon::create(2026, 02, 14, 10, 0);
                         $deadline2 = \Carbon\Carbon::create(2026, 02, 14, 16, 0);
                     @endphp
@@ -76,56 +76,56 @@
                         <div class="pt-2 pb-2 pl-4 text-left">
                             <div class="d-inline-flex card-red"></div> &nbsp; STOP NA 1 ZÁPAS: Ondřej Kyncl<br />
                         </div>
-                    @endif
+                    @endif --}}
 
-                    @if ($competition->id === 21 && now()->lessThan($deadline2))
+                    {{-- @if ($competition->id === 21 && now()->lessThan($deadline2))
                         <div class="pt-2 pb-2 pl-4 text-center">
                             <span class="text-warning">Časy začátků zápasů v Playoff jsou pouze orientační. Hrací doba v play-off je 2 x 10 minut čistého času. Týmy jsou nasazeny podle umístění v základní části.</span>
                         </div>
-                    @endif
+                    @endif --}}
 
-                    {{-- <div class="row mb-4 game">
+                    <div class="row mb-4 game">
                         <div class="col no-padding">
                             <div class="pt-2 pb-2 first-place text-center">
                                 <h3>
-                                    @if ($competition->id === 19)
+                                    {{-- @if ($competition->id === 21)
                                         <a href="{{ route('teams.show', [$competition->id, 206]) }}">
                                             <i class="fas fa-medal"></i> Forza Hlinsko
                                         </a>
-                                    @endif
+                                    @endif --}}
 
-                                    @if ($competition->id === 20)
-                                        <a href="{{ route('teams.show', [$competition->id, 212]) }}">
-                                            <i class="fas fa-medal"></i> FC Předhradí Rychmburk
+                                    @if ($competition->id === 22)
+                                        <a href="{{ route('teams.show', [$competition->id, 225]) }}">
+                                            <i class="fas fa-medal"></i> Tatranky
                                         </a>
                                     @endif
                                 </h3>
                             </div>
                             <div class="pt-2 pb-2 second-place text-center">
                                 <h5>
-                                    @if ($competition->id === 19)
+                                    {{-- @if ($competition->id === 21)
                                         <a href="{{ route('teams.show', [$competition->id, 209]) }}">
                                             <i class="fas fa-medal"></i> Tatra tým Hlinsko
                                         </a>
-                                    @endif
+                                    @endif --}}
 
-                                    @if ($competition->id === 20)
-                                        <a href="{{ route('teams.show', [$competition->id, 207]) }}">
-                                            <i class="fas fa-medal"></i> Tatranky
+                                    @if ($competition->id === 22)
+                                        <a href="{{ route('teams.show', [$competition->id, 234]) }}">
+                                            <i class="fas fa-medal"></i> Předhradí Rychmburk
                                         </a>
                                     @endif
                                 </h5>
                             </div>
                             <div class="pt-2 pb-2 third-place text-center">
                                 <h5>
-                                    @if ($competition->id === 19)
+                                    {{-- @if ($competition->id === 21)
                                         <a href="{{ route('teams.show', [$competition->id, 196]) }}">
                                             <i class="fas fa-medal"></i> AC Hlinsko
                                         </a>
-                                    @endif
+                                    @endif --}}
 
-                                    @if ($competition->id === 20)
-                                        <a href="{{ route('teams.show', [$competition->id, 198]) }}">
+                                    @if ($competition->id === 22)
+                                        <a href="{{ route('teams.show', [$competition->id, 218]) }}">
                                             <i class="fas fa-medal"></i> Norwich Hlinsko
                                         </a>
                                     @endif
@@ -138,7 +138,7 @@
                                 </h5>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
 
                     @if ($gameCurrentlyBeingPlayed !== null || $firstSchedule !== null || $lastResult !== null)
                         <div class="justify-content-center border-bottom border-dark mb-2 pb-3">
