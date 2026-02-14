@@ -89,9 +89,9 @@
                             <div class="pt-2 pb-2 first-place text-center">
                                 <h3>
                                     @if ($competition->id === 21)
-                                        {{-- <a href="{{ route('teams.show', [$competition->id, 206]) }}"> --}}
-                                            <i class="fas fa-medal"></i>
-                                        {{-- </a> --}}
+                                        <a href="{{ route('teams.show', [$competition->id, 224]) }}">
+                                            <i class="fas fa-medal"></i> Forza Hlinsko
+                                        </a>
                                     @endif
 
                                     @if ($competition->id === 22)
@@ -104,9 +104,9 @@
                             <div class="pt-2 pb-2 second-place text-center">
                                 <h5>
                                     @if ($competition->id === 21)
-                                        {{-- <a href="{{ route('teams.show', [$competition->id, 209]) }}"> --}}
-                                            <i class="fas fa-medal"></i>
-                                        {{-- </a> --}}
+                                        <a href="{{ route('teams.show', [$competition->id, 227]) }}">
+                                            <i class="fas fa-medal"></i> Tatra tým Hlinsko
+                                        </a>
                                     @endif
 
                                     @if ($competition->id === 22)
@@ -119,9 +119,9 @@
                             <div class="pt-2 pb-2 third-place text-center">
                                 <h5>
                                     @if ($competition->id === 21)
-                                        {{-- <a href="{{ route('teams.show', [$competition->id, 196]) }}"> --}}
-                                            <i class="fas fa-medal"></i>
-                                        {{-- </a> --}}
+                                        <a href="{{ route('teams.show', [$competition->id, 228]) }}">
+                                            <i class="fas fa-medal"></i> Prosetín B
+                                        </a>
                                     @endif
 
                                     @if ($competition->id === 22)
@@ -134,7 +134,7 @@
                             <div class="pt-2 pb-2 text-center">
                                 <h5>
                                     Vítězem <span class="game-schedule-color">TIPOVAČKY o 1000 Kč</span> je <span
-                                        class="game-score-color">???</span>.
+                                        class="game-score-color">Ondřej Kyncl</span>.
                                 </h5>
                             </div>
                         </div>
